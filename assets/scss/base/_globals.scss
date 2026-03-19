@@ -1,0 +1,199 @@
+@use "../abstracts" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: $font-heading-now-name;
+  src: url($font-heading-now-path) format("truetype");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+:root {
+  --headingnowtrial: #{$font-heading-now};
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: #f7f8ff;
+  color: #121212;
+  font-family: "Inter", sans-serif;
+}
+
+.site-body {
+  overflow: hidden;
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f8ff;
+}
+
+.loading-track {
+  width: 18.75rem;
+  height: 0.3125rem;
+  overflow: hidden;
+  border-radius: 0.15625rem;
+  background: #e0e0e0;
+}
+
+.loading-bar {
+  width: 0;
+  height: 100%;
+  background: #121212;
+}
+
+.main-content {
+  visibility: hidden;
+  opacity: 0;
+}
+
+#home-section.hero-section {
+  height: 100vh;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.hero-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.top-left p {
+  margin: 0;
+  font-family: $font-heading-now;
+  font-size: clamp(0.625rem, 4vw, 1.25rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+
+.hero-middle {
+  width: 100%;
+  max-width: 95rem;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.press-text-one {
+  margin: 0;
+  font-size: clamp(0.375rem, 3vw, 1.125rem);
+  font-weight: 500;
+  color: #8f8f8f;
+  letter-spacing: -0.01em;
+}
+
+.hero-name-wrap {
+  position: relative;
+  min-height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-name {
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: $font-heading-now;
+  font-size: clamp(3.5rem, 14.5vw, 14rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  position: relative;
+  color: #0b0b0f !important;
+  filter: none !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+.surname-black {
+  color: #0b0b0f;
+  position: relative;
+  z-index: 3;
+}
+
+.surname-filter {
+  color: blue;
+  filter: grayscale(100%);
+  mix-blend-mode: difference;
+  opacity: 1;
+  position: relative;
+  z-index: 3;
+}
+
+
+
+
+.hero-figure {
+  position: absolute;
+  right: 3%;
+  bottom: 0;
+  z-index: 2;
+}
+
+.hero-figure-image {
+  width: 27rem;
+  height: 18.5rem;
+  object-fit: contain;
+  display: block;
+}
+
+.press-text-two {
+  margin: 0;
+  margin-left: auto;
+  align-self: flex-end;
+  width: 100%;
+  max-width: 50rem;
+  text-align: right;
+  font-size: clamp(0.75rem, 1.8vw, 1.125rem);
+  font-weight: 500;
+  color: #8f8f8f;
+  letter-spacing: -0.01em;
+}
+
+.bottom-row {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 1.5rem;
+}
+
+.sosial-icons {
+  display: flex;
+  gap: 1rem;
+  font-size: clamp(1rem, 3vw, 2rem);
+}
+
+.social-link {
+  color: #121212;
+  text-decoration: none;
+  transition: transform 0.25s ease, color 0.25s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-0.3rem);
+  color: #7d7d7d;
+}
