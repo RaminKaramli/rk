@@ -1,11 +1,15 @@
 export function initPreloader() {
-  if (typeof gsap === "undefined") return;
-
   const overlay = document.querySelector(".loading-overlay");
   const bar = document.querySelector(".loading-bar");
   const content = document.querySelector(".main-content");
 
   if (!overlay || !bar || !content) return;
+  if (typeof gsap === "undefined") {
+    overlay.style.display = "none";
+    content.style.visibility = "visible";
+    content.style.opacity = "1";
+    return;
+  }
 
   const barDuration = 3;
   const overlayFadeDuration = 0.6;

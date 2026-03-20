@@ -11,7 +11,9 @@
   />
   <link rel="stylesheet" href="./assets/css/style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" defer></script>
   <script type="module" src="./assets/js/main.js"></script>
 </head>
 
@@ -23,6 +25,34 @@
   </div>
 
   <main class="main-content">
+    <header class="site-header" id="siteHeader">
+      <div class="header-wrapper">
+        <a href="#" class="header-logo" aria-label="Ramin avatar">
+          <img id="headerAvatar" src="./assets/images/my.png" alt="Ramin avatar" />
+        </a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="fullWidthMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </header>
+
+    <div class="full-width-overlay-menu" id="fullWidthMenu" aria-hidden="true">
+      <div class="overlay-menu-image-wrap">
+        <div class="overlay-menu-image is-active"><img src="https://images.unsplash.com/photo-1522139137660-4248e04955b8?q=80&w=2076&auto=format&fit=crop" alt=""></div>
+        <div class="overlay-menu-image"><img src="https://images.unsplash.com/photo-1710799885122-428e63eff691?q=80&w=1974&auto=format&fit=crop" alt=""></div>
+        <div class="overlay-menu-image"><img src="https://images.unsplash.com/photo-1720983590448-28b749bd403d?q=80&w=1932&auto=format&fit=crop" alt=""></div>
+        <div class="overlay-menu-image"><img src="https://images.unsplash.com/photo-1718212456991-54ab241fae82?q=80&w=2070&auto=format&fit=crop" alt=""></div>
+      </div>
+      <div class="overlay-menu-content">
+        <ul class="overlay-nav-list">
+          <li><a href="#home-section" data-image-index="0">HOME</a></li>
+          <li><a href="#about" data-image-index="1">ABOUT</a></li>
+          <li><a href="#photography" data-image-index="2">PHOTOGRAPHY</a></li>
+          <li><a href="#resume" data-image-index="3">RESUME</a></li>
+        </ul>
+      </div>
+    </div>
+
     <section id="home-section" class="hero-section">
       <div class="hero-top">
         <div class="top-left">
@@ -64,14 +94,10 @@
       <div id="left-right-full" class="bottom-row">
         <div class="top-right">
           <span class="sosial-icons">
-            <a href="https://www.linkedin.com/in/karamliramin/" target="_blank" class="social-link"><i
-                class="fa-brands fa-linkedin"></i></a>
-            <a href="https://github.com/RaminKaramli" target="_blank" class="social-link"><i
-                class="fa-brands fa-github"></i></a>
-            <a href="https://www.instagram.com/raminkaramli/" target="_blank" class="social-link"><i
-                class="fa-brands fa-instagram"></i></a>
-            <a href="https://x.com/raminkaramli" target="_blank" class="social-link"><i
-                class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.linkedin.com/in/karamliramin/" target="_blank" class="social-link"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="https://github.com/RaminKaramli" target="_blank" class="social-link"><i class="fa-brands fa-github"></i></a>
+            <a href="https://www.instagram.com/raminkaramli/" target="_blank" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://x.com/raminkaramli" target="_blank" class="social-link"><i class="fa-brands fa-x-twitter"></i></a>
           </span>
         </div>
       </div>
