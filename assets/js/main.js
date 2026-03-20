@@ -7,10 +7,7 @@ window.addEventListener("load", () => {
     initNavbar();
   };
 
-  const readyNow =
-    typeof gsap !== "undefined" &&
-    typeof SplitText !== "undefined" &&
-    typeof window.jQuery !== "undefined";
+  const readyNow = typeof gsap !== "undefined" && typeof window.jQuery !== "undefined";
 
   if (readyNow) {
     run();
@@ -20,10 +17,7 @@ window.addEventListener("load", () => {
   let tries = 0;
   const timer = setInterval(() => {
     tries += 1;
-    const ready =
-      typeof gsap !== "undefined" &&
-      typeof SplitText !== "undefined" &&
-      typeof window.jQuery !== "undefined";
+    const ready = typeof gsap !== "undefined" && typeof window.jQuery !== "undefined";
 
     if (ready) {
       clearInterval(timer);
