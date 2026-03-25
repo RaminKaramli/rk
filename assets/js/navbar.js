@@ -16,6 +16,7 @@ export function initNavbar() {
 
   let isOpen = false;
   let isAnimating = false;
+  const MENU_DURATION = 0.6;
 
   const getHeaderTargetWidth = () => (window.matchMedia("(max-width: 768px)").matches ? "96%" : "30%");
 
@@ -29,11 +30,11 @@ export function initNavbar() {
       visibility: "hidden",
       autoAlpha: 0,
       pointerEvents: "none",
-      height: 0,
+      height: "100vh",
     });
 
-    gsap.set($overlayMenuContent, { autoAlpha: 0, y: -24 });
-    gsap.set($overlayLinks, { autoAlpha: 0, y: 24 });
+    gsap.set($overlayMenuContent, { autoAlpha: 0 });
+    gsap.set($overlayLinks, { autoAlpha: 0, x: 0, y: 0 });
     gsap.set($overlayImages, { autoAlpha: 0, scale: 1.03 });
     gsap.set($overlayImages.eq(0), { autoAlpha: 1, scale: 1 });
 
@@ -67,34 +68,27 @@ export function initNavbar() {
     $fullWidthMenu.attr("aria-hidden", "false");
     if ($hamIcon.length) $hamIcon.addClass("active");
 
-    gsap.set($overlayLinks, { autoAlpha: 0, y: -28 });
+    gsap.killTweensOf([$overlayLinks, $overlayMenuContent, $fullWidthMenu]);
+    gsap.set($overlayMenuContent, { autoAlpha: 0, x: 0, y: 0 });
+    gsap.set($overlayLinks, { autoAlpha: 0, x: 0, y: 0 });
     setActiveImage(0);
 
     gsap
       .timeline({
-        onStart: () => gsap.set($fullWidthMenu, { visibility: "visible" }),
+        onStart: () =>
+          gsap.set($fullWidthMenu, { visibility: "visible", autoAlpha: 0, pointerEvents: "auto", height: "100vh" }),
         onComplete: () => {
           isAnimating = false;
           $menuToggle.css("pointer-events", "");
         },
       })
-      .to($fullWidthMenu, {
-        height: "100vh",
-        autoAlpha: 1,
-        pointerEvents: "auto",
-        duration: 1,
-        ease: "power3.out",
-      })
-      .to($overlayMenuContent, { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out" }, 0.2)
-      .to(
-        $overlayLinks,
-        { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.09, ease: "power3.out" },
-        0.35,
-      );
+      .to($fullWidthMenu, { autoAlpha: 1, duration: MENU_DURATION, ease: "power1.out" }, 0)
+      .to($overlayMenuContent, { autoAlpha: 1, duration: MENU_DURATION, ease: "power2.out" }, 0)
+      .to($overlayLinks, { autoAlpha: 1, duration: MENU_DURATION, stagger: 0.06, ease: "power2.out" }, 0);
   };
 
   const closeMenu = () => {
-    if (isAnimating || !isOpen) return;
+    if (!isOpen && !isAnimating) return;
     isAnimating = true;
     isOpen = false;
 
@@ -106,23 +100,27 @@ export function initNavbar() {
     $fullWidthMenu.attr("aria-hidden", "true");
     if ($hamIcon.length) $hamIcon.removeClass("active");
 
+    gsap.killTweensOf([$overlayLinks, $overlayMenuContent, $fullWidthMenu]);
+
     gsap
       .timeline({
         onComplete: () => {
-          gsap.set($fullWidthMenu, { visibility: "hidden", pointerEvents: "none" });
-          gsap.set($overlayLinks, { autoAlpha: 0, y: 24 });
+          gsap.set($fullWidthMenu, {
+            visibility: "hidden",
+            pointerEvents: "none",
+            autoAlpha: 0,
+            height: "100vh",
+          });
+          gsap.set($overlayMenuContent, { autoAlpha: 0, x: 0, y: 0 });
+          gsap.set($overlayLinks, { autoAlpha: 0, x: 0, y: 0 });
           isAnimating = false;
           $menuToggle.css("pointer-events", "");
           $overlayMenuContent.css("pointer-events", "");
         },
       })
-      .to(
-        $overlayLinks,
-        { autoAlpha: 0, y: -80, duration: 0.75, stagger: { each: 0.12, from: "start" }, ease: "power3.inOut" },
-        0,
-      )
-      .to($overlayMenuContent, { autoAlpha: 0, y: 20, duration: 0.7, ease: "power3.inOut" }, 0.7)
-      .to($fullWidthMenu, { height: 0, autoAlpha: 0, duration: 1.05, ease: "power4.inOut" }, 0.95);
+      .to($overlayLinks, { autoAlpha: 0, duration: 0.6, ease: "power2.inOut" }, 0)
+      .to($overlayMenuContent, { autoAlpha: 0, duration: MENU_DURATION, ease: "power2.inOut" }, 0)
+      .to($fullWidthMenu, { autoAlpha: 0, duration: MENU_DURATION, ease: "power2.inOut" }, 0);
   };
 
   $overlayMenuContent.on("mouseenter", ".overlay-nav-list li a", function () {

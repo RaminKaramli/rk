@@ -76,7 +76,7 @@ body.overlay-active {
 .site-header {
   width: 6.25rem;
   margin: 0;
-  padding: 0.68rem 0.95rem;
+  padding: 0.35rem 0.95rem;
   border-radius: 9999px;
   background: #0d0e12;
   color: #fff;
@@ -380,8 +380,8 @@ body.overlay-active {
 }
 
 .hero-figure-image {
-  width: 27rem;
-  height: 18.5rem;
+  width: 32rem;
+  height: 22rem;
   -o-object-fit: contain;
      object-fit: contain;
   display: block;
