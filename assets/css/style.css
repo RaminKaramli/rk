@@ -93,6 +93,34 @@ body {
   z-index: 2;
 }
 
+.main-content canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+#canvas {
+  background-color: #fff;
+  pointer-events: auto;
+}
+
+#canvas2 {
+  background-color: transparent;
+  position: fixed;
+  top: 60%;
+  left: 20%;
+}
+
+#canvas3,
+#canvas4,
+#canvas5 {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
 body.overlay-active {
   overflow: hidden;
 }
