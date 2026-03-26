@@ -1,10 +1,12 @@
 import { initPreloader } from "./preloader.js";
 import { initNavbar } from "./navbar.js";
+import { initCanvasEffects } from "./canvas-effects.js";
 
 window.addEventListener("load", () => {
   const run = () => {
     initPreloader();
     initNavbar();
+    initCanvasEffects();
   };
 
   const readyNow = typeof gsap !== "undefined" && typeof window.jQuery !== "undefined";
