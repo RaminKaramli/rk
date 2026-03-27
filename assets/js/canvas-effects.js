@@ -1,6 +1,7 @@
 const FONT_URL = "https://fonts.gstatic.com/s/bigshouldersdisplay/v21/fC1MPZJEZG-e9gHhdI4-NBbfd2ys3SjJCx12wPgf9g-_3F0YdSY8FFkwSA.woff2";
 
 export const initCanvasEffects = () => {
+  const body = document.body;
   const canvas = document.getElementById("canvas");
   const canvas2 = document.getElementById("canvas2");
   const canvas3 = document.getElementById("canvas3");
@@ -77,20 +78,27 @@ export const initCanvasEffects = () => {
   };
 
   const drawDot = (destinationContext, x, y) => {
+    const isDark = body.classList.contains("theme-dark");
+    destinationContext.fillStyle = isDark ? "rgba(238, 243, 255, 0.95)" : "rgba(0, 0, 0, 1)";
     destinationContext.beginPath();
     destinationContext.arc(x, y, dotRadius, 0, Math.PI * 2, true);
     destinationContext.fill();
   };
 
   const drawSmallDot = (destinationContext, x, y) => {
+    const isDark = body.classList.contains("theme-dark");
+    const faint = isDark ? "rgba(238,243,255,0.36)" : "rgba(0,0,0,0.3)";
+    const solid = isDark ? "rgba(238,243,255,0.92)" : "black";
     destinationContext.beginPath();
     destinationContext.arc(x, y, smallDotRadius, 0, Math.PI * 2, true);
-    destinationContext.fillStyle = "rgba(0,0,0,0.3)";
+    destinationContext.fillStyle = faint;
     destinationContext.fill();
-    destinationContext.fillStyle = "black";
+    destinationContext.fillStyle = solid;
   };
 
   const drawLines = (destinationContext, x, y) => {
+    const isDark = body.classList.contains("theme-dark");
+    destinationContext.strokeStyle = isDark ? "rgba(238,243,255,0.75)" : "rgba(0,0,0,1)";
     destinationContext.beginPath();
     destinationContext.moveTo(x, y);
     destinationContext.lineTo(x - dotMargin, y);

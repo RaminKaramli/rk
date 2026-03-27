@@ -101,7 +101,8 @@ body {
 }
 
 #canvas {
-  background-color: #fff;
+  background-color: var(--c-bg);
+  transition: background 400ms cubic-bezier(1, 0, 0.4, 1);
   pointer-events: auto;
 }
 
@@ -126,7 +127,7 @@ body.overlay-active {
 }
 
 .site-header {
-  width: 6.25rem;
+  width: min(92vw, 58rem);
   margin: 0;
   padding: 0.35rem 0.95rem;
   border-radius: 9999px;
@@ -177,7 +178,8 @@ body.overlay-active {
 
 .header-wrapper {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.3rem;
   align-items: center;
   position: relative;
   z-index: 1;
@@ -219,6 +221,68 @@ body.overlay-active {
   justify-content: center;
   gap: 0.28rem;
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
+}
+
+.theme-toggle {
+  width: 3rem;
+  height: 3rem;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 0;
+  color: #0d0e12;
+  box-shadow: none;
+  transition: color 0.22s ease;
+  cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
+}
+
+.theme-toggle:focus,
+.theme-toggle:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.theme-toggle__icon {
+  width: 2.7rem;
+  height: 2.7rem;
+  fill: currentColor;
+  position: absolute;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle__icon--moon {
+  opacity: 1;
+  transform: scale(0.86);
+}
+
+.theme-toggle__icon--sun {
+  opacity: 0;
+  transform: scale(0.78);
+}
+
+.theme-toggle[aria-pressed=true] .theme-toggle__icon--moon {
+  opacity: 0;
+  transform: scale(0.78);
+}
+
+.theme-toggle[aria-pressed=true] .theme-toggle__icon--sun {
+  opacity: 1;
+  transform: scale(0.86);
+}
+
+.theme-toggle--floating {
+  position: fixed;
+  top: 1.85rem;
+  right: 2.2rem;
+  z-index: 1250;
+  border-radius: 9999px;
+  background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  backdrop-filter: blur(8px) saturate(var(--saturation));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
 
 .menu-toggle:focus,
@@ -269,6 +333,95 @@ body.overlay-active {
   stroke-dashoffset: -132px;
 }
 
+body.theme-dark {
+  --c-glass: #9da3b2;
+  --c-light: #d7dcef;
+  --c-dark: #000;
+  --c-content: #e6ebff;
+  --c-action: #7db5ff;
+  --c-bg: #10131c;
+  --glass-reflex-dark: 2;
+  --glass-reflex-light: 0.45;
+  --saturation: 140%;
+}
+
+body.theme-dark .ham .line {
+  stroke: #f3f6ff;
+}
+
+body.theme-dark .site-header.is-open .ham .line {
+  stroke: #fff;
+}
+
+body.theme-dark .theme-toggle {
+  color: #f3f6ff;
+}
+
+body.theme-dark .site-header {
+  background-color: rgba(28, 36, 58, 0.58);
+  color: #f3f6ff;
+  box-shadow: inset 0 0 0 1px rgba(219, 229, 255, 0.16), inset 1.8px 3px 0 -2px rgba(255, 255, 255, 0.16), inset -2px -2px 0 -2px rgba(255, 255, 255, 0.08), inset -0.3px -1px 4px 0 rgba(0, 0, 0, 0.28), inset 0 3px 4px -2px rgba(0, 0, 0, 0.24), 0 1px 5px 0 rgba(0, 0, 0, 0.25), 0 6px 16px 0 rgba(0, 0, 0, 0.22);
+}
+
+body.theme-dark .site-header::before {
+  background: none;
+  opacity: 0;
+}
+
+body.theme-dark .site-header::after {
+  background: none;
+  opacity: 0;
+}
+
+body.theme-dark .theme-toggle--floating {
+  background-color: rgba(28, 36, 58, 0.58);
+  color: #f3f6ff;
+  box-shadow: inset 0 0 0 1px rgba(219, 229, 255, 0.16), inset 1.8px 3px 0 -2px rgba(255, 255, 255, 0.16), inset -2px -2px 0 -2px rgba(255, 255, 255, 0.08), inset -0.3px -1px 4px 0 rgba(0, 0, 0, 0.28), inset 0 3px 4px -2px rgba(0, 0, 0, 0.24), 0 1px 5px 0 rgba(0, 0, 0, 0.25), 0 6px 16px 0 rgba(0, 0, 0, 0.22);
+}
+
+body.theme-dark .press-text-one,
+body.theme-dark .press-text-two {
+  color: #fff;
+}
+
+body.theme-dark .my-name {
+  color: #fff !important;
+}
+
+body.theme-dark .surname-black {
+  color: #fff !important;
+}
+
+body.theme-dark .surname-filter {
+  /* color: blue; */
+  /* filter: grayscale(100%); */
+  mix-blend-mode: difference;
+}
+
+body.theme-dark .top-left p {
+  color: #fff;
+  background-color: rgba(28, 36, 58, 0.58);
+  box-shadow: inset 0 0 0 1px rgba(219, 229, 255, 0.16), inset 1.8px 3px 0 -2px rgba(255, 255, 255, 0.16), inset -2px -2px 0 -2px rgba(255, 255, 255, 0.08), inset -0.3px -1px 4px 0 rgba(0, 0, 0, 0.28), inset 0 3px 4px -2px rgba(0, 0, 0, 0.24), 0 1px 5px 0 rgba(0, 0, 0, 0.25), 0 6px 16px 0 rgba(0, 0, 0, 0.22);
+}
+
+body.theme-dark .top-left p::before,
+body.theme-dark .top-left p::after {
+  background: none;
+  opacity: 0;
+}
+
+body.theme-dark .social-link {
+  color: #fff;
+  background-color: rgba(28, 36, 58, 0.58);
+  box-shadow: inset 0 0 0 1px rgba(219, 229, 255, 0.16), inset 1.8px 3px 0 -2px rgba(255, 255, 255, 0.16), inset -2px -2px 0 -2px rgba(255, 255, 255, 0.08), inset -0.3px -1px 4px 0 rgba(0, 0, 0, 0.28), inset 0 3px 4px -2px rgba(0, 0, 0, 0.24), 0 1px 5px 0 rgba(0, 0, 0, 0.25), 0 6px 16px 0 rgba(0, 0, 0, 0.22);
+}
+
+body.theme-dark .social-link::before,
+body.theme-dark .social-link::after {
+  background: none;
+  opacity: 0;
+}
+
 .full-width-overlay-menu {
   position: fixed;
   inset: 0;
@@ -279,7 +432,12 @@ body.overlay-active {
   overflow: hidden;
   display: grid;
   grid-template-columns: 1fr;
-  background: #000;
+  background: color-mix(in srgb, var(--c-bg) 88%, transparent);
+  backdrop-filter: blur(10px) saturate(var(--saturation));
+}
+
+body.theme-dark .full-width-overlay-menu {
+  background: rgba(5, 8, 16, 0.82);
 }
 
 .overlay-menu-image-wrap {
@@ -319,13 +477,17 @@ body.overlay-active {
 
 .overlay-nav-list a {
   text-decoration: none;
-  color: #fff;
+  color: #000;
   font-size: clamp(2.5rem, 5vw, 5rem);
   font-weight: 800;
   letter-spacing: -0.03em;
   display: inline-block;
   overflow: hidden;
   position: relative;
+}
+
+body.theme-dark .overlay-nav-list a {
+  color: #fff;
 }
 
 .overlay-nav-list a .mask {
@@ -459,8 +621,8 @@ body.overlay-active {
 }
 
 .surname-filter {
-  color: blue;
-  filter: grayscale(100%);
+  /* color: blue; */
+  /* filter: grayscale(100%); */
   mix-blend-mode: difference;
   opacity: 1;
   position: relative;
