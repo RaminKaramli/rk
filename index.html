@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js" defer></script>
   <script type="module" src="./assets/js/main.js"></script>
 </head>
@@ -123,6 +124,59 @@
           </span>
         </div>
       </div>
+    </section>
+
+    <section id="about" class="stack-cards-section">
+      <ul class="stack-cards-list">
+        <li class="stack-card" id="stack-card-1" style="--index: 1">
+          <div class="stack-card-body">
+            <div class="stack-card-content">
+              <h2>High Performance</h2>
+              <p>
+                Without JavaScript event listeners, scrolling runs smoothly at 60
+                FPS. The browser handles this via GPU.
+              </p>
+            </div>
+            <div class="stack-card-num">01</div>
+          </div>
+        </li>
+        <li class="stack-card" id="stack-card-2" style="--index: 2">
+          <div class="stack-card-body">
+            <div class="stack-card-content">
+              <h2>Responsive Design</h2>
+              <p>
+                Using clamp and viewport units, the layout works perfectly on any
+                device. On mobile, cards switch to vertical layout automatically.
+              </p>
+            </div>
+            <div class="stack-card-num">02</div>
+          </div>
+        </li>
+        <li class="stack-card" id="stack-card-3" style="--index: 3">
+          <div class="stack-card-body">
+            <div class="stack-card-content">
+              <h2>Semantic HTML</h2>
+              <p>
+                Instead of a messy div soup, we use clean ul and li structure.
+                SEO-friendly and highly accessible.
+              </p>
+            </div>
+            <div class="stack-card-num">03</div>
+          </div>
+        </li>
+        <li class="stack-card" id="stack-card-4" style="--index: 4">
+          <div class="stack-card-body">
+            <div class="stack-card-content">
+              <h2>Full Control</h2>
+              <p>
+                You can instantly control spacing, colors, and stack height by
+                just changing SCSS variables.
+              </p>
+            </div>
+            <div class="stack-card-num">04</div>
+          </div>
+        </li>
+      </ul>
     </section>
   </main>
 </body>

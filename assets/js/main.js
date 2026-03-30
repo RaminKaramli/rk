@@ -2,6 +2,7 @@ import { initPreloader } from "./preloader.js";
 import { initNavbar } from "./navbar.js";
 import { initCanvasEffects } from "./canvas-effects.js";
 import { initThemeToggle } from "./theme-toggle.js";
+import { initStackCards } from "./stack-cards.js";
 
 window.addEventListener("load", () => {
   const run = () => {
@@ -9,6 +10,7 @@ window.addEventListener("load", () => {
     initNavbar();
     initCanvasEffects();
     initThemeToggle();
+    initStackCards();
   };
 
   const readyNow = typeof gsap !== "undefined" && typeof window.jQuery !== "undefined";

@@ -129,7 +129,7 @@ body.overlay-active {
   border: none;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
   color: #0d0e12;
-  position: absolute;
+  position: fixed;
   top: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
@@ -370,7 +370,7 @@ body.theme-dark {
   --c-dark: #000;
   --c-content: #e6ebff;
   --c-action: #7db5ff;
-  --c-bg: #10131c;
+  --c-bg: #000000;
   --glass-reflex-dark: 2;
   --glass-reflex-light: 0.45;
   --saturation: 140%;
@@ -385,7 +385,7 @@ body.theme-dark .site-header.is-open .ham .line {
 }
 
 body.theme-dark .theme-toggle {
-  background-color: rgba(28, 36, 58, 0.58);
+  background-color: rgba(0, 0, 0, 0.58);
   color: #f3f6ff;
   box-shadow:
     inset 0 0 0 1px rgba(219, 229, 255, 0.16),
@@ -398,7 +398,7 @@ body.theme-dark .theme-toggle {
 }
 
 body.theme-dark .site-header {
-  background-color: rgba(28, 36, 58, 0.58);
+  background-color: rgba(0, 0, 0, 0.58);
   color: #f3f6ff;
   box-shadow:
     inset 0 0 0 1px rgba(219, 229, 255, 0.16),
@@ -421,7 +421,7 @@ body.theme-dark .site-header::after {
 }
 
 body.theme-dark .theme-toggle--floating {
-  background-color: rgba(28, 36, 58, 0.58);
+  background-color: rgba(0, 0, 0, 0.58);
   color: #f3f6ff;
   box-shadow:
     inset 0 0 0 1px rgba(219, 229, 255, 0.16),
@@ -454,7 +454,7 @@ body.theme-dark .surname-filter {
 
 body.theme-dark .top-left p {
   color: #fff;
-  background-color: rgba(28, 36, 58, 0.58);
+  background-color: rgba(0, 0, 0, 0.58);
   box-shadow:
     inset 0 0 0 1px rgba(219, 229, 255, 0.16),
     inset 1.8px 3px 0 -2px rgba(255, 255, 255, 0.16),
@@ -473,7 +473,7 @@ body.theme-dark .top-left p::after {
 
 body.theme-dark .social-link {
   color: #fff;
-  background-color: rgba(28, 36, 58, 0.58);
+  background-color: rgba(0, 0, 0, 0.58);
   box-shadow:
     inset 0 0 0 1px rgba(219, 229, 255, 0.16),
     inset 1.8px 3px 0 -2px rgba(255, 255, 255, 0.16),
@@ -497,7 +497,8 @@ body.theme-dark .social-link::after {
   height: 0;
   opacity: 0;
   visibility: hidden;
-  overflow: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   display: grid;
   grid-template-columns: 1fr;
   background: color-mix(in srgb, var(--c-bg) 88%, transparent);
@@ -506,7 +507,7 @@ body.theme-dark .social-link::after {
 }
 
 body.theme-dark .full-width-overlay-menu {
-  background: rgba(5, 8, 16, 0.82);
+  background: rgba(0, 0, 0, 0.82);
 }
 
 .overlay-menu-image-wrap {
@@ -535,6 +536,7 @@ body.theme-dark .full-width-overlay-menu {
 .overlay-menu-content {
   display: grid;
   align-content: center;
+  min-height: 100dvh;
   padding: 2.4rem 3rem;
 }
 
