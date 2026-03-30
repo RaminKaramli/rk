@@ -18,6 +18,15 @@
 
 :root {
   --headingnowtrial: #{$font-heading-now};
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  --c-content: #224;
+  --c-action: #0052f5;
+  --c-bg: #ffffff;
+  --glass-reflex-dark: 1;
+  --glass-reflex-light: 1;
+  --saturation: 150%;
 }
 
 html,
@@ -28,27 +37,12 @@ body {
   background: #ffffff;
   color: #121212;
   font-family: "DM Sans", sans-serif;
-}
-
-body {
-  --c-glass: #bbbbbc;
-  --c-light: #fff;
-  --c-dark: #000;
-  --c-content: #224;
-  --c-action: #0052f5;
-  --c-bg: #ffffff;
-  --glass-reflex-dark: 1;
-  --glass-reflex-light: 1;
-  --saturation: 150%;
-  background: var(--c-bg);
-  color: var(--c-content);
-  transition: background 400ms cubic-bezier(1, 0, 0.4, 1), color 400ms cubic-bezier(1, 0, 0.4, 1);
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb10e12e8d4c16e38e5_cursor-default.svg") 2 0, auto;
 }
 
-
 .site-body {
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .loading-overlay {

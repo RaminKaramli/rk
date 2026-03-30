@@ -29,7 +29,8 @@ export function initStackCards() {
 
   gsap.registerPlugin(ScrollTrigger);
 
-  const revealOffset = 36;
+  const revealOffset = 85 / 3;
+  const scaleStep = 0.015;
   const stepDistance = window.innerHeight * 0.82;
 
   gsap.set(list, {
@@ -37,9 +38,6 @@ export function initStackCards() {
   });
 
   cards.forEach((card, index) => {
-    const content = card.querySelector(".stack-card-content");
-    const num = card.querySelector(".stack-card-num");
-
     gsap.set(card, {
       position: "absolute",
       top: "50%",
@@ -50,10 +48,6 @@ export function initStackCards() {
       scale: 1,
       opacity: 1,
       zIndex: index + 1,
-    });
-
-    gsap.set([content, num], {
-      autoAlpha: index === 0 ? 1 : 0,
     });
   });
 
@@ -75,31 +69,12 @@ export function initStackCards() {
       cards.slice(0, index),
       {
         y: (i) => -revealOffset * (index - i),
-        scale: (i) => 1 - 0.04 * (index - i),
-        opacity: (i) => 1 - 0.12 * (index - i),
+        scale: (i) => 1 - scaleStep * (index - i),
         ease: "none",
         duration: 1,
       },
       index - 1,
     )
-      .to(
-        cards.slice(0, index).map((prevCard) => prevCard.querySelector(".stack-card-content")),
-        {
-          autoAlpha: 0,
-          ease: "none",
-          duration: 0.25,
-        },
-        index - 1,
-      )
-      .to(
-        cards.slice(0, index).map((prevCard) => prevCard.querySelector(".stack-card-num")),
-        {
-          autoAlpha: 0.12,
-          ease: "none",
-          duration: 0.25,
-        },
-        index - 1,
-      )
       .to(
         card,
         {
@@ -108,15 +83,6 @@ export function initStackCards() {
           duration: 1,
         },
         index - 1,
-      )
-      .to(
-        [card.querySelector(".stack-card-content"), card.querySelector(".stack-card-num")],
-        {
-          autoAlpha: 1,
-          ease: "none",
-          duration: 0.25,
-        },
-        index - 0.15,
       );
   });
 

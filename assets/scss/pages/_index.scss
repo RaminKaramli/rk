@@ -13,93 +13,84 @@
   }
 
   .stack-card {
+    height: var(--card-height);
     transform-origin: center top;
   }
 
   .stack-card-body {
-    align-items: center;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    align-items: stretch;
+    background: #f3f4f6;
+    border: 1px solid rgba(20, 26, 36, 0.14);
     border-radius: 1.75rem;
-    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.28);
+    box-shadow: 0 1.2rem 3rem rgba(20, 26, 36, 0.12);
     box-sizing: border-box;
     display: flex;
-    height: var(--card-height);
-    justify-content: center;
+    height: 100%;
+    justify-content: flex-start;
     overflow: hidden;
-    padding: clamp(2rem, 4.4vw, 3.5rem);
+    padding: clamp(1rem, 2vw, 1.6rem);
     position: relative;
+    width: 100%;
   }
 
-  .stack-card-content {
-    max-width: 44rem;
-    position: relative;
-    text-align: center;
+  .stack-card-showcase {
+    color: #0f1728;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+    min-height: 0;
     width: 100%;
     z-index: 2;
-
-    h2 {
-      font-family: "Montserrat", sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 0.96;
-      margin: 0 0 1rem;
-      text-transform: uppercase;
-    }
-
-    p {
-      color: rgba(255, 255, 255, 0.82);
-      font-family: "Montserrat", sans-serif;
-      font-size: clamp(1rem, 1.5vw, 1.1rem);
-      line-height: 1.7;
-      margin: 0;
-    }
   }
 
-  .stack-card-num {
+  .stack-card-showcase-media {
+    border: 1px solid #d6dbe5;
+    border-radius: 1.05rem;
+    display: flex;
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .stack-card-showcase-media img {
+    display: block;
+    height: 100%;
+    max-height: none;
+    max-width: none;
+    object-position: center center;
+    width: 100%;
+  }
+
+  .stack-card-showcase-content {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .stack-card-showcase-tags {
+    background: transparent;
+    border-radius: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: static;
+    max-width: 100%;
+  }
+
+  .stack-card-showcase-tags li {
+    border: 1px solid rgba(15, 23, 40, 0.2);
+    border-radius: 999px;
+    color: #1d2738;
     font-family: "Montserrat", sans-serif;
-    font-size: clamp(5rem, 12vw, 8.5rem);
-    font-weight: 900;
-    letter-spacing: -0.07em;
-    line-height: 1;
-    opacity: 0.12;
-    position: absolute;
-    right: clamp(1rem, 2.4vw, 1.75rem);
-    top: clamp(0.5rem, 1vw, 1rem);
-    z-index: 1;
-  }
-
-  #stack-card-1 .stack-card-body {
-    background:
-      radial-gradient(circle at 80% 20%, rgba(89, 220, 202, 0.28), transparent 25%),
-      linear-gradient(135deg, #18394f 0%, #264653 55%, #1b2f42 100%);
-  }
-
-  #stack-card-2 .stack-card-body {
-    background:
-      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12), transparent 28%),
-      linear-gradient(135deg, #155e63 0%, #2a9d8f 55%, #1f7c70 100%);
-  }
-
-  #stack-card-3 .stack-card-body {
-    background:
-      radial-gradient(circle at 75% 25%, rgba(255, 255, 255, 0.18), transparent 28%),
-      linear-gradient(135deg, #b98f2f 0%, #e9c46a 55%, #d2aa52 100%);
-    color: #15171c;
-  }
-
-  #stack-card-3 .stack-card-content p {
-    color: rgba(21, 23, 28, 0.8);
-  }
-
-  #stack-card-3 .stack-card-num {
-    opacity: 0.18;
-  }
-
-  #stack-card-4 .stack-card-body {
-    background:
-      radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1), transparent 25%),
-      linear-gradient(135deg, #ba563d 0%, #e76f51 55%, #cc6047 100%);
+    font-size: clamp(0.8rem, 0.9vw, 0.95rem);
+    font-weight: 500;
+    padding: 0.45rem 0.85rem;
   }
 
   @media (max-width: 768px) {
@@ -126,16 +117,6 @@
       height: auto;
       min-height: 24rem;
       padding: 1.5rem;
-    }
-
-    .stack-card-content {
-      max-width: 100%;
-      text-align: center;
-      width: 100%;
-    }
-
-    .stack-card-num {
-      font-size: clamp(4rem, 22vw, 6rem);
     }
   }
 }
