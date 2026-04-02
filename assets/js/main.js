@@ -3,6 +3,7 @@ import { initNavbar } from "./navbar.js";
 import { initCanvasEffects } from "./canvas-effects.js";
 import { initThemeToggle } from "./theme-toggle.js";
 import { initStackCards } from "./stack-cards.js";
+import { initNotableStats } from "./notable-stats.js";
 
 window.addEventListener("load", () => {
   const run = () => {
@@ -11,6 +12,7 @@ window.addEventListener("load", () => {
     initCanvasEffects();
     initThemeToggle();
     initStackCards();
+    initNotableStats();
   };
 
   const readyNow = typeof gsap !== "undefined" && typeof window.jQuery !== "undefined";
