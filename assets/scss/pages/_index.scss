@@ -28,7 +28,7 @@
     height: 100%;
     justify-content: flex-start;
     overflow: hidden;
-    padding: clamp(1rem, 2vw, 1.6rem);
+    padding: clamp(1rem, 2vw, 1rem);
     position: relative;
     width: 100%;
   }
@@ -45,8 +45,9 @@
   }
 
   .stack-card-showcase-media {
-    border: 1px solid #d6dbe5;
-    border-radius: 1.05rem;
+    background: #ffffff;
+    border: 1px solid rgba(20, 26, 36, 0.12);
+    border-radius: 0.75rem;
     display: flex;
     flex: 1 1 auto;
     height: auto;

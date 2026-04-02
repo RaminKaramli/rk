@@ -5,6 +5,7 @@ export function initNavbar() {
   const $ = window.jQuery;
 
   const $header = $("#siteHeader");
+  const $aboutSection = $("#about");
   const $menuToggle = $("#menuToggle");
   const $fullWidthMenu = $("#fullWidthMenu");
   const $overlayMenuContent = $fullWidthMenu.find(".overlay-menu-content");
@@ -16,6 +17,7 @@ export function initNavbar() {
 
   let isOpen = false;
   let isAnimating = false;
+  let sectionTrigger = null;
   const MENU_DURATION = 0.6;
 
   const getHeaderTargetWidth = () => (window.matchMedia("(max-width: 768px)").matches ? "96%" : "30%");
@@ -42,6 +44,55 @@ export function initNavbar() {
       .timeline({ delay: 0.2 })
       .fromTo($header, { width: "6.25rem" }, { width: getHeaderTargetWidth(), duration: 1.25, ease: "power3.out" })
       .to($header.find(".header-logo, .menu-toggle"), { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out" }, "<0.5");
+  };
+
+  const setHeaderSectionState = (shouldBeLeft) => {
+    if (window.matchMedia("(max-width: 768px)").matches) {
+      $header.removeClass("site-header--section2-left");
+      return;
+    }
+
+    $header.toggleClass("site-header--section2-left", shouldBeLeft);
+  };
+
+  const updateHeaderSectionState = () => {
+    if (!$aboutSection.length) {
+      setHeaderSectionState(false);
+      return;
+    }
+
+    const aboutTop = $aboutSection[0].getBoundingClientRect().top;
+    setHeaderSectionState(aboutTop <= 0);
+  };
+
+  const refreshHeaderSectionTrigger = () => {
+    if (sectionTrigger) {
+      sectionTrigger.kill();
+      sectionTrigger = null;
+    }
+
+    if (!$aboutSection.length || window.matchMedia("(max-width: 768px)").matches) {
+      setHeaderSectionState(false);
+      return;
+    }
+
+    if (typeof ScrollTrigger === "undefined") {
+      updateHeaderSectionState();
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    sectionTrigger = ScrollTrigger.create({
+      trigger: $aboutSection[0],
+      start: "top top",
+      end: "bottom top",
+      onEnter: () => setHeaderSectionState(true),
+      onEnterBack: () => setHeaderSectionState(true),
+      onLeaveBack: () => setHeaderSectionState(false),
+    });
+
+    updateHeaderSectionState();
   };
 
   const setActiveImage = (index) => {
@@ -144,6 +195,7 @@ export function initNavbar() {
   });
 
   $(window).on("resize", () => {
+    refreshHeaderSectionTrigger();
     if (!isOpen) {
       gsap.to($header, { width: getHeaderTargetWidth(), duration: 0.45, ease: "power2.out" });
     }
@@ -154,4 +206,5 @@ export function initNavbar() {
   });
 
   initIntroAnimation();
+  refreshHeaderSectionTrigger();
 }
