@@ -32,11 +32,11 @@ export function initNavbar() {
   let isAnimating = false;
   let sectionTrigger = null;
   const MENU_DURATION = 0.6;
+  const isAboutPage = document.body.classList.contains("about-page");
 
   const getHeaderTargetWidth = () => (window.matchMedia("(max-width: 768px)").matches ? "96%" : "30%");
 
   const initIntroAnimation = () => {
-    gsap.set($header.find(".header-logo, .menu-toggle"), { autoAlpha: 0, y: 10 });
     gsap.set($fullWidthMenu, {
       position: "fixed",
       top: 0,
@@ -52,6 +52,14 @@ export function initNavbar() {
     gsap.set($overlayLinks, { autoAlpha: 0, x: 0, y: 0 });
     gsap.set($overlayImages, { autoAlpha: 0, scale: 1.03 });
     gsap.set($overlayImages.eq(0), { autoAlpha: 1, scale: 1 });
+
+    if (isAboutPage) {
+      gsap.set($header, { width: getHeaderTargetWidth() });
+      gsap.set($header.find(".header-logo, .menu-toggle"), { autoAlpha: 1, y: 0 });
+      return;
+    }
+
+    gsap.set($header.find(".header-logo, .menu-toggle"), { autoAlpha: 0, y: 10 });
 
     gsap
       .timeline({ delay: 0.2 })
@@ -69,6 +77,11 @@ export function initNavbar() {
   };
 
   const updateHeaderSectionState = () => {
+    if (isAboutPage) {
+      setHeaderSectionState(false);
+      return;
+    }
+
     if (!$aboutSection.length) {
       setHeaderSectionState(false);
       return;
@@ -82,6 +95,11 @@ export function initNavbar() {
     if (sectionTrigger) {
       sectionTrigger.kill();
       sectionTrigger = null;
+    }
+
+    if (isAboutPage) {
+      setHeaderSectionState(false);
+      return;
     }
 
     if (!$aboutSection.length || window.matchMedia("(max-width: 768px)").matches) {

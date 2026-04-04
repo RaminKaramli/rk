@@ -18,7 +18,7 @@
   <script type="module" src="./assets/js/main.js"></script>
 </head>
 
-<body class="site-body">
+<body class="site-body about-page">
   <div id="wrapper">
     <main class="main-content" style="visibility: visible; opacity: 1;">
       <header class="site-header" id="siteHeader">
@@ -69,16 +69,79 @@
         </div>
       </div>
 
-      <section
-        id="aboutme-page"
-        style="padding: 7rem 1rem 3rem;"
-      >
-        <div style="width: min(72rem, 100%); margin: 0 auto; display: grid; gap: 1.2rem;">
-          <p style="margin: 0; color: #6f7483; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase;">About Me</p>
-          <h1 style="margin: 0; font-family: var(--headingnowtrial); font-size: clamp(3rem, 9vw, 7rem); line-height: 0.92; color: #0d0e12;">Ramin Karamli</h1>
-          <p style="margin: 0; max-width: 48rem; color: #303545; font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.7;">
-            Front-end developer focused on clean interfaces, strong interaction detail, and practical implementation with HTML, CSS, JavaScript, TypeScript, and React.js.
-          </p>
+      <section id="aboutme-page" class="about-hero-section">
+        <div class="about-hero-glow" aria-hidden="true"></div>
+
+        <div class="about-hero-frame">
+          <div class="about-hero-shell">
+            <div class="about-hero-copy">
+              <p class="about-hero-chip">FRONT-END DEVELOPER</p>
+
+              <h1 class="about-hero-title">
+                <span class="about-hero-title__primary">RAMIN</span>
+                <span class="about-hero-title__secondary">KARAMLI</span>
+              </h1>
+
+              <p class="about-hero-text">
+                Building interfaces with strong visual balance, clean code, and practical interaction detail. I enjoy turning structure, motion, and small decisions into work that feels clear and intentional.
+              </p>
+
+              <p class="about-hero-location">Based in Baku, Azerbaijan</p>
+
+              <div class="about-hero-status" aria-label="Availability status">
+                <span class="about-hero-status__icon">✦</span>
+                <span class="about-hero-status__content">
+                  <span class="about-hero-status__eyebrow">STATUS</span>
+                  <strong>Open to work</strong>
+                  <small>Freelance projects and long-term roles</small>
+                </span>
+              </div>
+            </div>
+
+            <div class="about-hero-gallery" aria-label="About gallery">
+              <div class="about-hero-note about-hero-note--top">
+                <p>curiosity and craft were there before I had words for either one</p>
+              </div>
+
+              <article class="about-polaroid about-polaroid--left">
+                <div class="about-polaroid__media about-polaroid__media--muted">
+                  <img src="./assets/images/my.png" alt="Ramin portrait" />
+                </div>
+                <p class="about-polaroid__caption">where it all began</p>
+              </article>
+
+              <article class="about-polaroid about-polaroid--right">
+                <div class="about-polaroid__media">
+                  <img src="./assets/images/myhello.png" alt="Ramin smiling portrait" />
+                </div>
+                <p class="about-polaroid__caption">still building with the same energy</p>
+              </article>
+
+              <div class="about-hero-note about-hero-note--bottom">
+                <p>that same focus still shapes how I design and build</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-hero-mobile-gallery" aria-label="About gallery">
+            <article class="about-polaroid about-polaroid--mobile-left">
+              <div class="about-polaroid__media about-polaroid__media--muted">
+                <img src="./assets/images/my.png" alt="Ramin portrait" />
+              </div>
+              <p class="about-polaroid__caption">where it all began</p>
+            </article>
+
+            <article class="about-polaroid about-polaroid--mobile-right">
+              <div class="about-polaroid__media">
+                <img src="./assets/images/myhello.png" alt="Ramin smiling portrait" />
+              </div>
+              <p class="about-polaroid__caption">still building with the same energy</p>
+            </article>
+          </div>
+
+          <div class="about-hero-footer">
+            <span class="about-hero-scroll">SCROLL</span>
+          </div>
         </div>
       </section>
     </main>

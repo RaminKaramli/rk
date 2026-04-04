@@ -1,5 +1,6 @@
 @use "../abstracts" as *;
 @import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap");
 
 *,
@@ -151,18 +152,28 @@ body.overlay-active .main-content {
   transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, width 0.6s cubic-bezier(0.22, 1, 0.36, 1), padding 0.6s cubic-bezier(0.22, 1, 0.36, 1), left 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+body.about-page .site-header {
+  width: 30%;
+}
+
+@media (max-width: 768px) {
+  body.about-page .site-header {
+    width: 96%;
+  }
+}
+
 @media (min-width: 769px) {
   .site-header.site-header--section2-left {
     left: 2rem !important;
     transform: translateX(0) !important;
-    width: max-content !important;
+    width: 30% !important;
     min-width: 0;
     padding: 0.35rem 0.95rem;
   }
 
   .site-header.site-header--section2-left .header-wrapper {
-    grid-template-columns: auto auto;
-    justify-content: flex-start;
+    grid-template-columns: 1fr auto;
+    justify-content: stretch;
     gap: 0.3rem;
   }
 }
