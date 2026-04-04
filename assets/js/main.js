@@ -4,6 +4,8 @@ import { initCanvasEffects } from "./canvas-effects.js";
 import { initThemeToggle } from "./theme-toggle.js";
 import { initStackCards } from "./stack-cards.js";
 import { initNotableStats } from "./notable-stats.js";
+import { initFooterReveal } from "./footer-reveal.js";
+import { initFooterClock } from "./footer-clock.js";
 
 window.addEventListener("load", () => {
   const run = () => {
@@ -13,6 +15,8 @@ window.addEventListener("load", () => {
     initThemeToggle();
     initStackCards();
     initNotableStats();
+    initFooterReveal();
+    initFooterClock();
   };
 
   const readyNow = typeof gsap !== "undefined" && typeof window.jQuery !== "undefined";

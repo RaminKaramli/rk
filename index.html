@@ -25,12 +25,13 @@
     </div>
   </div>
 
-  <main class="main-content">
-    <canvas id="canvas" width="100" height="100"></canvas>
-    <canvas id="canvas2" width="300" height="300"></canvas>
-    <canvas id="canvas3" width="100" height="100"></canvas>
-    <canvas id="canvas4" width="100" height="100"></canvas>
-    <canvas id="canvas5" width="100" height="100"></canvas>
+  <div id="wrapper">
+    <main class="main-content">
+      <canvas id="canvas" width="100" height="100"></canvas>
+      <canvas id="canvas2" width="300" height="300"></canvas>
+      <canvas id="canvas3" width="100" height="100"></canvas>
+      <canvas id="canvas4" width="100" height="100"></canvas>
+      <canvas id="canvas5" width="100" height="100"></canvas>
 
     <header class="site-header" id="siteHeader">
       <div class="header-wrapper">
@@ -72,7 +73,7 @@
       <div class="overlay-menu-content">
         <ul class="overlay-nav-list">
           <li><a href="#home-section" data-image-index="0">HOME</a></li>
-          <li><a href="#about" data-image-index="1">ABOUT</a></li>
+          <li><a href="./aboutme.html" data-image-index="1">ABOUT</a></li>
           <li><a href="#photography" data-image-index="2">PHOTOGRAPHY</a></li>
           <li><a href="#resume" data-image-index="3">RESUME</a></li>
         </ul>
@@ -153,79 +154,101 @@
 
     </section>
 
-    <section id="about" class="stack-cards-section">
-      <ul class="stack-cards-list">
-        <li class="stack-card" id="stack-card-1" style="--index: 1">
-          <div class="stack-card-body">
-            <article class="stack-card-showcase">
-              <div class="stack-card-showcase-media">
-                <img src="./assets/images/card1.png" alt="Build Club project preview">
-              </div>
-              <div class="stack-card-showcase-content">
-                <ul class="stack-card-showcase-tags">
-                  <li>Product</li>
-                  <li>Web-design</li>
-                  <li>Branding</li>
-                  <li>Framer Dev</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </li>
-        <li class="stack-card" id="stack-card-2" style="--index: 2">
-          <div class="stack-card-body">
-            <article class="stack-card-showcase">
-              <div class="stack-card-showcase-media">
-                <img src="./assets/images/card1.png" alt="Build Club project preview">
-              </div>
-              <div class="stack-card-showcase-content">
-                <ul class="stack-card-showcase-tags">
-                  <li>Product</li>
-                  <li>Web-design</li>
-                  <li>Branding</li>
-                  <li>Framer Dev</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </li>
-        <li class="stack-card" id="stack-card-3" style="--index: 3">
-          <div class="stack-card-body">
-            <article class="stack-card-showcase">
-              <div class="stack-card-showcase-media">
-                <img src="./assets/images/card1.png" alt="Build Club project preview">
-              </div>
-              <div class="stack-card-showcase-content">
-                <ul class="stack-card-showcase-tags">
-                  <li>Product</li>
-                  <li>Web-design</li>
-                  <li>Branding</li>
-                  <li>Framer Dev</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </li>
-        <li class="stack-card" id="stack-card-4" style="--index: 4">
-          <div class="stack-card-body">
-            <article class="stack-card-showcase">
-              <div class="stack-card-showcase-media">
-                <img src="./assets/images/card1.png" alt="Build Club project preview">
-              </div>
-              <div class="stack-card-showcase-content">
-                <ul class="stack-card-showcase-tags">
-                  <li>Product</li>
-                  <li>Web-design</li>
-                  <li>Branding</li>
-                  <li>Framer Dev</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </li>
-      </ul>
-    </section>
-  </main>
+      <section id="about" class="stack-cards-section">
+        <ul class="stack-cards-list">
+          <li class="stack-card" id="stack-card-1" style="--index: 1">
+            <div class="stack-card-body">
+              <article class="stack-card-showcase">
+                <div class="stack-card-showcase-media">
+                  <img src="./assets/images/card1.png" alt="Build Club project preview">
+                </div>
+                <div class="stack-card-showcase-content">
+                  <ul class="stack-card-showcase-tags">
+                    <li>Product</li>
+                    <li>Web-design</li>
+                    <li>Branding</li>
+                    <li>Framer Dev</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </li>
+          <li class="stack-card" id="stack-card-2" style="--index: 2">
+            <div class="stack-card-body">
+              <article class="stack-card-showcase">
+                <div class="stack-card-showcase-media">
+                  <img src="./assets/images/card1.png" alt="Build Club project preview">
+                </div>
+                <div class="stack-card-showcase-content">
+                  <ul class="stack-card-showcase-tags">
+                    <li>Product</li>
+                    <li>Web-design</li>
+                    <li>Branding</li>
+                    <li>Framer Dev</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </li>
+          <li class="stack-card" id="stack-card-3" style="--index: 3">
+            <div class="stack-card-body">
+              <article class="stack-card-showcase">
+                <div class="stack-card-showcase-media">
+                  <img src="./assets/images/card1.png" alt="Build Club project preview">
+                </div>
+                <div class="stack-card-showcase-content">
+                  <ul class="stack-card-showcase-tags">
+                    <li>Product</li>
+                    <li>Web-design</li>
+                    <li>Branding</li>
+                    <li>Framer Dev</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </li>
+          <li class="stack-card" id="stack-card-4" style="--index: 4">
+            <div class="stack-card-body">
+              <article class="stack-card-showcase">
+                <div class="stack-card-showcase-media">
+                  <img src="./assets/images/card1.png" alt="Build Club project preview">
+                </div>
+                <div class="stack-card-showcase-content">
+                  <ul class="stack-card-showcase-tags">
+                    <li>Product</li>
+                    <li>Web-design</li>
+                    <li>Branding</li>
+                    <li>Framer Dev</li>
+                  </ul>
+                </div>
+              </article>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="site-footer" id="site-footer">
+      <div class="site-footer__container">
+        <section class="site-footer__cta" aria-label="Contact call to action">
+          <p class="site-footer__eyebrow">HAVE A PROJECT IN MIND?</p>
+          <a class="site-footer__talk" href="mailto:raminkaramli93@gmail.com">LET&apos;S TALK</a>
+        </section>
+
+        <nav class="site-footer__socials" aria-label="Social links">
+          <a href="https://www.linkedin.com/in/karamliramin/" target="_blank" rel="noopener noreferrer" class="site-footer__pill">LINKEDIN</a>
+          <a href="https://www.instagram.com/raminkaramli/" target="_blank" rel="noopener noreferrer" class="site-footer__pill">INSTAGRAM</a>
+          <a href="https://github.com/RaminKaramli" target="_blank" rel="noopener noreferrer" class="site-footer__pill">GITHUB</a>
+          <a href="https://www.behance.net/" target="_blank" rel="noopener noreferrer" class="site-footer__pill">BEHANCE</a>
+        </nav>
+
+        <div class="site-footer__bottom">
+          <p class="site-footer__meta">&copy; 2026 Ramin Karamli. All rights reserved.</p>
+          <p class="site-footer__clock" id="footerClock" data-time-zone="Asia/Baku" aria-live="polite">12:25:29 PM • Saturday, April 4, 2026</p>
+        </div>
+      </div>
+    </footer>
+  </div>
 </body>
 
 </html>

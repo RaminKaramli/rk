@@ -2,6 +2,7 @@ const FONT_URL = "https://fonts.gstatic.com/s/bigshouldersdisplay/v21/fC1MPZJEZG
 
 export const initCanvasEffects = () => {
   const body = document.body;
+  const homeSection = document.getElementById("home-section");
   const canvas = document.getElementById("canvas");
   const canvas2 = document.getElementById("canvas2");
   const canvas3 = document.getElementById("canvas3");
@@ -115,6 +116,14 @@ export const initCanvasEffects = () => {
     return Math.sqrt((mouseX - dotX) ** 2 + (mouseY - dotY) ** 2);
   };
 
+  const isInsideHomeSection = (x, y) => {
+    if (!homeSection) return true;
+
+    const bounds = homeSection.getBoundingClientRect();
+
+    return x >= bounds.left && x <= bounds.right && y >= bounds.top && y <= bounds.bottom;
+  };
+
   const drawGrid = (mouseX = -1000, mouseY = -1000) => {
     ctx.lineWidth = 0.2;
 
@@ -143,6 +152,11 @@ export const initCanvasEffects = () => {
   };
 
   window.addEventListener("mousemove", (e) => {
+    if (!isInsideHomeSection(e.clientX, e.clientY)) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGrid(e.clientX, e.clientY);
   });
@@ -198,6 +212,17 @@ export const initCanvasEffects = () => {
     drawGrid();
     renderText();
   });
+
+  window.addEventListener("scroll", () => {
+    if (!homeSection) return;
+
+    const bounds = homeSection.getBoundingClientRect();
+    const isVisible = bounds.bottom > 0 && bounds.top < window.innerHeight;
+
+    if (!isVisible) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }, { passive: true });
 
   resizeCanvas();
   drawGrid();

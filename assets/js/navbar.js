@@ -8,12 +8,25 @@ export function initNavbar() {
   const $aboutSection = $("#about");
   const $menuToggle = $("#menuToggle");
   const $fullWidthMenu = $("#fullWidthMenu");
+  const $themeToggle = $("#themeToggle");
   const $overlayMenuContent = $fullWidthMenu.find(".overlay-menu-content");
   const $overlayLinks = $fullWidthMenu.find(".overlay-nav-list li a");
   const $overlayImages = $fullWidthMenu.find(".overlay-menu-image");
   const $hamIcon = $menuToggle.find(".ham6");
 
   if (!$header.length || !$menuToggle.length || !$fullWidthMenu.length) return;
+
+  if ($fullWidthMenu.parent()[0] !== document.body) {
+    $fullWidthMenu.appendTo(document.body);
+  }
+
+  if ($header.parent()[0] !== document.body) {
+    $header.appendTo(document.body);
+  }
+
+  if ($themeToggle.length && $themeToggle.parent()[0] !== document.body) {
+    $themeToggle.appendTo(document.body);
+  }
 
   let isOpen = false;
   let isAnimating = false;

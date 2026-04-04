@@ -69,7 +69,7 @@ function resolveCounterConfig(element) {
   };
 }
 
-function animateStatNumber(element, target, minDigits, duration = 1400) {
+function animateStatNumber(element, target, minDigits, duration = 1800) {
   const startTime = performance.now();
 
   const tick = (now) => {
