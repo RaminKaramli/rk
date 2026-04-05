@@ -59,12 +59,8 @@ export function initNavbar() {
       return;
     }
 
-    gsap.set($header.find(".header-logo, .menu-toggle"), { autoAlpha: 0, y: 10 });
-
-    gsap
-      .timeline({ delay: 0.2 })
-      .fromTo($header, { width: "6.25rem" }, { width: getHeaderTargetWidth(), duration: 1.25, ease: "power3.out" })
-      .to($header.find(".header-logo, .menu-toggle"), { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out" }, "<0.5");
+    gsap.set($header, { width: getHeaderTargetWidth() });
+    gsap.set($header.find(".header-logo, .menu-toggle"), { autoAlpha: 1, y: 0 });
   };
 
   const setHeaderSectionState = (shouldBeLeft) => {

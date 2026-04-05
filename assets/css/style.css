@@ -55,25 +55,45 @@ body {
 .loading-overlay {
   position: fixed;
   inset: 0;
-  z-index: 10000;
+  z-index: 200000;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffffff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(245, 246, 248, 0.94) 100%);
+  backdrop-filter: blur(14px) saturate(135%);
 }
 
 .loading-track {
-  width: 18.75rem;
-  height: 0.3125rem;
+  position: relative;
+  width: min(18.75rem, 100vw - 5rem);
+  height: 0.85rem;
+  padding: 0.18rem;
+  box-sizing: border-box;
   overflow: hidden;
-  border-radius: 0.15625rem;
-  background: #e0e0e0;
+  border-radius: 9999px;
+  background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  backdrop-filter: blur(8px) saturate(var(--saturation));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+  isolation: isolate;
+}
+
+.loading-track::before {
+  content: "";
+  position: absolute;
+  inset: 0.11rem;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.08));
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .loading-bar {
+  position: relative;
   width: 0;
   height: 100%;
+  border-radius: 9999px;
   background: #121212;
+  box-shadow: 0 0 0.6rem rgba(9, 10, 14, 0.16);
 }
 
 .main-content {
@@ -82,6 +102,29 @@ body {
   position: relative;
   z-index: 2;
   isolation: isolate;
+}
+
+body.is-preloading .site-header,
+body.is-preloading .theme-toggle--floating {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+html.skip-preloader .loading-overlay {
+  display: none;
+}
+
+html.skip-preloader .main-content {
+  visibility: visible;
+  opacity: 1;
+}
+
+html.skip-preloader body.is-preloading .site-header,
+html.skip-preloader body.is-preloading .theme-toggle--floating {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .main-content > * {
@@ -128,7 +171,7 @@ body.overlay-active .main-content {
 }
 
 .site-header {
-  width: min(92vw, 58rem);
+  width: 30%;
   margin: 0;
   padding: 0.35rem 0.95rem;
   border-radius: 9999px;
@@ -152,6 +195,9 @@ body.about-page .site-header {
 }
 
 @media (max-width: 768px) {
+  .site-header {
+    width: 96%;
+  }
   body.about-page .site-header {
     width: 96%;
   }
@@ -160,14 +206,22 @@ body.about-page .site-header {
   .site-header.site-header--section2-left {
     left: 2rem !important;
     transform: translateX(0) !important;
-    width: 30% !important;
+    width: auto !important;
+    max-width: none;
     min-width: 0;
     padding: 0.35rem 0.95rem;
   }
   .site-header.site-header--section2-left .header-wrapper {
-    grid-template-columns: 1fr auto;
-    justify-content: stretch;
-    gap: 0.3rem;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    gap: 0.1rem;
+  }
+  .site-header.site-header--section2-left .header-logo {
+    justify-content: center;
+  }
+  .site-header.site-header--section2-left .menu-toggle {
+    width: 2.8rem;
+    height: 2.8rem;
   }
 }
 .site-header::before {

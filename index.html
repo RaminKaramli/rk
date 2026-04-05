@@ -5,6 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RK Project</title>
+  <script>
+    try {
+      if (window.sessionStorage.getItem("rk-preloader-seen") === "true") {
+        document.documentElement.classList.add("skip-preloader");
+      }
+    } catch (error) {
+      console.error("Preloader storage check failed", error);
+    }
+  </script>
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
@@ -18,7 +27,7 @@
   <script type="module" src="./assets/js/main.js"></script>
 </head>
 
-<body class="site-body">
+<body class="site-body is-preloading">
   <div class="loading-overlay">
     <div class="loading-track">
       <div class="loading-bar"></div>
