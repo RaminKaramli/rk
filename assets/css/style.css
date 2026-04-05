@@ -60,6 +60,7 @@ body {
   align-items: center;
   justify-content: center;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(245, 246, 248, 0.94) 100%);
+  -webkit-backdrop-filter: blur(14px) saturate(135%);
   backdrop-filter: blur(14px) saturate(135%);
 }
 
@@ -72,6 +73,7 @@ body {
   overflow: hidden;
   border-radius: 9999px;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   isolation: isolate;
@@ -184,6 +186,7 @@ body.overlay-active .main-content {
   transform: translateX(-50%);
   overflow: hidden;
   isolation: isolate;
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   z-index: 100000;
@@ -301,6 +304,7 @@ body.about-page .site-header {
   position: relative;
   padding: 0;
   color: #0d0e12;
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   transition: color 0.22s ease;
@@ -347,6 +351,7 @@ body.about-page .site-header {
   z-index: 1250;
   border-radius: 9999px;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
@@ -360,9 +365,7 @@ body.about-page .site-header {
 .ham {
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
   -webkit-tap-highlight-color: transparent;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   width: 2.7rem;
   height: 2.7rem;
 }
@@ -501,6 +504,7 @@ body.theme-dark .social-link::after {
   display: grid;
   grid-template-columns: 1fr;
   background: var(--c-bg);
+  -webkit-backdrop-filter: blur(10px) saturate(var(--saturation));
   backdrop-filter: blur(10px) saturate(var(--saturation));
 }
 
@@ -528,8 +532,7 @@ body.theme-dark .full-width-overlay-menu {
 .overlay-menu-image img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .overlay-menu-content {
@@ -603,6 +606,7 @@ body.theme-dark .overlay-nav-list a {
   border-radius: 9999px;
   border: 0;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
@@ -696,8 +700,7 @@ body.theme-dark .overlay-nav-list a {
 .hero-figure-image {
   width: 32rem;
   height: 22rem;
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   display: block;
 }
 
@@ -741,6 +744,7 @@ body.theme-dark .overlay-nav-list a {
   border-radius: 9999px;
   border: none;
   background-color: transparent;
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   color: #121212;
@@ -876,6 +880,7 @@ body.theme-dark .overlay-nav-list a {
 .site-footer__pill {
   align-items: center;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   border: none;
   border-radius: 9999px;
@@ -1004,6 +1009,7 @@ body.theme-dark .overlay-nav-list a {
   flex: 1 1 auto;
   position: relative;
   z-index: 2;
+  pointer-events: none;
 }
 
 .about-hero-chip {
@@ -1011,6 +1017,7 @@ body.theme-dark .overlay-nav-list a {
   margin: 0 0 1.25rem;
   border-radius: 9999px;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   color: #151826;
@@ -1029,16 +1036,16 @@ body.theme-dark .overlay-nav-list a {
   font-family: var(--headingnowtrial);
   font-size: clamp(1.9rem, 10vw, 11rem);
   line-height: 0.88;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
+  pointer-events: none;
 }
 
 .about-hero-title__word {
   display: inline-flex;
   align-items: flex-end;
+  pointer-events: auto;
 }
 
 .about-hero-title__letter {
@@ -1048,9 +1055,11 @@ body.theme-dark .overlay-nav-list a {
   transform-origin: center 78%;
   transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, filter 0.3s ease;
   will-change: transform, color;
+  pointer-events: auto;
 }
 
-.about-hero-title:hover .about-hero-title__letter {
+.about-hero-title__word:hover .about-hero-title__letter,
+.about-hero-title__word:focus-within .about-hero-title__letter {
   color: var(--hover-color);
   transform: translateY(var(--hover-shift, -0.02em)) rotate(var(--hover-rotate, 0deg));
   text-shadow: 0.02em 0.02em 0 rgba(204, 214, 228, 0.32), 0 0 0.12em color-mix(in srgb, var(--hover-color) 16%, transparent);
@@ -1063,7 +1072,7 @@ body.theme-dark .overlay-nav-list a {
 }
 
 .about-hero-title__secondary {
-  display: block;
+  display: inline-block;
   color: #c8c7cf;
 }
 
@@ -1176,19 +1185,30 @@ body.theme-dark .overlay-nav-list a {
 .about-polaroid {
   position: absolute;
   background: #ffffff;
-  transform: rotate(var(--about-rotate, 0deg));
+  transform: rotate(var(--about-rotate, 0deg)) scale(1);
+  transform-origin: center center;
+  transition: transform 0.28s ease;
 }
 
 .about-polaroid--left,
 .about-polaroid--mobile-left {
   --about-rotate: -6deg;
+  --about-hover-rotate: 2.25deg;
+  --about-hover-scale: 1.03;
   box-shadow: 0 0.75rem 2.5rem rgba(0, 0, 0, 0.15), 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
 }
 
 .about-polaroid--right,
 .about-polaroid--mobile-right {
-  --about-rotate: 3deg;
+  --about-rotate: 5deg;
+  --about-hover-rotate: -2.25deg;
+  --about-hover-scale: 1.03;
   box-shadow: 0 1.25rem 3.75rem rgba(0, 0, 0, 0.18), 0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.about-polaroid:hover,
+.about-polaroid:focus-within {
+  transform: rotate(calc(var(--about-rotate, 0deg) + var(--about-hover-rotate, 0deg))) scale(var(--about-hover-scale, 1.03));
 }
 
 .about-polaroid--left {
@@ -1219,8 +1239,8 @@ body.theme-dark .overlay-nav-list a {
   width: 100%;
   height: 100%;
   display: block;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
+  transition: filter 0.32s ease;
 }
 
 .about-polaroid__media--muted img {
@@ -1282,11 +1302,11 @@ body.theme-dark .overlay-nav-list a {
 }
 
 body.theme-dark.about-page {
-  background: radial-gradient(circle at 78% 14%, rgba(249, 166, 108, 0.12), rgba(241, 122, 126, 0.08) 26%, transparent 52%), radial-gradient(circle at 12% 88%, rgba(110, 131, 204, 0.12), transparent 32%), #0d1017;
+  background: #000000;
 }
 
 body.theme-dark .about-hero-section {
-  background: radial-gradient(circle at 78% 14%, rgba(249, 166, 108, 0.12), rgba(241, 122, 126, 0.08) 26%, transparent 52%), radial-gradient(circle at 12% 88%, rgba(110, 131, 204, 0.12), transparent 32%), #0d1017;
+  background: #000000;
 }
 
 body.theme-dark .about-hero-chip,
@@ -1492,8 +1512,7 @@ body.theme-dark .about-polaroid {
   height: 100%;
   max-height: none;
   max-width: none;
-  -o-object-position: center center;
-     object-position: center center;
+  object-position: center center;
   width: 100%;
 }
 .stack-cards-section .stack-card-showcase-content {
@@ -1583,17 +1602,15 @@ body.theme-dark .about-polaroid {
   align-self: start;
   justify-self: start;
   display: inline-flex;
-  width: -moz-fit-content;
   width: fit-content;
   align-items: center;
   gap: 0.35rem;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+  appearance: none;
   border: none;
   border-radius: 9999px;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
   color: #e94f57;
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   font-family: "Bricolage Grotesque", "Inter", sans-serif;
@@ -1669,4 +1686,6 @@ body.theme-dark .about-polaroid {
   .notable-works-stats {
     grid-template-columns: 1fr;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */

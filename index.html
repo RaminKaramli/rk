@@ -7,11 +7,15 @@
   <title>RK Project</title>
   <script>
     try {
+      if (window.localStorage.getItem("rk-theme") === "dark") {
+        document.documentElement.classList.add("theme-dark");
+      }
+
       if (window.sessionStorage.getItem("rk-preloader-seen") === "true") {
         document.documentElement.classList.add("skip-preloader");
       }
     } catch (error) {
-      console.error("Preloader storage check failed", error);
+      console.error("Initial storage check failed", error);
     }
   </script>
   <link
@@ -28,6 +32,11 @@
 </head>
 
 <body class="site-body is-preloading">
+  <script>
+    if (document.documentElement.classList.contains("theme-dark")) {
+      document.body.classList.add("theme-dark");
+    }
+  </script>
   <div class="loading-overlay">
     <div class="loading-track">
       <div class="loading-bar"></div>

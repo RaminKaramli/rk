@@ -40,6 +40,7 @@
   flex: 1 1 auto;
   position: relative;
   z-index: 2;
+  pointer-events: none;
 }
 
 .about-hero-chip {
@@ -76,14 +77,16 @@
   font-family: var(--headingnowtrial);
   font-size: clamp(1.9rem, 10vw, 11rem);
   line-height: 0.88;
-  letter-spacing: -0.03em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
   user-select: none;
+  pointer-events: none;
 }
 
 .about-hero-title__word {
   display: inline-flex;
   align-items: flex-end;
+  pointer-events: auto;
 }
 
 .about-hero-title__letter {
@@ -93,9 +96,11 @@
   transform-origin: center 78%;
   transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, filter 0.3s ease;
   will-change: transform, color;
+  pointer-events: auto;
 }
 
-.about-hero-title:hover .about-hero-title__letter {
+.about-hero-title__word:hover .about-hero-title__letter,
+.about-hero-title__word:focus-within .about-hero-title__letter {
   color: var(--hover-color);
   transform: translateY(var(--hover-shift, -0.02em)) rotate(var(--hover-rotate, 0deg));
   text-shadow: 0.02em 0.02em 0 rgba(204, 214, 228, 0.32), 0 0 0.12em color-mix(in srgb, var(--hover-color) 16%, transparent);
@@ -108,7 +113,7 @@
 }
 
 .about-hero-title__secondary {
-  display: block;
+  display: inline-block;
   color: #c8c7cf;
 }
 
@@ -221,12 +226,16 @@
 .about-polaroid {
   position: absolute;
   background: #ffffff;
-  transform: rotate(var(--about-rotate, 0deg));
+  transform: rotate(var(--about-rotate, 0deg)) scale(1);
+  transform-origin: center center;
+  transition: transform 0.28s ease;
 }
 
 .about-polaroid--left,
 .about-polaroid--mobile-left {
   --about-rotate: -6deg;
+  --about-hover-rotate: 2.25deg;
+  --about-hover-scale: 1.03;
   box-shadow:
     0 0.75rem 2.5rem rgba(0, 0, 0, 0.15),
     0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
@@ -234,10 +243,17 @@
 
 .about-polaroid--right,
 .about-polaroid--mobile-right {
-  --about-rotate: 3deg;
+  --about-rotate: 5deg;
+  --about-hover-rotate: -2.25deg;
+  --about-hover-scale: 1.03;
   box-shadow:
     0 1.25rem 3.75rem rgba(0, 0, 0, 0.18),
     0 0.25rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.about-polaroid:hover,
+.about-polaroid:focus-within {
+  transform: rotate(calc(var(--about-rotate, 0deg) + var(--about-hover-rotate, 0deg))) scale(var(--about-hover-scale, 1.03));
 }
 
 .about-polaroid--left {
@@ -273,6 +289,7 @@
   height: 100%;
   display: block;
   object-fit: cover;
+  transition: filter 0.32s ease;
 }
 
 .about-polaroid__media--muted img {
@@ -334,17 +351,11 @@
 }
 
 body.theme-dark.about-page {
-  background:
-    radial-gradient(circle at 78% 14%, rgba(249, 166, 108, 0.12), rgba(241, 122, 126, 0.08) 26%, transparent 52%),
-    radial-gradient(circle at 12% 88%, rgba(110, 131, 204, 0.12), transparent 32%),
-    #0d1017;
+  background: #000000;
 }
 
 body.theme-dark .about-hero-section {
-  background:
-    radial-gradient(circle at 78% 14%, rgba(249, 166, 108, 0.12), rgba(241, 122, 126, 0.08) 26%, transparent 52%),
-    radial-gradient(circle at 12% 88%, rgba(110, 131, 204, 0.12), transparent 32%),
-    #0d1017;
+  background: #000000;
 }
 
 body.theme-dark .about-hero-chip,

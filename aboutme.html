@@ -5,6 +5,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Me | RK Project</title>
+  <script>
+    try {
+      if (window.localStorage.getItem("rk-theme") === "dark") {
+        document.documentElement.classList.add("theme-dark");
+      }
+    } catch (error) {
+      console.error("Theme storage check failed", error);
+    }
+  </script>
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css"
@@ -19,6 +28,11 @@
 </head>
 
 <body class="site-body about-page">
+  <script>
+    if (document.documentElement.classList.contains("theme-dark")) {
+      document.body.classList.add("theme-dark");
+    }
+  </script>
   <div id="wrapper">
     <main class="main-content" style="visibility: visible; opacity: 1;">
       <header class="site-header" id="siteHeader">
@@ -123,14 +137,14 @@
 
               <article class="about-polaroid about-polaroid--left">
                 <div class="about-polaroid__media about-polaroid__media--muted">
-                  <img src="./assets/images/my.png" alt="Ramin portrait" />
+                  <img src="./assets/images/rk.jpeg" alt="Ramin portrait" />
                 </div>
                 <p class="about-polaroid__caption">where it all began</p>
               </article>
 
               <article class="about-polaroid about-polaroid--right">
                 <div class="about-polaroid__media">
-                  <img src="./assets/images/myhello.png" alt="Ramin smiling portrait" />
+                  <img src="./assets/images/rk2.jpeg" alt="Ramin smiling portrait" />
                 </div>
                 <p class="about-polaroid__caption">still building with the same energy</p>
               </article>
@@ -144,14 +158,14 @@
           <div class="about-hero-mobile-gallery" aria-label="About gallery">
             <article class="about-polaroid about-polaroid--mobile-left">
               <div class="about-polaroid__media about-polaroid__media--muted">
-                <img src="./assets/images/my.png" alt="Ramin portrait" />
+                <img src="./assets/images/rk.jpeg" alt="Ramin portrait" />
               </div>
               <p class="about-polaroid__caption">where it all began</p>
             </article>
 
             <article class="about-polaroid about-polaroid--mobile-right">
               <div class="about-polaroid__media">
-                <img src="./assets/images/myhello.png" alt="Ramin smiling portrait" />
+                <img src="./assets/images/rk2.jpeg" alt="Ramin smiling portrait" />
               </div>
               <p class="about-polaroid__caption">still building with the same energy</p>
             </article>
