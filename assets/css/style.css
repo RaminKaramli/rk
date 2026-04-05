@@ -1036,6 +1036,27 @@ body.theme-dark .overlay-nav-list a {
           user-select: none;
 }
 
+.about-hero-title__word {
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.about-hero-title__letter {
+  display: inline-block;
+  color: inherit;
+  transform: translateY(0) rotate(0deg);
+  transform-origin: center 78%;
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease, filter 0.3s ease;
+  will-change: transform, color;
+}
+
+.about-hero-title:hover .about-hero-title__letter {
+  color: var(--hover-color);
+  transform: translateY(var(--hover-shift, -0.02em)) rotate(var(--hover-rotate, 0deg));
+  text-shadow: 0.02em 0.02em 0 rgba(204, 214, 228, 0.32), 0 0 0.12em color-mix(in srgb, var(--hover-color) 16%, transparent);
+  filter: saturate(1.02);
+}
+
 .about-hero-title__primary {
   display: block;
   color: #090d18;
