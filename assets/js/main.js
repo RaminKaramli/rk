@@ -6,6 +6,7 @@ import { initStackCards } from "./stack-cards.js";
 import { initNotableStats } from "./notable-stats.js";
 import { initFooterReveal } from "./footer-reveal.js";
 import { initFooterClock } from "./footer-clock.js";
+import { initAboutSkills } from "./about-skills.js";
 
 window.addEventListener("load", () => {
   const run = () => {
@@ -15,6 +16,7 @@ window.addEventListener("load", () => {
     initThemeToggle();
     initStackCards();
     initNotableStats();
+    initAboutSkills();
     initFooterReveal();
     initFooterClock();
   };

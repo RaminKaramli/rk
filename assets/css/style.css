@@ -60,7 +60,6 @@ body {
   align-items: center;
   justify-content: center;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(245, 246, 248, 0.94) 100%);
-  -webkit-backdrop-filter: blur(14px) saturate(135%);
   backdrop-filter: blur(14px) saturate(135%);
 }
 
@@ -73,7 +72,6 @@ body {
   overflow: hidden;
   border-radius: 9999px;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
-  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   isolation: isolate;
@@ -186,7 +184,6 @@ body.overlay-active .main-content {
   transform: translateX(-50%);
   overflow: hidden;
   isolation: isolate;
-  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   z-index: 100000;
@@ -304,7 +301,6 @@ body.about-page .site-header {
   position: relative;
   padding: 0;
   color: #0d0e12;
-  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   transition: color 0.22s ease;
@@ -351,7 +347,6 @@ body.about-page .site-header {
   z-index: 1250;
   border-radius: 9999px;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
-  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
 }
@@ -365,7 +360,9 @@ body.about-page .site-header {
 .ham {
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
   -webkit-tap-highlight-color: transparent;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   width: 2.7rem;
   height: 2.7rem;
 }
@@ -504,7 +501,6 @@ body.theme-dark .social-link::after {
   display: grid;
   grid-template-columns: 1fr;
   background: var(--c-bg);
-  -webkit-backdrop-filter: blur(10px) saturate(var(--saturation));
   backdrop-filter: blur(10px) saturate(var(--saturation));
 }
 
@@ -532,7 +528,8 @@ body.theme-dark .full-width-overlay-menu {
 .overlay-menu-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .overlay-menu-content {
@@ -606,7 +603,6 @@ body.theme-dark .overlay-nav-list a {
   border-radius: 9999px;
   border: 0;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
-  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
@@ -700,7 +696,8 @@ body.theme-dark .overlay-nav-list a {
 .hero-figure-image {
   width: 32rem;
   height: 22rem;
-  object-fit: contain;
+  -o-object-fit: contain;
+     object-fit: contain;
   display: block;
 }
 
@@ -744,7 +741,6 @@ body.theme-dark .overlay-nav-list a {
   border-radius: 9999px;
   border: none;
   background-color: transparent;
-  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   color: #121212;
@@ -880,7 +876,6 @@ body.theme-dark .overlay-nav-list a {
 .site-footer__pill {
   align-items: center;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
-  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   border: none;
   border-radius: 9999px;
@@ -1017,7 +1012,6 @@ body.theme-dark .overlay-nav-list a {
   margin: 0 0 1.25rem;
   border-radius: 9999px;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
-  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   color: #151826;
@@ -1038,7 +1032,9 @@ body.theme-dark .overlay-nav-list a {
   line-height: 0.88;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   pointer-events: none;
 }
 
@@ -1239,7 +1235,8 @@ body.theme-dark .overlay-nav-list a {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   transition: filter 0.32s ease;
 }
 
@@ -1455,6 +1452,373 @@ body.theme-dark .about-polaroid {
     transform: rotate(-3deg) translateY(0);
   }
 }
+.about-skills {
+  background: #ffffff;
+  color: #121212;
+  padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 6vw, 5rem) clamp(4rem, 7vw, 5.5rem);
+}
+
+.about-skills__inner {
+  margin: 0 auto;
+  max-width: 120rem;
+}
+
+.about-skills__header {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  max-width: 48rem;
+  text-align: center;
+}
+
+.about-skills__eyebrow {
+  align-items: center;
+  background: #101010;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  display: inline-flex;
+  gap: 0.7rem;
+  padding: 0.62rem 1rem;
+}
+
+.about-skills__eyebrow-icon {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  display: inline-flex;
+  height: 2rem;
+  justify-content: center;
+  width: 2rem;
+}
+
+.about-skills__eyebrow-icon svg {
+  fill: #ffffff;
+  display: block;
+  height: 0.95rem;
+  width: 0.95rem;
+}
+
+.about-skills__eyebrow-text {
+  color: #ffffff;
+  font-family: var(--headingnowtrial);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.about-skills__title {
+  margin: 0;
+  color: #121212;
+  font-family: var(--headingnowtrial);
+  font-size: clamp(2.25rem, 4vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 0.92;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.about-skills__description {
+  margin: 0;
+  color: rgba(18, 18, 18, 0.62);
+  font-family: var(--headingnowtrial);
+  font-size: clamp(1rem, 1.35vw, 1.1875rem);
+  line-height: 1.6;
+  max-width: 38rem;
+  text-wrap: balance;
+}
+
+.about-skills__list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.about-skills-item {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(7rem, 13.5rem) minmax(0, 1fr);
+}
+
+.about-skills-item__index,
+.about-skills-item__panel {
+  background: #ffffff;
+  border: 1px solid rgba(18, 18, 18, 0.12);
+  border-radius: 0.3125rem;
+}
+
+.about-skills-item__index {
+  align-items: center;
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  min-height: 5.5rem;
+  padding: 0.75rem;
+}
+
+.about-skills-item__slashes,
+.about-skills-item__number {
+  color: rgba(18, 18, 18, 0.14);
+  font-family: "DM Sans", sans-serif;
+  font-size: clamp(1.75rem, 2.4vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.about-skills-item__panel {
+  overflow: hidden;
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.about-skills-item__trigger {
+  align-items: center;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  min-height: 5.5rem;
+  padding: clamp(0.85rem, 1.2vw, 1.15rem) clamp(0.95rem, 2vw, 1.45rem);
+  text-align: left;
+  width: 100%;
+}
+
+.about-skills-item__title {
+  color: #121212;
+  font-family: var(--headingnowtrial);
+  font-size: clamp(0.95rem, 1.45vw, 1.45rem);
+  font-weight: 700;
+  line-height: 0.98;
+}
+
+.about-skills-item__toggle {
+  align-items: center;
+  border: 1px solid rgba(18, 18, 18, 0.12);
+  border-radius: 0.5rem;
+  display: inline-flex;
+  flex-shrink: 0;
+  height: 2.35rem;
+  justify-content: center;
+  position: relative;
+  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+  width: 2.35rem;
+}
+
+.about-skills-item__toggle-line {
+  background: #121212;
+  border-radius: 999px;
+  display: block;
+  position: absolute;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.about-skills-item__toggle-line--horizontal {
+  height: 2px;
+  width: 0.85rem;
+}
+
+.about-skills-item__toggle-line--vertical {
+  height: 0.85rem;
+  width: 2px;
+}
+
+.about-skills-item__content {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.32s ease;
+}
+
+.about-skills-item__description,
+.about-skills-item__tags {
+  margin-left: clamp(1.2rem, 3vw, 2.5rem);
+  margin-right: clamp(1.2rem, 3vw, 2.5rem);
+}
+
+.about-skills-item__description {
+  border-top: 1px solid rgba(18, 18, 18, 0.08);
+  color: rgba(18, 18, 18, 0.68);
+  font-family: var(--headingnowtrial);
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-top: 1.35rem;
+}
+
+.about-skills-item__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  list-style: none;
+  margin-bottom: 2rem;
+  margin-top: 1.25rem;
+  padding: 0;
+}
+
+.about-skills-item__tag {
+  background: #f7f7f7;
+  border: 1px solid rgba(18, 18, 18, 0.08);
+  border-radius: 999px;
+  color: #121212;
+  font-family: var(--headingnowtrial);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  padding: 0.72rem 1rem;
+}
+
+.about-skills-item--open .about-skills-item__panel {
+  background: #fcfcfc;
+  border-color: rgba(18, 18, 18, 0.16);
+  box-shadow: 0 1rem 2rem rgba(18, 18, 18, 0.08);
+}
+
+.about-skills-item--open .about-skills-item__toggle {
+  background: rgba(18, 18, 18, 0.04);
+  border-color: rgba(18, 18, 18, 0.16);
+  transform: rotate(90deg);
+}
+
+.about-skills-item--open .about-skills-item__toggle-line--vertical {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
+.about-skills-item__trigger:hover .about-skills-item__toggle,
+.about-skills-item__trigger:focus-visible .about-skills-item__toggle {
+  border-color: rgba(18, 18, 18, 0.26);
+}
+
+.about-skills-item__trigger:focus-visible {
+  outline: none;
+}
+
+.about-skills-item__trigger:focus-visible .about-skills-item__title {
+  color: #050505;
+}
+
+body.theme-dark .about-skills {
+  background: #050505;
+  color: #f5f7fc;
+}
+
+body.theme-dark .about-skills__title {
+  color: #ffffff;
+}
+
+body.theme-dark .about-skills__description {
+  color: rgba(255, 255, 255, 0.62);
+}
+
+body.theme-dark .about-skills-item__index,
+body.theme-dark .about-skills-item__panel {
+  background: #121212;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.theme-dark .about-skills-item__slashes,
+body.theme-dark .about-skills-item__number {
+  color: rgba(255, 255, 255, 0.12);
+}
+
+body.theme-dark .about-skills-item__title {
+  color: #ffffff;
+}
+
+body.theme-dark .about-skills-item__toggle {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.theme-dark .about-skills-item__toggle-line {
+  background: #f4f5f7;
+}
+
+body.theme-dark .about-skills-item__description {
+  border-top-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.68);
+}
+
+body.theme-dark .about-skills-item__tag {
+  background: #171717;
+  border-color: rgba(255, 255, 255, 0.08);
+  color: #f4f5f7;
+}
+
+body.theme-dark .about-skills-item--open .about-skills-item__panel {
+  background: #151515;
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.14);
+}
+
+body.theme-dark .about-skills-item--open .about-skills-item__toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+body.theme-dark .about-skills-item__trigger:hover .about-skills-item__toggle,
+body.theme-dark .about-skills-item__trigger:focus-visible .about-skills-item__toggle {
+  border-color: rgba(255, 255, 255, 0.28);
+}
+
+body.theme-dark .about-skills-item__trigger:focus-visible .about-skills-item__title {
+  color: #eef1f7;
+}
+
+@media (max-width: 768px) {
+  .about-skills {
+    padding: 1.5rem 1rem 3rem;
+  }
+  .about-skills__header {
+    justify-items: start;
+    text-align: left;
+  }
+  .about-skills-item {
+    grid-template-columns: 1fr;
+  }
+  .about-skills-item__index {
+    justify-content: flex-start;
+    min-height: 3.75rem;
+    padding: 0.85rem 1rem;
+  }
+  .about-skills-item__slashes,
+  .about-skills-item__number {
+    font-size: clamp(1.4rem, 8vw, 2.15rem);
+  }
+  .about-skills-item__trigger {
+    align-items: flex-start;
+    min-height: auto;
+    padding: 0.9rem 1rem;
+  }
+  .about-skills-item__title {
+    font-size: clamp(0.88rem, 4.8vw, 1.15rem);
+  }
+  .about-skills-item__toggle {
+    height: 2.2rem;
+    width: 2.2rem;
+  }
+  .about-skills-item__description,
+  .about-skills-item__tags {
+    margin-left: 1.25rem;
+    margin-right: 1.25rem;
+  }
+  .about-skills-item__tags {
+    margin-bottom: 1.5rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .about-skills-item__panel,
+  .about-skills-item__toggle,
+  .about-skills-item__toggle-line,
+  .about-skills-item__content {
+    transition: none;
+  }
+}
 .stack-cards-section {
   --card-height: clamp(24rem, 36vw, 34rem);
   --stack-max-width: 62.5rem;
@@ -1512,7 +1876,8 @@ body.theme-dark .about-polaroid {
   height: 100%;
   max-height: none;
   max-width: none;
-  object-position: center center;
+  -o-object-position: center center;
+     object-position: center center;
   width: 100%;
 }
 .stack-cards-section .stack-card-showcase-content {
@@ -1602,15 +1967,17 @@ body.theme-dark .about-polaroid {
   align-self: start;
   justify-self: start;
   display: inline-flex;
+  width: -moz-fit-content;
   width: fit-content;
   align-items: center;
   gap: 0.35rem;
-  appearance: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
   border: none;
   border-radius: 9999px;
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
   color: #e94f57;
-  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
   box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent), inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent), inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent), inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent), inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 12%), transparent), inset -1.5px 2.5px 0 -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 0 3px 4px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent), inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent), 0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   font-family: "Bricolage Grotesque", "Inter", sans-serif;
@@ -1619,7 +1986,7 @@ body.theme-dark .about-polaroid {
   line-height: 1;
   letter-spacing: 0.01em;
   padding: 0.48rem 0.95rem;
-  cursor: pointer;
+  cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
   transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.35s ease, color 0.35s ease;
 }
 
@@ -1686,6 +2053,4 @@ body.theme-dark .about-polaroid {
   .notable-works-stats {
     grid-template-columns: 1fr;
   }
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
