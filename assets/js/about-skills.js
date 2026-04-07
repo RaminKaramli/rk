@@ -1,4 +1,32 @@
-const TRANSITION_MS = 320;
+function parseTimeToken(value) {
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return 0;
+  }
+
+  if (trimmed.endsWith("ms")) {
+    return Number.parseFloat(trimmed);
+  }
+
+  if (trimmed.endsWith("s")) {
+    return Number.parseFloat(trimmed) * 1000;
+  }
+
+  return 0;
+}
+
+function getTransitionMs(element) {
+  const computedStyle = window.getComputedStyle(element);
+  const durations = computedStyle.transitionDuration.split(",");
+  const delays = computedStyle.transitionDelay.split(",");
+
+  return durations.reduce((max, duration, index) => {
+    const delay = delays[index] ?? delays[delays.length - 1] ?? "0s";
+    const total = parseTimeToken(duration) + parseTimeToken(delay);
+    return Math.max(max, total);
+  }, 0);
+}
 
 function openItem(item, reducedMotion) {
   const trigger = item.querySelector(".about-skills-item__trigger");
@@ -24,7 +52,7 @@ function openItem(item, reducedMotion) {
     if (item.classList.contains("about-skills-item--open")) {
       content.style.height = "auto";
     }
-  }, TRANSITION_MS);
+  }, getTransitionMs(content));
 }
 
 function closeItem(item, reducedMotion) {

@@ -30,6 +30,12 @@
   --saturation: 150%;
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(1, 0, 0.4, 1);
+}
+
 html,
 body {
   width: 100%;
