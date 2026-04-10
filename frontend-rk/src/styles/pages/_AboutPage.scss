@@ -1,12 +1,12 @@
 .about-page {
-  background: #ffffff;
+  background: #000000; // Base is Dark
 }
 
 .about-hero-section {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-  background: #ffffff;
+  background: #000000; // Base is Dark
 }
 
 .about-hero-glow {
@@ -222,7 +222,7 @@
 
 .about-polaroid {
   position: absolute;
-  background: #ffffff;
+  background: #f3f4f7; // Use the dark-friendly polaroid background by default
   transform: rotate(var(--about-rotate, 0deg)) scale(1);
   transform-origin: center center;
   transition: transform 0.28s ease;
@@ -347,45 +347,47 @@
   animation: about-scroll-line 2s ease-in-out infinite;
 }
 
+// --- Light Mode Overrides (when theme-dark is NOT present) ---
+
+html:not(.theme-dark) {
+  .about-page,
+  .about-hero-section {
+    background: #ffffff;
+  }
+
+  .about-hero-chip,
+  .about-hero-title__primary,
+  .about-hero-status__content strong {
+    color: #090d18;
+  }
+
+  .about-hero-title__secondary {
+    color: #c8c7cf;
+  }
+
+  .about-hero-text {
+    color: #a1a7b5;
+  }
+
+  .about-hero-location,
+  .about-hero-status__eyebrow,
+  .about-hero-status__content small,
+  .about-hero-scroll {
+    color: #727b8d;
+  }
+
+  .about-polaroid {
+    background: #ffffff;
+  }
+}
+
+// Ensure explicit Dark Mode block remains
 body.theme-dark.about-page {
-  background: #000000;
+  background: #000000 !important;
 }
 
 body.theme-dark .about-hero-section {
-  background: #000000;
-}
-
-body.theme-dark .about-hero-chip,
-body.theme-dark .about-hero-title__primary,
-body.theme-dark .about-hero-status__content strong {
-  color: #f5f7fd;
-}
-
-body.theme-dark .about-hero-title__secondary {
-  color: #6c7180;
-}
-
-body.theme-dark .about-hero-text {
-  color: #afb6c6;
-}
-
-body.theme-dark .about-hero-location,
-body.theme-dark .about-hero-status__eyebrow,
-body.theme-dark .about-hero-status__content small,
-body.theme-dark .about-hero-scroll {
-  color: #9098ab;
-}
-
-body.theme-dark .about-hero-scroll::after {
-  background: rgba(144, 152, 171, 0.4);
-}
-
-body.theme-dark .about-hero-note {
-  color: #8f95a2;
-}
-
-body.theme-dark .about-polaroid {
-  background: #f3f4f7;
+  background: #000000 !important;
 }
 
 @media (max-width: 1024px) {

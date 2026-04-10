@@ -19,15 +19,15 @@
 
 :root {
   --headingnowtrial: #{$font-heading-now};
-  --c-glass: #bbbbbc;
-  --c-light: #fff;
+  --c-glass: #9da3b2;
+  --c-light: #d7dcef;
   --c-dark: #000;
-  --c-content: #224;
-  --c-action: #0052f5;
-  --c-bg: #ffffff;
-  --glass-reflex-dark: 1;
-  --glass-reflex-light: 1;
-  --saturation: 150%;
+  --c-content: #e6ebff;
+  --c-action: #7db5ff;
+  --c-bg: #000000; // Default is Dark to prevent flash
+  --glass-reflex-dark: 2;
+  --glass-reflex-light: 0.45;
+  --saturation: 140%;
 }
 
 ::view-transition-old(root),
@@ -41,10 +41,27 @@ body {
   width: 100%;
   min-height: 100%;
   margin: 0;
-  background: #ffffff;
-  color: #121212;
+  background: #000000; // Sayt artıq qara fonla başlayır
+  color: #ffffff;
   font-family: "DM Sans", sans-serif;
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb10e12e8d4c16e38e5_cursor-default.svg") 2 0, auto;
+}
+
+// Light Mode Overrides (when theme-dark is NOT present)
+html:not(.theme-dark) body,
+html:not(.theme-dark) {
+  background: #ffffff;
+  color: #121212;
+  
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  --c-content: #224;
+  --c-action: #0052f5;
+  --c-bg: #ffffff;
+  --glass-reflex-dark: 1;
+  --glass-reflex-light: 1;
+  --saturation: 150%;
 }
 
 .site-body {
