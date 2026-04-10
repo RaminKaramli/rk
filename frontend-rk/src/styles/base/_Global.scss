@@ -1,0 +1,65 @@
+@use "../abstracts" as *;
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: $font-heading-now-name;
+  src: url($font-heading-now-path) format("truetype");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+:root {
+  --headingnowtrial: #{$font-heading-now};
+  --c-glass: #bbbbbc;
+  --c-light: #fff;
+  --c-dark: #000;
+  --c-content: #224;
+  --c-action: #0052f5;
+  --c-bg: #ffffff;
+  --glass-reflex-dark: 1;
+  --glass-reflex-light: 1;
+  --saturation: 150%;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(1, 0, 0.4, 1);
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  background: #ffffff;
+  color: #121212;
+  font-family: "DM Sans", sans-serif;
+  cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb10e12e8d4c16e38e5_cursor-default.svg") 2 0, auto;
+}
+
+.site-body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body.theme-dark {
+  --c-glass: #9da3b2;
+  --c-light: #d7dcef;
+  --c-dark: #000;
+  --c-content: #e6ebff;
+  --c-action: #7db5ff;
+  --c-bg: #000000;
+  --glass-reflex-dark: 2;
+  --glass-reflex-light: 0.45;
+  --saturation: 140%;
+}

@@ -1,0 +1,121 @@
+.stack-cards-section {
+  --card-height: clamp(24rem, 36vw, 34rem);
+  --stack-max-width: 62.5rem;
+
+  .stack-cards-list {
+    list-style: none;
+    margin: 0 auto;
+    max-width: var(--stack-max-width);
+    padding: 0 clamp(1rem, 2vw, 1.5rem) clamp(4rem, 7vw, 6rem);
+    position: relative;
+  }
+
+  .stack-card {
+    height: var(--card-height);
+    transform-origin: center top;
+  }
+
+  .stack-card-body {
+    align-items: stretch;
+    background: #f3f4f6;
+    border: 1px solid rgba(20, 26, 36, 0.14);
+    border-radius: 1.75rem;
+    box-shadow: 0 1.2rem 3rem rgba(20, 26, 36, 0.12);
+    box-sizing: border-box;
+    display: flex;
+    height: 100%;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: clamp(1rem, 2vw, 1rem);
+    position: relative;
+    width: 100%;
+  }
+
+  .stack-card-showcase {
+    color: #0f1728;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    height: 100%;
+    min-height: 0;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .stack-card-showcase-media {
+    background: #ffffff;
+    border: 1px solid rgba(20, 26, 36, 0.12);
+    border-radius: 0.75rem;
+    display: flex;
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .stack-card-showcase-media img {
+    display: block;
+    height: 100%;
+    max-height: none;
+    max-width: none;
+    object-position: center center;
+    width: 100%;
+  }
+
+  .stack-card-showcase-content {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .stack-card-showcase-tags {
+    background: transparent;
+    border-radius: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: static;
+    max-width: 100%;
+  }
+
+  .stack-card-showcase-tags li {
+    border: 1px solid rgba(15, 23, 40, 0.2);
+    border-radius: 999px;
+    color: #1d2738;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(0.8rem, 0.9vw, 0.95rem);
+    font-weight: 500;
+    padding: 0.45rem 0.85rem;
+  }
+
+  @media (max-width: 768px) {
+    --card-height: 28rem;
+
+    .stack-cards-list {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: 1fr;
+      padding-bottom: 3rem;
+    }
+
+    .stack-card {
+      left: auto !important;
+      position: relative !important;
+      top: auto !important;
+      width: 100% !important;
+    }
+
+    .stack-card-body {
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      height: auto;
+      min-height: 24rem;
+      padding: 1.5rem;
+    }
+  }
+}
