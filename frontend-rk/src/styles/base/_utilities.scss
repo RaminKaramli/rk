@@ -1,0 +1,31 @@
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.page-placeholder {
+  min-height: 55vh;
+  display: grid;
+  place-items: center;
+  padding: 5rem 1rem 2rem;
+}
+
+.page-placeholder__inner {
+  text-align: center;
+}
+
+.page-placeholder__inner h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.page-placeholder__inner p {
+  margin: 0.5rem 0 0;
+}
