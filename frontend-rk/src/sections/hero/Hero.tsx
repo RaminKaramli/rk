@@ -1,5 +1,4 @@
-import { heroSocialLinks } from '../../data/socials'
-import SocialLinks from '../../components/common/social-links/SocialLinks'
+import MusicPlayer from '../../components/common/music-player/MusicPlayer'
 import { media, siteContent } from '../../utils/constants'
 
 export default function HomeHero() {
@@ -33,7 +32,7 @@ export default function HomeHero() {
         </div>
 
         <div className="top-right">
-          <SocialLinks links={heroSocialLinks} className="sosial-icons" />
+          <MusicPlayer />
         </div>
       </div>
     </section>

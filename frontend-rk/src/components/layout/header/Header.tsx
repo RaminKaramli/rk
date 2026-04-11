@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { aboutMenuLinks, homeMenuLinks, overlayMenuImages } from '../../../data/socials'
 import { ScrollTrigger, gsap } from '../../../lib/gsap'
 import { media } from '../../../utils/constants'
@@ -158,19 +159,21 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
 
     return void gsap
       .timeline({
-        onComplete: () => {
+        onStart: () => {
           gsap.set(menu, {
-            visibility: 'hidden',
             pointerEvents: 'none',
-            autoAlpha: 0,
           })
+        },
+        onComplete: () => {
+          gsap.set(menu, { autoAlpha: 0 })
+          gsap.set(menu, { clearProps: 'visibility' })
           gsap.set(overlayContent, { autoAlpha: 0, x: 0, y: -8 })
           gsap.set(linksToAnimate, { autoAlpha: 0, x: 0, y: 8 })
         },
       })
-      .to(linksToAnimate, { autoAlpha: 0, y: 8, duration: 0.32, ease: 'power2.inOut' }, 0)
-      .to(overlayContent, { autoAlpha: 0, y: -8, duration: 0.32, ease: 'power2.inOut' }, 0)
-      .to(menu, { autoAlpha: 0, duration: 0.32, ease: 'power2.inOut' }, 0)
+      .to(linksToAnimate, { autoAlpha: 0, y: 8, duration: MENU_DURATION, ease: 'power2.inOut' }, 0)
+      .to(overlayContent, { autoAlpha: 0, y: -8, duration: MENU_DURATION, ease: 'power2.inOut' }, 0)
+      .to(menu, { autoAlpha: 0, duration: MENU_DURATION, ease: 'power2.inOut' }, 0)
   }, [menuOpen])
 
   useLayoutEffect(() => {
@@ -189,6 +192,73 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
       })
     })
   }, [activeImageIndex, menuOpen])
+
+  const overlayMenuNode = (
+    <div
+      ref={menuRef}
+      className={`full-width-overlay-menu${sectionTwoActive ? ' full-width-overlay-menu--side' : ''}${menuOpen ? ' is-open' : ''}`}
+      id="fullWidthMenu"
+      aria-hidden={!menuOpen}
+    >
+      <div className="overlay-menu-image-wrap">
+        {overlayMenuImages.map((image, index) => (
+          <div
+            ref={(element) => {
+              if (element) {
+                imageRefs.current[index] = element
+              }
+            }}
+            key={image}
+            className={`overlay-menu-image${index === activeImageIndex ? ' is-active' : ''}`}
+          >
+            <img src={image} alt="" />
+          </div>
+        ))}
+      </div>
+
+      <div ref={overlayContentRef} className="overlay-menu-content">
+        <ul className="overlay-nav-list">
+          {links.map((link, index) => (
+            <li key={`${link.label}-${link.href}`}>
+              <a
+                ref={(element) => {
+                  if (element) {
+                    linkRefs.current[index] = element
+                  }
+                }}
+                href={link.href}
+                data-image-index={link.imageIndex}
+                onMouseEnter={(event) => {
+                  setActiveImageIndex(link.imageIndex)
+                  gsap.to(event.currentTarget, {
+                    x: 10,
+                    duration: 0.22,
+                    ease: 'power2.out',
+                  })
+                }}
+                onFocus={() => {
+                  setActiveImageIndex(link.imageIndex)
+                }}
+                onMouseLeave={(event) => {
+                  gsap.to(event.currentTarget, {
+                    x: 0,
+                    duration: 0.22,
+                    ease: 'power2.out',
+                  })
+                }}
+                onClick={() => {
+                  setMenuOpen(false)
+                }}
+                className="overlay-nav-link"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  )
 
   return (
     <>
@@ -234,70 +304,7 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
 
       <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
 
-      <div
-        ref={menuRef}
-        className={`full-width-overlay-menu${sectionTwoActive ? ' full-width-overlay-menu--side' : ''}${menuOpen ? ' is-open' : ''}`}
-        id="fullWidthMenu"
-        aria-hidden={!menuOpen}
-      >
-        <div className="overlay-menu-image-wrap">
-          {overlayMenuImages.map((image, index) => (
-            <div
-              ref={(element) => {
-                if (element) {
-                  imageRefs.current[index] = element
-                }
-              }}
-              key={image}
-              className={`overlay-menu-image${index === activeImageIndex ? ' is-active' : ''}`}
-            >
-              <img src={image} alt="" />
-            </div>
-          ))}
-        </div>
-
-        <div ref={overlayContentRef} className="overlay-menu-content">
-          <ul className="overlay-nav-list">
-            {links.map((link, index) => (
-              <li key={`${link.label}-${link.href}`}>
-                <a
-                  ref={(element) => {
-                    if (element) {
-                      linkRefs.current[index] = element
-                    }
-                  }}
-                  href={link.href}
-                  data-image-index={link.imageIndex}
-                  onMouseEnter={(event) => {
-                    setActiveImageIndex(link.imageIndex)
-                    gsap.to(event.currentTarget, {
-                      x: 10,
-                      duration: 0.22,
-                      ease: 'power2.out',
-                    })
-                  }}
-                  onFocus={() => {
-                    setActiveImageIndex(link.imageIndex)
-                  }}
-                  onMouseLeave={(event) => {
-                    gsap.to(event.currentTarget, {
-                      x: 0,
-                      duration: 0.22,
-                      ease: 'power2.out',
-                    })
-                  }}
-                  onClick={() => {
-                    setMenuOpen(false)
-                  }}
-                  className="overlay-nav-link"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      {typeof document !== 'undefined' ? createPortal(overlayMenuNode, document.body) : null}
     </>
   )
 }
