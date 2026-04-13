@@ -9,7 +9,7 @@
   display: inline-block;
   width: 1.45rem;
   height: 1.45rem;
-  color: rgba(18, 22, 34, 0.86);
+  color: var(--c-content);
   transition: all 0.2s ease-in-out;
 }
 
@@ -166,11 +166,11 @@
   transition: all 0.2s ease-in-out;
   margin-right: 0;
   position: relative;
-  background: rgba(255, 255, 255, 0.54);
+  background: color-mix(in srgb, var(--c-content) 12%, transparent);
 }
 
 .player__play:hover {
-  background: rgba(255, 255, 255, 0.54);
+  background: color-mix(in srgb, var(--c-content) 20%, transparent);
 }
 
 .player__play:hover svg {
@@ -186,7 +186,7 @@
 }
 
 .player__play .icon {
-  color: rgba(12, 18, 32, 0.92);
+  color: var(--c-content);
 }
 
 .player__play .pause {
@@ -223,7 +223,7 @@
 }
 
 .player__timelineBar {
-  background: #e7e7e7;
+  background: color-mix(in srgb, var(--c-content) 20%, transparent);
   width: 100%;
   height: 0.34rem;
   border-radius: 15px;
@@ -241,7 +241,7 @@
   border-radius: 15px;
   width: 0;
   height: 100%;
-  background: #fd6d94;
+  background: var(--c-content);
 }
 
 .player__author {
@@ -252,7 +252,7 @@
   margin-left: 0;
   font-family: "SF Pro Display Regular", "SF Pro Disp", sans-serif;
   font-size: 0.9rem;
-  color: #0f1421;
+  color: var(--c-content);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -262,7 +262,7 @@
   line-height: 1;
   margin: 0;
   font-size: 0.74rem;
-  color: #707785;
+  color: color-mix(in srgb, var(--c-content) 65%, transparent);
   font-family: "SF Pro Display Regular", "SF Pro Disp", sans-serif;
   white-space: nowrap;
   overflow: hidden;
@@ -276,7 +276,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 0.62rem;
-  color: #7f8594;
+  color: color-mix(in srgb, var(--c-content) 55%, transparent);
   font-family: "SF Pro Display Regular", "SF Pro Disp", sans-serif;
   padding: 0;
 }
@@ -292,16 +292,7 @@
   top: 0;
 }
 
-body.theme-dark .player__author {
-  color: #ffffff;
-}
 
-body.theme-dark .player .icon,
-body.theme-dark .player__prev .icon,
-body.theme-dark .player__play .icon,
-body.theme-dark .player__next .icon {
-  color: #ffffff;
-}
 
 @keyframes player-disc-spin {
   from {

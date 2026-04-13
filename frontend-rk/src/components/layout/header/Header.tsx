@@ -228,23 +228,11 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
                 }}
                 href={link.href}
                 data-image-index={link.imageIndex}
-                onMouseEnter={(event) => {
+                onMouseEnter={() => {
                   setActiveImageIndex(link.imageIndex)
-                  gsap.to(event.currentTarget, {
-                    x: 10,
-                    duration: 0.22,
-                    ease: 'power2.out',
-                  })
                 }}
                 onFocus={() => {
                   setActiveImageIndex(link.imageIndex)
-                }}
-                onMouseLeave={(event) => {
-                  gsap.to(event.currentTarget, {
-                    x: 0,
-                    duration: 0.22,
-                    ease: 'power2.out',
-                  })
                 }}
                 onClick={() => {
                   setMenuOpen(false)
