@@ -1,143 +1,104 @@
-import { useLayoutEffect, useRef, type CSSProperties } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import { ScrollTrigger, gsap } from '../../lib/gsap'
 import { stackCards } from '../../data/projects'
 
 export default function StackCardsShowcase() {
-  const listRef = useRef<HTMLUListElement | null>(null)
   const sectionRef = useRef<HTMLElement | null>(null)
 
   useLayoutEffect(() => {
-    const list = listRef.current
     const section = sectionRef.current
 
-    if (!list || !section) {
+    if (!section) {
       return
     }
 
-    let timeline: gsap.core.Timeline | null = null
-    const cards = Array.from(list.querySelectorAll<HTMLElement>('.stack-card'))
+    const mm = gsap.matchMedia()
 
-    if (!cards.length) {
-      return
-    }
+    mm.add('(min-width: 769px)', () => {
+      const panels = Array.from(section.querySelectorAll<HTMLElement>('.panel'))
 
-    const clearStackCards = () => {
-      timeline?.scrollTrigger?.kill(true)
-      timeline?.kill()
-      timeline = null
-      cards.forEach((card) => {
-        gsap.set(card, { clearProps: 'all' })
-      })
-      gsap.set(list, { clearProps: 'all' })
-    }
-
-    const initStackCards = () => {
-      clearStackCards()
-
-      if (window.matchMedia('(max-width: 768px)').matches) {
+      if (panels.length < 2) {
         return
       }
 
-      const revealOffset = 85 / 3
-      const scaleStep = 0.015
-      const stepDistance = window.innerHeight * 0.82
-
-      gsap.set(list, {
-        height: window.innerHeight,
-      })
-
-      cards.forEach((card, index) => {
-        gsap.set(card, {
-          position: 'absolute',
-          top: '50%',
-          left: 0,
-          width: '100%',
-          yPercent: -50,
-          y: index === 0 ? 0 : window.innerHeight * 0.9,
-          scale: 1,
-          opacity: 1,
-          zIndex: index + 1,
-        })
-      })
-
-      timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: list,
-          start: 'top top',
-          end: `+=${stepDistance * (cards.length - 1)}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        },
-      })
-
-      cards.forEach((card, index) => {
-        if (index === 0 || !timeline) {
-          return
-        }
-
-        timeline
-          .to(
-            cards.slice(0, index),
+      const timelines = panels.slice(0, -1).map((panel) =>
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: panel,
+              start: 'bottom bottom',
+              pin: true,
+              pinSpacing: false,
+              scrub: true,
+              invalidateOnRefresh: true,
+              onRefresh: () =>
+                gsap.set(panel, {
+                  transformOrigin: `center ${panel.offsetHeight - window.innerHeight / 2}px`,
+                }),
+            },
+          })
+          .fromTo(
+            panel,
             {
-              y: (cardIndex) => -revealOffset * (index - cardIndex),
-              scale: (cardIndex) => 1 - scaleStep * (index - cardIndex),
+              scale: 1,
+              opacity: 1,
+            },
+            {
+              scale: 0.72,
+              opacity: 0.42,
               ease: 'none',
               duration: 1,
             },
-            index - 1,
           )
           .to(
-            card,
+            panel,
             {
-              y: 0,
+              opacity: 0,
               ease: 'none',
-              duration: 1,
+              duration: 0.1,
             },
-            index - 1,
-          )
-      })
+            '>-0.02',
+          ),
+      )
 
       ScrollTrigger.refresh()
-    }
 
-    initStackCards()
-    window.addEventListener('resize', initStackCards)
+      return () => {
+        timelines.forEach((timeline) => {
+          timeline.scrollTrigger?.kill(true)
+          timeline.kill()
+        })
+
+        panels.forEach((panel) => {
+          gsap.set(panel, { clearProps: 'all' })
+        })
+      }
+    })
 
     return () => {
-      window.removeEventListener('resize', initStackCards)
-      clearStackCards()
+      mm.revert()
     }
   }, [])
 
   return (
     <section ref={sectionRef} id="about" className="stack-cards-section">
-      <ul ref={listRef} className="stack-cards-list">
-        {stackCards.map((card, index) => (
-          <li
-            key={card.alt}
-            className="stack-card"
-            id={`stack-card-${index + 1}`}
-            style={{ '--index': index + 1 } as CSSProperties}
-          >
-            <div className="stack-card-body">
-              <article className="stack-card-showcase">
-                <div className="stack-card-showcase-media">
-                  <img src={card.image} alt={card.alt} />
-                </div>
+      <div className="slides-wrapper">
+        {stackCards.map((card) => (
+          <section key={card.alt} className="panel">
+            <div className="panel-content">
+              <div className="panel-visual">
+                <img src={card.image} alt={card.alt} />
+              </div>
 
-                <div className="stack-card-showcase-content">
-                  <ul className="stack-card-showcase-tags">
-                    {card.tags.map((tag) => (
-                      <li key={`${card.alt}-${tag}`}>{tag}</li>
-                    ))}
-                  </ul>
-                </div>
-              </article>
+              <ul className="panel-tags" aria-label={`${card.alt} tags`}>
+                {card.tags.map((tag) => (
+                  <li key={`${card.alt}-${tag}`}>{tag}</li>
+                ))}
+              </ul>
             </div>
-          </li>
+          </section>
         ))}
-      </ul>
+      </div>
     </section>
   )
 }

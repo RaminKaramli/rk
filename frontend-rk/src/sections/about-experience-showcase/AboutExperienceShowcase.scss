@@ -1,0 +1,340 @@
+@font-face {
+  font-family: "UCity Pro";
+  src: url("../../assets/fonts/UCityProWeb-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "UCity Pro";
+  src: url("../../assets/fonts/UCityProWeb-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+.experience-showcase {
+  background: #ffffff;
+  padding: 116px var(--site-inline-pad) 80px;
+  transition: background 420ms cubic-bezier(1, 0, 0.4, 1);
+  --experience-showcase-theme-transition: 420ms cubic-bezier(1, 0, 0.4, 1);
+}
+
+.experience-showcase .centered {
+  width: 100%;
+}
+
+.experience-showcase__heading {
+  font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -2px;
+  color: #181212;
+  margin: 0 0 51px;
+  transition: color var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__content {
+  display: flex;
+  gap: 40px;
+}
+
+.experience-showcase__articles {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  flex: 1 1 520px;
+  min-width: 0;
+}
+
+.experience-showcase__article {
+  display: flex;
+  gap: 24px;
+  background: rgba(239, 246, 255, 0.8);
+  border-radius: 40px;
+  padding: 12px 24px 12px 12px;
+  text-decoration: none;
+  transition:
+    background var(--experience-showcase-theme-transition),
+    border-color var(--experience-showcase-theme-transition),
+    box-shadow var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__article:hover,
+.experience-showcase__article:focus-visible {
+  background: rgba(239, 246, 255, 1);
+}
+
+.experience-showcase__article-image {
+  width: 148px;
+  height: 148px;
+  border-radius: 28px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.experience-showcase__article-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.experience-showcase__article-logo {
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  bottom: 0;
+  left: 0;
+}
+
+.experience-showcase__article-tilt {
+  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  transform-origin: center center;
+}
+
+.experience-showcase__article-details {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 10px 0 7px;
+}
+
+.experience-showcase__article-title {
+  font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 26.6px;
+  letter-spacing: -1px;
+  color: #211b1c;
+  margin: 0;
+  transition: color var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__article-caption {
+  font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 22.6px;
+  letter-spacing: -1px;
+  color: #554f4f;
+  margin: 0;
+  transition: color var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__tools {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-left: 40px;
+  padding-top: 12px;
+  flex: 1 1 480px;
+  min-width: 0;
+}
+
+.experience-showcase__tool {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  padding: 12px;
+  margin: -12px;
+  border-radius: 26px;
+  transition:
+    background var(--experience-showcase-theme-transition),
+    border-color var(--experience-showcase-theme-transition),
+    box-shadow var(--experience-showcase-theme-transition);
+  text-decoration: none;
+  color: inherit;
+}
+
+.experience-showcase__tool-logo {
+  width: 56px;
+  height: 56px;
+  background: #231f20;
+  border-radius: 14px;
+  box-sizing: border-box;
+  object-fit: contain;
+  flex-shrink: 0;
+  padding: 4px;
+  transition:
+    background var(--experience-showcase-theme-transition),
+    border-color var(--experience-showcase-theme-transition),
+    box-shadow var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__tool-details {
+  display: flex;
+  flex-direction: column;
+  gap: 7.5px;
+  padding-top: 1px;
+}
+
+.experience-showcase__tool-title {
+  font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 25.6px;
+  letter-spacing: -1px;
+  color: #211b1c;
+  transition: color var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__tool-dot {
+  color: #b4afaf;
+}
+
+.experience-showcase__tool-caption {
+  font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 21.8px;
+  letter-spacing: -1px;
+  color: #554f4f;
+  transition: color var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__tool:hover,
+.experience-showcase__tool:focus-visible {
+  background: rgba(239, 246, 255, 0.8);
+}
+
+.experience-showcase__tool:hover .experience-showcase__tool-logo,
+.experience-showcase__tool:focus-visible .experience-showcase__tool-logo {
+  animation: logo-tilt 2s ease-in-out;
+}
+
+@keyframes logo-tilt {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+  75% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 999px) {
+  .experience-showcase__content {
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .experience-showcase__articles {
+    width: 100%;
+    flex: none;
+  }
+
+  .experience-showcase__tools {
+    padding-left: 0;
+    padding-top: 0;
+    flex: none;
+    width: 100%;
+  }
+
+  .experience-showcase__tool {
+    gap: 20px;
+  }
+
+  .experience-showcase {
+    padding-top: 77px;
+  }
+
+  .experience-showcase__heading {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .experience-showcase {
+    padding-left: var(--site-inline-pad);
+    padding-right: var(--site-inline-pad);
+  }
+
+  .experience-showcase__article {
+    flex-direction: column;
+    border-radius: 26px;
+    padding: 12px;
+  }
+
+  .experience-showcase__article-details {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 0;
+  }
+
+  .experience-showcase__article-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 100px;
+    left: auto;
+    right: 12px;
+    bottom: auto;
+    top: 12px;
+  }
+
+  .experience-showcase__article-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 14px;
+  }
+
+}
+
+@media (max-width: 507px) {
+  .experience-showcase__tool-title-full,
+  .experience-showcase__tool-caption-full {
+    display: none;
+  }
+}
+
+@media (min-width: 508px) {
+  .experience-showcase__tool-title-short,
+  .experience-showcase__tool-caption-short {
+    display: none;
+  }
+}
+
+html.theme-dark,
+body.theme-dark {
+  .experience-showcase {
+    background: #050505;
+  }
+
+  .experience-showcase__heading,
+  .experience-showcase__article-title,
+  .experience-showcase__tool-title {
+    color: #f3f6ff;
+  }
+
+  .experience-showcase__article-caption,
+  .experience-showcase__tool-caption {
+    color: rgba(243, 246, 255, 0.72);
+  }
+
+  .experience-showcase__article {
+    background: rgba(15, 17, 23, 0.92);
+    box-shadow: 0 1.2rem 2.8rem rgba(0, 0, 0, 0.22);
+  }
+
+  .experience-showcase__article:hover,
+  .experience-showcase__article:focus-visible,
+  .experience-showcase__tool:hover,
+  .experience-showcase__tool:focus-visible {
+    background: rgba(15, 17, 23, 0.92);
+  }
+
+  .experience-showcase__tool-logo {
+    background: #030406;
+  }
+}

@@ -1,21 +1,19 @@
 .about-skills {
   background: #050505; // Base is Dark to prevent white flash
   color: #ffffff;
-  padding: clamp(2rem, 4vw, 3rem) clamp(2rem, 6vw, 5rem) clamp(4rem, 7vw, 5.5rem);
+  padding: clamp(2rem, 4vw, 3rem) var(--site-inline-pad) clamp(4rem, 7vw, 5.5rem);
   transition: background 400ms cubic-bezier(1, 0, 0.4, 1);
 }
 
 .about-skills__inner {
-  margin: 0 auto;
-  max-width: 120rem;
+  width: 100%;
 }
 
 .about-skills__header {
   display: grid;
   gap: 1rem;
   justify-items: center;
-  margin: 0 auto clamp(2rem, 4vw, 3rem);
-  max-width: 48rem;
+  margin: 0 0 clamp(2rem, 4vw, 3rem);
   text-align: center;
 }
 

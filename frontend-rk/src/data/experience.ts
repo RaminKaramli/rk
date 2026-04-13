@@ -21,19 +21,19 @@ export const aboutExperienceEntries: AboutExperienceEntry[] = [
   {
     company: 'Odlar Yurdu University',
     role: "Bachelor's Degree",
-    period: 'Sept 2021 - June 2025',
+    period: 'Sept 2021 - Jun 2025',
     description: 'Computer Engineering',
   },
   {
     company: 'Odlar Yurdu College',
     role: 'College Education',
-    period: 'Sept 2019 - June 2021',
+    period: 'Sept 2019 - Jun 2021',
     description: 'Repair and Maintenance of Computer Networks and Computer Hardware',
   },
   {
     company: 'School',
     role: 'Primary School / High School',
-    period: 'Sept 2008 - June 2019',
+    period: 'Sept 2008 - Jun 2019',
     description: 'Sumgait City, No. 6 Complete Secondary School',
   },
 ]

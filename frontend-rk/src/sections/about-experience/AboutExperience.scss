@@ -2,14 +2,13 @@
   background: #08090d;
   color: #f4f6ff;
   font-family: "SF Pro Display Regular", "SF Pro Disp", sans-serif;
-  padding: clamp(3rem, 6vw, 5.5rem) clamp(1rem, 3.2vw, 2.5rem) clamp(4rem, 7vw, 6.5rem);
+  padding: clamp(3rem, 6vw, 5.5rem) var(--site-inline-pad) clamp(4rem, 7vw, 6.5rem);
   transition: background 400ms cubic-bezier(1, 0, 0.4, 1);
   --about-exp-theme-transition: 400ms cubic-bezier(1, 0, 0.4, 1);
 }
 
 .about-experience__inner {
-  margin: 0 auto;
-  max-width: 78rem;
+  width: 100%;
   display: grid;
   gap: clamp(1.4rem, 2.6vw, 2.5rem);
 }
@@ -253,8 +252,8 @@ body.theme-dark {
 
 @media (max-width: 768px) {
   .about-experience {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: var(--site-inline-pad);
+    padding-right: var(--site-inline-pad);
   }
 
   .about-experience__row {

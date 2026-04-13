@@ -19,6 +19,7 @@
 
 :root {
   --headingnowtrial: #{$font-heading-now};
+  --site-inline-pad: 1rem;
   --c-glass: #9da3b2;
   --c-light: #d7dcef;
   --c-dark: #000;
@@ -79,4 +80,10 @@ body.theme-dark {
   --glass-reflex-dark: 2;
   --glass-reflex-light: 0.45;
   --saturation: 140%;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-inline-pad: 128px;
+  }
 }
