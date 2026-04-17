@@ -9,8 +9,8 @@ export default function HomeHero() {
 
         <div className="hero-name-wrap">
           <h1 className="my-name" style={{ fontFamily: 'var(--headingnowtrial)', letterSpacing: '0.005em' }}>
-            Ramin <span className="surname-black">KA</span>
-            <span className="surname-filter">RAMLI</span>
+            Ramin <span className="surname-black"></span>
+            <span className="surname-filter">KARAMLI</span>
           </h1>
 
           <div className="hero-figure">

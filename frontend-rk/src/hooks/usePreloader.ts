@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const STORAGE_KEY = 'rk-preloader-seen'
+const PRELOADER_DURATION_MS = 3900
 
 function shouldShowPreloader() {
   try {
@@ -35,7 +36,7 @@ export function usePreloader() {
 
     const timeoutId = window.setTimeout(() => {
       setShowPreloader(false)
-    }, 3600)
+    }, PRELOADER_DURATION_MS)
 
     return () => {
       window.clearTimeout(timeoutId)
