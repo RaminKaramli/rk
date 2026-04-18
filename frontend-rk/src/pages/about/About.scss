@@ -390,6 +390,42 @@ body.theme-dark .about-hero-section {
   background: #000000 !important;
 }
 
+body.about-page {
+  --about-theme-transition: 0.42s ease;
+  transition: background var(--about-theme-transition), color var(--about-theme-transition);
+}
+
+body.about-page :is(
+  .about-hero-section,
+  .about-showcase__container,
+  .experience-showcase,
+  .experience-showcase__article,
+  .experience-showcase__tool,
+  .experience-showcase__tool-logo,
+  .about-experience,
+  .about-experience__separator-line,
+  .about-experience__separator-stroke,
+  .about-experience__list,
+  .about-experience__item,
+  .about-experience__period,
+  .about-skills,
+  .about-skills-item__index,
+  .about-skills-item__panel,
+  .about-skills-item__toggle,
+  .about-skills-item__tag,
+  .about-loop-gallery,
+  .about-loop-gallery::before
+) {
+  transition:
+    background var(--about-theme-transition),
+    background-color var(--about-theme-transition),
+    border-color var(--about-theme-transition),
+    box-shadow var(--about-theme-transition),
+    color var(--about-theme-transition),
+    opacity var(--about-theme-transition),
+    filter var(--about-theme-transition);
+}
+
 @media (max-width: 1024px) {
   .about-hero-frame {
     padding: 7rem 4rem 2.5rem 6rem;

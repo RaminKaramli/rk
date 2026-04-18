@@ -25,7 +25,7 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
   const isInitializedRef = useRef(false)
 
   const isAboutPage = page === 'about'
-  const sectionTwoActive = !isAboutPage && isSectionTwoActive
+  const sectionTwoActive = isSectionTwoActive
   const links = isAboutPage ? aboutMenuLinks : homeMenuLinks
 
   useEffect(() => {
@@ -85,13 +85,11 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
   }, [])
 
   useLayoutEffect(() => {
-    if (isAboutPage) {
-      return
-    }
+    const triggerSection = isAboutPage
+      ? document.querySelector<HTMLElement>('.about-loop-gallery')
+      : document.getElementById('about')
 
-    const aboutSection = document.getElementById('about')
-
-    if (!aboutSection) {
+    if (!triggerSection) {
       return
     }
 
@@ -99,13 +97,17 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
 
     mediaMatcher.add('(min-width: 769px)', () => {
       const trigger = ScrollTrigger.create({
-        trigger: aboutSection,
-        start: 'top top',
+        trigger: triggerSection,
+        start: 'top top+=104',
+        end: 'bottom top+=104',
         onEnter: () => {
           setIsSectionTwoActive(true)
         },
         onEnterBack: () => {
           setIsSectionTwoActive(true)
+        },
+        onLeave: () => {
+          setIsSectionTwoActive(false)
         },
         onLeaveBack: () => {
           setIsSectionTwoActive(false)
