@@ -85,9 +85,7 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
   }, [])
 
   useLayoutEffect(() => {
-    const triggerSection = isAboutPage
-      ? document.querySelector<HTMLElement>('.about-loop-gallery')
-      : document.getElementById('about')
+    const triggerSection = document.getElementById('about')
 
     if (!triggerSection) {
       return
@@ -122,7 +120,7 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
     return () => {
       mediaMatcher.revert()
     }
-  }, [isAboutPage])
+  }, [])
 
   useLayoutEffect(() => {
     if (!isInitializedRef.current) {

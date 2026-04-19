@@ -1,6 +1,10 @@
 import { useLayoutEffect, useRef } from 'react'
 import { aboutLoopGalleryColumns } from '../../data/aboutLoopGallery'
-import { ScrollTrigger, gsap } from '../../lib/gsap'
+import { gsap } from '../../lib/gsap'
+
+type LoopController = {
+  animation: ReturnType<typeof gsap.to>
+}
 
 export default function AboutLoopGallery() {
   const sectionRef = useRef<HTMLElement | null>(null)
@@ -14,31 +18,26 @@ export default function AboutLoopGallery() {
     let cleanup: (() => void) | undefined
 
     const context = gsap.context(() => {
-      const columns = Array.from(section.querySelectorAll<HTMLElement>('.about-loop-gallery__col'))
       const tracks = Array.from(section.querySelectorAll<HTMLElement>('.about-loop-gallery__track'))
 
       if (tracks.length === 0) {
         return
       }
 
-      const animations: Array<ReturnType<typeof gsap.to>> = []
-      const triggers: ScrollTrigger[] = []
+      const controllers: LoopController[] = []
 
       const destroyScene = () => {
-        animations.forEach((animation) => animation.kill())
-        triggers.forEach((trigger) => trigger.kill())
-        animations.length = 0
-        triggers.length = 0
+        controllers.forEach((controller) => {
+          gsap.killTweensOf(controller.animation)
+          controller.animation.kill()
+        })
+        controllers.length = 0
       }
 
       const setupScene = () => {
         destroyScene()
 
         tracks.forEach((track, index) => {
-          if (!columns[index]) {
-            return
-          }
-
           const cycleDistance = track.scrollHeight / 2
           if (cycleDistance <= 0) {
             gsap.set(track, { y: 0 })
@@ -53,20 +52,12 @@ export default function AboutLoopGallery() {
 
           const animation = gsap.to(track, {
             y: endY,
+            duration: 20 + index * 1.5,
+            repeat: -1,
             ease: 'none',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top top',
-              end: 'bottom bottom',
-              scrub: 2.8,
-              invalidateOnRefresh: true,
-            },
           })
 
-          animations.push(animation)
-          if (animation.scrollTrigger) {
-            triggers.push(animation.scrollTrigger)
-          }
+          controllers.push({ animation })
         })
       }
 
@@ -74,10 +65,8 @@ export default function AboutLoopGallery() {
 
       const resizeObserver = new ResizeObserver(() => {
         setupScene()
-        ScrollTrigger.refresh()
       })
 
-      columns.forEach((column) => resizeObserver.observe(column))
       tracks.forEach((track) => resizeObserver.observe(track))
 
       cleanup = () => {

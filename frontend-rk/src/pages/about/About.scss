@@ -413,8 +413,7 @@ body.about-page :is(
   .about-skills-item__panel,
   .about-skills-item__toggle,
   .about-skills-item__tag,
-  .about-loop-gallery,
-  .about-loop-gallery::before
+  .about-loop-gallery
 ) {
   transition:
     background var(--about-theme-transition),
