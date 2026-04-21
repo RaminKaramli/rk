@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { aboutMenuLinks, homeMenuLinks, overlayMenuImages } from '../../../data/socials'
 import { ScrollTrigger, gsap } from '../../../lib/gsap'
@@ -18,7 +18,13 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
   const [activeImageIndex, setActiveImageIndex] = useState(0)
   const [isSectionTwoActive, setIsSectionTwoActive] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [locationState, setLocationState] = useState(() =>
+    typeof window === 'undefined'
+      ? ''
+      : `${window.location.pathname}${window.location.search}${window.location.hash}`,
+  )
   const headerRef = useRef<HTMLElement | null>(null)
+  const switcherRef = useRef<HTMLElement | null>(null)
   const menuRef = useRef<HTMLDivElement | null>(null)
   const overlayContentRef = useRef<HTMLDivElement | null>(null)
   const imageRefs = useRef<HTMLDivElement[]>([])
@@ -30,6 +36,87 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
   const sectionTwoActive = isSectionTwoActive
   const links = isAboutPage ? aboutMenuLinks : homeMenuLinks
 
+  const getActiveNavIndex = (locationValue: string) => {
+    if (!locationValue) {
+      return isAboutPage ? 1 : 0
+    }
+
+    const nextUrl = new URL(locationValue, window.location.origin)
+    const hash = nextUrl.hash
+    const pathname = nextUrl.pathname.replace(/\/+$/, '') || '/'
+    const pageParam = nextUrl.searchParams.get('page')
+
+    if (hash === '#notable-works') {
+      return 2
+    }
+
+    if (hash === '#site-footer' || hash === '#contact') {
+      return 3
+    }
+
+    if (pageParam === 'about' || pathname === '/about') {
+      return 1
+    }
+
+    return 0
+  }
+
+  const activeNavIndex = useMemo(() => getActiveNavIndex(locationState), [locationState, isAboutPage])
+
+  const syncLocationScroll = (hash: string) => {
+    window.setTimeout(() => {
+      if (!hash) {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        return
+      }
+
+      const target = document.querySelector<HTMLElement>(hash)
+
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }, 80)
+  }
+
+  const navigateTo = (href: string, closeMenu = false) => {
+    const nextUrl = new URL(href, window.location.origin)
+    const nextRoute = `${nextUrl.pathname}${nextUrl.search}`
+    const currentRoute = `${window.location.pathname}${window.location.search}`
+
+    if (closeMenu) {
+      setMenuOpen(false)
+    }
+
+    if (nextRoute !== currentRoute) {
+      window.location.assign(`${nextRoute}${nextUrl.hash}`)
+      return
+    }
+
+    const previousHash = window.location.hash
+
+    if (previousHash !== nextUrl.hash) {
+      window.history.pushState({}, '', `${nextRoute}${nextUrl.hash}`)
+      window.dispatchEvent(new Event('hashchange'))
+    }
+
+    syncLocationScroll(nextUrl.hash)
+  }
+
+  const handleNavigationClick = (href: string, closeMenu = false) => (event: ReactMouseEvent<HTMLAnchorElement>) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return
+    }
+
+    const nextUrl = new URL(href, window.location.origin)
+
+    if (nextUrl.origin !== window.location.origin) {
+      return
+    }
+
+    event.preventDefault()
+    navigateTo(href, closeMenu)
+  }
+
   useEffect(() => {
     document.body.classList.toggle('overlay-active', menuOpen)
 
@@ -37,6 +124,57 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
       document.body.classList.remove('overlay-active')
     }
   }, [menuOpen])
+
+  useEffect(() => {
+    const syncLocationState = () => {
+      setLocationState(`${window.location.pathname}${window.location.search}${window.location.hash}`)
+    }
+
+    syncLocationState()
+    window.addEventListener('hashchange', syncLocationState)
+    window.addEventListener('popstate', syncLocationState)
+
+    return () => {
+      window.removeEventListener('hashchange', syncLocationState)
+      window.removeEventListener('popstate', syncLocationState)
+    }
+  }, [isAboutPage])
+
+  useEffect(() => {
+    const el = switcherRef.current
+
+    if (!el) {
+      return
+    }
+
+    const radios = el.querySelectorAll<HTMLInputElement>('input[type="radio"]')
+    let previousValue: string | null = null
+
+    const initiallyChecked = el.querySelector<HTMLInputElement>('input[type="radio"]:checked')
+    if (initiallyChecked) {
+      previousValue = initiallyChecked.getAttribute('c-option')
+      el.setAttribute('c-previous', previousValue ?? '')
+    }
+
+    const cleanupFns = Array.from(radios).map((radio) => {
+      const handleChange = () => {
+        if (radio.checked) {
+          el.setAttribute('c-previous', previousValue ?? '')
+          previousValue = radio.getAttribute('c-option')
+        }
+      }
+
+      radio.addEventListener('change', handleChange)
+
+      return () => {
+        radio.removeEventListener('change', handleChange)
+      }
+    })
+
+    return () => {
+      cleanupFns.forEach((cleanup) => cleanup())
+    }
+  }, [activeNavIndex, links])
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -304,9 +442,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
                 onFocus={() => {
                   setActiveImageIndex(link.imageIndex)
                 }}
-                onClick={() => {
-                  setMenuOpen(false)
-                }}
+                onClick={handleNavigationClick(link.href, true)}
                 className="overlay-nav-link"
               >
                 {link.label}
@@ -329,6 +465,34 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
           <a href="/" className="header-logo" aria-label="Ramin avatar">
             <img id="headerAvatar" src={media.avatar} alt="Ramin avatar" />
           </a>
+
+          <nav
+            ref={switcherRef}
+            className="header-inline-nav switcher"
+            aria-label="Primary"
+            style={{ '--active-index': String(activeNavIndex) } as CSSProperties}
+          >
+            <span className="header-inline-nav__highlight" aria-hidden="true" />
+            {links.map((link, index) => (
+              <label
+                key={`inline-${link.label}-${link.href}`}
+                className={`header-inline-link switcher__option${activeNavIndex === index ? ' is-active' : ''}`}
+              >
+                <input
+                  checked={activeNavIndex === index}
+                  className="switcher__input"
+                  c-option={String(index + 1)}
+                  name="header-switcher"
+                  onChange={() => {
+                    navigateTo(link.href)
+                  }}
+                  type="radio"
+                  value={link.label}
+                />
+                <span className="switcher__text">{link.label}</span>
+              </label>
+            ))}
+          </nav>
 
           <button
             className="menu-toggle"
@@ -360,7 +524,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
         </div>
       </header>
 
-      <ThemeToggle alignLeft={sectionTwoActive} isDark={isDark} onToggle={onToggleTheme} />
+      <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
 
       {typeof document !== 'undefined' ? createPortal(overlayMenuNode, document.body) : null}
     </>
