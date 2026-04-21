@@ -1,6 +1,6 @@
 import type { FooterLink, MenuLink, SocialLink } from '../types/common.types'
 import aboutShowcaseMotion from '../assets/images/about-showcase-motion.png'
-import heroImage from '../assets/images/hero.png'
+import heroImage from '../assets/images/her0.png'
 import myImage from '../assets/images/my.png'
 import rkImage from '../assets/images/rk.jpeg'
 

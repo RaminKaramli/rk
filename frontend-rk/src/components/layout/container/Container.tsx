@@ -125,7 +125,7 @@ export default function Container({
       {preloader}
       <div id="wrapper">
         <main ref={mainContentRef} className="main-content">
-          <Header page={page} isDark={isDark} onToggleTheme={toggleTheme} />
+          <Header page={page} isDark={isDark} onToggleTheme={toggleTheme} showPreloader={showPreloader} />
           {children}
         </main>
         <Footer ref={footerContainerRef} />

@@ -244,6 +244,15 @@ body.ui-on-dark-surface:not(.theme-dark) .site-header.is-open .ham .line {
     inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
     0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
     0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+  transition:
+    left 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    right 0.46s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.22s ease;
+}
+
+.theme-toggle--floating.theme-toggle--floating-left {
+  left: 2rem;
+  right: auto;
 }
 
 body.ui-on-dark-surface:not(.theme-dark) .theme-toggle,
@@ -462,6 +471,11 @@ body.theme-dark .overlay-nav-list a:hover {
     left: 50%;
     width: 96%;
     max-height: calc(100dvh - 6.7rem - env(safe-area-inset-bottom));
+  }
+
+  .theme-toggle--floating.theme-toggle--floating-left {
+    left: auto;
+    right: 1rem;
   }
 
   .overlay-menu-image-wrap {

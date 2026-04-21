@@ -1,12 +1,13 @@
 type ThemeToggleProps = {
+  alignLeft?: boolean
   isDark: boolean
   onToggle: () => void
 }
 
-export default function ThemeToggle({ isDark, onToggle }: ThemeToggleProps) {
+export default function ThemeToggle({ alignLeft = false, isDark, onToggle }: ThemeToggleProps) {
   return (
     <button
-      className="theme-toggle theme-toggle--floating"
+      className={`theme-toggle theme-toggle--floating${alignLeft ? ' theme-toggle--floating-left' : ''}`}
       id="themeToggle"
       type="button"
       aria-label="Toggle dark mode"

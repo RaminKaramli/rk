@@ -9,9 +9,10 @@ type HeaderProps = {
   isDark: boolean
   onToggleTheme: () => void
   page: 'about' | 'home'
+  showPreloader: boolean
 }
 
-export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
+export default function Header({ isDark, onToggleTheme, page, showPreloader }: HeaderProps) {
   const MENU_DURATION = 0.42
   const LINK_STAGGER = 0.05
   const [activeImageIndex, setActiveImageIndex] = useState(0)
@@ -23,6 +24,7 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
   const imageRefs = useRef<HTMLDivElement[]>([])
   const linkRefs = useRef<HTMLAnchorElement[]>([])
   const isInitializedRef = useRef(false)
+  const headerEntrancePlayedRef = useRef(false)
 
   const isAboutPage = page === 'about'
   const sectionTwoActive = isSectionTwoActive
@@ -83,6 +85,74 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
       context.revert()
     }
   }, [])
+
+  useLayoutEffect(() => {
+    const header = headerRef.current
+    const themeToggle = document.getElementById('themeToggle')
+
+    if (!header || !themeToggle) {
+      return
+    }
+
+    if (showPreloader) {
+      headerEntrancePlayedRef.current = false
+      gsap.killTweensOf([header, themeToggle])
+      gsap.set(header, {
+        autoAlpha: 0,
+        y: -40,
+      })
+      gsap.set(themeToggle, {
+        autoAlpha: 0,
+        x: 24,
+      })
+      return
+    }
+
+    if (headerEntrancePlayedRef.current) {
+      gsap.set(header, {
+        autoAlpha: 1,
+        clearProps: 'transform',
+      })
+      gsap.set(themeToggle, {
+        autoAlpha: 1,
+        clearProps: 'transform',
+      })
+      return
+    }
+
+    headerEntrancePlayedRef.current = true
+    gsap.killTweensOf([header, themeToggle])
+    gsap.set(header, {
+      autoAlpha: 0,
+      y: -40,
+    })
+    gsap.set(themeToggle, {
+      autoAlpha: 0,
+      x: 24,
+    })
+
+    gsap
+      .timeline()
+      .to(header, {
+        autoAlpha: 1,
+        delay: 0,
+        duration: 0.2,
+        ease: 'power3.out',
+        y: 0,
+        clearProps: 'transform',
+      })
+      .to(
+        themeToggle,
+        {
+          autoAlpha: 1,
+          duration: 0.25,
+          ease: 'power2.out',
+          x: 0,
+          clearProps: 'transform',
+        },
+        '<',
+      )
+  }, [showPreloader])
 
   useLayoutEffect(() => {
     const triggerSection = document.getElementById('about')
@@ -290,7 +360,7 @@ export default function Header({ isDark, onToggleTheme, page }: HeaderProps) {
         </div>
       </header>
 
-      <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
+      <ThemeToggle alignLeft={sectionTwoActive} isDark={isDark} onToggle={onToggleTheme} />
 
       {typeof document !== 'undefined' ? createPortal(overlayMenuNode, document.body) : null}
     </>

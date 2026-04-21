@@ -106,6 +106,7 @@ body.theme-dark .surname-filter {
   display: flex;
   align-items: center;
   justify-content: center;
+  isolation: isolate;
 }
 
 .my-name {
@@ -117,25 +118,14 @@ body.theme-dark .surname-filter {
   font-size: clamp(3.5rem, 14.5vw, 14rem);
   letter-spacing: -0.01em;
   position: relative;
-  color: #0b0b0f !important;
-  filter: none !important;
-  mix-blend-mode: normal !important;
-  opacity: 1 !important;
-  cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb09ef00eb464b45496_cursor-text.svg") 2 0, text;
-}
-
-.surname-black {
-  color: #0b0b0f;
-  position: relative;
-  z-index: 3;
-}
-
-.surname-filter {
+  filter: grayscale(100%);
   mix-blend-mode: difference;
   opacity: 1;
-  position: relative;
+  cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb09ef00eb464b45496_cursor-text.svg") 2 0, text;
   z-index: 3;
 }
+
+
 
 .hero-figure {
   position: absolute;

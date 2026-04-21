@@ -1,7 +1,7 @@
 import aboutShowcaseMotion from '../assets/images/about-showcase-motion.png'
 import avatar from '../assets/images/avatar.png'
 import footerPortrait from '../assets/images/footer-portrait.jpeg'
-import heroFigure from '../assets/images/hero-figure.png'
+import heroFigure from '../assets/images/her0.png'
 import projectCard from '../assets/images/project-card.png'
 
 export const media = {

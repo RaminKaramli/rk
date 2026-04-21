@@ -17,7 +17,7 @@ export default function HomePage() {
       preloader={<Preloader visible={showPreloader} onComplete={dismissPreloader} />}
     >
       <HomeCanvas />
-      <HeroSection />
+      <HeroSection showPreloader={showPreloader} />
       <ProjectsSection />
       <ExperienceSection />
     </Container>
