@@ -3,106 +3,94 @@ import { gsap } from '../../../lib/gsap'
 import '../../preloader/Preloader.scss'
 
 type PreloaderProps = {
+  onComplete: () => void
   visible: boolean
 }
 
-export default function Preloader({ visible }: PreloaderProps) {
-  const preloaderRef = useRef<HTMLDivElement>(null)
-  const contentRef = useRef<HTMLDivElement>(null)
-  const titleRef = useRef<HTMLHeadingElement>(null)
-  const lineRef = useRef<HTMLDivElement>(null)
-  const lineFillRef = useRef<HTMLDivElement>(null)
-  const word1Ref = useRef<HTMLSpanElement>(null)
-  const word2Ref = useRef<HTMLSpanElement>(null)
+export default function Preloader({ onComplete, visible }: PreloaderProps) {
+  const loaderRef = useRef<HTMLDivElement>(null)
+  const nameRef = useRef<HTMLDivElement>(null)
+  const barRef = useRef<HTMLDivElement>(null)
+  const counterRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
-    if (!visible) return
-
-    const preloaderEl = preloaderRef.current
-    const contentEl = contentRef.current
-    const titleEl = titleRef.current
-    const lineEl = lineRef.current
-    const lineFillEl = lineFillRef.current
-    const word1El = word1Ref.current
-    const word2El = word2Ref.current
-
-    if (!preloaderEl || !contentEl || !titleEl || !lineEl || !lineFillEl || !word1El || !word2El) {
+    if (!visible) {
       return
     }
 
+    const loaderEl = loaderRef.current
+    const nameEl = nameRef.current
+    const barEl = barRef.current
+    const counterEl = counterRef.current
+
+    if (!loaderEl || !nameEl || !barEl || !counterEl) {
+      return
+    }
+
+    let finished = false
+
+    const finishLoader = () => {
+      if (finished) {
+        return
+      }
+
+      finished = true
+      onComplete()
+    }
+
     const context = gsap.context(() => {
-      gsap.set(preloaderEl, { autoAlpha: 1 })
-      gsap.set(contentEl, { autoAlpha: 1 })
-      gsap.set(titleEl, {
+      const progressState = { value: 0 }
+
+      gsap.set(loaderEl, { autoAlpha: 1, yPercent: 0 })
+      gsap.set(nameEl, { autoAlpha: 0, y: 20 })
+      gsap.set(barEl, { width: '0%' })
+      counterEl.textContent = '000'
+
+      gsap.to(nameEl, {
         autoAlpha: 1,
-        scale: 0.18,
-        transformOrigin: 'center center',
-      })
-      gsap.set(lineEl, { autoAlpha: 1 })
-      gsap.set(lineFillEl, {
-        scaleX: 0,
-        transformOrigin: 'left center',
-      })
-      gsap.set(word1El, {
-        x: -56,
-        autoAlpha: 1,
-        transformOrigin: 'center center',
-      })
-      gsap.set(word2El, {
-        x: 56,
-        autoAlpha: 1,
-        transformOrigin: 'center center',
+        delay: 0.1,
+        duration: 0.8,
+        ease: 'power3.out',
+        y: 0,
       })
 
-      gsap.timeline()
-        .to(word1El, {
-          x: 0,
-          duration: 1.05,
+      gsap
+        .timeline()
+        .to(progressState, {
+          duration: 3.8,
           ease: 'power2.inOut',
-        }, 0)
-        .to(word2El, {
-          x: 0,
-          duration: 1.05,
-          ease: 'power2.inOut',
-        }, 0)
-        .to(lineFillEl, {
-          scaleX: 1,
-          duration: 2.7,
-          ease: 'none',
-        }, 0.12)
-        .to(titleEl, {
-          scale: 1,
-          duration: 0.9,
-          ease: 'power3.out',
-        }, 1.32)
-        .to({}, { duration: 0.6 })
-        .to(preloaderEl, {
-          autoAlpha: 0,
-          duration: 0.42,
-          ease: 'power2.out',
+          onUpdate: () => {
+            const progress = Math.min(progressState.value, 100)
+            barEl.style.width = `${progress}%`
+            counterEl.textContent = String(Math.floor(progress)).padStart(3, '0')
+          },
+          value: 100,
         })
-    }, preloaderEl)
+        .to({}, { duration: 0.45 })
+        .to(loaderEl, {
+          duration: 1.05,
+          ease: 'power4.inOut',
+          onComplete: finishLoader,
+          yPercent: -100,
+        })
+    }, loaderEl)
 
     return () => {
       context.revert()
     }
-  }, [visible])
+  }, [onComplete, visible])
 
   if (!visible) {
     return null
   }
 
   return (
-    <div ref={preloaderRef} className="preloader" aria-hidden="true">
-      <div ref={contentRef} className="preloader__content">
-        <h1 ref={titleRef} className="preloader__title">
-          <span ref={word1Ref} className="word word1">RAMIN</span>{' '}
-          <span ref={word2Ref} className="word word2">KARAMLI</span>
-        </h1>
-        <div ref={lineRef} className="preloader__line" aria-hidden="true">
-          <div ref={lineFillRef} className="preloader__line-fill" />
-        </div>
+    <div ref={loaderRef} className="preloader" aria-hidden="true">
+      <div ref={nameRef} className="loader-name">Ramin Karamli</div>
+      <div className="loader-bar-wrap" aria-hidden="true">
+        <div ref={barRef} className="loader-bar" />
       </div>
+      <div ref={counterRef} className="loader-counter">000</div>
     </div>
   )
 }

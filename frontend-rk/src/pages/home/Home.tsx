@@ -7,14 +7,14 @@ import HeroSection from '../../sections/hero/Hero'
 import ProjectsSection from '../../sections/projects/Projects'
 
 export default function HomePage() {
-  const showPreloader = usePreloader()
+  const { dismissPreloader, showPreloader } = usePreloader()
 
   return (
     <Container
       page="home"
       title="RK Project"
       showPreloader={showPreloader}
-      preloader={<Preloader visible={showPreloader} />}
+      preloader={<Preloader visible={showPreloader} onComplete={dismissPreloader} />}
     >
       <HomeCanvas />
       <HeroSection />

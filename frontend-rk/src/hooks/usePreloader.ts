@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 const STORAGE_KEY = 'rk-preloader-seen'
-const PRELOADER_DURATION_MS = 3900
+const PRELOADER_FALLBACK_MS = 6000
 
 function shouldShowPreloader() {
   try {
@@ -15,10 +15,12 @@ export function usePreloader() {
   const [showPreloader, setShowPreloader] = useState(shouldShowPreloader)
 
   useEffect(() => {
+    document.documentElement.classList.toggle('is-preloading', showPreloader)
     document.documentElement.classList.toggle('skip-preloader', !showPreloader)
     document.body.classList.toggle('is-preloading', showPreloader)
 
     return () => {
+      document.documentElement.classList.remove('is-preloading')
       document.body.classList.remove('is-preloading')
     }
   }, [showPreloader])
@@ -36,12 +38,15 @@ export function usePreloader() {
 
     const timeoutId = window.setTimeout(() => {
       setShowPreloader(false)
-    }, PRELOADER_DURATION_MS)
+    }, PRELOADER_FALLBACK_MS)
 
     return () => {
       window.clearTimeout(timeoutId)
     }
   }, [showPreloader])
 
-  return showPreloader
+  return {
+    dismissPreloader: () => setShowPreloader(false),
+    showPreloader,
+  }
 }

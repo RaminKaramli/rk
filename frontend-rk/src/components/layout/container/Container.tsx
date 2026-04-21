@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, type ReactNode } from 'react'
 import { ScrollTrigger, gsap } from '../../../lib/gsap'
 import { useTheme } from '../../../hooks/useTheme'
 import Footer from '../footer/Footer'
@@ -31,10 +31,6 @@ export default function Container({
       document.body.classList.remove('about-page')
     }
   }, [page, title])
-
-  const contentStyle: CSSProperties | undefined = showPreloader
-    ? undefined
-    : { opacity: 1, visibility: 'visible' }
 
   useLayoutEffect(() => {
     if (showPreloader) {
@@ -128,7 +124,7 @@ export default function Container({
     <>
       {preloader}
       <div id="wrapper">
-        <main ref={mainContentRef} className="main-content" style={contentStyle}>
+        <main ref={mainContentRef} className="main-content">
           <Header page={page} isDark={isDark} onToggleTheme={toggleTheme} />
           {children}
         </main>

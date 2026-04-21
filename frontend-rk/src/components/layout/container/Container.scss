@@ -66,8 +66,8 @@
 }
 
 .main-content {
-  visibility: hidden;
-  opacity: 0;
+  visibility: visible;
+  opacity: 1;
   position: relative;
   z-index: 2;
   isolation: isolate;
