@@ -75,7 +75,7 @@ export default function Container({
     }
 
     const darkSurfaceSections = Array.from(
-      document.querySelectorAll<HTMLElement>('.about-showcase, .notable-works-section, .site-footer'),
+      document.querySelectorAll<HTMLElement>('.about-showcase, .site-footer'),
     )
 
     if (!darkSurfaceSections.length) {

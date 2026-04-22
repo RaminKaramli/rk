@@ -1,12 +1,12 @@
 .about-page {
-  background: #000000; // Base is Dark
+  background: transparent;
 }
 
 .about-hero-section {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-  background: #000000; // Base is Dark
+  background: transparent;
 }
 
 .about-hero-glow {
@@ -352,7 +352,7 @@
 html:not(.theme-dark) {
   .about-page,
   .about-hero-section {
-    background: #ffffff;
+    background: transparent;
   }
 
   .about-hero-chip,
@@ -383,11 +383,11 @@ html:not(.theme-dark) {
 
 // Ensure explicit Dark Mode block remains
 body.theme-dark.about-page {
-  background: #000000 !important;
+  background: transparent !important;
 }
 
 body.theme-dark .about-hero-section {
-  background: #000000 !important;
+  background: transparent !important;
 }
 
 body.about-page {

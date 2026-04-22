@@ -1,6 +1,6 @@
 .about-loop-gallery {
   position: relative;
-  background: #050505;
+  background: transparent;
   overflow: clip;
   padding: 1rem calc(var(--site-inline-pad) - 0.5rem);
 }
@@ -87,14 +87,14 @@
 :root:not(.theme-dark) body,
 :root:not(.theme-dark) {
   .about-loop-gallery {
-    background: #ffffff;
+    background: transparent;
   }
 }
 
 html.theme-dark,
 body.theme-dark {
   .about-loop-gallery {
-    background: #050505;
+    background: transparent;
   }
 }
 

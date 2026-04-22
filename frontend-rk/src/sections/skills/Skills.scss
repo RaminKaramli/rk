@@ -1,5 +1,5 @@
 .about-skills {
-  background: #050505; // Base is Dark to prevent white flash
+  background: transparent;
   color: #ffffff;
   padding: clamp(2rem, 4vw, 3rem) var(--site-inline-pad) clamp(4rem, 7vw, 5.5rem);
   transition: background 400ms cubic-bezier(1, 0, 0.4, 1);
@@ -54,7 +54,9 @@
 
 .about-skills-item__index,
 .about-skills-item__panel {
-  background: #0f0f0f;
+  background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(var(--saturation));
+  backdrop-filter: blur(10px) saturate(var(--saturation));
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 0.3125rem;
   transition: background 400ms cubic-bezier(1, 0, 0.4, 1), border-color 400ms cubic-bezier(1, 0, 0.4, 1), box-shadow 400ms cubic-bezier(1, 0, 0.4, 1);
@@ -67,7 +69,7 @@
   justify-content: center;
   min-height: 5.5rem;
   padding: 0.75rem;
-  background: #0a0a0a;
+  background-color: color-mix(in srgb, var(--c-glass) 10%, transparent);
 }
 
 .about-skills-item__slashes,
@@ -184,7 +186,7 @@
 
 .about-skills-item__tag {
   align-items: center;
-  background: #121212;
+  background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 0.36rem;
   color: #ffffff;
@@ -202,7 +204,7 @@
 }
 
 .about-skills-item--open .about-skills-item__panel {
-  background: #121212;
+  background-color: color-mix(in srgb, var(--c-glass) 16%, transparent);
   border-color: rgba(255, 255, 255, 0.12);
 }
 
@@ -223,16 +225,16 @@
 :root:not(.theme-dark) body,
 :root:not(.theme-dark) {
   .about-skills {
-    background: #ffffff;
+    background: transparent;
     color: #121212;
   }
   .about-skills__title { color: #121212; }
   .about-skills__description { color: rgba(18, 18, 18, 0.62); }
   .about-skills-item__index, .about-skills-item__panel {
-    background: #ffffff;
+    background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
     border-color: rgba(18, 18, 18, 0.12);
   }
-  .about-skills-item__index { background: #f9f9f9; }
+  .about-skills-item__index { background-color: color-mix(in srgb, var(--c-glass) 10%, transparent); }
   .about-skills-item__slashes, .about-skills-item__number {
     color: rgba(18, 18, 18, 0.14);
   }
@@ -240,13 +242,13 @@
   .about-skills-item__description { color: rgba(18, 18, 18, 0.62); }
   .about-skills-item__toggle { border-color: rgba(18, 18, 18, 0.14); }
   .about-skills-item__icon { color: #121212; }
-  .about-skills-item__tag { background: #ffffff; border-color: rgba(18, 18, 18, 0.12); color: #121212; }
-  .about-skills-item--open .about-skills-item__panel { background: #fcfcfc; border-color: rgba(18, 18, 18, 0.16); }
+  .about-skills-item__tag { background-color: color-mix(in srgb, var(--c-glass) 12%, transparent); border-color: rgba(18, 18, 18, 0.12); color: #121212; }
+  .about-skills-item--open .about-skills-item__panel { background-color: color-mix(in srgb, var(--c-glass) 16%, transparent); border-color: rgba(18, 18, 18, 0.16); }
 }
 
 // Explicit Dark Mode block for stability
 html.theme-dark, body.theme-dark {
-  .about-skills { background: #050505; color: #ffffff; }
-  .about-skills-item__index { background: #0a0a0a; }
-  .about-skills-item__panel { background: #0f0f0f; border-color: rgba(255, 255, 255, 0.08); }
+  .about-skills { background: transparent; color: #ffffff; }
+  .about-skills-item__index { background-color: color-mix(in srgb, var(--c-glass) 10%, transparent); }
+  .about-skills-item__panel { background-color: color-mix(in srgb, var(--c-glass) 12%, transparent); border-color: rgba(255, 255, 255, 0.08); }
 }

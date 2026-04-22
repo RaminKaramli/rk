@@ -69,9 +69,17 @@ export default function NotableWorks() {
 
     const statCards = Array.from(section.querySelectorAll<HTMLElement>('.notable-stat'))
     const intro = section.querySelector<HTMLElement>('.notable-works-intro')
+    const separatorLines = section.querySelectorAll<HTMLElement>('.notable-works__separator-line')
+    const separatorPlus = section.querySelector<HTMLElement>('.notable-works__separator-plus')
 
     const context = gsap.context(() => {
-      gsap.set([intro, ...statCards], { autoAlpha: 0 })
+      if (!intro || separatorLines.length === 0 || !separatorPlus) {
+        return
+      }
+
+      gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
+      gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
+      gsap.set([intro, ...statCards], { autoAlpha: 0, y: 14 })
 
       const counters = resolvedStats.map(() => ({ value: 0 }))
 
@@ -80,18 +88,18 @@ export default function NotableWorks() {
         start: 'top 72%',
         once: true,
         onEnter: () => {
-          gsap.to(intro, {
-            autoAlpha: 1,
-            duration: 0.4,
-            ease: 'power2.out',
-          })
-
-          gsap.to(statCards, {
-            autoAlpha: 1,
-            duration: 0.4,
-            stagger: 0.12,
-            ease: 'power2.out',
-          })
+          gsap
+            .timeline()
+            .to(separatorLines, { scaleX: 1, duration: 0.62, ease: 'power2.out' })
+            .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.46, ease: 'back.out(1.5)' }, '-=0.34')
+            .to(intro, { autoAlpha: 1, y: 0, duration: 0.45, ease: 'power2.out' }, '-=0.22')
+            .to(statCards, {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.45,
+              stagger: 0.12,
+              ease: 'power2.out',
+            }, '-=0.18')
 
           resolvedStats.forEach((stat, index) => {
             gsap.to(counters[index], {
@@ -129,6 +137,17 @@ export default function NotableWorks() {
   return (
     <section id="notable-works" className="notable-works-section" ref={sectionRef}>
       <div className="notable-works-inner">
+        <div className="notable-works__header" aria-hidden="true">
+          <div className="notable-works__separator">
+            <div className="notable-works__separator-line" />
+            <div className="notable-works__separator-plus">
+              <span className="notable-works__separator-stroke" />
+              <span className="notable-works__separator-stroke notable-works__separator-stroke--vertical" />
+            </div>
+            <div className="notable-works__separator-line" />
+          </div>
+        </div>
+
         <div className="notable-works-intro">
           <h2 className="notable-works-title">NOTABLE WORKS</h2>
           <button className="notable-works-cta" type="button" aria-label="Work link">

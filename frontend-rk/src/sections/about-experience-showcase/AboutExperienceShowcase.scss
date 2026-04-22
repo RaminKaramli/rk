@@ -15,7 +15,7 @@
 }
 
 .experience-showcase {
-  background: #ffffff;
+  background: transparent;
   padding: 116px var(--site-inline-pad) 80px;
   transition: background 420ms cubic-bezier(1, 0, 0.4, 1);
   --experience-showcase-theme-transition: 420ms cubic-bezier(1, 0, 0.4, 1);
@@ -52,10 +52,15 @@
 .experience-showcase__article {
   display: flex;
   gap: 24px;
-  background: rgba(239, 246, 255, 0.8);
+  background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  -webkit-backdrop-filter: blur(10px) saturate(var(--saturation));
+  backdrop-filter: blur(10px) saturate(var(--saturation));
   border-radius: 40px;
   padding: 12px 24px 12px 12px;
   text-decoration: none;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
+    0 1rem 2.6rem color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   transition:
     background var(--experience-showcase-theme-transition),
     border-color var(--experience-showcase-theme-transition),
@@ -64,7 +69,7 @@
 
 .experience-showcase__article:hover,
 .experience-showcase__article:focus-visible {
-  background: rgba(239, 246, 255, 1);
+  background-color: color-mix(in srgb, var(--c-glass) 18%, transparent);
 }
 
 .experience-showcase__article-image {
@@ -203,7 +208,7 @@
 
 .experience-showcase__tool:hover,
 .experience-showcase__tool:focus-visible {
-  background: rgba(239, 246, 255, 0.8);
+  background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
 }
 
 .experience-showcase__tool:hover .experience-showcase__tool-logo,
@@ -348,7 +353,7 @@
 html.theme-dark,
 body.theme-dark {
   .experience-showcase {
-    background: #050505;
+    background: transparent;
   }
 
   .experience-showcase__heading,
@@ -363,7 +368,7 @@ body.theme-dark {
   }
 
   .experience-showcase__article {
-    background: rgba(15, 17, 23, 0.92);
+    background-color: color-mix(in srgb, var(--c-glass) 14%, transparent);
     box-shadow: 0 1.2rem 2.8rem rgba(0, 0, 0, 0.22);
   }
 
@@ -371,7 +376,7 @@ body.theme-dark {
   .experience-showcase__article:focus-visible,
   .experience-showcase__tool:hover,
   .experience-showcase__tool:focus-visible {
-    background: rgba(15, 17, 23, 0.92);
+    background-color: color-mix(in srgb, var(--c-glass) 18%, transparent);
   }
 
   .experience-showcase__tool-logo {
