@@ -1,6 +1,8 @@
-import { useLayoutEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { gsap } from '../../../lib/gsap'
-import '../../preloader/Preloader.scss'
+import { ANIMATION_CONFIG } from '../../../lib/data'
+import publicationLogo from '../../../assets/images/publications/logo.svg'
+import './Preloader.scss'
 
 type PreloaderProps = {
   onComplete: () => void
@@ -8,89 +10,248 @@ type PreloaderProps = {
 }
 
 export default function Preloader({ onComplete, visible }: PreloaderProps) {
-  const loaderRef = useRef<HTMLDivElement>(null)
-  const nameRef = useRef<HTMLDivElement>(null)
-  const barRef = useRef<HTMLDivElement>(null)
-  const counterRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    if (!visible) return
 
-  useLayoutEffect(() => {
-    if (!visible) {
-      return
-    }
+    const logoTruusClickable = document.querySelector('.logo-truus')
+    const preloader = document.querySelector('.preloader') as HTMLDivElement | null
+    const transitionScribblePath = document.querySelector('.transition-scribble path') as SVGPathElement | null
+    const transitionScribbleSvg = document.querySelector('.transition-scribble') as SVGElement | null
 
-    const loaderEl = loaderRef.current
-    const nameEl = nameRef.current
-    const barEl = barRef.current
-    const counterEl = counterRef.current
+    if (!logoTruusClickable || !preloader || !transitionScribblePath || !transitionScribbleSvg) return
 
-    if (!loaderEl || !nameEl || !barEl || !counterEl) {
-      return
-    }
+    const runScribbleAnimation = (e: Event | null) => {
+      if (e) e.preventDefault()
 
-    let finished = false
-
-    const finishLoader = () => {
-      if (finished) {
+      if (
+        gsap.isTweening(transitionScribblePath) ||
+        gsap.isTweening(transitionScribbleSvg) ||
+        document.body.classList.contains('is-transitioning')
+      ) {
         return
       }
 
-      finished = true
-      onComplete()
-    }
+      const config = ANIMATION_CONFIG.transitionScribble
+      const durOut = config.durationOut || 1.5
+      const logoDuration = 1.3
+      const scribbleStart = 0
 
-    const context = gsap.context(() => {
-      const progressState = { value: 0 }
+      const pathLength = transitionScribblePath.getTotalLength()
+      const l = pathLength + 5
 
-      gsap.set(loaderEl, { autoAlpha: 1, yPercent: 0 })
-      gsap.set(nameEl, { autoAlpha: 0, y: 20 })
-      gsap.set(barEl, { width: '0%' })
-      counterEl.textContent = '000'
+      const transitionColor = 'var(--color-darkblue)'
+      transitionScribbleSvg.style.color = transitionColor
 
-      gsap.to(nameEl, {
-        autoAlpha: 1,
-        delay: 0.1,
-        duration: 0.8,
-        ease: 'power3.out',
+      const logoColor = '#fff'
+
+      let transitionLogo = document.querySelector('.transition-logo') as HTMLDivElement | null
+
+      if (!transitionLogo) {
+        transitionLogo = document.createElement('div')
+        transitionLogo.className = 'transition-logo'
+        transitionLogo.style.cssText =
+          'position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); z-index:10000; pointer-events:none; opacity:0; visibility:hidden; display:flex; justify-content:center; align-items:center; transition: color 0.1s;'
+
+        const logoClone = document.querySelector('.logo-truus')?.cloneNode(true) as SVGElement | undefined
+
+        if (logoClone) {
+          logoClone.style.width = '150px'
+          logoClone.style.height = 'auto'
+          transitionLogo.appendChild(logoClone)
+        }
+
+        document.body.appendChild(transitionLogo)
+      }
+
+      transitionLogo.style.color = logoColor
+
+      gsap.set(transitionScribbleSvg, {
+        opacity: 0,
+        visibility: 'hidden',
+        scale: config.scale,
+        x: 0,
         y: 0,
+        rotation: 0,
       })
 
-      gsap
-        .timeline()
-        .to(progressState, {
-          duration: 3.8,
+      gsap.set(transitionScribblePath, {
+        strokeDasharray: l,
+        strokeDashoffset: 0,
+        strokeWidth: 0,
+        opacity: 0,
+      })
+
+      gsap.set(transitionLogo, {
+        autoAlpha: 0,
+        clearProps: 'transform',
+        scale: 1,
+      })
+
+      document.body.classList.add('is-transitioning')
+      preloader.style.backgroundColor = 'var(--color-darkblue)'
+
+      const cursorBubble = document.querySelector('.cursor-bubble')
+      if (cursorBubble) {
+        gsap.to(cursorBubble, {
+          opacity: 0,
+          duration: 0.2,
+        })
+      }
+
+      const drawTl = gsap.timeline({
+        onComplete: () => {
+          document.body.classList.remove('is-transitioning')
+
+          gsap.set(transitionScribblePath, {
+            strokeWidth: 0,
+            opacity: 0,
+            strokeDashoffset: 0,
+            strokeDasharray: '0px, 999999px',
+          })
+
+          gsap.set(transitionScribbleSvg, {
+            opacity: 0,
+            visibility: 'hidden',
+          })
+
+          gsap.set(transitionLogo, {
+            autoAlpha: 0,
+          })
+
+          onComplete()
+        },
+      })
+
+      drawTl.set(
+        transitionLogo,
+        {
+          autoAlpha: 1,
+          scale: 1,
+        },
+        0,
+      )
+
+      drawTl.to(
+        transitionLogo,
+        {
+          autoAlpha: 1,
+          duration: logoDuration,
+          ease: 'none',
+        },
+        0,
+      )
+
+      drawTl.set(
+        transitionLogo,
+        {
+          autoAlpha: 0,
+        },
+        logoDuration,
+      )
+
+      drawTl.set(
+        transitionScribbleSvg,
+        {
+          opacity: 1,
+          visibility: 'visible',
+        },
+        scribbleStart,
+      )
+
+      drawTl.set(
+        preloader,
+        {
+          backgroundColor: 'transparent',
+        },
+        scribbleStart,
+      )
+
+      drawTl.set(
+        transitionScribblePath,
+        {
+          strokeDashoffset: 0,
+          strokeWidth: config.strokeWidthMax,
+          opacity: 1,
+        },
+        scribbleStart,
+      )
+
+      drawTl.call(
+        () => {
+          const lenis = (window as any).__lenis
+
+          if (lenis) {
+            lenis.scrollTo(0, { immediate: true })
+          } else {
+            window.scrollTo(0, 0)
+          }
+        },
+        undefined,
+        scribbleStart,
+      )
+
+      drawTl.to(
+        transitionScribblePath,
+        {
+          strokeDashoffset: -l,
+          duration: durOut,
           ease: 'power2.inOut',
-          onUpdate: () => {
-            const progress = Math.min(progressState.value, 100)
-            barEl.style.width = `${progress}%`
-            counterEl.textContent = String(Math.floor(progress)).padStart(3, '0')
-          },
-          value: 100,
-        })
-        .to({}, { duration: 0.45 })
-        .to(loaderEl, {
-          duration: 1.05,
-          ease: 'power4.inOut',
-          onComplete: finishLoader,
-          yPercent: -100,
-        })
-    }, loaderEl)
+        },
+        scribbleStart,
+      )
+
+      drawTl.to(
+        transitionScribblePath,
+        {
+          strokeWidth: config.strokeWidthStart,
+          duration: durOut,
+          ease: 'power2.inOut',
+        },
+        scribbleStart,
+      )
+    }
+
+    logoTruusClickable.addEventListener('click', runScribbleAnimation as EventListener)
+
+    const timer = window.setTimeout(() => {
+      runScribbleAnimation(null)
+    }, 100)
 
     return () => {
-      context.revert()
+      logoTruusClickable.removeEventListener('click', runScribbleAnimation as EventListener)
+      clearTimeout(timer)
     }
   }, [onComplete, visible])
 
-  if (!visible) {
-    return null
-  }
+  if (!visible) return null
 
   return (
-    <div ref={loaderRef} className="preloader" aria-hidden="true">
-      <div ref={nameRef} className="loader-name">Ramin Karamli</div>
-      <div className="loader-bar-wrap" aria-hidden="true">
-        <div ref={barRef} className="loader-bar" />
+    <div className="preloader floating-elements" aria-hidden="true">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="100%"
+        viewBox="0 0 3222 3114"
+        fill="none"
+        preserveAspectRatio="none"
+        className="transition-scribble"
+        style={{ opacity: 0, visibility: 'hidden' }}
+      >
+        <path
+          d="M299.654 453.865C505.574 319.225 711.494 184.585 836.054 109.945C960.614 35.3048 997.574 24.7448 944.014 110.385C890.454 196.025 745.254 378.185 571.454 634.385C397.654 890.585 199.654 1215.3 110.854 1382.58C22.0544 1549.86 48.4544 1549.86 77.8944 1540.62C107.334 1531.38 139.014 1512.9 367.854 1319.9C596.694 1126.9 1021.73 759.945 1255.21 555.065C1488.69 350.185 1517.73 318.505 1527.41 306.145C1537.09 293.785 1526.53 301.705 1346.85 618.625C1167.17 935.545 818.694 1561.22 635.214 1896.74C451.734 2232.26 443.814 2258.66 447.654 2268.3C451.494 2277.94 467.334 2270.02 511.134 2236.9C554.934 2203.78 626.214 2145.7 966.534 1817.46C1306.85 1489.22 1914.05 892.585 2263.81 557.505C2613.57 222.425 2687.49 166.985 2741.41 129.185C2795.33 91.3848 2827.01 72.9048 2843.33 67.3448C2859.65 61.7848 2859.65 69.7048 2849.09 96.2248C2838.53 122.745 2817.41 167.625 2584.77 544.505C2352.13 921.385 1370.37 2165.43 1139.25 2537.83C908.134 2910.23 902.854 2926.07 902.774 2939.51C902.694 2952.95 907.974 2963.51 1255.21 2613.87C1602.45 2264.23 2829.73 1017.54 2903.53 1071.46C2977.33 1125.38 2176.12 2817.04 2128 3037C2079.88 3256.96 2911.24 2018.56 3172 1793"
+          stroke="currentColor"
+          strokeLinecap="round"
+          style={{
+            strokeWidth: 0,
+            opacity: 0,
+            strokeDashoffset: 0,
+            strokeDasharray: '0px, 999999px',
+          }}
+        />
+      </svg>
+
+      <div className="transition-logo" style={{ opacity: 0, visibility: 'hidden' }}>
+        <img src={publicationLogo} alt="" className="transition-logo__svg logo-truus" />
       </div>
-      <div ref={counterRef} className="loader-counter">000</div>
     </div>
   )
 }

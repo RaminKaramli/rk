@@ -136,27 +136,20 @@ body.ui-on-dark-surface:not(.theme-dark) .site-header.is-open .ham .line {
   width: 100%;
   max-width: 34rem;
   min-width: 0;
-  padding: 0.16rem;
+  padding: 0.22rem;
   border-radius: 9999px;
   overflow: hidden;
 }
 
 .header-inline-nav__highlight {
   position: absolute;
-  top: 0.16rem;
-  left: 0.16rem;
-  width: calc((100% - 0.32rem) / 4);
-  height: calc(100% - 0.32rem);
+  top: 0.22rem;
+  left: 0.22rem;
+  width: calc((100% - 0.44rem) / 4);
+  height: calc(100% - 0.44rem);
   border-radius: 9999px;
-  background-color: color-mix(in srgb, var(--c-glass) 36%, transparent);
-  box-shadow:
-    inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 10%), transparent),
-    inset 2px 1px 0 -1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 90%), transparent),
-    inset -1.5px -1px 0 -1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 80%), transparent),
-    inset -2px -6px 1px -5px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light) * 60%), transparent),
-    inset -1px 2px 3px -1px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 20%), transparent),
-    inset 0 -4px 1px -2px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
-    0 3px 6px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   transform: translateX(calc(var(--active-index) * 100%));
   transition: transform 400ms cubic-bezier(1, 0, 0.4, 1);
   z-index: 0;
@@ -177,11 +170,12 @@ body.ui-on-dark-surface:not(.theme-dark) .site-header.is-open .ham .line {
   letter-spacing: -0.02em;
   line-height: 1;
   border-radius: 9999px;
+  cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
   transition: opacity 0.2s ease, color 0.2s ease;
 }
 
 .switcher__option {
-  cursor: pointer;
+  cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
 }
 
 .switcher__input {
@@ -359,7 +353,8 @@ body.theme-dark .header-inline-link {
 
 body.ui-on-dark-surface:not(.theme-dark) .header-inline-nav__highlight,
 body.theme-dark .header-inline-nav__highlight {
-  background-color: color-mix(in srgb, var(--c-glass) 30%, transparent);
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.45);
 }
 
 .menu-toggle:focus,

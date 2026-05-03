@@ -80,6 +80,12 @@ body.is-preloading .theme-toggle--floating {
   pointer-events: none;
 }
 
+body.is-preloading .main-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: none;
+}
+
 html.skip-preloader .loading-overlay {
   display: none;
 }

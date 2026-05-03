@@ -1,20 +1,15 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 
-const STORAGE_KEY = 'rk-preloader-seen'
 const PRELOADER_FALLBACK_MS = 6000
 
 function shouldShowPreloader() {
-  try {
-    return window.sessionStorage.getItem(STORAGE_KEY) !== 'true'
-  } catch {
-    return false
-  }
+  return true
 }
 
 export function usePreloader() {
   const [showPreloader, setShowPreloader] = useState(shouldShowPreloader)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.classList.toggle('is-preloading', showPreloader)
     document.documentElement.classList.toggle('skip-preloader', !showPreloader)
     document.body.classList.toggle('is-preloading', showPreloader)
@@ -28,12 +23,6 @@ export function usePreloader() {
   useEffect(() => {
     if (!showPreloader) {
       return
-    }
-
-    try {
-      window.sessionStorage.setItem(STORAGE_KEY, 'true')
-    } catch {
-      // Ignore storage failures.
     }
 
     const timeoutId = window.setTimeout(() => {

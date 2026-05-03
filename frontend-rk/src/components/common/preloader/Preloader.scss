@@ -1,0 +1,57 @@
+:root {
+  --color-light: #f0ebe6;
+  --color-dark: #050507;
+  --color-darkblue: #000000;
+  --color-lightblue: #82a0ff;
+  --color-lightgreen: #e6fab9;
+  --color-green: #2d7864;
+  --color-orange: #f5693c;
+  --color-maroon: #a0325a;
+  --color-pink: #f0befa;
+}
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-color: var(--color-darkblue);
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.transition-scribble {
+  position: absolute;
+  top: -50vh;
+  left: -50vw;
+  width: 200vw;
+  height: 200vh;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.transition-scribble path {
+  stroke-width: 0;
+  opacity: 0;
+}
+
+.transition-logo {
+  position: fixed;
+  top: 50vh;
+  left: 50vw;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transition-logo__svg {
+  width: clamp(260px, 24vw, 460px);
+  height: auto;
+  display: block;
+}
