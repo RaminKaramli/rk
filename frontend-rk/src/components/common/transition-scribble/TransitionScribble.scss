@@ -1,0 +1,42 @@
+.route-transition-scribble {
+  position: fixed;
+  inset: -25vh -25vw;
+  z-index: 190000;
+  width: 150vw;
+  height: 150vh;
+  color: #000000;
+  opacity: 0;
+  pointer-events: none;
+  transform-origin: center center;
+  visibility: hidden;
+}
+
+.route-transition-scribble path {
+  stroke-width: 0%;
+  stroke-dashoffset: 0.001;
+  stroke-dasharray: 0 999999px;
+}
+
+.route-transition-logo {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 190001;
+  display: flex;
+  width: clamp(16rem, 24vw, 28rem);
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.route-transition-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+body.is-transitioning {
+  cursor: wait;
+}

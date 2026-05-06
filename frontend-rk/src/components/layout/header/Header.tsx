@@ -64,7 +64,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
   const activeNavIndex = useMemo(() => getActiveNavIndex(locationState), [locationState, isAboutPage])
 
   const syncLocationScroll = (hash: string) => {
-    window.setTimeout(() => {
+    const scrollToHash = (attempt = 0) => {
       if (!hash) {
         window.scrollTo({ top: 0, behavior: 'smooth' })
         return
@@ -74,9 +74,18 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
 
       if (target) {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        return
       }
-    }, 80)
+
+      if (attempt < 8) {
+        window.setTimeout(() => scrollToHash(attempt + 1), 80)
+      }
+    }
+
+    window.setTimeout(() => scrollToHash(), 80)
   }
+
+  const shouldAnimateNavLink = (label: string) => ['HOME', 'ABOUT', 'WORKS', 'CONTACT'].includes(label)
 
   const navigateTo = (href: string, closeMenu = false) => {
     const nextUrl = new URL(href, window.location.origin)
@@ -88,7 +97,10 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     }
 
     if (nextRoute !== currentRoute) {
-      window.location.assign(`${nextRoute}${nextUrl.hash}`)
+      window.history.pushState({}, '', `${nextRoute}${nextUrl.hash}`)
+      window.dispatchEvent(new Event('popstate'))
+      window.dispatchEvent(new Event('hashchange'))
+      syncLocationScroll(nextUrl.hash)
       return
     }
 
@@ -102,7 +114,42 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     syncLocationScroll(nextUrl.hash)
   }
 
-  const handleNavigationClick = (href: string, closeMenu = false) => (event: ReactMouseEvent<HTMLAnchorElement>) => {
+  const navigateAfterScribble = (href: string, label: string, element: HTMLElement, closeMenu = false) => {
+    const nextUrl = new URL(href, window.location.origin)
+    const nextLocation = `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`
+    const currentLocation = `${window.location.pathname}${window.location.search}${window.location.hash}`
+
+    if (nextLocation === currentLocation) {
+      navigateTo(href, closeMenu)
+      return
+    }
+
+    if (!shouldAnimateNavLink(label)) {
+      navigateTo(href, closeMenu)
+      return
+    }
+
+    const runTransition = window.__runScribbleTransition
+
+    if (!runTransition) {
+      navigateTo(href, closeMenu)
+      return
+    }
+
+    if (closeMenu) {
+      setMenuOpen(false)
+    }
+
+    void runTransition({
+      trigger: element,
+      onCover: () => {
+        navigateTo(href, false)
+      },
+    })
+  }
+
+  const handleNavigationClick =
+    (href: string, label: string, closeMenu = false) => (event: ReactMouseEvent<HTMLAnchorElement>) => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
       return
     }
@@ -114,7 +161,14 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     }
 
     event.preventDefault()
-    navigateTo(href, closeMenu)
+    navigateAfterScribble(href, label, event.currentTarget, closeMenu)
+  }
+
+  const handleInlineNavigationClick =
+    (href: string, label: string) => (event: ReactMouseEvent<HTMLLabelElement>) => {
+      event.preventDefault()
+      event.stopPropagation()
+      navigateAfterScribble(href, label, event.currentTarget)
   }
 
   useEffect(() => {
@@ -442,7 +496,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
                 onFocus={() => {
                   setActiveImageIndex(link.imageIndex)
                 }}
-                onClick={handleNavigationClick(link.href, true)}
+                onClick={handleNavigationClick(link.href, link.label, true)}
                 className="overlay-nav-link"
               >
                 {link.label}
@@ -477,15 +531,14 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
               <label
                 key={`inline-${link.label}-${link.href}`}
                 className={`header-inline-link switcher__option${activeNavIndex === index ? ' is-active' : ''}`}
+                onClick={handleInlineNavigationClick(link.href, link.label)}
               >
                 <input
                   checked={activeNavIndex === index}
                   className="switcher__input"
                   c-option={String(index + 1)}
                   name="header-switcher"
-                  onChange={() => {
-                    navigateTo(link.href)
-                  }}
+                  onChange={() => {}}
                   type="radio"
                   value={link.label}
                 />

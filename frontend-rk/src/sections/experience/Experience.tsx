@@ -3,11 +3,36 @@ import { Icon } from '@iconify/react'
 import { stackCards } from '../../data/projects'
 import { Draggable, ScrollTrigger, gsap } from '../../lib/gsap'
 
-const projectDetails = {
-  description:
-    'Website designed to showcase a boutique furniture brand’s collection, highlight product features, and drive online purchases.',
-  title: 'Furniture Website',
-}
+const showcasedProjects = [
+  {
+    cards: stackCards,
+    description:
+      'Website designed to showcase a boutique furniture brand’s collection, highlight product features, and drive online purchases.',
+    href: 'https://ikili2.com/',
+    title: 'Furniture Website',
+  },
+  {
+    cards: [...stackCards].reverse(),
+    description:
+      'Website designed to present a modern digital brand, communicate services clearly, and create a polished browsing experience.',
+    href: 'https://ikili2.com/',
+    title: 'Digital Studio Website',
+  },
+  {
+    cards: stackCards.slice(0, 2),
+    description:
+      'Website designed with a focused two-screen showcase, clear visual hierarchy, and responsive presentation for a compact brand experience.',
+    href: 'https://ikili2.com/',
+    title: 'Compact Brand Website',
+  },
+  {
+    cards: stackCards.slice(2, 4),
+    description:
+      'Website designed to highlight selected work through a concise two-panel layout, sharp visuals, and smooth interaction details.',
+    href: 'https://ikili2.com/',
+    title: 'Selected Work Website',
+  },
+]
 
 function FlowbiteHtmlSolid(props: SVGProps<SVGSVGElement>) {
   return (
@@ -71,8 +96,7 @@ export default function StackCardsShowcase() {
 
     const separatorLines = section.querySelectorAll<HTMLElement>('.stack-cards-section__separator-line')
     const separatorPlus = section.querySelector<HTMLElement>('.stack-cards-section__separator-plus')
-    const tools = section.querySelector<HTMLElement>('.project-case__tools')
-    const toolButtons = Array.from(section.querySelectorAll<HTMLElement>('.project-case__tool'))
+    const toolGroups = Array.from(section.querySelectorAll<HTMLElement>('.project-case__tools'))
 
     const context = gsap.context(() => {
       if (separatorLines.length === 0 || !separatorPlus) {
@@ -97,139 +121,153 @@ export default function StackCardsShowcase() {
 
     let toolDraggables: Draggable[] = []
     let dragSetupTimer: number | undefined
-    let entranceTimeline: ReturnType<typeof gsap.timeline> | undefined
-    let toolsObserver: IntersectionObserver | null = null
+    const entranceTimelines: ReturnType<typeof gsap.timeline>[] = []
+    const toolsObservers: IntersectionObserver[] = []
 
-    if (toolButtons.length > 1) {
+    if (toolGroups.length > 0) {
       type TrackedButton = HTMLElement & { startIndex: number; currentIndex: number }
 
       dragSetupTimer = window.setTimeout(() => {
-        const slotWidth = toolButtons[1].offsetLeft - toolButtons[0].offsetLeft
+        toolGroups.forEach((tools) => {
+          const toolButtons = Array.from(tools.querySelectorAll<HTMLElement>('.project-case__tool'))
 
-        toolButtons.forEach((button, index) => {
-          gsap.set(button, {
-            autoAlpha: 0,
-            position: 'relative',
-            rotate: -360,
-            scale: 0.92,
-            transformOrigin: 'center center',
-            x: -220,
-            y: 0,
-          })
-          const tracked = button as TrackedButton
-          tracked.startIndex = index
-          tracked.currentIndex = index
-        })
-
-        const createToolDraggables = () => {
-          if (toolDraggables.length > 0) {
+          if (toolButtons.length < 2) {
             return
           }
 
+          const slotWidth = toolButtons[1].offsetLeft - toolButtons[0].offsetLeft
+          let hasCreatedDraggables = false
+          let entranceTimeline: ReturnType<typeof gsap.timeline> | undefined
+
           toolButtons.forEach((button, index) => {
-            const draggable = Draggable.create(button, {
-              activeCursor:
-                "url('https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb13cff138fa04d162c_cursor-dragging.svg') 12 0, text",
-              bounds: {
-                minX: -index * slotWidth,
-                maxX: (toolButtons.length - 1 - index) * slotWidth,
-              },
-              cursor:
-                "url('https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef4b_cursor-drag.svg') 12 0, auto",
-              edgeResistance: 1,
-              type: 'x',
-              zIndexBoost: true,
-              onDragStart() {
-                this.target.style.zIndex = '10'
-                this.target.classList.add('is-dragging')
-                gsap.to(this.target, { scale: 1.04, duration: 0.2, overwrite: 'auto' })
-              },
-              onDrag() {
-                const draggedButton = this.target as TrackedButton
-                const targetIndex = Math.max(
-                  0,
-                  Math.min(toolButtons.length - 1, Math.round(this.x / slotWidth) + draggedButton.startIndex),
-                )
+            gsap.set(button, {
+              autoAlpha: 0,
+              position: 'relative',
+              rotate: -360,
+              scale: 0.92,
+              transformOrigin: 'center center',
+              x: -220,
+              y: 0,
+            })
+            const tracked = button as TrackedButton
+            tracked.startIndex = index
+            tracked.currentIndex = index
+          })
 
-                if (draggedButton.currentIndex === targetIndex) {
-                  return
-                }
+          const createToolDraggables = () => {
+            if (hasCreatedDraggables) {
+              return
+            }
 
-                const oldIndex = draggedButton.currentIndex
-                const displacedButton = toolButtons.find(
-                  (candidate) => (candidate as TrackedButton).currentIndex === targetIndex,
-                ) as TrackedButton | undefined
+            hasCreatedDraggables = true
 
-                if (displacedButton) {
-                  displacedButton.currentIndex = oldIndex
-                  gsap.to(displacedButton, {
-                    x: (displacedButton.currentIndex - displacedButton.startIndex) * slotWidth,
-                    duration: 0.32,
+            toolButtons.forEach((button, index) => {
+              const draggable = Draggable.create(button, {
+                activeCursor:
+                  "url('https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb13cff138fa04d162c_cursor-dragging.svg') 12 0, text",
+                bounds: {
+                  minX: -index * slotWidth,
+                  maxX: (toolButtons.length - 1 - index) * slotWidth,
+                },
+                cursor:
+                  "url('https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef4b_cursor-drag.svg') 12 0, auto",
+                edgeResistance: 1,
+                type: 'x',
+                zIndexBoost: true,
+                onDragStart() {
+                  this.target.style.zIndex = '10'
+                  this.target.classList.add('is-dragging')
+                  gsap.to(this.target, { scale: 1.04, duration: 0.2, overwrite: 'auto' })
+                },
+                onDrag() {
+                  const draggedButton = this.target as TrackedButton
+                  const targetIndex = Math.max(
+                    0,
+                    Math.min(toolButtons.length - 1, Math.round(this.x / slotWidth) + draggedButton.startIndex),
+                  )
+
+                  if (draggedButton.currentIndex === targetIndex) {
+                    return
+                  }
+
+                  const oldIndex = draggedButton.currentIndex
+                  const displacedButton = toolButtons.find(
+                    (candidate) => (candidate as TrackedButton).currentIndex === targetIndex,
+                  ) as TrackedButton | undefined
+
+                  if (displacedButton) {
+                    displacedButton.currentIndex = oldIndex
+                    gsap.to(displacedButton, {
+                      x: (displacedButton.currentIndex - displacedButton.startIndex) * slotWidth,
+                      duration: 0.32,
+                      ease: 'back.out(1.1)',
+                      overwrite: 'auto',
+                    })
+                  }
+
+                  draggedButton.currentIndex = targetIndex
+                },
+                onDragEnd() {
+                  this.target.style.zIndex = '1'
+                  this.target.classList.remove('is-dragging')
+
+                  const draggedButton = this.target as TrackedButton
+                  gsap.to(draggedButton, {
+                    x: (draggedButton.currentIndex - draggedButton.startIndex) * slotWidth,
+                    rotate: 0,
+                    scale: 1,
+                    duration: 0.35,
                     ease: 'back.out(1.1)',
                     overwrite: 'auto',
                   })
-                }
+                },
+              })
 
-                draggedButton.currentIndex = targetIndex
-              },
-              onDragEnd() {
-                this.target.style.zIndex = '1'
-                this.target.classList.remove('is-dragging')
-
-                const draggedButton = this.target as TrackedButton
-                gsap.to(draggedButton, {
-                  x: (draggedButton.currentIndex - draggedButton.startIndex) * slotWidth,
-                  rotate: 0,
-                  scale: 1,
-                  duration: 0.35,
-                  ease: 'back.out(1.1)',
-                  overwrite: 'auto',
-                })
-              },
+              toolDraggables.push(...draggable)
             })
-
-            toolDraggables.push(...draggable)
-          })
-        }
-
-        const playEntrance = () => {
-          if (entranceTimeline) {
-            return
           }
 
-          entranceTimeline = gsap.timeline({ onComplete: createToolDraggables })
+          const playEntrance = () => {
+            if (entranceTimeline) {
+              return
+            }
 
-          ;[...toolButtons].reverse().forEach((button, index) => {
-            entranceTimeline?.to(
-              button,
-              {
-                autoAlpha: 1,
-                rotate: 0,
-                scale: 1,
-                x: 0,
-                duration: 1.15,
+            entranceTimeline = gsap.timeline({ onComplete: createToolDraggables })
+            entranceTimelines.push(entranceTimeline)
+
+            ;[...toolButtons].reverse().forEach((button, index) => {
+              entranceTimeline?.to(
+                button,
+                {
+                  autoAlpha: 1,
+                  rotate: 0,
+                  scale: 1,
+                  x: 0,
+                  duration: 1.15,
+                },
+                index * 0.3,
+              )
+            })
+          }
+
+          if ('IntersectionObserver' in window) {
+            const toolsObserver = new IntersectionObserver(
+              (entries) => {
+                if (!entries.some((entry) => entry.isIntersecting)) {
+                  return
+                }
+
+                playEntrance()
+                toolsObserver.disconnect()
               },
-              index * 0.3,
+              { threshold: 0.25 },
             )
-          })
-        }
-
-        if (tools && 'IntersectionObserver' in window) {
-          toolsObserver = new IntersectionObserver(
-            (entries) => {
-              if (!entries.some((entry) => entry.isIntersecting)) {
-                return
-              }
-
-              playEntrance()
-              toolsObserver?.disconnect()
-            },
-            { threshold: 0.25 },
-          )
-          toolsObserver.observe(tools)
-        } else {
-          playEntrance()
-        }
+            toolsObservers.push(toolsObserver)
+            toolsObserver.observe(tools)
+          } else {
+            playEntrance()
+          }
+        })
       }, 50)
     }
 
@@ -237,8 +275,8 @@ export default function StackCardsShowcase() {
       if (dragSetupTimer) {
         window.clearTimeout(dragSetupTimer)
       }
-      toolsObserver?.disconnect()
-      entranceTimeline?.kill()
+      toolsObservers.forEach((observer) => observer.disconnect())
+      entranceTimelines.forEach((timeline) => timeline.kill())
       toolDraggables.forEach((draggable) => draggable.kill())
       context.revert()
     }
@@ -255,36 +293,43 @@ export default function StackCardsShowcase() {
         <div className="stack-cards-section__separator-line" />
       </div>
 
-      <article className="project-case">
-        <div className="projects-grid">
-          {stackCards.map((card) => (
-            <div key={card.alt} className="projects-grid__item">
-              <img className="projects-grid__image" src={card.image} alt={card.alt} />
-            </div>
-          ))}
-        </div>
+      {showcasedProjects.map((project) => (
+        <article key={project.title} className="project-case">
+          <div className={`projects-grid${project.cards.length === 2 ? ' projects-grid--two' : ''}`}>
+            {project.cards.map((card) => (
+              <div key={`${project.title}-${card.alt}`} className="projects-grid__item">
+                <img className="projects-grid__image" src={card.image} alt={card.alt} />
+              </div>
+            ))}
+          </div>
 
-        <div className="project-case__content">
-          <h2 className="project-case__title">{projectDetails.title}</h2>
+          <div className="project-case__content">
+            <h2 className="project-case__title">{project.title}</h2>
 
-          <div className="project-case__summary">
-            <p className="project-case__description">{projectDetails.description}</p>
-            <div className="project-case__actions">
-              <a className="project-case__link" href="https://ikili2.com/" target="_blank" rel="noopener noreferrer">
-                View Project
-              </a>
+            <div className="project-case__summary">
+              <p className="project-case__description">{project.description}</p>
+              <div className="project-case__actions">
+                <a className="project-case__link" href={project.href} target="_blank" rel="noopener noreferrer">
+                  View Project
+                </a>
 
-              <div className="project-case__tools" aria-label="Project tools">
-                {projectTools.map((tool) => (
-                  <button key={tool.label} className="project-case__tool" type="button" aria-label={tool.label}>
-                    {tool.icon}
-                  </button>
-                ))}
+                <div className="project-case__tools" aria-label={`${project.title} tools`}>
+                  {projectTools.map((tool) => (
+                    <button
+                      key={`${project.title}-${tool.label}`}
+                      className="project-case__tool"
+                      type="button"
+                      aria-label={tool.label}
+                    >
+                      {tool.icon}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </article>
+        </article>
+      ))}
     </section>
   )
 }

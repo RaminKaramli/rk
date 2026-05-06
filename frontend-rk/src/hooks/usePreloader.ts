@@ -1,8 +1,14 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 
 const PRELOADER_FALLBACK_MS = 6000
+let hasShownInitialPreloader = false
 
 function shouldShowPreloader() {
+  if (hasShownInitialPreloader) {
+    return false
+  }
+
+  hasShownInitialPreloader = true
   return true
 }
 

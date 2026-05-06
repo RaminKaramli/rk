@@ -1,7 +1,7 @@
 .stack-cards-section {
   background: #ffffff;
   color: #000000;
-  padding: 0 clamp(2rem, 3.2vw, 4rem) clamp(3rem, 5vw, 5rem);
+  padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 3.2vw, 4rem) clamp(3rem, 5vw, 5rem);
   position: relative;
 
   .stack-cards-section__separator {
@@ -43,6 +43,10 @@
     width: 100%;
   }
 
+  .project-case + .project-case {
+    margin-top: clamp(3rem, 6vw, 6rem);
+  }
+
   .projects-grid {
     display: grid;
     gap: clamp(0.7rem, 1vw, 1rem);
@@ -50,6 +54,10 @@
     margin: 0 auto;
     max-width: 100%;
     width: 100%;
+  }
+
+  .projects-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .projects-grid__item {
