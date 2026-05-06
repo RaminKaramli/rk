@@ -36,8 +36,7 @@ export default function AboutShowcase() {
           <div className="about-showcase__left">
             <p className="about-showcase__year">©2026</p>
             <h1 className="about-showcase__title" id="about-showcase-title">
-              <span>About</span>
-              <span>Ramin</span>
+              <span>ABOUT ME</span>
             </h1>
           </div>
 

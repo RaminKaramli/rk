@@ -2,6 +2,22 @@
   background: transparent;
 }
 
+.about-cover-scroll {
+  position: relative;
+  isolation: isolate;
+}
+
+.about-cover-scroll__sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.about-cover-scroll__cover {
+  position: relative;
+  z-index: 2;
+}
+
 .about-hero-section {
   position: relative;
   min-height: 100vh;

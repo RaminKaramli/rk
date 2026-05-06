@@ -14,7 +14,7 @@ export const media = {
 
 export const siteContent = {
   aboutLead:
-    'Whether it’s shaping gentle, intentional flows or holding space for stories to unfold, I care about designing in a way that feels, not just functions. Experiences that stay. Moments that matter. That’s what I’m here for.',
+    'I have a hearing impairment and use a hearing aid. My goal is to grow professionally, gain experience, and improve my skills in the field of technology. I have experience with HTML, CSS, JavaScript, TypeScript, React.js, Figma, and Git. I am open to learning, responsible, and work well in a team. My aim is to build a professional career in Front-end Development and UI/UX Design.',
   contactEmail: 'raminkaramli93@gmail.com',
   footerMeta: '© 2026 Ramin Karamli. All rights reserved.',
   heroBottomCopy: 'I build websites using HTML, CSS, JavaScript, TypeScript, and React.js',
