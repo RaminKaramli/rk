@@ -3,8 +3,8 @@
   color: #f4f6ff;
   font-family: "SF Pro Display Regular", "SF Pro Disp", sans-serif;
   padding: clamp(3rem, 6vw, 5.5rem) var(--site-inline-pad) clamp(4rem, 7vw, 6.5rem);
-  transition: background 400ms cubic-bezier(1, 0, 0.4, 1);
-  --about-exp-theme-transition: 400ms cubic-bezier(1, 0, 0.4, 1);
+  transition: background 0.4s cubic-bezier(1, 0, 0.4, 1), background-color 0.4s cubic-bezier(1, 0, 0.4, 1), color 0.4s cubic-bezier(1, 0, 0.4, 1);
+  --about-exp-theme-transition: 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
 
 .about-experience__inner {
@@ -28,7 +28,7 @@
   flex: 1 1 auto;
   height: 1px;
   background: rgba(244, 246, 255, 0.18);
-  transition: background 400ms cubic-bezier(1, 0, 0.4, 1);
+  transition: background 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
 
 .about-experience__separator-plus {
@@ -45,7 +45,7 @@
   height: 1px;
   background: rgba(244, 246, 255, 0.62);
   transform: translateY(-50%);
-  transition: background 400ms cubic-bezier(1, 0, 0.4, 1);
+  transition: background 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
 
 .about-experience__separator-stroke--vertical {
@@ -104,13 +104,13 @@
   padding: 0;
   list-style: none;
   border-top: 1px solid rgba(244, 246, 255, 0.14);
-  transition: border-color 400ms cubic-bezier(1, 0, 0.4, 1);
+  transition: border-color 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
 
 .about-experience__item {
   list-style: none;
   border-bottom: 1px solid rgba(244, 246, 255, 0.14);
-  transition: border-color 400ms cubic-bezier(1, 0, 0.4, 1);
+  transition: border-color 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
 
 .about-experience__card {
@@ -238,7 +238,7 @@
 html.theme-dark,
 body.theme-dark {
   .about-experience {
-    background: transparent;
+    background: #000000;
     color: #f4f6ff;
   }
 

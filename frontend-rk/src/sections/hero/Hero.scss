@@ -1,5 +1,7 @@
 @use "../../styles/abstracts" as *;
 
+$home-theme-transition: 0.4s cubic-bezier(1, 0, 0.4, 1);
+
 body.theme-dark .press-text-one,
 body.theme-dark .press-text-two {
   color: #fff;
@@ -27,6 +29,68 @@ body.theme-dark .surname-filter {
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  transition:
+    background $home-theme-transition,
+    background-color $home-theme-transition,
+    color $home-theme-transition;
+}
+
+#home-section.hero-section[data-theme="dark"] {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  color: #f3f6ff;
+}
+
+#home-section.hero-section[data-theme="light"] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #121212;
+}
+
+#home-section.hero-section[data-theme="dark"] :is(.press-text-one, .press-text-two, .my-name) {
+  color: #f3f6ff !important;
+}
+
+#home-section.hero-section[data-theme="light"] :is(.press-text-one, .press-text-two) {
+  color: #8f8f8f !important;
+}
+
+#home-section.hero-section[data-theme="light"] .my-name {
+  color: #121212 !important;
+}
+
+body.home-page :is(#home-section.hero-section, .notable-works-section, .stack-cards-section) {
+  transition:
+    background $home-theme-transition,
+    background-color $home-theme-transition,
+    color $home-theme-transition,
+    border-color $home-theme-transition,
+    box-shadow $home-theme-transition !important;
+}
+
+body.home-page:has(.theme-toggle[aria-pressed="true"]) :is(#home-section.hero-section, .notable-works-section, .stack-cards-section) {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  color: #f3f6ff !important;
+}
+
+body.home-page:has(.theme-toggle[aria-pressed="false"]) :is(#home-section.hero-section, .notable-works-section, .stack-cards-section) {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+body.home-page:has(.theme-toggle[aria-pressed="true"]) {
+  .press-text-one,
+  .press-text-two,
+  .my-name,
+  .notable-works-title,
+  .notable-stat__value,
+  .notable-stat__label,
+  .project-case__title,
+  .project-case__description,
+  .project-case__link {
+    color: #f3f6ff !important;
+  }
 }
 
 .top-left {
@@ -56,7 +120,12 @@ body.theme-dark .surname-filter {
     inset 2px -6.5px 1px -4px color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
     0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
     0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
-  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  transition:
+    background $home-theme-transition,
+    background-color $home-theme-transition,
+    color $home-theme-transition,
+    border-color $home-theme-transition,
+    box-shadow $home-theme-transition;
   padding: 0.50rem 1rem;
   margin: 0;
   font-family: "Bricolage Grotesque", "Inter", sans-serif;
@@ -97,6 +166,7 @@ body.theme-dark .surname-filter {
   font-weight: 500;
   color: #8f8f8f;
   letter-spacing: -0.01em;
+  transition: color $home-theme-transition;
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb09ef00eb464b45496_cursor-text.svg") 2 0, text;
 }
 
@@ -121,6 +191,7 @@ body.theme-dark .surname-filter {
   filter: grayscale(100%);
   mix-blend-mode: difference;
   opacity: 1;
+  transition: color $home-theme-transition;
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb09ef00eb464b45496_cursor-text.svg") 2 0, text;
   z-index: 3;
 }
@@ -152,6 +223,7 @@ body.theme-dark .surname-filter {
   font-weight: 500;
   color: #8f8f8f;
   letter-spacing: -0.01em;
+  transition: color $home-theme-transition;
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb09ef00eb464b45496_cursor-text.svg") 2 0, text;
 }
 

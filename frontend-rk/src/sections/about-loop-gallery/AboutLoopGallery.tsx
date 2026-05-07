@@ -1,12 +1,14 @@
 import { useLayoutEffect, useRef } from 'react'
 import { aboutLoopGalleryColumns } from '../../data/aboutLoopGallery'
 import { gsap } from '../../lib/gsap'
+import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 
 type LoopController = {
   animation: ReturnType<typeof gsap.to>
 }
 
 export default function AboutLoopGallery() {
+  const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
 
   useLayoutEffect(() => {
@@ -82,7 +84,16 @@ export default function AboutLoopGallery() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="about-loop-gallery" aria-label="A$AP Rocky gallery">
+    <section
+      ref={sectionRef}
+      className="about-loop-gallery"
+      aria-label="A$AP Rocky gallery"
+      data-theme={isDarkTheme ? 'dark' : 'light'}
+      style={{
+        backgroundColor: isDarkTheme ? '#000000' : '#ffffff',
+        color: isDarkTheme ? '#ffffff' : '#121212',
+      }}
+    >
       <div className="about-loop-gallery__viewport">
         <div className="about-loop-gallery__gallery">
           {aboutLoopGalleryColumns.map((column, columnIndex) => (

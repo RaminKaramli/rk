@@ -1,8 +1,10 @@
 import { useLayoutEffect, useRef } from 'react'
 import { aboutExperienceEntries, aboutExperienceIntro } from '../../data/experience'
 import { gsap } from '../../lib/gsap'
+import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 
 export default function AboutExperience() {
+  const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
 
   useLayoutEffect(() => {
@@ -14,18 +16,13 @@ export default function AboutExperience() {
     const context = gsap.context(() => {
       const separatorLines = section.querySelectorAll<HTMLElement>('.about-experience__separator-line')
       const separatorPlus = section.querySelector<HTMLElement>('.about-experience__separator-plus')
-      const title = section.querySelector<HTMLElement>('.about-experience__title')
-      const description = section.querySelector<HTMLElement>('.about-experience__description')
-      const items = Array.from(section.querySelectorAll<HTMLElement>('.about-experience__item'))
 
-      if (separatorLines.length === 0 || !separatorPlus || !title || !description) {
+      if (separatorLines.length === 0 || !separatorPlus) {
         return
       }
 
       gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
       gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
-      gsap.set([title, description], { autoAlpha: 0, y: 18 })
-      gsap.set(items, { autoAlpha: 0, y: 22 })
 
       gsap
         .timeline({
@@ -37,9 +34,6 @@ export default function AboutExperience() {
         })
         .to(separatorLines, { scaleX: 1, duration: 0.62, ease: 'power2.out' })
         .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.46, ease: 'back.out(1.5)' }, '-=0.34')
-        .to(title, { autoAlpha: 1, y: 0, duration: 0.52, ease: 'power2.out' }, '-=0.24')
-        .to(description, { autoAlpha: 1, y: 0, duration: 0.52, ease: 'power2.out' }, '-=0.36')
-        .to(items, { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.1, ease: 'power2.out' }, '-=0.28')
     }, section)
 
     return () => {
@@ -48,7 +42,15 @@ export default function AboutExperience() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="about-experience" aria-labelledby="about-experience-title">
+    <section
+      ref={sectionRef}
+      className="about-experience"
+      aria-labelledby="about-experience-title"
+      style={{
+        backgroundColor: isDarkTheme ? '#000000' : '#ffffff',
+        color: isDarkTheme ? '#f4f6ff' : '#0f1117',
+      }}
+    >
       <div className="about-experience__inner">
         <header className="about-experience__header">
           <div className="about-experience__separator" aria-hidden="true">

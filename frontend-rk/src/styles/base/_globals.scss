@@ -83,7 +83,11 @@ html:not(.theme-dark) {
   overflow-y: auto;
 }
 
+html.theme-dark,
 body.theme-dark {
+  background: #000000;
+  color: #f3f6ff;
+
   --c-glass: #9da3b2;
   --c-light: #d7dcef;
   --c-dark: #000;

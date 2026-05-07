@@ -17,13 +17,13 @@
 .about-loop-gallery__item,
 .about-loop-gallery__item img {
   transition:
-    background 0.42s ease,
-    background-color 0.42s ease,
-    border-color 0.42s ease,
-    box-shadow 0.42s ease,
-    color 0.42s ease,
-    opacity 0.42s ease,
-    filter 0.42s ease;
+    background 0.4s cubic-bezier(1, 0, 0.4, 1),
+    background-color 0.4s cubic-bezier(1, 0, 0.4, 1),
+    border-color 0.4s cubic-bezier(1, 0, 0.4, 1),
+    box-shadow 0.4s cubic-bezier(1, 0, 0.4, 1),
+    color 0.4s cubic-bezier(1, 0, 0.4, 1),
+    opacity 0.4s cubic-bezier(1, 0, 0.4, 1),
+    filter 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
 
 .about-loop-gallery__viewport {
@@ -70,13 +70,13 @@
   filter: grayscale(1) saturate(0.15);
   transition:
     transform 0.28s ease,
-    background 0.42s ease,
-    background-color 0.42s ease,
-    border-color 0.42s ease,
-    box-shadow 0.42s ease,
-    color 0.42s ease,
-    opacity 0.42s ease,
-    filter 0.42s ease;
+    background 0.4s cubic-bezier(1, 0, 0.4, 1),
+    background-color 0.4s cubic-bezier(1, 0, 0.4, 1),
+    border-color 0.4s cubic-bezier(1, 0, 0.4, 1),
+    box-shadow 0.4s cubic-bezier(1, 0, 0.4, 1),
+    color 0.4s cubic-bezier(1, 0, 0.4, 1),
+    opacity 0.4s cubic-bezier(1, 0, 0.4, 1),
+    filter 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
 
 .about-loop-gallery__item:hover img {
@@ -96,6 +96,14 @@ body.theme-dark {
   .about-loop-gallery {
     background: transparent;
   }
+}
+
+.about-loop-gallery[data-theme="dark"] {
+  background: #000000 !important;
+}
+
+.about-loop-gallery[data-theme="light"] {
+  background: #ffffff !important;
 }
 
 @media (max-width: 992px) {

@@ -5,8 +5,10 @@ import skillHtml from '../../assets/images/publications/html-5-svgrepo-com.svg'
 import skillScss from '../../assets/images/publications/scss2-svgrepo-com.svg'
 import skillJs from '../../assets/images/publications/js-svgrepo-com.svg'
 import skillFigma from '../../assets/images/publications/figma-svgrepo-com (1).svg'
+import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 
 export default function AboutExperienceShowcase() {
+  const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
 
   useLayoutEffect(() => {
@@ -28,8 +30,6 @@ export default function AboutExperienceShowcase() {
 
       gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
       gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
-      gsap.set([heading, articles, tools], { autoAlpha: 0, y: 14 })
-
       gsap
         .timeline({
           scrollTrigger: {
@@ -40,9 +40,6 @@ export default function AboutExperienceShowcase() {
         })
         .to(separatorLines, { scaleX: 1, duration: 0.62, ease: 'power2.out' })
         .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.46, ease: 'back.out(1.5)' }, '-=0.34')
-        .to(heading, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.24')
-        .to(articles, { autoAlpha: 1, y: 0, duration: 0.58, ease: 'power2.out' }, '-=0.24')
-        .to(tools, { autoAlpha: 1, y: 0, duration: 0.58, ease: 'power2.out' }, '-=0.42')
         .add(() => {
           const items = gsap.utils.toArray<HTMLElement>('.experience-showcase__tool')
           if (items.length < 2) return
@@ -121,6 +118,10 @@ export default function AboutExperienceShowcase() {
       id="experience-showcase"
       className="section experience-showcase"
       aria-labelledby="experience-showcase-title"
+      style={{
+        backgroundColor: isDarkTheme ? '#000000' : '#ffffff',
+        color: isDarkTheme ? '#f3f6ff' : '#181212',
+      }}
     >
       <div className="centered">
         <header className="experience-showcase__header">

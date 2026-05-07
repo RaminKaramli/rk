@@ -26,9 +26,11 @@ export default function Container({
   useEffect(() => {
     document.title = title
     document.body.classList.toggle('about-page', page === 'about')
+    document.body.classList.toggle('home-page', page === 'home')
 
     return () => {
       document.body.classList.remove('about-page')
+      document.body.classList.remove('home-page')
     }
   }, [page, title])
 

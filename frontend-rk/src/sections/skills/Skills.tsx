@@ -1,8 +1,10 @@
 import { useRef, useLayoutEffect, useCallback } from 'react'
 import { gsap } from 'gsap'
 import { aboutSkills } from '../../data/skills'
+import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 
 export default function AboutSkillsAccordion() {
+  const isDarkTheme = useDocumentTheme()
   // Index 0 (01) is open by default, others closed
   const openStates = useRef<boolean[]>(aboutSkills.map((_, i) => i === 0))
   const contentRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -56,7 +58,15 @@ export default function AboutSkillsAccordion() {
   }, [])
 
   return (
-    <section className="about-skills" aria-labelledby="about-skills-title">
+    <section
+      className="about-skills"
+      aria-labelledby="about-skills-title"
+      data-theme={isDarkTheme ? 'dark' : 'light'}
+      style={{
+        backgroundColor: isDarkTheme ? '#000000' : '#ffffff',
+        color: isDarkTheme ? '#ffffff' : '#121212',
+      }}
+    >
       <div className="about-skills__inner">
         <div className="about-skills__header">
           <h2 className="about-skills__title" id="about-skills-title">

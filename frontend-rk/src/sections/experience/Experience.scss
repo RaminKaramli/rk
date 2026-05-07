@@ -3,6 +3,22 @@
   color: #000000;
   padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 3.2vw, 4rem) clamp(3rem, 5vw, 5rem);
   position: relative;
+  transition:
+    background 0.4s cubic-bezier(1, 0, 0.4, 1),
+    background-color 0.4s cubic-bezier(1, 0, 0.4, 1),
+    color 0.4s cubic-bezier(1, 0, 0.4, 1);
+
+  &[data-theme="dark"] {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    color: #f3f6ff;
+  }
+
+  &[data-theme="light"] {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #000000;
+  }
 
   .stack-cards-section__separator {
     align-items: center;
@@ -15,6 +31,7 @@
     background: rgba(15, 17, 23, 0.18);
     flex: 1 1 auto;
     height: 1px;
+    transition: background 0.4s cubic-bezier(1, 0, 0.4, 1);
   }
 
   .stack-cards-section__separator-plus {
@@ -30,6 +47,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    transition: background 0.4s cubic-bezier(1, 0, 0.4, 1);
     width: 100%;
   }
 
@@ -91,6 +109,7 @@
     line-height: 0.96;
     margin: 0;
     text-transform: uppercase;
+    transition: color 0.4s cubic-bezier(1, 0, 0.4, 1);
   }
 
   .project-case__summary {
@@ -108,6 +127,7 @@
     line-height: 1.25;
     margin: 0;
     max-width: 54rem;
+    transition: color 0.4s cubic-bezier(1, 0, 0.4, 1);
   }
 
   .project-case__actions {
@@ -135,7 +155,11 @@
     min-height: 3.2rem;
     padding: 0.75rem 1.55rem;
     text-decoration: none;
-    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    transition:
+      background-color 0.4s cubic-bezier(1, 0, 0.4, 1),
+      border-color 0.4s cubic-bezier(1, 0, 0.4, 1),
+      color 0.4s cubic-bezier(1, 0, 0.4, 1),
+      transform 0.2s ease;
     white-space: nowrap;
   }
 
@@ -170,7 +194,12 @@
     line-height: 1;
     min-width: 2.75rem;
     padding: 0;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      background-color 0.4s cubic-bezier(1, 0, 0.4, 1),
+      border-color 0.4s cubic-bezier(1, 0, 0.4, 1),
+      color 0.4s cubic-bezier(1, 0, 0.4, 1),
+      box-shadow 0.4s cubic-bezier(1, 0, 0.4, 1),
+      transform 0.2s ease;
     touch-action: pan-y;
     user-select: none;
     will-change: transform, opacity;
@@ -248,21 +277,84 @@
       min-width: 2.55rem;
     }
   }
+
+  &[data-theme="dark"] {
+    .stack-cards-section__separator-line {
+      background: rgba(244, 246, 255, 0.18);
+    }
+
+    .stack-cards-section__separator-stroke {
+      background: rgba(244, 246, 255, 0.56);
+    }
+
+    .project-case__title,
+    .project-case__description,
+    .project-case__link {
+      color: #f3f6ff;
+    }
+
+    .project-case__link,
+    .project-case__tool {
+      border-color: rgba(243, 246, 255, 0.22);
+    }
+
+    .project-case__tool {
+      background: color-mix(in srgb, var(--c-glass) 10%, transparent);
+      color: #f3f6ff;
+    }
+  }
+
+  &[data-theme="light"] {
+    .stack-cards-section__separator-line {
+      background: rgba(15, 17, 23, 0.18);
+    }
+
+    .stack-cards-section__separator-stroke {
+      background: rgba(15, 17, 23, 0.56);
+    }
+
+    .project-case__title,
+    .project-case__description,
+    .project-case__link {
+      color: #000000;
+    }
+
+    .project-case__tool {
+      background: #ffffff;
+      color: #171717;
+    }
+  }
 }
 
 html.theme-dark,
 body.theme-dark {
   .stack-cards-section {
-    background: #ffffff;
-    color: #000000;
+    background: #000000;
+    color: #f3f6ff;
   }
 
   .stack-cards-section__separator-line {
-    background: rgba(15, 17, 23, 0.18);
+    background: rgba(244, 246, 255, 0.18);
   }
 
   .stack-cards-section__separator-stroke {
-    background: rgba(15, 17, 23, 0.56);
+    background: rgba(244, 246, 255, 0.56);
+  }
+
+  .project-case__title,
+  .project-case__description,
+  .project-case__link {
+    color: #f3f6ff;
+  }
+
+  .project-case__link,
+  .project-case__tool {
+    border-color: rgba(243, 246, 255, 0.22);
+  }
+
+  .project-case__tool {
+    background: color-mix(in srgb, var(--c-glass) 10%, transparent);
+    color: #f3f6ff;
   }
 
 }

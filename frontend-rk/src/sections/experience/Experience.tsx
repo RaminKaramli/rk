@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, type SVGProps } from 'react'
 import { Icon } from '@iconify/react'
 import { stackCards } from '../../data/projects'
+import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 import { Draggable, ScrollTrigger, gsap } from '../../lib/gsap'
 
 const showcasedProjects = [
@@ -86,6 +87,7 @@ const projectTools = [
 ]
 
 export default function StackCardsShowcase() {
+  const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
 
   useLayoutEffect(() => {
@@ -283,7 +285,16 @@ export default function StackCardsShowcase() {
   }, [])
 
   return (
-    <section id="project-showcase" className="stack-cards-section" ref={sectionRef}>
+    <section
+      id="project-showcase"
+      className="stack-cards-section"
+      data-theme={isDarkTheme ? 'dark' : 'light'}
+      ref={sectionRef}
+      style={{
+        backgroundColor: isDarkTheme ? '#000000' : '#ffffff',
+        color: isDarkTheme ? '#f3f6ff' : '#000000',
+      }}
+    >
       <div className="stack-cards-section__separator" aria-hidden="true">
         <div className="stack-cards-section__separator-line" />
         <div className="stack-cards-section__separator-plus">

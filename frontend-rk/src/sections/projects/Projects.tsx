@@ -2,6 +2,7 @@ import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { notableStats } from '../../data/projects'
 import { ScrollTrigger, gsap } from '../../lib/gsap'
 import type { NotableStatConfig } from '../../types/project.types'
+import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 
 type ResolvedStat = {
   label: string
@@ -55,6 +56,7 @@ function resolveNotableStat(config: NotableStatConfig): ResolvedStat {
 }
 
 export default function NotableWorks() {
+  const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
   const resolvedStats = useMemo(() => notableStats.map(resolveNotableStat), [])
   const [displayValues, setDisplayValues] = useState(() =>
@@ -67,7 +69,6 @@ export default function NotableWorks() {
       return
     }
 
-    const statCards = Array.from(section.querySelectorAll<HTMLElement>('.notable-stat'))
     const intro = section.querySelector<HTMLElement>('.notable-works-intro')
     const separatorLines = section.querySelectorAll<HTMLElement>('.notable-works__separator-line')
     const separatorPlus = section.querySelector<HTMLElement>('.notable-works__separator-plus')
@@ -79,7 +80,6 @@ export default function NotableWorks() {
 
       gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
       gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
-      gsap.set([intro, ...statCards], { autoAlpha: 0, y: 14 })
 
       const counters = resolvedStats.map(() => ({ value: 0 }))
 
@@ -92,14 +92,6 @@ export default function NotableWorks() {
             .timeline()
             .to(separatorLines, { scaleX: 1, duration: 0.62, ease: 'power2.out' })
             .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.46, ease: 'back.out(1.5)' }, '-=0.34')
-            .to(intro, { autoAlpha: 1, y: 0, duration: 0.45, ease: 'power2.out' }, '-=0.22')
-            .to(statCards, {
-              autoAlpha: 1,
-              y: 0,
-              duration: 0.45,
-              stagger: 0.12,
-              ease: 'power2.out',
-            }, '-=0.18')
 
           resolvedStats.forEach((stat, index) => {
             gsap.to(counters[index], {
@@ -135,7 +127,16 @@ export default function NotableWorks() {
   }, [resolvedStats])
 
   return (
-    <section id="notable-works" className="notable-works-section" ref={sectionRef}>
+    <section
+      id="notable-works"
+      className="notable-works-section"
+      data-theme={isDarkTheme ? 'dark' : 'light'}
+      ref={sectionRef}
+      style={{
+        backgroundColor: isDarkTheme ? '#000000' : '#ffffff',
+        color: isDarkTheme ? '#f3f6ff' : '#000000',
+      }}
+    >
       <div className="notable-works-inner">
         <div className="notable-works__header" aria-hidden="true">
           <div className="notable-works__separator">

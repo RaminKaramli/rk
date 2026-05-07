@@ -8,8 +8,8 @@
 }
 
 .about-cover-scroll__sticky {
-  position: sticky;
-  top: 0;
+  position: relative;
+  top: auto;
   z-index: 1;
 }
 
@@ -398,16 +398,56 @@ html:not(.theme-dark) {
 }
 
 // Ensure explicit Dark Mode block remains
+html.theme-dark body.about-page,
 body.theme-dark.about-page {
-  background: transparent !important;
+  background: #000000 !important;
+  color: #f3f6ff;
 }
 
-body.theme-dark .about-hero-section {
-  background: transparent !important;
+html.theme-dark body.about-page #wrapper,
+html.theme-dark body.about-page .main-content,
+html.theme-dark body.about-page .about-cover-scroll,
+html.theme-dark body.about-page .about-cover-scroll__sticky,
+html.theme-dark body.about-page .about-cover-scroll__cover,
+html.theme-dark body.about-page .about-hero-section,
+html.theme-dark body.about-page .experience-showcase,
+html.theme-dark body.about-page .about-experience,
+html.theme-dark body.about-page .about-skills,
+html.theme-dark body.about-page .about-loop-gallery,
+body.theme-dark.about-page #wrapper,
+body.theme-dark.about-page .main-content,
+body.theme-dark.about-page .about-cover-scroll,
+body.theme-dark.about-page .about-cover-scroll__sticky,
+body.theme-dark.about-page .about-cover-scroll__cover,
+body.theme-dark.about-page .about-hero-section,
+body.theme-dark.about-page .experience-showcase,
+body.theme-dark.about-page .about-experience,
+body.theme-dark.about-page .about-skills,
+body.theme-dark.about-page .about-loop-gallery {
+  background: #000000 !important;
+}
+
+html.theme-dark body.about-page .experience-showcase,
+html.theme-dark body.about-page .experience-showcase .centered,
+html.theme-dark body.about-page .experience-showcase__header,
+html.theme-dark body.about-page .experience-showcase__content,
+html.theme-dark body.about-page .experience-showcase__articles,
+html.theme-dark body.about-page .experience-showcase__tools,
+html.theme-dark body.about-page .about-experience,
+body.theme-dark.about-page .experience-showcase,
+body.theme-dark.about-page .experience-showcase .centered,
+body.theme-dark.about-page .experience-showcase__header,
+body.theme-dark.about-page .experience-showcase__content,
+body.theme-dark.about-page .experience-showcase__articles,
+body.theme-dark.about-page .experience-showcase__tools,
+body.theme-dark.about-page .about-experience {
+  opacity: 1 !important;
+  filter: none !important;
+  visibility: visible !important;
 }
 
 body.about-page {
-  --about-theme-transition: 0.42s ease;
+  --about-theme-transition: 0.4s cubic-bezier(1, 0, 0.4, 1);
   transition: background var(--about-theme-transition), color var(--about-theme-transition);
 }
 
@@ -418,15 +458,35 @@ body.about-page :is(
   .experience-showcase__article,
   .experience-showcase__tool,
   .experience-showcase__tool-logo,
+  .experience-showcase__heading,
+  .experience-showcase__article-title,
+  .experience-showcase__article-caption,
+  .experience-showcase__tool-title,
+  .experience-showcase__tool-caption,
   .about-experience,
+  .about-experience__title,
+  .about-experience__description,
+  .about-experience__company,
+  .about-experience__role,
+  .about-experience__card-description,
   .about-experience__separator-line,
   .about-experience__separator-stroke,
   .about-experience__list,
   .about-experience__item,
   .about-experience__period,
+  .notable-works-section,
+  .notable-works-title,
+  .notable-works-cta,
+  .notable-stat,
+  .notable-stat__value,
+  .notable-stat__label,
   .about-skills,
+  .about-skills__title,
+  .about-skills__description,
   .about-skills-item__index,
   .about-skills-item__panel,
+  .about-skills-item__title,
+  .about-skills-item__description,
   .about-skills-item__toggle,
   .about-skills-item__tag,
   .about-loop-gallery
@@ -438,7 +498,74 @@ body.about-page :is(
     box-shadow var(--about-theme-transition),
     color var(--about-theme-transition),
     opacity var(--about-theme-transition),
-    filter var(--about-theme-transition);
+    filter var(--about-theme-transition) !important;
+}
+
+body.about-page:has(.theme-toggle[aria-pressed="true"]) {
+  background: #000000 !important;
+  color: #f3f6ff !important;
+}
+
+body.about-page:has(.theme-toggle[aria-pressed="true"]) :is(
+  #wrapper,
+  .main-content,
+  .about-cover-scroll,
+  .about-cover-scroll__sticky,
+  .about-cover-scroll__cover,
+  .about-hero-section,
+  .experience-showcase,
+  .about-experience,
+  .notable-works-section,
+  .about-skills,
+  .about-loop-gallery
+) {
+  background: #000000 !important;
+  background-color: #000000 !important;
+}
+
+body.about-page:has(.theme-toggle[aria-pressed="true"]) :is(
+  .experience-showcase__heading,
+  .experience-showcase__article-title,
+  .experience-showcase__tool-title,
+  .about-experience__title,
+  .about-experience__company,
+  .notable-works-title,
+  .notable-stat__value,
+  .about-skills__title,
+  .about-skills-item__title,
+  .about-skills-item__tag,
+  .about-skills-item__icon
+) {
+  color: #f3f6ff !important;
+}
+
+body.about-page:has(.theme-toggle[aria-pressed="true"]) :is(
+  .experience-showcase__article-caption,
+  .experience-showcase__tool-caption,
+  .about-experience__description,
+  .about-experience__card-description,
+  .about-experience__role,
+  .notable-stat__label,
+  .about-skills__description,
+  .about-skills-item__description
+) {
+  color: rgba(243, 246, 255, 0.72) !important;
+}
+
+body.about-page:has(.theme-toggle[aria-pressed="true"]) :is(
+  .experience-showcase__separator-line,
+  .about-experience__separator-line,
+  .notable-works__separator-line
+) {
+  background: rgba(244, 246, 255, 0.18) !important;
+}
+
+body.about-page:has(.theme-toggle[aria-pressed="true"]) :is(
+  .experience-showcase__separator-stroke,
+  .about-experience__separator-stroke,
+  .notable-works__separator-stroke
+) {
+  background: rgba(244, 246, 255, 0.62) !important;
 }
 
 @media (max-width: 1024px) {

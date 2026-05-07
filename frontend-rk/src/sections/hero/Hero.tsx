@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "../../lib/gsap";
 import MusicPlayer from "../../components/common/music-player/MusicPlayer";
+import { useDocumentTheme } from "../../hooks/useDocumentTheme";
 import { media, siteContent } from "../../utils/constants";
 
 type HomeHeroProps = {
@@ -8,6 +9,7 @@ type HomeHeroProps = {
 };
 
 export default function HomeHero({ showPreloader }: HomeHeroProps) {
+  const isDarkTheme = useDocumentTheme();
   const topCopyRef = useRef<HTMLParagraphElement | null>(null);
   const nameRef = useRef<HTMLHeadingElement | null>(null);
   const figureRef = useRef<HTMLDivElement | null>(null);
@@ -95,7 +97,15 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
   }, [showPreloader]);
 
   return (
-    <section id="home-section" className="hero-section">
+    <section
+      id="home-section"
+      className="hero-section"
+      data-theme={isDarkTheme ? "dark" : "light"}
+      style={{
+        backgroundColor: isDarkTheme ? "#000000" : "#ffffff",
+        color: isDarkTheme ? "#f3f6ff" : "#121212",
+      }}
+    >
       <div className="hero-middle">
         <p ref={topCopyRef} className="press-text-one">
           {siteContent.heroTopCopy}
