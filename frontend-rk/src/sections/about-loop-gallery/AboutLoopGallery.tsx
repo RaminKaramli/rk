@@ -75,6 +75,19 @@ export default function AboutLoopGallery() {
         resizeObserver.disconnect()
         destroyScene()
       }
+
+      // Fade animation
+      const viewport = section.querySelector<HTMLElement>('.about-loop-gallery__viewport')
+      if (viewport) {
+        gsap.set(viewport, { opacity: 0 })
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 90%',
+            once: true,
+          },
+        }).to(viewport, { opacity: 1, duration: 0.3, ease: 'power2.out' })
+      }
     }, section)
 
     return () => {

@@ -108,15 +108,19 @@ export default function StackCardsShowcase() {
       gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
       gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
 
+      const projectCases = section.querySelectorAll<HTMLElement>('.project-case')
+      if (projectCases.length) gsap.set(projectCases, { opacity: 0 })
+
       ScrollTrigger.create({
         trigger: section,
-        start: 'top 78%',
+        start: 'top 90%',
         once: true,
         onEnter: () => {
           gsap
             .timeline()
-            .to(separatorLines, { scaleX: 1, duration: 0.62, ease: 'power2.out' })
-            .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.46, ease: 'back.out(1.5)' }, '-=0.34')
+            .to(separatorLines, { scaleX: 1, duration: 0.3, ease: 'power2.out' })
+            .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.25, ease: 'back.out(1.5)' }, '-=0.15')
+            .to(projectCases, { opacity: 1, duration: 0.3, ease: 'power2.out', stagger: 0.08 }, '-=0.1')
         },
       })
     }, section)

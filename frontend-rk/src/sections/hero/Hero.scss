@@ -96,7 +96,7 @@ body.home-page:has(.theme-toggle[aria-pressed="true"]) {
 .top-left {
   display: flex;
   gap: 0.75rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   margin-top: 0;
 }
 
@@ -135,6 +135,7 @@ body.home-page:has(.theme-toggle[aria-pressed="true"]) {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--c-content);
+  white-space: nowrap;
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb09ef00eb464b45496_cursor-text.svg") 2 0, text;
 }
 
@@ -238,14 +239,6 @@ body.home-page:has(.theme-toggle[aria-pressed="true"]) {
   gap: 1.5rem;
 }
 
-.top-right {
-  display: flex;
-  width: min(100%, 24rem);
-  margin-left: auto;
-  align-items: center;
-  justify-content: flex-end;
-}
-
 @media (max-width: 980px) {
   .bottom-row {
     position: static;
@@ -254,14 +247,14 @@ body.home-page:has(.theme-toggle[aria-pressed="true"]) {
     bottom: auto;
     width: 100%;
     margin-top: auto;
-    flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end;
     gap: 1rem;
   }
+}
 
-  .top-right {
-    width: 100%;
-    justify-content: flex-start;
-    margin-left: 0;
+@media (max-width: 768px) {
+  .top-left {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

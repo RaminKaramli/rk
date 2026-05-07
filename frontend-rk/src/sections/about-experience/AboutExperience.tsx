@@ -24,16 +24,34 @@ export default function AboutExperience() {
       gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
       gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 78%',
-            once: true,
-          },
-        })
-        .to(separatorLines, { scaleX: 1, duration: 0.62, ease: 'power2.out' })
-        .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.46, ease: 'back.out(1.5)' }, '-=0.34')
+      const introTitle = section.querySelector<HTMLElement>('.about-experience__title')
+      const introDesc = section.querySelector<HTMLElement>('.about-experience__description')
+      const cards = section.querySelectorAll<HTMLElement>('.about-experience__item')
+
+      if (introTitle) gsap.set(introTitle, { opacity: 0 })
+      if (introDesc) gsap.set(introDesc, { opacity: 0 })
+      if (cards.length) gsap.set(cards, { opacity: 0 })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 90%',
+          once: true,
+        },
+      })
+
+      tl.to(separatorLines, { scaleX: 1, duration: 0.3, ease: 'power2.out' })
+        .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.25, ease: 'back.out(1.5)' }, '-=0.15')
+
+      if (introTitle) {
+        tl.to(introTitle, { opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.1')
+      }
+      if (introDesc) {
+        tl.to(introDesc, { opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.2')
+      }
+      if (cards.length) {
+        tl.to(cards, { opacity: 1, duration: 0.3, ease: 'power2.out', stagger: 0.06 }, '-=0.15')
+      }
     }, section)
 
     return () => {

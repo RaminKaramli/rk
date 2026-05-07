@@ -1,17 +1,18 @@
 import { useRef, useLayoutEffect, useCallback } from 'react'
-import { gsap } from 'gsap'
+import { gsap } from '../../lib/gsap'
 import { aboutSkills } from '../../data/skills'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 
 export default function AboutSkillsAccordion() {
   const isDarkTheme = useDocumentTheme()
+  const sectionRef = useRef<HTMLElement | null>(null)
   // Index 0 (01) is open by default, others closed
   const openStates = useRef<boolean[]>(aboutSkills.map((_, i) => i === 0))
   const contentRefs = useRef<(HTMLDivElement | null)[]>([])
   const iconRefs = useRef<(SVGSVGElement | null)[]>([])
   const articleRefs = useRef<(HTMLElement | null)[]>([])
 
-  // Initialize: 01 open, rest closed
+  // Initialize: 01 open, rest closed + fade animation
   useLayoutEffect(() => {
     contentRefs.current.forEach((el, i) => {
       if (!el) return
@@ -25,6 +26,29 @@ export default function AboutSkillsAccordion() {
       if (el) gsap.set(el, { rotation: i === 0 ? 45 : 0 })
     })
     articleRefs.current[0]?.classList.add('about-skills-item--open')
+
+    const section = sectionRef.current
+    if (!section) return
+
+    const ctx = gsap.context(() => {
+      const header = section.querySelector<HTMLElement>('.about-skills__header')
+      const items = section.querySelectorAll<HTMLElement>('.about-skills-item')
+
+      if (header) gsap.set(header, { opacity: 0 })
+      if (items.length) gsap.set(items, { opacity: 0 })
+
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top 90%',
+          once: true,
+        },
+      })
+        .to(header, { opacity: 1, duration: 0.3, ease: 'power2.out' })
+        .to(items, { opacity: 1, duration: 0.3, ease: 'power2.out', stagger: 0.06 }, '-=0.15')
+    }, section)
+
+    return () => ctx.revert()
   }, [])
 
   const handleToggle = useCallback((index: number) => {
@@ -59,6 +83,7 @@ export default function AboutSkillsAccordion() {
 
   return (
     <section
+      ref={sectionRef}
       className="about-skills"
       aria-labelledby="about-skills-title"
       data-theme={isDarkTheme ? 'dark' : 'light'}

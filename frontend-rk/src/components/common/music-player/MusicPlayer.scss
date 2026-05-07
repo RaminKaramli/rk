@@ -1,4 +1,5 @@
 .player {
+  display: none;
   width: min(100%, 23rem);
   position: relative;
   --player-cursor: url("../../../assets/icons/player-cursor.svg") 8 8, pointer;
@@ -307,5 +308,11 @@
 @media (max-width: 980px) {
   .player {
     width: min(100%, 22rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .player {
+    display: none;
   }
 }

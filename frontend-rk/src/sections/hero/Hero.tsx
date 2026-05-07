@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "../../lib/gsap";
-import MusicPlayer from "../../components/common/music-player/MusicPlayer";
+
 import { useDocumentTheme } from "../../hooks/useDocumentTheme";
 import { media, siteContent } from "../../utils/constants";
 
@@ -15,7 +15,7 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
   const figureRef = useRef<HTMLDivElement | null>(null);
   const bottomCopyRef = useRef<HTMLParagraphElement | null>(null);
   const skillPillsRef = useRef<HTMLDivElement | null>(null);
-  const playerWrapRef = useRef<HTMLDivElement | null>(null);
+
 
   useLayoutEffect(() => {
     const topCopy = topCopyRef.current;
@@ -23,19 +23,19 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
     const figure = figureRef.current;
     const bottomCopy = bottomCopyRef.current;
     const skillPills = skillPillsRef.current;
-    const playerWrap = playerWrapRef.current;
 
-    if (!topCopy || !name || !figure || !bottomCopy || !skillPills || !playerWrap) {
+
+    if (!topCopy || !name || !figure || !bottomCopy || !skillPills) {
       return;
     }
 
     const textFadeTargets = [topCopy, bottomCopy];
     const instantTargets = [figure, name];
     const skillPillTargets = Array.from(skillPills.querySelectorAll("p"));
-    const playerFadeTarget = [playerWrap];
+
 
     if (showPreloader) {
-      gsap.killTweensOf([...textFadeTargets, ...instantTargets, ...skillPillTargets, ...playerFadeTarget]);
+      gsap.killTweensOf([...textFadeTargets, ...instantTargets, ...skillPillTargets]);
       gsap.set(textFadeTargets, {
         opacity: 0,
       });
@@ -46,13 +46,9 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
         opacity: 0,
         x: -20,
       });
-      gsap.set(playerFadeTarget, {
-        opacity: 0,
-        y: 20,
-      });
       return;
     }
-    gsap.killTweensOf([...textFadeTargets, ...instantTargets, ...skillPillTargets, ...playerFadeTarget]);
+    gsap.killTweensOf([...textFadeTargets, ...instantTargets, ...skillPillTargets]);
     gsap.set(instantTargets, {
       opacity: 1,
     });
@@ -63,10 +59,7 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
       opacity: 0,
       x: -20,
     });
-    gsap.set(playerFadeTarget, {
-      opacity: 0,
-      y: 20,
-    });
+
 
     gsap
       .timeline()
@@ -88,12 +81,7 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
         ease: "power2.out",
         stagger: 0.08,
       })
-      .to(playerFadeTarget, {
-        opacity: 1,
-        y: 0,
-        duration: 0.7,
-        ease: "power2.out",
-      });
+;
   }, [showPreloader]);
 
   return (
@@ -143,9 +131,6 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
           <p>UI/UX DESIGN</p>
         </div>
 
-        <div ref={playerWrapRef} className="top-right">
-          <MusicPlayer />
-        </div>
       </div>
     </section>
   );

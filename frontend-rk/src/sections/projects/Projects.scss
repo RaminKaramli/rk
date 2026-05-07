@@ -1,7 +1,7 @@
 .notable-works-section {
   background: transparent;
   color: #000;
-  padding: clamp(3rem, 6vw, 5.5rem) var(--site-inline-pad) clamp(4rem, 7vw, 6.5rem);
+  padding: 0 var(--site-inline-pad) clamp(4rem, 7vw, 6.5rem);
   transition: background 0.4s cubic-bezier(1, 0, 0.4, 1), background-color 0.4s cubic-bezier(1, 0, 0.4, 1), color 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
 

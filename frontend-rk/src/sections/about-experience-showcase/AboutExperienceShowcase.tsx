@@ -30,16 +30,23 @@ export default function AboutExperienceShowcase() {
 
       gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
       gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
+      gsap.set(heading, { opacity: 0 })
+      gsap.set(articles, { opacity: 0 })
+      gsap.set(tools, { opacity: 0 })
+
       gsap
         .timeline({
           scrollTrigger: {
             trigger: section,
-            start: 'top 82%',
+            start: 'top 90%',
             once: true,
           },
         })
-        .to(separatorLines, { scaleX: 1, duration: 0.62, ease: 'power2.out' })
-        .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.46, ease: 'back.out(1.5)' }, '-=0.34')
+        .to(separatorLines, { scaleX: 1, duration: 0.3, ease: 'power2.out' })
+        .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.25, ease: 'back.out(1.5)' }, '-=0.15')
+        .to(heading, { opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.1')
+        .to(articles, { opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.15')
+        .to(tools, { opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.15')
         .add(() => {
           const items = gsap.utils.toArray<HTMLElement>('.experience-showcase__tool')
           if (items.length < 2) return
