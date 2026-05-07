@@ -180,6 +180,33 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
   }, [menuOpen])
 
   useEffect(() => {
+    const header = headerRef.current
+    if (!header) return
+
+    let lastScrollY = window.scrollY
+
+    const onScroll = () => {
+      const currentScrollY = window.scrollY
+      const diff = currentScrollY - lastScrollY
+
+      if (currentScrollY < 80) {
+        header.classList.remove('site-header--hidden')
+      } else if (diff > 0) {
+        // Scrolling down — HIDE
+        header.classList.add('site-header--hidden')
+      } else if (diff < 0) {
+        // Scrolling up — SHOW
+        header.classList.remove('site-header--hidden')
+      }
+
+      lastScrollY = currentScrollY
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
     const syncLocationState = () => {
       setLocationState(`${window.location.pathname}${window.location.search}${window.location.hash}`)
     }

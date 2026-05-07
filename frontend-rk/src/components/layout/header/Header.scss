@@ -27,6 +27,11 @@
     0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
     0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
   z-index: 100000;
+  transition: top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.site-header.site-header--hidden {
+  top: -6rem;
 }
 
 body.about-page .site-header {
