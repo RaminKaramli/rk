@@ -58,6 +58,10 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
       return 1
     }
 
+    if (pageParam === 'projects' || pathname === '/projects') {
+      return 2
+    }
+
     return 0
   }
 

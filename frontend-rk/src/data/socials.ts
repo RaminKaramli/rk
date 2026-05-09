@@ -14,14 +14,14 @@ export const overlayMenuImages = [
 export const homeMenuLinks: MenuLink[] = [
   { href: '/#home-section', imageIndex: 0, label: 'HOME' },
   { href: '/?page=about', imageIndex: 1, label: 'ABOUT' },
-  { href: '/#notable-works', imageIndex: 2, label: 'WORKS' },
+  { href: '/projects', imageIndex: 2, label: 'WORKS' },
   { href: '/#site-footer', imageIndex: 3, label: 'CONTACT' },
 ]
 
 export const aboutMenuLinks: MenuLink[] = [
   { href: '/#home-section', imageIndex: 0, label: 'HOME' },
   { href: '/?page=about', imageIndex: 1, label: 'ABOUT' },
-  { href: '/?page=about#notable-works', imageIndex: 2, label: 'WORKS' },
+  { href: '/projects', imageIndex: 2, label: 'WORKS' },
   { href: '/?page=about#site-footer', imageIndex: 3, label: 'CONTACT' },
 ]
 

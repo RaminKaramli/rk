@@ -1,6 +1,6 @@
 /// <reference types="vite/client" />
 
-import type Lenis from 'lenis'
+export {}
 
 declare global {
   type ScribbleTransitionOptions = {
@@ -9,7 +9,6 @@ declare global {
   }
 
   interface Window {
-    __lenis?: Lenis
     __runScribbleTransition?: (options?: ScribbleTransitionOptions) => Promise<void>
   }
 }

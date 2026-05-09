@@ -35,6 +35,10 @@ const showcasedProjects = [
   },
 ]
 
+type StackCardsShowcaseProps = {
+  singleColumn?: boolean
+}
+
 function FlowbiteHtmlSolid(props: SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" {...props}>
@@ -86,7 +90,7 @@ const projectTools = [
   { icon: <Icon icon="logos:greensock-icon" aria-hidden="true" />, label: 'GSAP' },
 ]
 
-export default function StackCardsShowcase() {
+export default function StackCardsShowcase({ singleColumn = false }: StackCardsShowcaseProps) {
   const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
 
@@ -310,7 +314,7 @@ export default function StackCardsShowcase() {
 
       {showcasedProjects.map((project) => (
         <article key={project.title} className="project-case">
-          <div className={`projects-grid${project.cards.length === 2 ? ' projects-grid--two' : ''}`}>
+          <div className={`projects-grid${project.cards.length === 2 ? ' projects-grid--two' : ''}${singleColumn ? ' projects-grid--single' : ''}`}>
             {project.cards.map((card) => (
               <div key={`${project.title}-${card.alt}`} className="projects-grid__item">
                 <img className="projects-grid__image" src={card.image} alt={card.alt} />

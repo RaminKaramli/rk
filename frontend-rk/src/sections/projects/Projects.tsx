@@ -10,6 +10,10 @@ type ResolvedStat = {
   target: number
 }
 
+type NotableWorksProps = {
+  showSeparator?: boolean
+}
+
 function formatStatValue(value: number, minDigits: number) {
   return String(value).padStart(minDigits, '0')
 }
@@ -55,7 +59,7 @@ function resolveNotableStat(config: NotableStatConfig): ResolvedStat {
   }
 }
 
-export default function NotableWorks() {
+export default function NotableWorks({ showSeparator = true }: NotableWorksProps) {
   const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
   const resolvedStats = useMemo(() => notableStats.map(resolveNotableStat), [])
@@ -74,12 +78,14 @@ export default function NotableWorks() {
     const separatorPlus = section.querySelector<HTMLElement>('.notable-works__separator-plus')
 
     const context = gsap.context(() => {
-      if (!intro || separatorLines.length === 0 || !separatorPlus) {
+      if (!intro) {
         return
       }
 
-      gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
-      gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
+      if (separatorLines.length > 0 && separatorPlus) {
+        gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
+        gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
+      }
 
       const counters = resolvedStats.map(() => ({ value: 0 }))
 
@@ -88,10 +94,12 @@ export default function NotableWorks() {
         start: 'top 72%',
         once: true,
         onEnter: () => {
-          gsap
-            .timeline()
-            .to(separatorLines, { scaleX: 1, duration: 0.62, ease: 'power2.out' })
-            .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.46, ease: 'back.out(1.5)' }, '-=0.34')
+          if (separatorLines.length > 0 && separatorPlus) {
+            gsap
+              .timeline()
+              .to(separatorLines, { scaleX: 1, duration: 0.62, ease: 'power2.out' })
+              .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.46, ease: 'back.out(1.5)' }, '-=0.34')
+          }
 
           resolvedStats.forEach((stat, index) => {
             gsap.to(counters[index], {
@@ -129,7 +137,7 @@ export default function NotableWorks() {
   return (
     <section
       id="notable-works"
-      className="notable-works-section"
+      className={`notable-works-section${showSeparator ? '' : ' notable-works-section--no-separator'}`}
       data-theme={isDarkTheme ? 'dark' : 'light'}
       ref={sectionRef}
       style={{
@@ -138,22 +146,24 @@ export default function NotableWorks() {
       }}
     >
       <div className="notable-works-inner">
-        <div className="notable-works__header" aria-hidden="true">
-          <div className="notable-works__separator">
-            <div className="notable-works__separator-line" />
-            <div className="notable-works__separator-plus">
-              <span className="notable-works__separator-stroke" />
-              <span className="notable-works__separator-stroke notable-works__separator-stroke--vertical" />
+        {showSeparator ? (
+          <div className="notable-works__header" aria-hidden="true">
+            <div className="notable-works__separator">
+              <div className="notable-works__separator-line" />
+              <div className="notable-works__separator-plus">
+                <span className="notable-works__separator-stroke" />
+                <span className="notable-works__separator-stroke notable-works__separator-stroke--vertical" />
+              </div>
+              <div className="notable-works__separator-line" />
             </div>
-            <div className="notable-works__separator-line" />
           </div>
-        </div>
+        ) : null}
 
         <div className="notable-works-intro">
           <h2 className="notable-works-title">NOTABLE WORKS</h2>
-          <button className="notable-works-cta" type="button" aria-label="Work link">
-            WORK? <span aria-hidden="true">●</span>
-          </button>
+          <a className="notable-works-cta" href="/projects" aria-label="Works link">
+            WORKS
+          </a>
         </div>
 
         <div className="notable-works-stats" aria-label="Professional statistics">

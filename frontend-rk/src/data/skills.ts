@@ -17,7 +17,7 @@ export const aboutSkills: AboutSkill[] = [
     title: 'Animation & Scroll Libraries',
     description:
       'Building smoother motion, reveal effects, and scroll experiences with libraries that make interfaces feel more dynamic and polished.',
-    tags: ['GSAP', 'AOS', 'ScrollReveal', 'Lenis', 'Locomotive Scroll'],
+    tags: ['GSAP', 'AOS', 'ScrollReveal', 'Locomotive Scroll'],
   },
   {
     title: 'Graphic & UI/UX Design',

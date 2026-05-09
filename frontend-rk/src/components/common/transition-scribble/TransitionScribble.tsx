@@ -28,7 +28,7 @@ export default function TransitionScribble() {
     gsap.set(transitionLogo, { autoAlpha: 0, xPercent: -50, yPercent: -50 })
 
     window.__runScribbleTransition = ({ onCover } = {}) =>
-      new Promise((resolve) => {
+      new Promise<void>((resolve) => {
         if (
           gsap.isTweening(transitionScribblePath) ||
           gsap.isTweening(transitionScribbleSvg) ||

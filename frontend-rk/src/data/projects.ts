@@ -1,7 +1,7 @@
-import projectCard from '../assets/images/publications/2.png'
-import projectCardTwo from '../assets/images/publications/3.png'
-import projectCardThree from '../assets/images/publications/1.png'
-import projectCardFour from '../assets/images/publications/4.png'
+import projectCard from '../assets/images/project1.jpeg'
+import projectCardTwo from '../assets/images/project2.jpeg'
+import projectCardThree from '../assets/images/project3.jpeg'
+import projectCardFour from '../assets/images/project4.jpeg'
 import type { NotableStatConfig, StackCard } from '../types/project.types'
 
 export const stackCards: StackCard[] = [
