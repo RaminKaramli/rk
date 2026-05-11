@@ -253,6 +253,47 @@ html.theme-dark, body.theme-dark {
   .about-skills-item__panel { background-color: color-mix(in srgb, var(--c-glass) 12%, transparent); border-color: rgba(255, 255, 255, 0.08); }
 }
 
+@media (max-width: 480px) {
+  .about-skills {
+    width: 100%;
+    max-width: 100%;
+    padding: 2.5rem 1rem;
+    overflow-x: hidden;
+  }
+
+  .about-skills__inner,
+  .about-skills__list,
+  .about-skills-item,
+  .about-skills-item__panel,
+  .about-skills-item__trigger {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .about-skills-item {
+    grid-template-columns: 1fr;
+  }
+
+  .about-skills-item__index {
+    min-height: 3.5rem;
+  }
+
+  .about-skills-item__title {
+    font-size: clamp(1.35rem, 9vw, 2rem);
+  }
+
+  .about-skills-item__description,
+  .about-skills-item__tags {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .about-skills-item__tag {
+    white-space: normal;
+  }
+}
+
 .about-skills[data-theme="dark"] {
   background: #000000 !important;
   color: #ffffff;

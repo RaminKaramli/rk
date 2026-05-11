@@ -104,3 +104,81 @@ body.theme-dark {
     --site-inline-pad: 128px;
   }
 }
+
+@media (max-width: 480px) {
+  :root {
+    --site-inline-pad: 16px;
+  }
+
+  html,
+  body {
+    overflow-x: hidden;
+  }
+
+  html:not(.theme-dark),
+  html:not(.theme-dark) body {
+    background: #eef4fb;
+  }
+
+  html:not(.theme-dark) #wrapper,
+  html:not(.theme-dark) .main-content {
+    background: #ffffff;
+  }
+
+  html.theme-dark #wrapper,
+  html.theme-dark .main-content,
+  body.theme-dark #wrapper,
+  body.theme-dark .main-content {
+    background: #000000;
+  }
+
+  #wrapper,
+  .main-content {
+    width: 100%;
+    margin-inline: auto;
+    overflow-x: hidden;
+  }
+
+  .main-content > section,
+  .site-footer,
+  .site-footer__container,
+  .main-content :is(
+    .hero-middle,
+    .hero-name-wrap,
+    .notable-works-inner,
+    .notable-works-stats,
+    .stack-cards-section,
+    .project-case,
+    .projects-grid,
+    .project-case__content,
+    .experience-showcase,
+    .experience-showcase .centered,
+    .experience-showcase__content,
+    .experience-showcase__articles,
+    .experience-showcase__tools,
+    .about-experience__inner,
+    .about-skills__inner,
+    .about-loop-gallery__viewport,
+    .about-loop-gallery__gallery
+  ) {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .main-content img,
+  .site-footer img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 390px) {
+  #wrapper,
+  .main-content {
+    width: 100%;
+    max-width: 100%;
+  }
+}

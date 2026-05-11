@@ -5,3 +5,16 @@
 .contact-section__inner {
   width: 100%;
 }
+
+@media (max-width: 480px) {
+  .contact-section {
+    width: 100%;
+    max-width: 100%;
+    padding: 2.5rem 1rem;
+    overflow-x: hidden;
+  }
+
+  .contact-section__inner {
+    max-width: 100%;
+  }
+}

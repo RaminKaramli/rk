@@ -670,6 +670,47 @@ body.about-page:has(.theme-toggle[aria-pressed="true"]) :is(
   }
 }
 
+@media (max-width: 480px) {
+  .about-cover-scroll,
+  .about-cover-scroll__sticky,
+  .about-cover-scroll__cover,
+  .about-hero-section,
+  .about-hero-frame,
+  .about-hero-shell,
+  .about-hero-copy,
+  .about-hero-footer {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .about-hero-frame {
+    min-height: auto;
+    padding: 6rem 1rem 2rem;
+  }
+
+  .about-hero-title {
+    font-size: clamp(3rem, 18vw, 5rem);
+  }
+
+  .about-hero-text,
+  .about-hero-location,
+  .about-hero-status {
+    max-width: 100%;
+  }
+
+  .about-hero-mobile-gallery {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .about-polaroid--mobile-left,
+  .about-polaroid--mobile-right {
+    max-width: calc(50% - 0.5rem);
+  }
+}
+
 @keyframes about-scroll-line {
   0%,
   100% {

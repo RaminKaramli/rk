@@ -229,3 +229,38 @@ body.theme-dark .about-showcase__container {
     line-height: 1.4;
   }
 }
+
+@media (max-width: 480px) {
+  .about-showcase,
+  .about-showcase__container,
+  .about-showcase__foreground-frame,
+  .about-showcase__content,
+  .about-showcase__left,
+  .about-showcase__right {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .about-showcase {
+    padding: 1rem 1rem 0;
+    overflow-x: hidden;
+  }
+
+  .about-showcase__container {
+    height: auto;
+    min-height: 34rem;
+  }
+
+  .about-showcase__foreground-frame {
+    width: 100%;
+  }
+
+  .about-showcase__content {
+    gap: 1rem;
+    padding: 0 1rem 1.25rem;
+  }
+
+  .about-showcase__title {
+    font-size: clamp(2.8rem, 17vw, 4.5rem);
+  }
+}

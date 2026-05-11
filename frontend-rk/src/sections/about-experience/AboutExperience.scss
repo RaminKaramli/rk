@@ -273,3 +273,28 @@ body.theme-dark {
     justify-self: start;
   }
 }
+
+@media (max-width: 480px) {
+  .about-experience {
+    width: 100%;
+    max-width: 100%;
+    padding: 2.5rem 1rem;
+    overflow-x: hidden;
+  }
+
+  .about-experience__inner,
+  .about-experience__intro,
+  .about-experience__list,
+  .about-experience__item,
+  .about-experience__card,
+  .about-experience__row {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .about-experience__header-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

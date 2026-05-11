@@ -295,6 +295,56 @@
 
 }
 
+@media (max-width: 480px) {
+  .experience-showcase {
+    width: 100%;
+    max-width: 100%;
+    padding: 3rem 1rem 2.5rem;
+    overflow-x: hidden;
+  }
+
+  .experience-showcase .centered,
+  .experience-showcase__content,
+  .experience-showcase__articles,
+  .experience-showcase__tools,
+  .experience-showcase__article,
+  .experience-showcase__tool {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .experience-showcase__content {
+    gap: 2rem;
+  }
+
+  .experience-showcase__article {
+    gap: 1rem;
+  }
+
+  .experience-showcase__article-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+  }
+
+  .experience-showcase__article-bg {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+  }
+
+  .experience-showcase__tool {
+    margin: 0;
+    gap: 1rem;
+  }
+
+  .experience-showcase__tool-details {
+    min-width: 0;
+  }
+}
+
 @media (max-width: 507px) {
   .experience-showcase__tool-title-full,
   .experience-showcase__tool-caption-full {

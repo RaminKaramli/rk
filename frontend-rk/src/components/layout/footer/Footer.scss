@@ -235,3 +235,53 @@
     font-size: 0.95rem;
   }
 }
+
+@media (max-width: 480px) {
+  .site-footer {
+    width: 100%;
+    max-width: 100%;
+    padding: 2rem 1rem;
+    overflow: hidden;
+  }
+
+  .site-footer__container,
+  .site-footer__top,
+  .site-footer__bottom,
+  .site-footer__socials,
+  .site-footer__photo-wrap {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .site-footer__top,
+  .site-footer__bottom {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__talk {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .site-footer__photo {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .site-footer__pill {
+    max-width: 100%;
+    min-width: 0;
+    white-space: normal;
+  }
+}
+
+@media (max-width: 390px) {
+  .site-footer {
+    padding-inline: 1rem;
+  }
+
+  .site-footer__talk {
+    font-size: clamp(2rem, 15vw, 3.5rem);
+  }
+}
