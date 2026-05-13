@@ -55,6 +55,18 @@
     transform: translateY(-50%) rotate(90deg);
   }
 
+  .stack-cards-section__title {
+    color: #242424;
+    font-family: var(--headingnowtrial);
+    font-size: clamp(3rem, 5.5vw, 5rem);
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 0.95;
+    margin: clamp(1.5rem, 4vw, 3rem) 0 clamp(2rem, 5vw, 4rem);
+    text-align: center;
+    transition: color 0.4s cubic-bezier(1, 0, 0.4, 1);
+  }
+
   .project-case {
     display: grid;
     gap: clamp(2rem, 3.4vw, 2rem);
@@ -471,6 +483,7 @@
       background: rgba(244, 246, 255, 0.56);
     }
 
+    .stack-cards-section__title,
     .project-case__title,
     .project-case__description,
     .project-case__link {
@@ -497,6 +510,7 @@
       background: rgba(15, 17, 23, 0.56);
     }
 
+    .stack-cards-section__title,
     .project-case__title,
     .project-case__description,
     .project-case__link {
@@ -525,6 +539,7 @@ body.theme-dark {
     background: rgba(244, 246, 255, 0.56);
   }
 
+  .stack-cards-section__title,
   .project-case__title,
   .project-case__description,
   .project-case__link {

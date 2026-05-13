@@ -11,6 +11,7 @@
 @use "../components/layout/header/Header";
 @use "../components/layout/footer/Footer";
 @use "../sections/hero/Hero";
+@use "../sections/tool-marquee/ToolMarquee";
 @use "../sections/about/About";
 @use "../sections/about-experience-showcase/AboutExperienceShowcase";
 @use "../sections/about-experience/AboutExperience";
@@ -18,5 +19,6 @@
 @use "../sections/skills/Skills";
 @use "../sections/projects/Projects";
 @use "../sections/experience/Experience";
+@use "../sections/experience-journey/ExperienceJourney";
 @use "../sections/contact/Contact";
 @use "../pages/about/About" as AboutPage;

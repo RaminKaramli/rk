@@ -312,6 +312,8 @@ export default function StackCardsShowcase({ singleColumn = false }: StackCardsS
         <div className="stack-cards-section__separator-line" />
       </div>
 
+      <h2 className="stack-cards-section__title">Selected Projects</h2>
+
       {showcasedProjects.map((project) => (
         <article key={project.title} className="project-case">
           <div className={`projects-grid${project.cards.length === 2 ? ' projects-grid--two' : ''}${singleColumn ? ' projects-grid--single' : ''}`}>
