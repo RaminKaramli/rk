@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef } from 'react'
+import CvIcon from '@iconify-react/pepicons-pop/cv'
 import { gsap } from '../../lib/gsap'
 
 const experienceCards = [
@@ -132,8 +133,8 @@ export default function ExperienceJourney() {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: linkedinCard,
+            once: true,
             start: 'top 85%',
-            toggleActions: 'restart none none none',
           }
         })
 
@@ -156,8 +157,8 @@ export default function ExperienceJourney() {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: instagramCard,
+            once: true,
             start: 'top 85%',
-            toggleActions: 'restart none none none',
           }
         })
 
@@ -168,25 +169,36 @@ export default function ExperienceJourney() {
 
       const githubCard = containerRef.current?.querySelector('.experience-journey-card--github')
       if (githubCard) {
-        const cells = githubCard.querySelectorAll('.squares li')
+        const graph = githubCard.querySelector('.graph')
 
-        gsap.set(cells, { opacity: 0.28, scale: 0.72 })
-        gsap.to(cells, {
+        gsap.set(graph, { opacity: 0 })
+        gsap.to(graph, {
           opacity: 1,
-          scale: 1,
-          duration: 0.32,
-          ease: 'power2.out',
-          stagger: {
-            amount: 1.15,
-            grid: [7, 53],
-            from: 'start',
-          },
+          duration: 0.7,
+          ease: 'power1.out',
           scrollTrigger: {
             trigger: githubCard,
+            once: true,
             start: 'top 85%',
-            toggleActions: 'restart none none none',
           },
         })
+      }
+
+      const resumeCard = containerRef.current?.querySelector('.experience-journey-card--resume')
+      if (resumeCard) {
+        const resumeIcon = resumeCard.querySelector('.experience-journey-card__resume-icon')
+        const resumeButton = resumeCard.querySelector('.experience-journey-card__resume-button')
+
+        gsap.set([resumeIcon, resumeButton], { opacity: 0, y: 12, scale: 0.9 })
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: resumeCard,
+            once: true,
+            start: 'top 85%',
+          },
+        })
+          .to(resumeIcon, { opacity: 1, y: 0, scale: 1, duration: 0.42, ease: 'back.out(1.6)' })
+          .to(resumeButton, { opacity: 1, y: 0, scale: 1, duration: 0.28, ease: 'power2.out' }, '-=0.12')
       }
     }, containerRef)
 
@@ -217,8 +229,18 @@ export default function ExperienceJourney() {
               </a>
             ) : card.type === 'resume' ? (
               <a className="experience-journey-card__resume" href="/?page=about">
-                <span aria-hidden="true">▤</span>
-                Resume -&gt;
+                <CvIcon className="experience-journey-card__resume-icon" aria-hidden="true" />
+                <span className="experience-journey-card__resume-button">
+                  <span className="experience-journey-card__resume-icon-wrapper" aria-hidden="true">
+                    <svg className="experience-journey-card__resume-arrow" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor" />
+                    </svg>
+                    <svg className="experience-journey-card__resume-arrow experience-journey-card__resume-arrow--copy" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor" />
+                    </svg>
+                  </span>
+                  Resume
+                </span>
               </a>
             ) : card.type === 'github' ? (
               <a className="experience-journey-card__github" href={card.href} target="_blank" rel="noopener noreferrer">
@@ -239,7 +261,6 @@ export default function ExperienceJourney() {
                     ))}
                   </ul>
                   <div className="contribution-footer">
-                    <span>Learn how we count contributions</span>
                     <div className="contribution-legend" aria-hidden="true">
                       <span>Less</span>
                       {[0, 1, 2, 3, 4].map((level) => (
