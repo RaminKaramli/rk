@@ -4,6 +4,11 @@ const PRELOADER_FALLBACK_MS = 6000
 let hasShownInitialPreloader = false
 
 function shouldShowPreloader() {
+  if (typeof window !== 'undefined' && window.history.state?.skipPreloader) {
+    hasShownInitialPreloader = true
+    return false
+  }
+
   if (hasShownInitialPreloader) {
     return false
   }

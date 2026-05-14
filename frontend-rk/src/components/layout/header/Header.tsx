@@ -101,7 +101,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     }
 
     if (nextRoute !== currentRoute) {
-      window.history.pushState({}, '', `${nextRoute}${nextUrl.hash}`)
+      window.history.pushState({ skipPreloader: true }, '', `${nextRoute}${nextUrl.hash}`)
       window.dispatchEvent(new Event('popstate'))
       window.dispatchEvent(new Event('hashchange'))
       syncLocationScroll(nextUrl.hash)
@@ -111,7 +111,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     const previousHash = window.location.hash
 
     if (previousHash !== nextUrl.hash) {
-      window.history.pushState({}, '', `${nextRoute}${nextUrl.hash}`)
+      window.history.pushState({ skipPreloader: true }, '', `${nextRoute}${nextUrl.hash}`)
       window.dispatchEvent(new Event('hashchange'))
     }
 

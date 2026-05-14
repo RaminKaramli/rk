@@ -1,14 +1,14 @@
 import { useLayoutEffect, useRef } from 'react'
 import CvIcon from '@iconify-react/pepicons-pop/cv'
-import { gsap } from '../../lib/gsap'
+import { Icon } from '@iconify/react'
+import { ScrollTrigger, gsap } from '../../lib/gsap'
+import downloadVideo from '../../assets/videos/download.mp4'
 
 const experienceCards = [
   {
-    type: 'role',
-    className: 'experience-journey-card--dark experience-journey-card--span-4',
-    brand: 'Gabriel AI',
-    role: 'Product Designer',
-    date: "Oct '25 - Present",
+    type: 'video',
+    className: 'experience-journey-card--video experience-journey-card--span-4',
+    brand: 'Download video',
   },
   {
     type: 'quote',
@@ -40,11 +40,10 @@ const experienceCards = [
     date: "Jan '25 - Aug '25",
   },
   {
-    type: 'role',
-    className: 'experience-journey-card--purple experience-journey-card--span-4',
-    brand: 'accenture',
-    role: 'Product Designer',
-    date: "Aug '22 - July '24",
+    type: 'social',
+    className: 'experience-journey-card--instagram experience-journey-card--span-3',
+    brand: 'Instagram',
+    href: 'https://www.instagram.com/karamliramin/',
   },
   {
     type: 'quote',
@@ -55,10 +54,9 @@ const experienceCards = [
     meta: 'Product Designer @Actual AI',
   },
   {
-    type: 'social',
-    className: 'experience-journey-card--instagram experience-journey-card--span-3',
-    brand: 'Instagram',
-    href: 'https://www.instagram.com/karamliramin/',
+    type: 'stack',
+    className: 'experience-journey-card--tech-stack experience-journey-card--span-4',
+    brand: 'My Tech Stack',
   },
   {
     type: 'github',
@@ -85,6 +83,14 @@ const contributionLevels = [
 
 const contributionMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 const contributionDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+const techStackItems = [
+  { name: 'Photoshop', icon: 'simple-icons:adobephotoshop' },
+  { name: 'Figma', icon: 'logos:figma' },
+  { name: 'Notion', icon: 'simple-icons:notion' },
+  { name: 'OpenAI', icon: 'simple-icons:openai' },
+  { name: 'Supabase', icon: 'simple-icons:supabase' },
+  { name: 'Framer', icon: 'simple-icons:framer' },
+]
 
 function LineMdLinkedin(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -200,6 +206,8 @@ export default function ExperienceJourney() {
           .to(resumeIcon, { opacity: 1, y: 0, scale: 1, duration: 0.42, ease: 'back.out(1.6)' })
           .to(resumeButton, { opacity: 1, y: 0, scale: 1, duration: 0.28, ease: 'power2.out' }, '-=0.12')
       }
+
+      requestAnimationFrame(() => ScrollTrigger.refresh())
     }, containerRef)
 
     return () => ctx.revert()
@@ -219,6 +227,32 @@ export default function ExperienceJourney() {
                     <strong>{card.name}</strong>
                     <small>{card.meta}</small>
                   </div>
+                </div>
+              </>
+            ) : card.type === 'video' ? (
+              <video
+                className="experience-journey-card__video"
+                src={downloadVideo}
+                autoPlay
+                muted
+                loop
+                playsInline
+                onLoadedData={() => ScrollTrigger.refresh()}
+                aria-label={card.brand}
+              />
+            ) : card.type === 'stack' ? (
+              <>
+                <h3 className="experience-journey-card__stack-title">{card.brand}</h3>
+                <div className="experience-journey-card__stack-marquee" aria-label="My tech stack">
+                  {[0, 1].map((row) => (
+                    <ul className="experience-journey-card__stack-track" key={row} aria-hidden={row === 1}>
+                      {[...techStackItems, ...techStackItems].map((item, index) => (
+                        <li className="experience-journey-card__stack-item" key={`${row}-${item.name}-${index}`}>
+                          <Icon icon={item.icon} aria-hidden="true" />
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
                 </div>
               </>
             ) : card.type === 'social' ? (
