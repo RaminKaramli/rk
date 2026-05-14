@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef } from 'react'
-import { gsap, ScrollTrigger } from '../../lib/gsap'
+import { gsap } from '../../lib/gsap'
 
 const experienceCards = [
   {
@@ -60,11 +60,10 @@ const experienceCards = [
     href: 'https://www.instagram.com/karamliramin/',
   },
   {
-    type: 'role',
-    className: 'experience-journey-card--dark experience-journey-card--span-10 experience-journey-card--short',
-    brand: 'MERCOR',
-    role: 'Product/UX Design Expert',
-    date: "Jan '26 - Present",
+    type: 'github',
+    className: 'experience-journey-card--github experience-journey-card--span-10 experience-journey-card--short',
+    brand: 'GitHub',
+    href: 'https://github.com/RaminKaramli?tab=overview&from=2026-05-01&to=2026-05-14',
   },
   {
     type: 'resume',
@@ -72,6 +71,19 @@ const experienceCards = [
     brand: 'Resume',
   },
 ]
+
+const contributionLevels = [
+  [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 2, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1, 0, 1, 1, 1, 2, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 1, 0, 1, 0, 2, 1, 3, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1, 1, 1, 1, 4, 4, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 1, 0, 1, 1, 3, 2, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 1, 0, 0, 1, 0, 1, 3, 1, 2, 2, 2, 0, 1, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 2, 0, 1, 1, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+].flat()
+
+const contributionMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const contributionDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 function LineMdLinkedin(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -90,16 +102,10 @@ function LineMdInstagram(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" {...props}>
       <g fill="none" stroke="#000000" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
-        <path strokeDasharray={66} d="M16 3c2.76 0 5 2.24 5 5v8c0 2.76 -2.24 5 -5 5h-8c-2.76 0 -5 -2.24 -5 -5v-8c0 -2.76 2.24 -5 5 -5h4Z">
-          <animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="66;0"></animate>
-        </path>
-        <path strokeDasharray={28} strokeDashoffset={28} d="M12 8c2.21 0 4 1.79 4 4c0 2.21 -1.79 4 -4 4c-2.21 0 -4 -1.79 -4 -4c0 -2.21 1.79 -4 4 -4">
-          <animate fill="freeze" attributeName="stroke-dashoffset" begin="0.7s" dur="0.6s" to={0}></animate>
-        </path>
+        <path className="instagram-frame" strokeDasharray={66} strokeDashoffset={66} d="M16 3c2.76 0 5 2.24 5 5v8c0 2.76 -2.24 5 -5 5h-8c-2.76 0 -5 -2.24 -5 -5v-8c0 -2.76 2.24 -5 5 -5h4Z" />
+        <path className="instagram-lens" strokeDasharray={28} strokeDashoffset={28} d="M12 8c2.21 0 4 1.79 4 4c0 2.21 -1.79 4 -4 4c-2.21 0 -4 -1.79 -4 -4c0 -2.21 1.79 -4 4 -4" />
       </g>
-      <circle cx={17} cy={7} r={1.5} fill="#000000" opacity={0}>
-        <animate fill="freeze" attributeName="opacity" begin="1.3s" dur="0.2s" to={1}></animate>
-      </circle>
+      <circle className="instagram-dot" cx={17} cy={7} r={1.5} fill="#000000" opacity={0} />
     </svg>
   )
 }
@@ -109,7 +115,6 @@ export default function ExperienceJourney() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // LinkedIn Animation
       const linkedinCard = containerRef.current?.querySelector('.experience-journey-card--linkedin')
       if (linkedinCard) {
         const circle = linkedinCard.querySelector('.linkedin-circle')
@@ -119,6 +124,11 @@ export default function ExperienceJourney() {
           linkedinCard.querySelector('.linkedin-path-3')
         ]
 
+        gsap.set(circle, { opacity: 0 })
+        gsap.set(paths[0], { strokeDashoffset: 12 })
+        gsap.set(paths[1], { strokeDashoffset: 12 })
+        gsap.set(paths[2], { strokeDashoffset: 24 })
+
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: linkedinCard,
@@ -127,9 +137,55 @@ export default function ExperienceJourney() {
           }
         })
 
-        tl.to(circle, { opacity: 1, duration: 0.4 })
+        tl.to(circle, { opacity: 1, duration: 0.22 })
         paths.forEach((path) => {
-          tl.to(path, { strokeDashoffset: 0, duration: 0.4 }, '+=0.1')
+          tl.to(path, { strokeDashoffset: 0, duration: 0.32, ease: 'none' }, '+=0.06')
+        })
+      }
+
+      const instagramCard = containerRef.current?.querySelector('.experience-journey-card--instagram')
+      if (instagramCard) {
+        const frame = instagramCard.querySelector('.instagram-frame')
+        const lens = instagramCard.querySelector('.instagram-lens')
+        const dot = instagramCard.querySelector('.instagram-dot')
+
+        gsap.set(frame, { strokeDashoffset: 66 })
+        gsap.set(lens, { strokeDashoffset: 28 })
+        gsap.set(dot, { opacity: 0 })
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: instagramCard,
+            start: 'top 85%',
+            toggleActions: 'restart none none none',
+          }
+        })
+
+        tl.to(frame, { strokeDashoffset: 0, duration: 0.4, ease: 'none' })
+          .to(lens, { strokeDashoffset: 0, duration: 0.4, ease: 'none' }, '+=0.06')
+          .to(dot, { opacity: 1, duration: 0.16 }, '+=0.06')
+      }
+
+      const githubCard = containerRef.current?.querySelector('.experience-journey-card--github')
+      if (githubCard) {
+        const cells = githubCard.querySelectorAll('.squares li')
+
+        gsap.set(cells, { opacity: 0.28, scale: 0.72 })
+        gsap.to(cells, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.32,
+          ease: 'power2.out',
+          stagger: {
+            amount: 1.15,
+            grid: [7, 53],
+            from: 'start',
+          },
+          scrollTrigger: {
+            trigger: githubCard,
+            start: 'top 85%',
+            toggleActions: 'restart none none none',
+          },
         })
       }
     }, containerRef)
@@ -163,6 +219,36 @@ export default function ExperienceJourney() {
               <a className="experience-journey-card__resume" href="/?page=about">
                 <span aria-hidden="true">▤</span>
                 Resume -&gt;
+              </a>
+            ) : card.type === 'github' ? (
+              <a className="experience-journey-card__github" href={card.href} target="_blank" rel="noopener noreferrer">
+                <div className="graph">
+                  <ul className="months">
+                    {contributionMonths.map((month) => (
+                      <li key={month}>{month}</li>
+                    ))}
+                  </ul>
+                  <ul className="days">
+                    {contributionDays.map((day) => (
+                      <li key={day}>{day}</li>
+                    ))}
+                  </ul>
+                  <ul className="squares" aria-label="GitHub contributions in 2026">
+                    {contributionLevels.map((level, index) => (
+                      <li data-level={level} key={index} />
+                    ))}
+                  </ul>
+                  <div className="contribution-footer">
+                    <span>Learn how we count contributions</span>
+                    <div className="contribution-legend" aria-hidden="true">
+                      <span>Less</span>
+                      {[0, 1, 2, 3, 4].map((level) => (
+                        <i data-level={level} key={level} />
+                      ))}
+                      <span>More</span>
+                    </div>
+                  </div>
+                </div>
               </a>
             ) : (
               <>

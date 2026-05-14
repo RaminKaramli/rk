@@ -40,6 +40,14 @@
   color: #ffffff;
 }
 
+.experience-journey-card--github {
+  background: #ffffff;
+  border: 1px solid #e1e4e8;
+  color: #24292f;
+  min-height: clamp(12rem, 14vw, 14rem);
+  padding: 0;
+}
+
 .experience-journey-card--quote {
   background: #f5f5f5;
   border: 1px solid #e5e5e5;
@@ -223,6 +231,124 @@
   right: 1.25rem;
   text-align: right;
 }
+
+.experience-journey-card__github {
+  color: inherit;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.experience-journey-card--github .graph {
+  --square-gap: clamp(0.18rem, 0.28vw, 0.28rem);
+
+  border: 0;
+  display: grid;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: clamp(0.75rem, 1vw, 1.05rem);
+  grid-column-gap: clamp(0.7rem, 1vw, 1rem);
+  grid-row-gap: clamp(0.55rem, 0.8vw, 0.8rem);
+  grid-template-areas:
+    "empty months"
+    "days squares"
+    "footer footer";
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto 1fr;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  padding: clamp(1rem, 1.5vw, 1.35rem);
+}
+
+.experience-journey-card--github .months {
+  display: grid;
+  grid-area: months;
+  grid-template-columns: repeat(12, 1fr);
+  min-width: 0;
+}
+
+.experience-journey-card--github .days,
+.experience-journey-card--github .squares {
+  display: grid;
+  grid-gap: var(--square-gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.experience-journey-card--github .days {
+  grid-area: days;
+  grid-template-rows: repeat(7, 1fr);
+}
+
+.experience-journey-card--github .days li:nth-child(odd) {
+  visibility: hidden;
+}
+
+.experience-journey-card--github .squares {
+  grid-area: squares;
+  grid-template-columns: repeat(53, minmax(0, 1fr));
+  grid-template-rows: repeat(7, minmax(0, 1fr));
+  min-height: clamp(6.25rem, 7vw, 7.5rem);
+  min-width: 0;
+}
+
+.experience-journey-card--github .months {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.experience-journey-card--github .months li,
+.experience-journey-card--github .days li {
+  color: #24292f;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.experience-journey-card--github .squares li {
+  aspect-ratio: 1;
+  background-color: #ebedf0;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(27, 31, 35, 0.06);
+  min-width: 0;
+}
+
+.experience-journey-card--github .squares li[data-level="1"] { background-color: #ACEEBB; }
+.experience-journey-card--github .squares li[data-level="2"] { background-color: #4AC26B; }
+.experience-journey-card--github .squares li[data-level="3"] { background-color: #2DA44E; }
+.experience-journey-card--github .squares li[data-level="4"] { background-color: #116329; }
+
+.experience-journey-card--github .contribution-footer {
+  align-items: center;
+  color: #586069;
+  display: flex;
+  font-size: clamp(0.8rem, 1.05vw, 1.05rem);
+  grid-area: footer;
+  justify-content: space-between;
+  line-height: 1;
+}
+
+.experience-journey-card--github .contribution-legend {
+  align-items: center;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.experience-journey-card--github .contribution-legend i {
+  aspect-ratio: 1;
+  background: #ebedf0;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 1px rgba(27, 31, 35, 0.06);
+  display: block;
+  width: clamp(0.75rem, 1vw, 1rem);
+}
+
+.experience-journey-card--github .contribution-legend i[data-level="1"] { background-color: #ACEEBB; }
+.experience-journey-card--github .contribution-legend i[data-level="2"] { background-color: #4AC26B; }
+.experience-journey-card--github .contribution-legend i[data-level="3"] { background-color: #2DA44E; }
+.experience-journey-card--github .contribution-legend i[data-level="4"] { background-color: #116329; }
 
 body.theme-dark {
   .experience-journey {
