@@ -104,7 +104,11 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
       window.history.pushState({ skipPreloader: true }, '', `${nextRoute}${nextUrl.hash}`)
       window.dispatchEvent(new Event('popstate'))
       window.dispatchEvent(new Event('hashchange'))
-      syncLocationScroll(nextUrl.hash)
+      if (nextUrl.hash) {
+        syncLocationScroll(nextUrl.hash)
+      } else {
+        window.scrollTo(0, 0)
+      }
       return
     }
 

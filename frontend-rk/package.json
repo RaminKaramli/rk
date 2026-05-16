@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@iconify-react/akar-icons": "^1.0.2",
+    "@iconify-react/flowbite": "^1.0.2",
     "@iconify-react/pepicons-pop": "^1.0.2",
     "@iconify/react": "^6.0.2",
     "bootstrap": "^5.3.8",

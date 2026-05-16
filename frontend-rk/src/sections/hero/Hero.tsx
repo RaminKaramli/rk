@@ -30,36 +30,22 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
     }
 
     const textFadeTargets = [topCopy, bottomCopy];
-    const instantTargets = [figure, name];
     const skillPillTargets = Array.from(skillPills.querySelectorAll("p"));
 
-
     if (showPreloader) {
-      gsap.killTweensOf([...textFadeTargets, ...instantTargets, ...skillPillTargets]);
-      gsap.set(textFadeTargets, {
-        opacity: 0,
-      });
-      gsap.set(instantTargets, {
-        opacity: 1,
-      });
-      gsap.set(skillPillTargets, {
-        opacity: 0,
-        x: -20,
-      });
+      gsap.killTweensOf([...textFadeTargets, figure, ...skillPillTargets]);
+      gsap.set([name], { opacity: 1 });
+      gsap.set(textFadeTargets, { opacity: 0 });
+      gsap.set(figure, { opacity: 0 });
+      gsap.set(skillPillTargets, { opacity: 0, x: -20 });
       return;
     }
-    gsap.killTweensOf([...textFadeTargets, ...instantTargets, ...skillPillTargets]);
-    gsap.set(instantTargets, {
-      opacity: 1,
-    });
-    gsap.set(textFadeTargets, {
-      opacity: 0,
-    });
-    gsap.set(skillPillTargets, {
-      opacity: 0,
-      x: -20,
-    });
 
+    gsap.killTweensOf([...textFadeTargets, figure, ...skillPillTargets]);
+    gsap.set(name, { opacity: 1 });
+    gsap.set(figure, { opacity: 0 });
+    gsap.set(textFadeTargets, { opacity: 0 });
+    gsap.set(skillPillTargets, { opacity: 0, x: -20 });
 
     gsap
       .timeline()
@@ -69,6 +55,11 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
         duration: 0.45,
         ease: "power2.out",
       })
+      .to(figure, {
+        opacity: 1,
+        duration: 0.8,
+        ease: "power2.out",
+      }, "<")
       .to(bottomCopy, {
         opacity: 1,
         duration: 0.6,
@@ -80,8 +71,7 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
         duration: 0.7,
         ease: "power2.out",
         stagger: 0.08,
-      })
-;
+      });
   }, [showPreloader]);
 
   return (

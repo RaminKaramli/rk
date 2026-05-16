@@ -238,95 +238,98 @@ body.home-page:has(.theme-toggle[aria-pressed="true"]) {
   }
 }
 
-@media (max-width: 768px) {
-  .top-left {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
-
-@media (max-width: 480px) {
+@media (max-width: 900px) {
   #home-section.hero-section {
-    width: 100%;
-    max-width: 100%;
+    padding: 6rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 100svh;
     height: auto;
-    padding: 4.75rem 1rem 1.25rem;
-    padding-inline: 1rem;
     overflow: hidden;
   }
 
   .hero-middle {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    min-width: 0;
-    gap: 1.1rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    overflow: hidden;
+    align-items: center;
+    width: 100%;
+    gap: 2.5rem;
+    margin: auto 0;
   }
 
   .hero-name-wrap {
     width: 100%;
-    max-width: 100%;
-    min-width: 0;
-    min-height: 13.75rem;
-    overflow: hidden;
+    min-height: clamp(12rem, 35vw, 18rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 1.5rem 0;
   }
 
   .my-name {
-    width: 100%;
-    max-width: 100%;
-    font-size: clamp(4rem, 20vw, 5.25rem);
-    line-height: 0.78;
+    font-size: clamp(2.8rem, 13vw, 5rem);
+    line-height: 0.9;
+    text-align: center;
+    z-index: 3;
+    filter: grayscale(100%);
+    mix-blend-mode: difference;
   }
 
   .press-text-one,
   .press-text-two {
-    align-self: center;
     width: 100%;
-    max-width: 100%;
-    margin-left: 0;
     text-align: center;
-    font-size: clamp(0.88rem, 3.6vw, 1rem);
-    line-height: 1.35;
+    align-self: center;
+    margin: 0;
+    font-size: clamp(0.9rem, 3.8vw, 1.1rem);
+    line-height: 1.4;
   }
 
   .hero-figure {
-    right: 50%;
-    bottom: 0;
-    width: min(100%, 18rem);
-    max-width: calc(100% - 16px);
-    transform: translateX(50%);
-    overflow: hidden;
+    position: absolute;
+    left: 65%;
+    top: 20%;
+    width: min(100%, 15rem);
+    transform: translateX(-50%);
+    z-index: 2;
+    pointer-events: none;
   }
 
   .hero-figure-image {
     width: 100%;
-    max-width: 100%;
     height: auto;
-    max-height: 13rem;
+    max-height: 12rem;
+    object-fit: contain;
   }
 
   .bottom-row {
+    position: static;
     width: 100%;
-    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    overflow: hidden;
+    margin-top: 2rem;
+    gap: 1.5rem;
   }
 
   .top-left {
-    flex-flow: row wrap;
-    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 0.75rem;
   }
 
   .top-left p {
-    padding: 0.48rem 0.75rem;
-    font-size: clamp(0.72rem, 3.2vw, 0.86rem);
-    max-width: 100%;
-    white-space: normal;
+    padding: 0.5rem 1.1rem;
+    font-size: clamp(0.75rem, 3.5vw, 0.9rem);
   }
 }
 
