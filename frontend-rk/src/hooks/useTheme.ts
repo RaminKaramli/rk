@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 
 const STORAGE_KEY = 'rk-theme'
 
@@ -13,7 +13,7 @@ function readStoredTheme(): boolean {
 export function useTheme() {
   const [isDark, setIsDark] = useState(readStoredTheme)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     document.documentElement.classList.toggle('theme-dark', isDark)
     document.body.classList.toggle('theme-dark', isDark)
 

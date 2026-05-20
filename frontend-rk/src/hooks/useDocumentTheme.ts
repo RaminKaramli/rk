@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 
 function readIsDarkTheme() {
   if (typeof document === 'undefined') {
@@ -11,7 +11,7 @@ function readIsDarkTheme() {
 export function useDocumentTheme() {
   const [isDarkTheme, setIsDarkTheme] = useState(readIsDarkTheme)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const syncTheme = () => {
       setIsDarkTheme(readIsDarkTheme())
     }

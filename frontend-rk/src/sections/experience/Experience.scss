@@ -8,16 +8,19 @@
     background-color 0.4s cubic-bezier(1, 0, 0.4, 1),
     color 0.4s cubic-bezier(1, 0, 0.4, 1);
 
-  &[data-theme="dark"] {
+  &[data-theme="dark"],
+  :root.theme-dark &,
+  body.theme-dark & {
     background: #000000 !important;
     background-color: #000000 !important;
-    color: #f3f6ff;
+    color: #f3f6ff !important;
   }
 
-  &[data-theme="light"] {
+  &[data-theme="light"],
+  body:not(.theme-dark) & {
     background: #ffffff !important;
     background-color: #ffffff !important;
-    color: #000000;
+    color: #000000 !important;
   }
 
   .stack-cards-section__separator {

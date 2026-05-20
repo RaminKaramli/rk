@@ -68,18 +68,19 @@ body.home-page :is(#home-section.hero-section, .notable-works-section, .stack-ca
     box-shadow $home-theme-transition !important;
 }
 
-body.home-page:has(.theme-toggle[aria-pressed="true"]) :is(#home-section.hero-section, .notable-works-section, .stack-cards-section) {
+body.home-page.theme-dark :is(#home-section.hero-section, .notable-works-section, .stack-cards-section) {
   background: #000000 !important;
   background-color: #000000 !important;
   color: #f3f6ff !important;
 }
 
-body.home-page:has(.theme-toggle[aria-pressed="false"]) :is(#home-section.hero-section, .notable-works-section, .stack-cards-section) {
+body.home-page:not(.theme-dark) :is(#home-section.hero-section, .notable-works-section, .stack-cards-section) {
   background: #ffffff !important;
   background-color: #ffffff !important;
 }
 
-body.home-page:has(.theme-toggle[aria-pressed="true"]) {
+body.home-page.theme-dark {
+
   .press-text-one,
   .press-text-two,
   .my-name,
@@ -336,5 +337,67 @@ body.home-page:has(.theme-toggle[aria-pressed="true"]) {
 @media (max-width: 390px) {
   .my-name {
     font-size: clamp(3.3rem, 18vw, 4.5rem);
+  }
+}
+
+// Draggable Items Styling
+.draggable {
+  position: absolute;
+  width: 18vw;
+  max-width: 100px;
+  min-width: 60px;
+  height: auto;
+  margin: 0 !important;
+  cursor: grab;
+  z-index: 5;
+  will-change: transform, left, top;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+  transition: transform 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.25s ease;
+
+  &:hover {
+    transform: scale(1.05) rotate(1.5deg);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+  }
+
+  &:active {
+    cursor: grabbing;
+    transform: scale(1.02);
+  }
+}
+
+.seri-muka {
+  width: 20vw;
+  max-width: 110px;
+}
+
+.kuih-pelita {
+  width: 24vw;
+  max-width: 130px;
+}
+
+// Dark theme dropshadow
+#home-section.hero-section[data-theme="dark"] .draggable {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+
+  &:hover {
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.7));
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .draggable {
+    width: 10vw;
+    max-width: 130px;
+    min-width: 80px;
+  }
+
+  .seri-muka {
+    width: 11vw;
+    max-width: 140px;
+  }
+
+  .kuih-pelita {
+    width: 13vw;
+    max-width: 160px;
   }
 }

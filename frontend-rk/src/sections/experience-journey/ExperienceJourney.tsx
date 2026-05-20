@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import { Icon } from '@iconify/react'
 import { ScrollTrigger, gsap } from '../../lib/gsap'
+import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 import downloadVideo from '../../assets/videos/download.mp4'
 
 interface ExperienceCard {
@@ -220,16 +221,17 @@ function LineMdLinkedin(props: React.SVGProps<SVGSVGElement>) {
 function LineMdInstagram(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" {...props}>
-      <g fill="none" stroke="#000000" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+      <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
         <path className="instagram-frame" strokeDasharray={66} strokeDashoffset={66} d="M16 3c2.76 0 5 2.24 5 5v8c0 2.76 -2.24 5 -5 5h-8c-2.76 0 -5 -2.24 -5 -5v-8c0 -2.76 2.24 -5 5 -5h4Z" />
         <path className="instagram-lens" strokeDasharray={28} strokeDashoffset={28} d="M12 8c2.21 0 4 1.79 4 4c0 2.21 -1.79 4 -4 4c-2.21 0 -4 -1.79 -4 -4c0 -2.21 1.79 -4 4 -4" />
       </g>
-      <circle className="instagram-dot" cx={17} cy={7} r={1.5} fill="#000000" opacity={0} />
+      <circle className="instagram-dot" cx={17} cy={7} r={1.5} fill="currentColor" opacity={0} />
     </svg>
   )
 }
 
 export default function ExperienceJourney() {
+  const isDark = useDocumentTheme()
   const containerRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
@@ -333,7 +335,12 @@ export default function ExperienceJourney() {
   }, [])
 
   return (
-    <section className="experience-journey" aria-label="Experience" ref={containerRef}>
+    <section
+      className="experience-journey"
+      aria-label="Experience"
+      data-theme={isDark ? 'dark' : 'light'}
+      ref={containerRef}
+    >
       <div className="experience-journey__grid">
         {experienceCards.map((card, cardIndex) => (
           <article className={`experience-journey-card ${card.className}`} key={`${card.type}-${card.brand || cardIndex}`}>
