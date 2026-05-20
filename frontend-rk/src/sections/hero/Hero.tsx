@@ -3,35 +3,40 @@ import { gsap, Draggable } from "../../lib/gsap";
 
 import { useDocumentTheme } from "../../hooks/useDocumentTheme";
 import { media, siteContent } from "../../utils/constants";
+import mymacbookImg from "../../assets/images/mymacbook.png";
+import mycanonImg from "../../assets/images/mycanon.png";
+import mycanonPowerSha3400Img from "../../assets/images/mycanonPowerSha3400.png";
+import mycoclearimplantImg from "../../assets/images/mycoclearimplant.png";
+import myconverseblueImg from "../../assets/images/myconverseblue.png";
 
 const DRAGGABLE_ITEMS = [
   {
     id: "kuih-lenggang",
-    src: "https://melissamyra.netlify.app/images/art/kuih/2847e9ed1e16ca37539d66bd5b136496.png",
+    src: mymacbookImg,
     alt: "kuih lenggang",
     className: "",
   },
   {
     id: "kuih-pelita",
-    src: "https://melissamyra.netlify.app/images/art/kuih/42d806764b8f3aed4e8b6effe218234f.png",
+    src: mycanonPowerSha3400Img,
     alt: "kuih pelita",
     className: "kuih-pelita",
   },
   {
     id: "kuih-lapis",
-    src: "https://melissamyra.netlify.app/images/art/kuih/3eb0b0fbb172e4826ab5f4a6b637eea1.png",
+    src: mycoclearimplantImg,
     alt: "kuih lapis",
-    className: "",
+    className: "kuih-lapis",
   },
   {
     id: "seri-muka",
-    src: "https://melissamyra.netlify.app/images/art/kuih/637685182_18561253564003177_7740901512932247500_n.png",
+    src: myconverseblueImg,
     alt: "kuih seri muka",
     className: "seri-muka",
   },
   {
     id: "pulut-serunding",
-    src: "https://melissamyra.netlify.app/images/art/kuih/624683556_18407777155124871_3537251271439078615_n.png",
+    src: mycanonImg,
     alt: "pulut serunding",
     className: "",
   },

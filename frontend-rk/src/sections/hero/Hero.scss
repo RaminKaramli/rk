@@ -371,8 +371,14 @@ body.home-page.theme-dark {
 }
 
 .kuih-pelita {
-  width: 24vw;
-  max-width: 130px;
+  width: 18vw;
+  max-width: 100px;
+}
+
+.kuih-lapis {
+  width: 10vw;
+  max-width: 55px;
+  min-width: 35px;
 }
 
 // Dark theme dropshadow
@@ -397,7 +403,13 @@ body.home-page.theme-dark {
   }
 
   .kuih-pelita {
-    width: 13vw;
-    max-width: 160px;
+    width: 10vw;
+    max-width: 120px;
+  }
+
+  .kuih-lapis {
+    width: 7vw;
+    max-width: 75px;
+    min-width: 50px;
   }
 }
