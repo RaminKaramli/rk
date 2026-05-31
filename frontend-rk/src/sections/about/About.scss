@@ -1,9 +1,19 @@
-.about-showcase {}
+.about-showcase {
+  position: relative;
+  left: 50%;
+  right: 50%;
+  width: 100dvw;
+  max-width: none;
+  margin: 0 -50dvw;
+  padding: 0;
+  overflow: hidden;
+}
 
 .about-showcase__container {
   position: relative;
   height: clamp(31rem, 39vw, 35rem);
   width: 100%;
+  max-width: 100%;
   overflow: hidden;
   background-color: color-mix(in srgb, var(--c-glass) 10%, transparent);
   -webkit-backdrop-filter: blur(10px) saturate(var(--saturation));
@@ -55,7 +65,7 @@
 
 .about-showcase__foreground-frame {
   position: relative;
-  width: min(52vw, 100%);
+  width: 100%;
   height: 100%;
   overflow: hidden;
 }
@@ -147,10 +157,6 @@ body.theme-dark .about-showcase__container {
     padding: 0 2.2rem 1.9rem;
   }
 
-  .about-showcase__foreground-frame {
-    width: min(55vw, 41rem);
-  }
-
   .about-showcase__right {
     width: min(50%, 42rem);
   }
@@ -158,15 +164,11 @@ body.theme-dark .about-showcase__container {
 
 @media (max-width: 992px) {
   .about-showcase {
-    padding-top: 1.25rem;
+    padding: 0;
   }
 
   .about-showcase__container {
     height: clamp(33rem, 62vw, 40rem);
-  }
-
-  .about-showcase__foreground-frame {
-    width: min(68vw, 34rem);
   }
 
   .about-showcase__content {
@@ -190,10 +192,6 @@ body.theme-dark .about-showcase__container {
 @media (max-width: 768px) {
   .about-showcase__container {
     height: clamp(35rem, 120vw, 43rem);
-  }
-
-  .about-showcase__foreground-frame {
-    width: min(92vw, 28rem);
   }
 
   .about-showcase__overlay {
@@ -242,7 +240,7 @@ body.theme-dark .about-showcase__container {
   }
 
   .about-showcase {
-    padding: 1rem 1rem 0;
+    padding: 0;
     overflow-x: hidden;
   }
 

@@ -1,21 +1,30 @@
 .about-page {
   background: transparent;
+  overflow-x: hidden;
 }
 
 .about-cover-scroll {
   position: relative;
   isolation: isolate;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .about-cover-scroll__sticky {
   position: relative;
   top: auto;
   z-index: 1;
+  width: 100%;
+  max-width: 100%;
 }
 
 .about-cover-scroll__cover {
   position: relative;
   z-index: 2;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .about-hero-section {
