@@ -5,7 +5,6 @@ import AboutLoopGallerySection from '../../sections/about-loop-gallery/AboutLoop
 import SkillsSection from '../../sections/skills/Skills'
 import ProjectsSection from '../../sections/projects/Projects'
 import Container from '../../components/layout/container/Container'
-import ToolMarquee from '../../sections/tool-marquee/ToolMarquee'
 
 export default function AboutPage() {
   return (
@@ -19,7 +18,6 @@ export default function AboutPage() {
         </div>
       </div>
       <AboutExperienceSection />
-      <ToolMarquee />
       <ProjectsSection />
       <SkillsSection />
       <AboutLoopGallerySection />

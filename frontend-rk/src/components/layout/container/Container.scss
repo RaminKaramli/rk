@@ -73,7 +73,7 @@
   isolation: isolate;
 }
 
-body.is-preloading .site-header,
+body.is-preloading .side-header,
 body.is-preloading .theme-toggle--floating {
   opacity: 0;
   visibility: hidden;
@@ -95,7 +95,7 @@ html.skip-preloader .main-content {
   opacity: 1;
 }
 
-html.skip-preloader body.is-preloading .site-header,
+html.skip-preloader body.is-preloading .side-header,
 html.skip-preloader body.is-preloading .theme-toggle--floating {
   opacity: 1;
   visibility: visible;

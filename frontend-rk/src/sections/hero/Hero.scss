@@ -239,7 +239,7 @@ body.home-page.theme-dark {
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 901px) {
   #home-section.hero-section {
     padding: 6rem 1.5rem 2rem;
     display: flex;
@@ -274,7 +274,7 @@ body.home-page.theme-dark {
   }
 
   .my-name {
-    font-size: clamp(2.8rem, 13vw, 5rem);
+    font-size: clamp(0.5rem, 13vw, 5rem);
     line-height: 0.9;
     text-align: center;
     z-index: 3;
@@ -285,11 +285,18 @@ body.home-page.theme-dark {
   .press-text-one,
   .press-text-two {
     width: 100%;
-    text-align: center;
-    align-self: center;
     margin: 0;
-    font-size: clamp(0.9rem, 3.8vw, 1.1rem);
     line-height: 1.4;
+  }
+
+  .press-text-one {
+    align-self: flex-start;
+    text-align: left;
+  }
+
+  .press-text-two {
+    align-self: flex-end;
+    text-align: right;
   }
 
   .hero-figure {
@@ -314,7 +321,7 @@ body.home-page.theme-dark {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     margin-top: 2rem;
     gap: 1.5rem;
@@ -323,8 +330,8 @@ body.home-page.theme-dark {
   .top-left {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
     gap: 0.75rem;
   }
 
@@ -334,9 +341,74 @@ body.home-page.theme-dark {
   }
 }
 
-@media (max-width: 390px) {
-  .my-name {
-    font-size: clamp(3.3rem, 18vw, 4.5rem);
+@media (max-width: 480px) {
+  #home-section.hero-section {
+    padding: 3rem 1.25rem 1.5rem;
+  }
+
+  .hero-middle {
+    gap: 1.5rem;
+  }
+
+  .press-text-one,
+  .press-text-two {
+    position: relative;
+    z-index: 8;
+  }
+
+  .hero-name-wrap {
+    min-height: clamp(16rem, 70vw, 20rem);
+    margin: 0.75rem 0;
+  }
+
+  .hero-figure {
+    width: min(72vw, 16rem);
+    left: 58%;
+    top: 28%;
+    z-index: 2;
+  }
+
+  .draggable {
+    width: 16vw !important;
+    min-width: 2.75rem !important;
+    max-width: 4.75rem !important;
+    z-index: 1 !important;
+  }
+
+  .seri-muka {
+    width: 18vw !important;
+    max-width: 5.25rem !important;
+  }
+
+  .kuih-pelita {
+    width: 16vw !important;
+    max-width: 4.75rem !important;
+  }
+
+  .kuih-lapis {
+    width: 10vw !important;
+    min-width: 2rem !important;
+    max-width: 3.5rem !important;
+  }
+
+  .bottom-row {
+    margin-top: 1.25rem;
+  }
+
+  .top-left {
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .top-left p {
+    width: fit-content;
+    min-width: 0;
+    padding: 0.45rem 0.75rem;
+    font-size: clamp(0.68rem, 3.5vw, 0.82rem);
   }
 }
 

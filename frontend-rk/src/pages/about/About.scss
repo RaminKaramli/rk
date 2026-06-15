@@ -8,15 +8,16 @@
   isolation: isolate;
   width: 100%;
   max-width: 100%;
-  overflow-x: hidden;
+  overflow: visible;
 }
 
 .about-cover-scroll__sticky {
-  position: relative;
-  top: auto;
+  position: sticky;
+  top: 0;
   z-index: 1;
   width: 100%;
   max-width: 100%;
+  overflow: clip;
 }
 
 .about-cover-scroll__cover {
@@ -24,7 +25,9 @@
   z-index: 2;
   width: 100%;
   max-width: 100%;
+  min-height: 100svh;
   overflow-x: hidden;
+  background: #ffffff;
 }
 
 .about-hero-section {

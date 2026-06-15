@@ -11,7 +11,7 @@
 
 .about-showcase__container {
   position: relative;
-  height: clamp(31rem, 39vw, 35rem);
+  height: clamp(35rem, 43vw, 39rem);
   width: 100%;
   max-width: 100%;
   overflow: hidden;
@@ -150,7 +150,7 @@ body.theme-dark .about-showcase__container {
 
 @media (max-width: 1200px) {
   .about-showcase__container {
-    height: clamp(29rem, 42vw, 33.5rem);
+    height: clamp(33rem, 46vw, 37.5rem);
   }
 
   .about-showcase__content {

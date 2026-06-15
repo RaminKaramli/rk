@@ -158,26 +158,26 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
 
   const handleNavigationClick =
     (href: string, label: string, closeMenu = false) => (event: ReactMouseEvent<HTMLAnchorElement>) => {
-    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
-      return
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return
+      }
+
+      const nextUrl = new URL(href, window.location.origin)
+
+      if (nextUrl.origin !== window.location.origin) {
+        return
+      }
+
+      event.preventDefault()
+      navigateAfterScribble(href, label, event.currentTarget, closeMenu)
     }
-
-    const nextUrl = new URL(href, window.location.origin)
-
-    if (nextUrl.origin !== window.location.origin) {
-      return
-    }
-
-    event.preventDefault()
-    navigateAfterScribble(href, label, event.currentTarget, closeMenu)
-  }
 
   const handleInlineNavigationClick =
     (href: string, label: string) => (event: ReactMouseEvent<HTMLLabelElement>) => {
       event.preventDefault()
       event.stopPropagation()
       navigateAfterScribble(href, label, event.currentTarget)
-  }
+    }
 
   useEffect(() => {
     document.body.classList.toggle('overlay-active', menuOpen)
@@ -198,13 +198,13 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
       const diff = currentScrollY - lastScrollY
 
       if (currentScrollY < 80) {
-        header.classList.remove('site-header--hidden')
+        header.classList.remove('side-header--hidden')
       } else if (diff > 0) {
         // Scrolling down — HIDE
-        header.classList.add('site-header--hidden')
+        header.classList.add('side-header--hidden')
       } else if (diff < 0) {
         // Scrolling up — SHOW
-        header.classList.remove('site-header--hidden')
+        header.classList.remove('side-header--hidden')
       }
 
       lastScrollY = currentScrollY
@@ -547,8 +547,8 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     <>
       <header
         ref={headerRef}
-        className={`site-header${sectionTwoActive ? ' site-header--section2-left' : ''}${menuOpen ? ' is-open' : ''}`}
-        id="siteHeader"
+        className={`side-header${sectionTwoActive ? ' side-header--section2-left' : ''}${menuOpen ? ' is-open' : ''}`}
+        id="sideHeader"
       >
         <div className="header-wrapper">
           <a href="/" className="header-logo" aria-label="Ramin avatar">
@@ -573,7 +573,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
                   className="switcher__input"
                   c-option={String(index + 1)}
                   name="header-switcher"
-                  onChange={() => {}}
+                  onChange={() => { }}
                   type="radio"
                   value={link.label}
                 />
@@ -610,6 +610,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
             </svg>
           </button>
         </div>
+
       </header>
 
       <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
