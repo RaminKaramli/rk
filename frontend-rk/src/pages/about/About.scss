@@ -25,7 +25,7 @@
   z-index: 2;
   width: 100%;
   max-width: 100%;
-  min-height: 100svh;
+  min-height: 100%;
   overflow-x: hidden;
   background: #ffffff;
 }
@@ -683,6 +683,29 @@ body.about-page:has(.theme-toggle[aria-pressed="true"]) :is(
 }
 
 @media (max-width: 480px) {
+  html:has(body.about-page),
+  body.about-page,
+  body.about-page #wrapper {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  body.about-page .main-content {
+    background: #04060c;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .about-cover-scroll {
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .about-cover-scroll__sticky {
+    height: 100%;
+    min-height: 100%;
+  }
+
   .about-cover-scroll,
   .about-cover-scroll__sticky,
   .about-cover-scroll__cover,

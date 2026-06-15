@@ -319,9 +319,7 @@ body.ui-on-dark-surface:not(.theme-dark) .side-header.is-open .ham .line {
   background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
   -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
   backdrop-filter: blur(8px) saturate(var(--saturation));
-  box-shadow:
-    0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
-    0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+  box-shadow: none;
   transition:
     left 0.46s cubic-bezier(0.22, 1, 0.36, 1),
     right 0.46s cubic-bezier(0.22, 1, 0.36, 1),
@@ -626,9 +624,7 @@ body.theme-dark .overlay-nav-list a:hover {
     background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
     -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
     backdrop-filter: blur(8px) saturate(var(--saturation));
-    box-shadow:
-      0 1px 5px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 10%), transparent),
-      0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark) * 8%), transparent);
+    box-shadow: none;
     transform: none;
   }
 
