@@ -14,7 +14,7 @@ export const media = {
 
 export const siteContent = {
   aboutLead:
-    'I have a hearing impairment and use a hearing aid. My goal is to grow professionally, gain experience, and improve my skills in the field of technology. I have experience with HTML, CSS, JavaScript, TypeScript, React.js, Figma, and Git. I am open to learning, responsible, and work well in a team. My aim is to build a professional career in Front-end Development and UI/UX Design.',
+    'I have a hearing impairment and use a hearing aid. My goal is to grow professionally, gain experience, and improve my skills in the field of technology. I have experience with HTML, CSS, JavaScript, TypeScript, React.js, Figma, and Git. I am open to learning, responsible, and work well in a team. My aim is to build a professional career in Frontend Development and UI/UX Design.',
   contactEmail: 'raminkaramli93@gmail.com',
   footerMeta: '© 2026 Ramin Karamli. All rights reserved.',
   heroBottomCopy: 'I build websites using HTML, CSS, JavaScript, TypeScript, and React.js',

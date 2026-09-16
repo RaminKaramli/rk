@@ -182,6 +182,13 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
   useEffect(() => {
     document.body.classList.toggle('overlay-active', menuOpen)
 
+    if (menuOpen) {
+      headerRef.current?.classList.remove('side-header--hidden')
+      if (menuRef.current) {
+        menuRef.current.scrollTop = 0
+      }
+    }
+
     return () => {
       document.body.classList.remove('overlay-active')
     }
@@ -194,6 +201,11 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     let lastScrollY = window.scrollY
 
     const onScroll = () => {
+      if (menuOpen) {
+        setMenuOpen(false)
+        return
+      }
+
       const currentScrollY = window.scrollY
       const diff = currentScrollY - lastScrollY
 
@@ -212,7 +224,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
 
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  }, [menuOpen])
 
   useEffect(() => {
     const syncLocationState = () => {

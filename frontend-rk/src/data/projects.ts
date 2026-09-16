@@ -29,14 +29,7 @@ export const stackCards: StackCard[] = [
 
 export const notableStats: NotableStatConfig[] = [
   { kind: 'static', label: '+Projects', minDigits: 1, target: 2 },
-  {
-    kind: 'monthsSince',
-    monthLabel: '+Months',
-    monthMinDigits: 1,
-    startDate: '2026-02-09',
-    yearLabel: '+Years',
-    yearMinDigits: 1,
-  },
+  { kind: 'static', label: '+Months', minDigits: 1, target: 2 },
   { kind: 'static', label: '+Clients', minDigits: 1, target: 5 },
 ]
 

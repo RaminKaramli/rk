@@ -1,17 +1,17 @@
 .about-showcase {
   position: relative;
-  left: 50%;
-  right: 50%;
-  width: 100dvw;
-  max-width: none;
-  margin: 0 -50dvw;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   padding: 0;
   overflow: hidden;
 }
 
 .about-showcase__container {
   position: relative;
-  height: clamp(35rem, 43vw, 39rem);
+  height: 90vh;
+  height: 90dvh;
+  min-height: 34rem;
   width: 100%;
   max-width: 100%;
   overflow: hidden;
@@ -93,7 +93,7 @@
   align-items: flex-end;
   justify-content: space-between;
   gap: 2.5rem;
-  padding: 0 2.75rem 2rem;
+  padding: 0 2.75rem clamp(3.5rem, 6vh, 5rem);
 }
 
 .about-showcase__left {
@@ -113,7 +113,7 @@
   margin: 0;
   color: #fff;
   font-family: "Inter", sans-serif;
-  font-size: 5rem;
+  font-size: clamp(3.6rem, 5.2vw, 4.8rem);
   line-height: 0.9;
   text-shadow: 0 0.1em 0.24em rgba(0, 0, 0, 0.24);
 }
@@ -136,7 +136,7 @@
   font-family: "DM Sans", sans-serif;
   font-size: 1rem;
   font-weight: 500;
-  line-height: 1.34;
+  line-height: 1.36;
   letter-spacing: -0.03em;
 }
 
@@ -150,11 +150,13 @@ body.theme-dark .about-showcase__container {
 
 @media (max-width: 1200px) {
   .about-showcase__container {
-    height: clamp(33rem, 46vw, 37.5rem);
+    height: 90vh;
+    height: 90dvh;
+    min-height: 33rem;
   }
 
   .about-showcase__content {
-    padding: 0 2.2rem 1.9rem;
+    padding: 0 2.2rem clamp(3rem, 5.5vh, 4.5rem);
   }
 
   .about-showcase__right {
@@ -168,12 +170,14 @@ body.theme-dark .about-showcase__container {
   }
 
   .about-showcase__container {
-    height: clamp(33rem, 62vw, 40rem);
+    height: 90vh;
+    height: 90dvh;
+    min-height: 33rem;
   }
 
   .about-showcase__content {
-    padding: 0 1.75rem 1.75rem;
-    gap: 1.5rem;
+    padding: 0 1.75rem clamp(2.75rem, 5vh, 4rem);
+    gap: 1.25rem;
   }
 
   .about-showcase__left {
@@ -185,46 +189,50 @@ body.theme-dark .about-showcase__container {
   }
 
   .about-showcase__title {
-    font-size: clamp(4.2rem, 11vw, 6.8rem);
+    font-size: clamp(3.2rem, 6.2vw, 4rem);
   }
 }
 
 @media (max-width: 768px) {
   .about-showcase__container {
-    height: clamp(35rem, 120vw, 43rem);
+    height: 90vh;
+    height: 90dvh;
+    min-height: 32rem;
   }
 
   .about-showcase__overlay {
     background:
-      linear-gradient(180deg, rgba(4, 6, 12, 0.08) 0%, rgba(4, 6, 12, 0.18) 34%, rgba(4, 6, 12, 0.9) 100%),
+      linear-gradient(180deg, rgba(4, 6, 12, 0.08) 0%, rgba(4, 6, 12, 0.22) 34%, rgba(4, 6, 12, 0.92) 100%),
       linear-gradient(90deg, rgba(4, 6, 12, 0.58) 0 14%, rgba(4, 6, 12, 0.18) 28%, rgba(4, 6, 12, 0) 42%),
       linear-gradient(270deg, rgba(4, 6, 12, 0.36) 0 12%, rgba(4, 6, 12, 0.12) 26%, rgba(4, 6, 12, 0) 40%);
   }
 
   .about-showcase__content {
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: flex-start;
-    padding: 0 1.25rem 1.4rem;
+    padding: 5.5rem 1.5rem 2.5rem;
+    gap: 0.75rem;
   }
 
   .about-showcase__left,
   .about-showcase__right {
-    width: min(100%, 26rem);
+    width: min(100%, 34rem);
   }
 
   .about-showcase__year {
-    margin-bottom: 0.55rem;
-    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
   }
 
   .about-showcase__title {
-    font-size: clamp(3.5rem, 15vw, 5.8rem);
+    font-size: clamp(2.6rem, 7.5vw, 3.4rem);
+    line-height: 0.92;
   }
 
   .about-showcase__body p {
-    font-size: 1rem;
-    line-height: 1.4;
+    font-size: clamp(0.88rem, 2.2vw, 0.95rem);
+    line-height: 1.38;
   }
 }
 
@@ -240,15 +248,14 @@ body.theme-dark .about-showcase__container {
   }
 
   .about-showcase {
-    height: 100%;
-    min-height: 100%;
     padding: 0;
     overflow: hidden;
   }
 
   .about-showcase__container {
-    height: 100%;
-    min-height: 100%;
+    height: 90vh;
+    height: 90dvh;
+    min-height: 30rem;
   }
 
   .about-showcase__background,
@@ -274,15 +281,27 @@ body.theme-dark .about-showcase__container {
 
   .about-showcase__overlay {
     background:
-      linear-gradient(180deg, rgba(4, 6, 12, 0.04) 0%, rgba(4, 6, 12, 0.14) 40%, rgba(4, 6, 12, 0.82) 100%);
+      linear-gradient(180deg, rgba(4, 6, 12, 0.04) 0%, rgba(4, 6, 12, 0.16) 36%, rgba(4, 6, 12, 0.9) 100%);
   }
 
   .about-showcase__content {
-    gap: 1rem;
-    padding: 0 1rem 1.25rem;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 5rem 1.25rem 2rem;
+  }
+
+  .about-showcase__year {
+    margin-bottom: 0.2rem;
+    font-size: 1rem;
   }
 
   .about-showcase__title {
-    font-size: clamp(2.8rem, 17vw, 4.5rem);
+    font-size: clamp(2.1rem, 9.5vw, 2.85rem);
+    line-height: 0.92;
+  }
+
+  .about-showcase__body p {
+    font-size: clamp(0.8rem, 2.8vw, 0.88rem);
+    line-height: 1.34;
   }
 }

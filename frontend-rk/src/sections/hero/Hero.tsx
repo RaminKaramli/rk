@@ -140,6 +140,10 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
     // Initialize Draggable bounded to hero-name-wrap
     const draggables = Draggable.create(draggableElements, {
       bounds: nameWrap,
+      cursor:
+        "url('https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef4b_cursor-drag.svg') 12 0, auto",
+      activeCursor:
+        "url('https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb13cff138fa04d162c_cursor-dragging.svg') 12 0, text",
       onDragStart: function () {
         gsap.set(this.target, { zIndex: 10 });
       },
@@ -248,8 +252,8 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
 
       <div id="left-right-full" className="bottom-row">
         <div ref={skillPillsRef} className="top-left">
-          <p>FRONT-END DEVELOPER</p>
-          <p>UI/UX DESIGN</p>
+          <p>FRONTEND DEVELOPER</p>
+          <p>WEB DESIGNER</p>
         </div>
       </div>
     </section>

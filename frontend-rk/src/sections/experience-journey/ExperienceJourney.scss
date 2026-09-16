@@ -108,6 +108,7 @@
   background: #fcfcfc;
   border: 1px solid #e5e5e5;
   color: #1a1a1a;
+  padding: clamp(1.2rem, 1.8vw, 1.6rem) clamp(0.5rem, 1vw, 1rem);
 }
 
 .experience-journey-card__brand {
@@ -236,6 +237,23 @@
   font-style: italic;
   line-height: 1.22;
   margin: 0;
+  transition: color 0.4s cubic-bezier(1, 0, 0.4, 1);
+
+  &--statement {
+    color: #1a1a1a;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+}
+
+.experience-journey-card__description {
+  color: #71717a;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+  line-height: 1.5;
+  margin: 0;
+  margin-top: clamp(1.5rem, 2.5vw, 2.5rem);
   transition: color 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
 
@@ -534,6 +552,14 @@
 
 .experience-journey[data-theme="dark"] .experience-journey-card--quote .experience-journey-card__quote {
   color: #e5e7eb;
+
+  &--statement {
+    color: #ffffff;
+  }
+}
+
+.experience-journey[data-theme="dark"] .experience-journey-card--quote .experience-journey-card__description {
+  color: #9ca3af;
 }
 
 .experience-journey[data-theme="dark"] .experience-journey-card--quote .experience-journey-card__person > span {

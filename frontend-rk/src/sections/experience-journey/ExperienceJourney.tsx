@@ -9,6 +9,7 @@ interface ExperienceCard {
   className: string
   brand?: string
   quote?: string
+  description?: string
   name?: string
   meta?: string
   href?: string
@@ -24,19 +25,16 @@ const experienceCards: ExperienceCard[] = [
   },
   {
     type: 'quote',
-    className: 'experience-journey-card--quote experience-journey-card--span-8',
-    quote:
-      'He has a strong ability to break down complex requirements into clean, intuitive UX while keeping the broader business context in mind, which made collaboration across product and engineering smooth & efficient.',
-    name: 'Vishnu Purushotama Sanjeev',
-    meta: 'Product Operations Coordinator @Gabriel AI',
-  },
-  {
-    type: 'quote',
     className: 'experience-journey-card--quote experience-journey-card--span-6',
     quote:
-      'Ramin is a self-starter who quickly understands the task, sketches ideas early, and keeps refining them until the solution feels right.',
-    name: 'Vignesh Ravichandran',
-    meta: 'Founder @ MyClone',
+      'Building modern experiences through frontend development.',
+    description:
+      'Focused on creating clean, responsive, and user-friendly web interfaces with a passion for learning and continuous growth.',
+  },
+  {
+    type: 'resume',
+    className: 'experience-journey-card--resume experience-journey-card--span-2',
+    brand: 'Resume',
   },
   {
     type: 'social',
@@ -45,56 +43,17 @@ const experienceCards: ExperienceCard[] = [
     href: 'https://www.linkedin.com/in/karamliramin/',
   },
   {
-    type: 'role',
-    className: 'experience-journey-card--pink experience-journey-card--span-3',
-    brand: 'CNN',
-    role: 'Product Designer',
-    date: "Jan '25 - Aug '25",
-  },
-  {
     type: 'social',
     className: 'experience-journey-card--instagram experience-journey-card--span-3',
     brand: 'Instagram',
     href: 'https://www.instagram.com/karamliramin/',
   },
   {
-    type: 'quote',
-    className: 'experience-journey-card--quote experience-journey-card--span-5',
-    quote:
-      'Clear communication with stakeholders & he independently handled all deliverables, making him a reliable teammate.',
-    name: 'Manya Singh',
-    meta: 'Product Designer @Actual AI',
-  },
-  {
     type: 'stack',
-    className: 'experience-journey-card--tech-stack experience-journey-card--span-4',
+    className: 'experience-journey-card--tech-stack experience-journey-card--span-6',
     brand: 'My Tech Stack',
   },
-  {
-    type: 'github',
-    className: 'experience-journey-card--github experience-journey-card--span-10 experience-journey-card--short',
-    brand: 'GitHub',
-    href: 'https://github.com/RaminKaramli',
-  },
-  {
-    type: 'resume',
-    className: 'experience-journey-card--resume experience-journey-card--span-2 experience-journey-card--short',
-    brand: 'Resume',
-  },
 ]
-
-const contributionLevels = [
-  [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 2, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 0, 1, 1, 1, 2, 1, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 0, 1, 0, 2, 1, 3, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 1, 1, 1, 1, 4, 4, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 1, 0, 1, 1, 3, 2, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 1, 0, 1, 3, 1, 2, 2, 2, 0, 1, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 2, 0, 1, 1, 2, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-].flat()
-
-const contributionMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-const contributionDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 function CustomHtmlIcon(props: React.HTMLAttributes<HTMLElement>) {
   return (
@@ -291,24 +250,6 @@ export default function ExperienceJourney() {
         }
       }
 
-      const githubCard = containerRef.current?.querySelector('.experience-journey-card--github')
-      if (githubCard) {
-        const graph = githubCard.querySelector('.graph')
-        if (graph) {
-          gsap.set(graph, { opacity: 0 })
-          gsap.to(graph, {
-            opacity: 1,
-            duration: 0.7,
-            ease: 'power1.out',
-            scrollTrigger: {
-              trigger: githubCard,
-              once: true,
-              start: 'top 85%',
-            },
-          })
-        }
-      }
-
       const resumeCard = containerRef.current?.querySelector('.experience-journey-card--resume')
       if (resumeCard) {
         const resumeIcon = resumeCard.querySelector('.experience-journey-card__resume-icon')
@@ -346,14 +287,20 @@ export default function ExperienceJourney() {
           <article className={`experience-journey-card ${card.className}`} key={`${card.type}-${card.brand || cardIndex}`}>
             {card.type === 'quote' ? (
               <>
-                <p className="experience-journey-card__quote">"{card.quote}"</p>
-                <div className="experience-journey-card__person">
-                  <span aria-hidden="true">{card.name ? card.name.charAt(0) : '?'}</span>
-                  <div>
-                    <strong>{card.name}</strong>
-                    <small>{card.meta}</small>
+                <p className={`experience-journey-card__quote ${!card.name ? 'experience-journey-card__quote--statement' : ''}`}>
+                  {card.name ? `"${card.quote}"` : card.quote}
+                </p>
+                {card.name ? (
+                  <div className="experience-journey-card__person">
+                    <span aria-hidden="true">{card.name.charAt(0)}</span>
+                    <div>
+                      <strong>{card.name}</strong>
+                      <small>{card.meta}</small>
+                    </div>
                   </div>
-                </div>
+                ) : card.description ? (
+                  <p className="experience-journey-card__description">{card.description}</p>
+                ) : null}
               </>
             ) : card.type === 'video' ? (
               <video
@@ -431,35 +378,6 @@ export default function ExperienceJourney() {
                   </span>
                   Resume
                 </span>
-              </a>
-            ) : card.type === 'github' ? (
-              <a className="experience-journey-card__github" href={card.href} target="_blank" rel="noopener noreferrer">
-                <div className="graph">
-                  <ul className="months">
-                    {contributionMonths.map((month) => (
-                      <li key={month}>{month}</li>
-                    ))}
-                  </ul>
-                  <ul className="days">
-                    {contributionDays.map((day) => (
-                      <li key={day}>{day}</li>
-                    ))}
-                  </ul>
-                  <ul className="squares" aria-label="GitHub contributions in 2026">
-                    {contributionLevels.map((level, index) => (
-                      <li data-level={level} key={index} />
-                    ))}
-                  </ul>
-                  <div className="contribution-footer">
-                    <div className="contribution-legend" aria-hidden="true">
-                      <span>Less</span>
-                      {[0, 1, 2, 3, 4].map((level) => (
-                        <i data-level={level} key={level} />
-                      ))}
-                      <span>More</span>
-                    </div>
-                  </div>
-                </div>
               </a>
             ) : (
               <>

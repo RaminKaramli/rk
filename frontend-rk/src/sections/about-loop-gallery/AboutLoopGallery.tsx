@@ -100,7 +100,7 @@ export default function AboutLoopGallery() {
     <section
       ref={sectionRef}
       className="about-loop-gallery"
-      aria-label="A$AP Rocky gallery"
+      aria-label="Ramin Karamli gallery"
       data-theme={isDarkTheme ? 'dark' : 'light'}
       style={{
         backgroundColor: isDarkTheme ? '#000000' : '#ffffff',
@@ -117,7 +117,19 @@ export default function AboutLoopGallery() {
 
                   return (
                     <div className="about-loop-gallery__item" aria-hidden={isClone} key={`${item.id}-${itemIndex}`}>
-                      <img src={item.src} alt={isClone ? '' : item.alt} loading="lazy" decoding="async" />
+                      {item.type === 'video' ? (
+                        <video
+                          src={item.src}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                          preload="auto"
+                          aria-label={isClone ? '' : item.alt}
+                        />
+                      ) : (
+                        <img src={item.src} alt={isClone ? '' : item.alt} loading="lazy" decoding="async" />
+                      )}
                     </div>
                   )
                 })}

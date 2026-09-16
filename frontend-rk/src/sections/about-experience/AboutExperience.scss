@@ -2,7 +2,7 @@
   background: transparent;
   color: #f4f6ff;
   font-family: "SF Pro Display Regular", "SF Pro Disp", sans-serif;
-  padding: clamp(3rem, 6vw, 5.5rem) var(--site-inline-pad) clamp(4rem, 7vw, 6.5rem);
+  padding: 0 var(--site-inline-pad) clamp(4rem, 7vw, 6.5rem);
   transition: background 0.4s cubic-bezier(1, 0, 0.4, 1), background-color 0.4s cubic-bezier(1, 0, 0.4, 1), color 0.4s cubic-bezier(1, 0, 0.4, 1);
   --about-exp-theme-transition: 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
@@ -80,8 +80,8 @@
 .about-experience__title {
   margin: 0;
   font-family: "SF Pro Display Regular", "SF Pro Disp", sans-serif;
-  font-size: clamp(2.7rem, 5.4vw, 4.8rem);
-  line-height: 0.9;
+  font-size: clamp(34px, 4.8vw, 52px);
+  line-height: 0.95;
   letter-spacing: -0.015em;
   text-transform: none;
   color: #f4f6ff;
@@ -124,10 +124,11 @@
 }
 
 .about-experience__row {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: clamp(0.8rem, 1.4vw, 1.2rem);
+  width: 100%;
 }
 
 .about-experience__company {
@@ -156,6 +157,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
+  flex-shrink: 0;
+  white-space: nowrap;
   min-height: clamp(2.1rem, 2.8vw, 2.6rem);
   padding: clamp(0.3rem, 0.55vw, 0.5rem) clamp(0.9rem, 1.25vw, 1.3rem);
   border-radius: 9999px;
@@ -265,12 +269,17 @@ body.theme-dark {
   }
 
   .about-experience__row {
-    grid-template-columns: 1fr;
-    align-items: start;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 0.75rem;
   }
 
   .about-experience__period {
-    justify-self: start;
+    margin-left: auto;
+    justify-self: end;
+    align-self: center;
   }
 }
 
@@ -278,7 +287,7 @@ body.theme-dark {
   .about-experience {
     width: 100%;
     max-width: 100%;
-    padding: 2.5rem 1rem;
+    padding: 0 1rem 2.5rem;
     overflow-x: hidden;
   }
 

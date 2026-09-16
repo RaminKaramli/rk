@@ -16,7 +16,7 @@ export const aboutExperienceEntries: AboutExperienceEntry[] = [
     company: 'Evo Academy',
     role: 'Course',
     period: 'May 2025 - Oct 2025',
-    description: 'Front-end Development',
+    description: 'Frontend Development',
   },
   {
     company: 'Odlar Yurdu University',

@@ -151,22 +151,17 @@ export default function AboutExperienceShowcase() {
 
         <div className="experience-showcase__content">
           <div className="experience-showcase__articles reveal-scroll reveal-scroll--visible">
-            <a
-              href="https://medium.com/design-bootcamp/perception-based-color-palettes-for-customizable-ui-themes-33f596faf23d"
-              target="_blank"
-              rel="noopener"
-              className="experience-showcase__article"
-            >
+            <div className="experience-showcase__article">
               <div className="experience-showcase__article-image experience-showcase__article-tilt">
                 <img src={nsStudioLogo} alt="" className="experience-showcase__article-bg" />
               </div>
               <div className="experience-showcase__article-details">
-                <h3 className="experience-showcase__article-title">Junior Front-End Developer</h3>
+                <h3 className="experience-showcase__article-title">Junior Frontend Developer</h3>
                 <p className="experience-showcase__article-caption">
-                  Developed modern and responsive web interfaces and improved practical front-end skills over a 2-month learning experience.
+                  Developed modern and responsive web interfaces and improved practical frontend skills over a 2-month learning experience.
                 </p>
               </div>
-            </a>
+            </div>
           </div>
 
           <div className="experience-showcase__tools reveal-scroll reveal-scroll--visible">

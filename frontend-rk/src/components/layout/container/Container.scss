@@ -108,10 +108,5 @@ html.skip-preloader body.is-preloading .theme-toggle--floating {
 }
 
 body.overlay-active {
-  overflow: hidden;
-}
-
-body.overlay-active .main-content {
-  z-index: auto;
-  isolation: auto;
+  overscroll-behavior: none;
 }

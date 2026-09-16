@@ -50,6 +50,7 @@ body {
   width: 100%;
   min-height: 100%;
   margin: 0;
+  overflow-x: clip;
   background: #ffffff;
   color: #121212;
   font-family: "DM Sans", sans-serif;
@@ -79,7 +80,7 @@ html:not(.theme-dark) {
 }
 
 .site-body {
-  overflow-x: hidden;
+  overflow-x: clip;
   overflow-y: auto;
 }
 
@@ -112,7 +113,7 @@ body.theme-dark {
 
   html,
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   html:not(.theme-dark),
@@ -136,7 +137,7 @@ body.theme-dark {
   .main-content {
     width: 100%;
     margin-inline: auto;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .main-content > section,
@@ -171,7 +172,6 @@ body.theme-dark {
     width: 100%;
     max-width: 100%;
     height: auto;
-    object-fit: cover;
   }
 
   .experience-showcase__tool-logo {

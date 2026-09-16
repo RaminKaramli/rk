@@ -95,11 +95,10 @@ export default function AboutSkillsAccordion() {
       <div className="about-skills__inner">
         <div className="about-skills__header">
           <h2 className="about-skills__title" id="about-skills-title">
-            What I Bring To The Table
+            Skills
           </h2>
           <p className="about-skills__description">
-            Digital experiences that engage users and help your startup stand
-            out from day one
+            Building modern digital experiences with clean development, thoughtful design, and a focus on usability.
           </p>
         </div>
 
