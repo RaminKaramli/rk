@@ -1,12 +1,74 @@
-import { useLayoutEffect, useRef, type SVGProps } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type SVGProps } from 'react'
 import { Icon } from '@iconify/react'
 import { stackCards } from '../../data/projects'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 import { Draggable, ScrollTrigger, gsap } from '../../lib/gsap'
 
+type ProjectShowcaseBoxProps = {
+  cards: Array<{ image: string; alt: string }>
+  title: string
+  href: string
+}
+
+function ProjectShowcaseBox({ cards, title, href }: ProjectShowcaseBoxProps) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+
+  useEffect(() => {
+    if (!isHovered || cards.length <= 1) return
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % cards.length)
+    }, 2000)
+
+    return () => clearInterval(interval)
+  }, [isHovered, cards.length])
+
+  return (
+    <div
+      className={`project-showcase-box ${isHovered ? 'is-hovered' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false)
+        setCurrentIndex(0)
+      }}
+      onTouchStart={() => setIsHovered((prev) => !prev)}
+    >
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="project-showcase-box__link-wrap"
+        aria-label={`View ${title}`}
+      >
+
+        {/* Slides */}
+        <div className="project-showcase-box__slides">
+          {cards.map((card, idx) => (
+            <div
+              key={`${title}-${card.alt}-${idx}`}
+              className={`project-showcase-box__slide ${
+                idx === currentIndex ? 'is-active' : ''
+              }`}
+            >
+              <img
+                className="project-showcase-box__image"
+                src={card.image}
+                alt={card.alt}
+                loading={idx === 0 ? 'eager' : 'lazy'}
+              />
+            </div>
+          ))}
+        </div>
+      </a>
+    </div>
+  )
+}
+
 const showcasedProjects = [
   {
     cards: stackCards,
+    category: 'E-Commerce Website',
     description:
       'Website designed to showcase a boutique furniture brand’s collection, highlight product features, and drive online purchases.',
     href: 'https://ikili2.com/',
@@ -14,6 +76,7 @@ const showcasedProjects = [
   },
   {
     cards: [...stackCards].reverse(),
+    category: 'Digital Studio Showcase',
     description:
       'Website designed to present a modern digital brand, communicate services clearly, and create a polished browsing experience.',
     href: 'https://ikili2.com/',
@@ -21,6 +84,7 @@ const showcasedProjects = [
   },
   {
     cards: stackCards.slice(0, 2),
+    category: 'Brand Experience',
     description:
       'Website designed with a focused two-screen showcase, clear visual hierarchy, and responsive presentation for a compact brand experience.',
     href: 'https://ikili2.com/',
@@ -28,6 +92,7 @@ const showcasedProjects = [
   },
   {
     cards: stackCards.slice(2, 4),
+    category: 'Selected Portfolio',
     description:
       'Website designed to highlight selected work through a concise two-panel layout, sharp visuals, and smooth interaction details.',
     href: 'https://ikili2.com/',
@@ -82,7 +147,7 @@ function VscodeIconsFileTypeJsOfficial(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-const projectTools = [
+export const projectTools = [
   { icon: <FlowbiteHtmlSolid aria-hidden="true" />, label: 'HTML' },
   { icon: <FlowbiteCssSolid aria-hidden="true" />, label: 'CSS' },
   { icon: <VscodeIconsFileTypeScss2 aria-hidden="true" />, label: 'SCSS' },
@@ -90,7 +155,7 @@ const projectTools = [
   { icon: <Icon icon="logos:greensock-icon" aria-hidden="true" />, label: 'GSAP' },
 ]
 
-export default function StackCardsShowcase({ singleColumn = false }: StackCardsShowcaseProps) {
+export default function StackCardsShowcase({ singleColumn: _singleColumn = false }: StackCardsShowcaseProps) {
   const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
 
@@ -314,43 +379,42 @@ export default function StackCardsShowcase({ singleColumn = false }: StackCardsS
 
       <h2 className="stack-cards-section__title">Selected Projects</h2>
 
-      {showcasedProjects.map((project) => (
-        <article key={project.title} className="project-case">
-          <div className={`projects-grid${project.cards.length === 2 ? ' projects-grid--two' : ''}${singleColumn ? ' projects-grid--single' : ''}`}>
-            {project.cards.map((card) => (
-              <div key={`${project.title}-${card.alt}`} className="projects-grid__item">
-                <img className="projects-grid__image" src={card.image} alt={card.alt} />
+      <div className="portfolio-gallery-grid">
+        {showcasedProjects.map((project) => (
+          <article key={project.title} className="portfolio-card">
+            <ProjectShowcaseBox
+              cards={project.cards}
+              title={project.title}
+              href={project.href}
+            />
+
+            <div className="portfolio-card__details">
+              <div className="portfolio-card__info">
+                <h3 className="portfolio-card__title">
+                  <a href={project.href} target="_blank" rel="noopener noreferrer">
+                    {project.title}
+                  </a>
+                </h3>
+                <p className="portfolio-card__category">{project.category}</p>
               </div>
-            ))}
-          </div>
 
-          <div className="project-case__content">
-            <h2 className="project-case__title">{project.title}</h2>
-
-            <div className="project-case__summary">
-              <p className="project-case__description">{project.description}</p>
-              <div className="project-case__actions">
-                <a className="project-case__link" href={project.href} target="_blank" rel="noopener noreferrer">
-                  View Project
-                </a>
-
-                <div className="project-case__tools" aria-label={`${project.title} tools`}>
-                  {projectTools.map((tool) => (
-                    <button
-                      key={`${project.title}-${tool.label}`}
-                      className="project-case__tool"
-                      type="button"
-                      aria-label={tool.label}
-                    >
-                      {tool.icon}
-                    </button>
-                  ))}
-                </div>
+              <div className="portfolio-card__tools" aria-label="Technologies used">
+                {projectTools.map((tool) => (
+                  <span
+                    key={`${project.title}-${tool.label}`}
+                    className="portfolio-card__tool-icon"
+                    title={tool.label}
+                    aria-label={tool.label}
+                  >
+                    {tool.icon}
+                  </span>
+                ))}
               </div>
             </div>
-          </div>
-        </article>
-      ))}
+          </article>
+        ))}
+      </div>
     </section>
   )
 }
+

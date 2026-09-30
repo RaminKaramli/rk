@@ -1,7 +1,7 @@
 .stack-cards-section {
   background: #ffffff;
   color: #000000;
-  padding: 2rem clamp(2rem, 3.2vw, 4rem) clamp(3rem, 5vw, 5rem);
+  padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 5vw, 4rem) clamp(4rem, 7vw, 6rem);
   position: relative;
   transition:
     background 0.4s cubic-bezier(1, 0, 0.4, 1),
@@ -27,7 +27,9 @@
     align-items: center;
     display: flex;
     gap: 0.85rem;
-    margin-bottom: clamp(1rem, 2vw, 2rem);
+    max-width: 92rem;
+    margin: 0 auto clamp(1rem, 2vw, 2rem);
+    width: 100%;
   }
 
   .stack-cards-section__separator-line {
@@ -61,29 +63,183 @@
   .stack-cards-section__title {
     color: #242424;
     font-family: var(--headingnowtrial);
-    font-size: clamp(3rem, 5.5vw, 5rem);
     font-size: clamp(1.6rem, 6.5vw, 4.5rem);
     font-weight: 400;
-    letter-spacing: 0;
     letter-spacing: -0.01em;
     line-height: 0.95;
-    margin: clamp(1.5rem, 4vw, 3rem) 0 clamp(2rem, 5vw, 4rem);
-    margin: clamp(1.5rem, 4vw, 3rem) 0 clamp(1.5rem, 4vw, 3.5rem);
+    margin: clamp(1.5rem, 4vw, 3rem) auto clamp(1.5rem, 4vw, 3.5rem);
     text-align: center;
     transition: color 0.4s cubic-bezier(1, 0, 0.4, 1);
     word-break: break-word;
     overflow-wrap: break-word;
-    max-width: 100%;
-  }
-
-  .project-case {
-    display: grid;
-    gap: clamp(2rem, 3.4vw, 2rem);
+    max-width: 92rem;
     width: 100%;
   }
 
-  .project-case + .project-case {
-    margin-top: clamp(3rem, 6vw, 6rem);
+  .portfolio-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.5rem, 2.5vw, 2.75rem);
+    width: 100%;
+    max-width: 92rem;
+    margin: 0 auto;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .portfolio-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    width: 100%;
+
+    .project-showcase-box {
+      width: 100%;
+      aspect-ratio: 1500 / 1061;
+      max-height: none;
+      border-radius: 14px;
+    }
+
+    &__details {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.1rem 0.2rem;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    &__tools {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-shrink: 0;
+    }
+
+    &__tool-icon {
+      display: inline-flex;
+      cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
+      align-items: center;
+      justify-content: center;
+      width: 2.1rem;
+      height: 2.1rem;
+      border-radius: 50%;
+      background: rgba(15, 17, 23, 0.04);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      padding: 0.35rem;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+
+      &:hover {
+        transform: scale(1.12);
+        background: rgba(15, 17, 23, 0.08);
+      }
+
+      svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    }
+
+    &__title {
+      font-family: var(--headingnowtrial, "Inter", sans-serif);
+      font-size: clamp(1.2rem, 1.6vw, 1.55rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin: 0;
+      letter-spacing: -0.01em;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+        cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+          opacity: 0.75;
+        }
+      }
+    }
+
+    &__category {
+      font-family: "Inter", sans-serif;
+      font-size: clamp(0.85rem, 1vw, 0.96rem);
+      color: #71717a;
+      margin: 0;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+  }
+
+  .project-showcase-box {
+    position: relative;
+    cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
+    width: 100%;
+    aspect-ratio: 1500 / 1061;
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: #0f1117;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    transition:
+      box-shadow 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+      border-color 0.4s ease;
+
+    &:hover {
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.14);
+    }
+
+    &__link-wrap {
+      display: block;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      text-decoration: none;
+      cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
+    }
+
+    &__slides {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    &__slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+      pointer-events: none;
+
+      &.is-active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+        pointer-events: auto;
+      }
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      object-position: center center;
+      display: block;
+    }
   }
 
   .projects-grid {
@@ -511,13 +667,38 @@
     .stack-cards-section__title,
     .project-case__title,
     .project-case__description,
-    .project-case__link {
+    .project-case__link,
+    .portfolio-card__title {
       color: #f3f6ff;
+    }
+
+    .portfolio-card__category {
+      color: #a1a1aa;
+    }
+
+    .portfolio-card__tool-icon {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.14);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.12);
+      }
     }
 
     .project-case__link,
     .project-case__tool {
       border-color: rgba(243, 246, 255, 0.22);
+    }
+
+    .project-showcase-box {
+      background-color: #06070a;
+      border-color: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+
+      &:hover {
+        border-color: rgba(255, 255, 255, 0.28);
+        box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.85);
+      }
     }
 
     .project-case__tool {
@@ -581,4 +762,34 @@ body.theme-dark {
     color: #f3f6ff;
   }
 
+  .project-showcase-box {
+    background-color: #06070a;
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.85);
+    }
+  }
+}
+
+@keyframes showcaseSegmentFill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
 }
