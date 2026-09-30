@@ -50,7 +50,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
       return 2
     }
 
-    if (hash === '#site-footer' || hash === '#contact') {
+    if (hash === '#experience-showcase' || hash === '#resume' || hash === '#site-footer' || hash === '#contact') {
       return 3
     }
 
@@ -89,7 +89,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     window.setTimeout(() => scrollToHash(), 80)
   }
 
-  const shouldAnimateNavLink = (label: string) => ['HOME', 'ABOUT', 'WORKS', 'CONTACT'].includes(label)
+  const shouldAnimateNavLink = (label: string) => ['HOME', 'ABOUT', 'WORKS', 'RESUME'].includes(label)
 
   const navigateTo = (href: string, closeMenu = false) => {
     const nextUrl = new URL(href, window.location.origin)

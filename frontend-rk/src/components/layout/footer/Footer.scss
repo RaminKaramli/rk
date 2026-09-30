@@ -162,6 +162,7 @@
 }
 
 .site-footer__clock {
+  font-variant-numeric: tabular-nums;
   grid-column: 2;
   justify-self: end;
   text-align: right;

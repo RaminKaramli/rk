@@ -1,7 +1,7 @@
 import type { FooterLink, MenuLink, SocialLink } from '../types/common.types'
 import aboutShowcaseMotion from '../assets/images/about-showcase-motion.png'
 import heroImage from '../assets/images/her0.png'
-import myImage from '../assets/images/my.png'
+import myImage from '../assets/images/avatar-100kb.jpeg'
 import rkImage from '../assets/images/rk.jpeg'
 
 export const overlayMenuImages = [
@@ -15,14 +15,14 @@ export const homeMenuLinks: MenuLink[] = [
   { href: '/#home-section', imageIndex: 0, label: 'HOME' },
   { href: '/?page=about', imageIndex: 1, label: 'ABOUT' },
   { href: '/projects', imageIndex: 2, label: 'WORKS' },
-  { href: '/#site-footer', imageIndex: 3, label: 'CONTACT' },
+  { href: '/?page=about#experience-showcase', imageIndex: 3, label: 'RESUME' },
 ]
 
 export const aboutMenuLinks: MenuLink[] = [
   { href: '/#home-section', imageIndex: 0, label: 'HOME' },
   { href: '/?page=about', imageIndex: 1, label: 'ABOUT' },
   { href: '/projects', imageIndex: 2, label: 'WORKS' },
-  { href: '/?page=about#site-footer', imageIndex: 3, label: 'CONTACT' },
+  { href: '/?page=about#experience-showcase', imageIndex: 3, label: 'RESUME' },
 ]
 
 export const heroSocialLinks: SocialLink[] = [

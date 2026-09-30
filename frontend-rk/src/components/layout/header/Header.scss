@@ -213,15 +213,16 @@ body.ui-on-dark-surface:not(.theme-dark) .side-header.is-open .ham .line {
   width: 2.35rem;
   height: 2.35rem;
   border-radius: 50%;
-  background-image: url("../../../assets/images/avatar.png");
+  background-image: url("../../../assets/images/avatar-100kb.jpeg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   text-decoration: none;
+  cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
 }
 
 .header-logo:hover {
-  background-image: url("../../../assets/images/avatar-hello.png");
+  background-image: url("../../../assets/images/avatar-hello-100kb.jpeg");
 }
 
 .header-logo img {

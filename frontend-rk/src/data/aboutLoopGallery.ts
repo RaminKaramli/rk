@@ -1,12 +1,12 @@
-import imgRk1 from '../assets/images/img-rk1.jpeg'
-import imgRk2 from '../assets/images/img-rk2.jpeg'
-import imgRk3 from '../assets/images/img-rk3.jpeg'
-import imgRk4 from '../assets/images/img-rk4.jpeg'
-import imgRk5 from '../assets/images/img-rk5.jpeg'
-import imgRk6 from '../assets/images/img-rk6.jpeg'
-import imgRk7 from '../assets/images/img-rk7.jpeg'
-import imgRk8 from '../assets/images/img-rk8.jpeg'
-import imgRk9 from '../assets/images/img-rk9.jpeg'
+import imgRk1 from '../assets/images/img-rk1-100kb.jpeg'
+import imgRk2 from '../assets/images/img-rk2-100kb.jpeg'
+import imgRk3 from '../assets/images/img-rk3-100kb.jpeg'
+import imgRk4 from '../assets/images/img-rk4-100kb.jpeg'
+import imgRk5 from '../assets/images/img-rk5-100kb.jpeg'
+import imgRk6 from '../assets/images/img-rk6-100kb.jpeg'
+import imgRk7 from '../assets/images/img-rk7-100kb.jpeg'
+import imgRk8 from '../assets/images/img-rk8-100kb.jpeg'
+import imgRk9 from '../assets/images/img-rk9-100kb.jpeg'
 
 export type AboutLoopGalleryItem = {
   alt: string

@@ -1,7 +1,7 @@
 .stack-cards-section {
   background: #ffffff;
   color: #000000;
-  padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 3.2vw, 4rem) clamp(3rem, 5vw, 5rem);
+  padding: 2rem clamp(2rem, 3.2vw, 4rem) clamp(3rem, 5vw, 5rem);
   position: relative;
   transition:
     background 0.4s cubic-bezier(1, 0, 0.4, 1),

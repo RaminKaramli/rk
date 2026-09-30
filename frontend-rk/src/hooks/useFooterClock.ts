@@ -4,8 +4,8 @@ const TIME_LOCALE = 'en-US'
 
 function formatFooterClock(date: Date, timeZone: string) {
   const timeFormatter = new Intl.DateTimeFormat(TIME_LOCALE, {
-    hour: 'numeric',
-    hour12: true,
+    hour: '2-digit',
+    hourCycle: 'h23',
     minute: '2-digit',
     second: '2-digit',
     timeZone,

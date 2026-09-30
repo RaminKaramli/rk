@@ -4,6 +4,7 @@ import { usePreloader } from '../../hooks/usePreloader'
 import ExperienceSection from '../../sections/experience/Experience'
 import ExperienceJourneySection from '../../sections/experience-journey/ExperienceJourney'
 import HeroSection from '../../sections/hero/Hero'
+import ScrollingTicker from '../../sections/scrolling-ticker/ScrollingTicker'
 
 export default function HomePage() {
   const { dismissPreloader, showPreloader } = usePreloader()
@@ -16,6 +17,7 @@ export default function HomePage() {
       preloader={<Preloader visible={showPreloader} onComplete={dismissPreloader} />}
     >
       <HeroSection showPreloader={showPreloader} />
+      <ScrollingTicker />
       <ExperienceSection />
       <ExperienceJourneySection />
     </Container>
