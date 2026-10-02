@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type SVGProps } from 'react'
 import { Icon } from '@iconify/react'
-import { stackCards } from '../../data/projects'
+import { secondProjectCards, stackCards } from '../../data/projects'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 import { Draggable, ScrollTrigger, gsap } from '../../lib/gsap'
 
@@ -75,12 +75,12 @@ const showcasedProjects = [
     title: 'Furniture Website',
   },
   {
-    cards: [...stackCards].reverse(),
-    category: 'Digital Studio Showcase',
+    cards: secondProjectCards,
+    category: '2025',
     description:
-      'Website designed to present a modern digital brand, communicate services clearly, and create a polished browsing experience.',
-    href: 'https://ikili2.com/',
-    title: 'Digital Studio Website',
+      'Personal portfolio engineered in 2025 to showcase high-impact frontend craft, smooth motion aesthetics, and interactive web experiences.',
+    href: 'https://raminkaramli.com/',
+    title: 'Personal Portfolio',
   },
   {
     cards: stackCards.slice(0, 2),
@@ -91,12 +91,12 @@ const showcasedProjects = [
     title: 'Compact Brand Website',
   },
   {
-    cards: stackCards.slice(2, 4),
-    category: 'Selected Portfolio',
+    cards: secondProjectCards,
+    category: '2025',
     description:
-      'Website designed to highlight selected work through a concise two-panel layout, sharp visuals, and smooth interaction details.',
-    href: 'https://ikili2.com/',
-    title: 'Selected Work Website',
+      'Personal portfolio engineered in 2025 to showcase high-impact frontend craft, smooth motion aesthetics, and interactive web experiences.',
+    href: 'https://raminkaramli.com/',
+    title: 'Personal Portfolio',
   },
 ]
 
