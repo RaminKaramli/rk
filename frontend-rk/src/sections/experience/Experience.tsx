@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, type SVGProps } from 'react'
 import { Icon } from '@iconify/react'
-import { secondProjectCards, stackCards } from '../../data/projects'
+import { ikiliProjectCards, secondProjectCards, stackCards } from '../../data/projects'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 import { Draggable, ScrollTrigger, gsap } from '../../lib/gsap'
 
@@ -13,6 +13,7 @@ type ProjectShowcaseBoxProps = {
 function ProjectShowcaseBox({ cards, title, href }: ProjectShowcaseBoxProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
+  const boxRef = useRef<HTMLDivElement | null>(null)
 
   useEffect(() => {
     if (!isHovered || cards.length <= 1) return
@@ -26,7 +27,8 @@ function ProjectShowcaseBox({ cards, title, href }: ProjectShowcaseBoxProps) {
 
   return (
     <div
-      className={`project-showcase-box ${isHovered ? 'is-hovered' : ''}`}
+      ref={boxRef}
+      className={`project-showcase-box ${isHovered ? "is-hovered" : ""}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false)
@@ -41,21 +43,20 @@ function ProjectShowcaseBox({ cards, title, href }: ProjectShowcaseBoxProps) {
         className="project-showcase-box__link-wrap"
         aria-label={`View ${title}`}
       >
-
         {/* Slides */}
         <div className="project-showcase-box__slides">
           {cards.map((card, idx) => (
             <div
               key={`${title}-${card.alt}-${idx}`}
               className={`project-showcase-box__slide ${
-                idx === currentIndex ? 'is-active' : ''
+                idx === currentIndex ? "is-active" : ""
               }`}
             >
               <img
                 className="project-showcase-box__image"
                 src={card.image}
                 alt={card.alt}
-                loading={idx === 0 ? 'eager' : 'lazy'}
+                loading={idx === 0 ? "eager" : "lazy"}
               />
             </div>
           ))}
@@ -67,22 +68,25 @@ function ProjectShowcaseBox({ cards, title, href }: ProjectShowcaseBoxProps) {
 
 const showcasedProjects = [
   {
-    cards: stackCards,
-    category: 'E-Commerce Website',
+    id: 'ikili-iki',
+    cards: ikiliProjectCards,
+    category: 'E-Commerce • 2 Months Experience',
     description:
-      'Website designed to showcase a boutique furniture brand’s collection, highlight product features, and drive online purchases.',
+      'Modern e-commerce platform developed for ikili2.com during a 2-month professional experience, specializing in photo & video production gear, studio lighting, backdrop systems, audio, and camera accessories with responsive product catalogs.',
     href: 'https://ikili2.com/',
-    title: 'Furniture Website',
+    title: 'İkili İki — Photo & Video Production Equipment Store',
   },
   {
+    id: 'personal-portfolio',
     cards: secondProjectCards,
-    category: '2025',
+    category: 'Crafted in 2025',
     description:
-      'Personal portfolio engineered in 2025 to showcase high-impact frontend craft, smooth motion aesthetics, and interactive web experiences.',
+      'Personal portfolio website designed and developed in 2025, showcasing selected frontend projects, creative animations, and interactive interfaces.',
     href: 'https://raminkaramli.com/',
     title: 'Personal Portfolio',
   },
   {
+    id: 'compact-brand-website',
     cards: stackCards.slice(0, 2),
     category: 'Brand Experience',
     description:
@@ -91,12 +95,13 @@ const showcasedProjects = [
     title: 'Compact Brand Website',
   },
   {
-    cards: secondProjectCards,
-    category: '2025',
+    id: 'selected-portfolio',
+    cards: stackCards.slice(2, 4),
+    category: 'Selected Portfolio',
     description:
-      'Personal portfolio engineered in 2025 to showcase high-impact frontend craft, smooth motion aesthetics, and interactive web experiences.',
+      'Interactive presentation highlighting frontend animation craft, responsive components, and polished UI design.',
     href: 'https://raminkaramli.com/',
-    title: 'Personal Portfolio',
+    title: 'Selected Portfolio',
   },
 ]
 
@@ -381,7 +386,7 @@ export default function StackCardsShowcase({ singleColumn: _singleColumn = false
 
       <div className="portfolio-gallery-grid">
         {showcasedProjects.map((project) => (
-          <article key={project.title} className="portfolio-card">
+          <article key={project.id} className="portfolio-card">
             <ProjectShowcaseBox
               cards={project.cards}
               title={project.title}

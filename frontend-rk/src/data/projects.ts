@@ -6,6 +6,10 @@ import secondProjectOne from "../assets/images/1-120kb.jpeg"
 import secondProjectTwo from "../assets/images/2-120kb.jpeg"
 import secondProjectThree from "../assets/images/3-120kb.jpeg"
 import secondProjectFour from "../assets/images/4-120kb.jpeg"
+import ikiliOne from "../assets/images/6-120kb.jpeg"
+import ikiliTwo from "../assets/images/7-120kb.jpeg"
+import ikiliThree from "../assets/images/8-120kb.jpeg"
+import ikiliFour from "../assets/images/9-120kb.jpeg"
 import type { NotableStatConfig, StackCard } from "../types/project.types"
 
 export const stackCards: StackCard[] = [
@@ -53,6 +57,15 @@ export const secondProjectCards: StackCard[] = [
     tags: ["Checkout", "Details", "Design"],
   },
 ]
+
+export const ikiliProjectCards: StackCard[] = [
+  { alt: "İkili İki e-commerce website preview 1", image: ikiliOne, tags: ["E-Commerce", "Studio Lighting"] },
+  { alt: "İkili İki e-commerce website preview 2", image: ikiliTwo, tags: ["E-Commerce", "RGB LED Panels"] },
+  { alt: "İkili İki e-commerce website preview 3", image: ikiliThree, tags: ["E-Commerce", "Backdrop Systems"] },
+  { alt: "İkili İki e-commerce website preview 4", image: ikiliFour, tags: ["E-Commerce", "Fabric Backdrops"] },
+]
+
+export const furnitureProjectCards = ikiliProjectCards
 
 export const notableStats: NotableStatConfig[] = [
   { kind: "static", label: "+Projects", minDigits: 1, target: 2 },
