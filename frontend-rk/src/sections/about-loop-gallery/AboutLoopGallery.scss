@@ -1,7 +1,9 @@
 .about-loop-gallery {
   position: relative;
   background: transparent;
-  overflow: clip;
+  overflow: hidden !important;
+  height: 90vh;
+  height: 90dvh;
   padding: 1rem calc(var(--site-inline-pad) - 0.5rem);
 }
 
@@ -31,23 +33,25 @@
   position: relative;
   display: flex;
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   align-items: flex-start;
   justify-content: center;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 
 .about-loop-gallery__gallery {
   display: flex;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: 100%;
+  overflow: hidden !important;
 }
 
 .about-loop-gallery__col {
   flex: 1 1 0;
   min-width: 0;
-  overflow: hidden;
+  height: 100%;
+  overflow: hidden !important;
 }
 
 .about-loop-gallery__track {
@@ -119,16 +123,20 @@ body.theme-dark {
 
 @media (max-width: 768px) {
   .about-loop-gallery {
-    padding: 1rem calc(var(--site-inline-pad) - 0.25rem);
+    padding: 0.5rem calc(var(--site-inline-pad) - 0.25rem);
+    height: 65vh;
+    height: 65dvh;
+    overflow: hidden !important;
   }
 
   .about-loop-gallery__gallery {
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    overflow: hidden !important;
   }
 
   .about-loop-gallery__item {
-    padding: 0.65rem;
+    padding: 0.5rem;
   }
 
   .about-loop-gallery__item img,
@@ -141,25 +149,34 @@ body.theme-dark {
   .about-loop-gallery {
     width: 100%;
     max-width: 100%;
-    padding: 1rem;
-    overflow-x: hidden;
+    padding: 0.5rem 0.25rem;
+    height: 60vh;
+    height: 60dvh;
+    overflow: hidden !important;
   }
 
   .about-loop-gallery__viewport,
-  .about-loop-gallery__gallery,
-  .about-loop-gallery__col,
-  .about-loop-gallery__track,
-  .about-loop-gallery__item {
+  .about-loop-gallery__gallery {
     width: 100%;
     max-width: 100%;
     min-width: 0;
+    height: 100%;
+    overflow: hidden !important;
+  }
+
+  .about-loop-gallery__col {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: 100%;
+    overflow: hidden !important;
   }
 
   .about-loop-gallery__gallery {
-    gap: 0.5rem;
+    gap: 0.35rem;
   }
 
   .about-loop-gallery__item {
-    padding: 0.35rem;
+    padding: 0.25rem;
   }
 }

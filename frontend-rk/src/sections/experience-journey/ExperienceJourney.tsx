@@ -35,6 +35,7 @@ const experienceCards: ExperienceCard[] = [
     type: 'resume',
     className: 'experience-journey-card--resume experience-journey-card--span-2',
     brand: 'Resume',
+    href: 'https://drive.google.com/file/d/1ivaKtMMG6bSn46QoVIOkTxh7hKjoAgTa/view?usp=sharing',
   },
   {
     type: 'social',
@@ -365,7 +366,7 @@ export default function ExperienceJourney() {
                 </span>
               </a>
             ) : card.type === 'resume' ? (
-              <a className="experience-journey-card__resume" href="/?page=about">
+              <a className="experience-journey-card__resume" href="https://drive.google.com/file/d/1ivaKtMMG6bSn46QoVIOkTxh7hKjoAgTa/view?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="View Resume (PDF)">
                 <Icon icon="pepicons-pop:cv" className="experience-journey-card__resume-icon" aria-hidden="true" />
                 <span className="experience-journey-card__resume-button">
                   <span className="experience-journey-card__resume-icon-wrapper" aria-hidden="true">

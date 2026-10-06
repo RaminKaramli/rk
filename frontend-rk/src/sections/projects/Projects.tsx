@@ -161,7 +161,7 @@ export default function NotableWorks({ showSeparator = true }: NotableWorksProps
 
         <div className="notable-works-intro">
           <h2 className="notable-works-title">NOTABLE WORKS</h2>
-          <a className="notable-works-cta" href="/projects" aria-label="Works link">
+          <a className="notable-works-cta" href="/#works" aria-label="Works link">
             WORKS
           </a>
         </div>

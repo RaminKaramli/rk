@@ -251,10 +251,18 @@
 
   .experience-showcase {
     padding-top: 77px;
+    padding-bottom: 50px;
   }
 
   .experience-showcase__heading {
     margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .experience-showcase {
+    padding-top: 80px;
+    padding-bottom: 50px;
   }
 }
 

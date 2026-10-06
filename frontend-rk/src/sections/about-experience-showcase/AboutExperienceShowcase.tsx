@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef } from 'react'
-import { gsap, Draggable } from '../../lib/gsap'
+import { gsap, ScrollTrigger, Draggable } from '../../lib/gsap'
 import nsStudioLogo from '../../assets/images/publications/ns-studio-logo.png'
 import skillHtml from '../../assets/images/publications/html-5-svgrepo-com.svg'
 import skillScss from '../../assets/images/publications/scss2-svgrepo-com.svg'
@@ -21,97 +21,119 @@ export default function AboutExperienceShowcase() {
       const separatorLines = section.querySelectorAll<HTMLElement>('.experience-showcase__separator-line')
       const separatorPlus = section.querySelector<HTMLElement>('.experience-showcase__separator-plus')
       const heading = section.querySelector<HTMLElement>('.experience-showcase__heading')
-      const articles = section.querySelector<HTMLElement>('.experience-showcase__articles')
-      const tools = section.querySelector<HTMLElement>('.experience-showcase__tools')
+      const content = section.querySelector<HTMLElement>('.experience-showcase__content')
 
-      if (!heading || !articles || !tools || separatorLines.length === 0 || !separatorPlus) {
+      if (!heading || !content || separatorLines.length === 0 || !separatorPlus) {
         return
       }
 
       gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
       gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
       gsap.set(heading, { opacity: 0 })
-      gsap.set(articles, { opacity: 0 })
-      gsap.set(tools, { opacity: 0 })
+      gsap.set(content, { opacity: 0 })
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: 'top 90%',
-            once: true,
-          },
-        })
-        .to(separatorLines, { scaleX: 1, duration: 0.3, ease: 'power2.out' })
-        .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.25, ease: 'back.out(1.5)' }, '-=0.15')
-        .to(heading, { opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.1')
-        .to(articles, { opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.15')
-        .to(tools, { opacity: 1, duration: 0.3, ease: 'power2.out' }, '-=0.15')
-        .add(() => {
-          const items = gsap.utils.toArray<HTMLElement>('.experience-showcase__tool')
-          if (items.length < 2) return
+      const initDraggable = () => {
+        const items = gsap.utils.toArray<HTMLElement>('.experience-showcase__tool')
+        if (items.length < 2) return
 
-          // Wait a tiny bit for layout to ensure offsetTop is accurate
-          setTimeout(() => {
-            const rowHeight = items[1].offsetTop - items[0].offsetTop
+        setTimeout(() => {
+          const rowHeight = items[1].offsetTop - items[0].offsetTop
 
-            type TrackedItem = HTMLElement & { startIndex: number; currentIndex: number }
+          type TrackedItem = HTMLElement & { startIndex: number; currentIndex: number }
 
-            items.forEach((item, i) => {
-              gsap.set(item, { position: 'relative' })
-              const tracked = item as TrackedItem
-              tracked.startIndex = i
-              tracked.currentIndex = i
-            })
+          items.forEach((item, i) => {
+            gsap.set(item, { position: 'relative' })
+            const tracked = item as TrackedItem
+            tracked.startIndex = i
+            tracked.currentIndex = i
+          })
 
-            items.forEach((item, i) => {
-              Draggable.create(item, {
-                type: 'y',
-                bounds: {
-                  minY: -i * rowHeight,
-                  maxY: (items.length - 1 - i) * rowHeight,
-                },
-                edgeResistance: 1,
-                cursor: "url('https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef4b_cursor-drag.svg') 12 0, auto",
-                activeCursor: "url('https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb13cff138fa04d162c_cursor-dragging.svg') 12 0, text",
-                onDragStart: function () {
-                  this.target.style.zIndex = '10'
-                  this.target.classList.add('is-dragging')
-                  // Optional subtle scale when dragging
-                  gsap.to(this.target, { scale: 1.02, duration: 0.2, overwrite: 'auto' })
-                },
-                onDrag: function () {
-                  const draggedItem = this.target as TrackedItem
-                  const startIndex = draggedItem.startIndex
+          items.forEach((item, i) => {
+            Draggable.create(item, {
+              type: 'y',
+              bounds: {
+                minY: -i * rowHeight,
+                maxY: (items.length - 1 - i) * rowHeight,
+              },
+              edgeResistance: 1,
+              cursor: "url('https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef4b_cursor-drag.svg') 12 0, auto",
+              activeCursor: "url('https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb13cff138fa04d162c_cursor-dragging.svg') 12 0, text",
+              onDragStart: function () {
+                this.target.style.zIndex = '10'
+                this.target.classList.add('is-dragging')
+                gsap.to(this.target, { scale: 1.02, duration: 0.2, overwrite: 'auto' })
+              },
+              onDrag: function () {
+                const draggedItem = this.target as TrackedItem
+                const startIndex = draggedItem.startIndex
 
-                  const currentTargetIndex = Math.round(this.y / rowHeight) + startIndex
-                  const newIndex = Math.max(0, Math.min(items.length - 1, currentTargetIndex))
+                const currentTargetIndex = Math.round(this.y / rowHeight) + startIndex
+                const newIndex = Math.max(0, Math.min(items.length - 1, currentTargetIndex))
 
-                  if (draggedItem.currentIndex !== newIndex) {
-                    const oldIndex = draggedItem.currentIndex
+                if (draggedItem.currentIndex !== newIndex) {
+                  const oldIndex = draggedItem.currentIndex
 
-                    const otherItem = items.find((el) => (el as TrackedItem).currentIndex === newIndex) as TrackedItem | undefined
+                  const otherItem = items.find((el) => (el as TrackedItem).currentIndex === newIndex) as TrackedItem | undefined
 
-                    if (otherItem) {
-                      otherItem.currentIndex = oldIndex
-                      const targetY = (otherItem.currentIndex - otherItem.startIndex) * rowHeight
-                      gsap.to(otherItem, { y: targetY, duration: 0.35, ease: 'back.out(1.1)', overwrite: 'auto' })
-                    }
-
-                    draggedItem.currentIndex = newIndex
+                  if (otherItem) {
+                    otherItem.currentIndex = oldIndex
+                    const targetY = (otherItem.currentIndex - otherItem.startIndex) * rowHeight
+                    gsap.to(otherItem, { y: targetY, duration: 0.35, ease: 'back.out(1.1)', overwrite: 'auto' })
                   }
-                },
-                onDragEnd: function () {
-                  this.target.style.zIndex = '1'
-                  this.target.classList.remove('is-dragging')
-                  const draggedItem = this.target as TrackedItem
-                  const targetY = (draggedItem.currentIndex - draggedItem.startIndex) * rowHeight
-                  gsap.to(draggedItem, { y: targetY, scale: 1, duration: 0.35, ease: 'back.out(1.1)', overwrite: 'auto' })
-                },
-              })
+
+                  draggedItem.currentIndex = newIndex
+                }
+              },
+              onDragEnd: function () {
+                this.target.style.zIndex = '1'
+                this.target.classList.remove('is-dragging')
+                const draggedItem = this.target as TrackedItem
+                const targetY = (draggedItem.currentIndex - draggedItem.startIndex) * rowHeight
+                gsap.to(draggedItem, { y: targetY, scale: 1, duration: 0.35, ease: 'back.out(1.1)', overwrite: 'auto' })
+              },
             })
-          }, 50)
-        })
+          })
+        }, 50)
+      }
+
+      let hasPlayed = false
+      const playAnimation = () => {
+        if (hasPlayed) return
+        hasPlayed = true
+
+        const tl = gsap.timeline()
+        tl.to(separatorLines, { scaleX: 1, duration: 0.2, ease: 'power2.out' })
+          .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.15, ease: 'back.out(1.5)' }, '-=0.1')
+          .to(heading, { opacity: 1, duration: 0.25, ease: 'power2.out' })
+          .to(content, { opacity: 1, duration: 0.28, ease: 'power2.out' }, '+=0.06')
+          .add(() => {
+            initDraggable()
+          })
+      }
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 95%',
+        onEnter: playAnimation,
+        once: true,
+      })
+
+      if (typeof IntersectionObserver !== 'undefined') {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            if (entries[0]?.isIntersecting) {
+              playAnimation()
+              observer.disconnect()
+            }
+          },
+          { threshold: 0.02, rootMargin: '100px' }
+        )
+        observer.observe(section)
+      }
+
+      setTimeout(() => {
+        ScrollTrigger.refresh()
+      }, 100)
     }, section)
 
     return () => {

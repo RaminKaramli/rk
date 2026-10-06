@@ -13,16 +13,16 @@ export const overlayMenuImages = [
 
 export const homeMenuLinks: MenuLink[] = [
   { href: '/#home-section', imageIndex: 0, label: 'HOME' },
-  { href: '/?page=about', imageIndex: 1, label: 'ABOUT' },
+  { href: '/#about', imageIndex: 1, label: 'ABOUT' },
   { href: '/projects', imageIndex: 2, label: 'WORKS' },
-  { href: '/?page=about#experience-showcase', imageIndex: 3, label: 'RESUME' },
+  { href: 'https://drive.google.com/file/d/1ivaKtMMG6bSn46QoVIOkTxh7hKjoAgTa/view?usp=sharing', imageIndex: 3, label: 'RESUME' },
 ]
 
 export const aboutMenuLinks: MenuLink[] = [
   { href: '/#home-section', imageIndex: 0, label: 'HOME' },
-  { href: '/?page=about', imageIndex: 1, label: 'ABOUT' },
+  { href: '/#about', imageIndex: 1, label: 'ABOUT' },
   { href: '/projects', imageIndex: 2, label: 'WORKS' },
-  { href: '/?page=about#experience-showcase', imageIndex: 3, label: 'RESUME' },
+  { href: 'https://drive.google.com/file/d/1ivaKtMMG6bSn46QoVIOkTxh7hKjoAgTa/view?usp=sharing', imageIndex: 3, label: 'RESUME' },
 ]
 
 export const heroSocialLinks: SocialLink[] = [
@@ -52,6 +52,7 @@ export const footerSocialLinks: FooterLink[] = [
   { href: 'https://www.linkedin.com/in/karamliramin/', label: 'LINKEDIN' },
   { href: 'https://www.instagram.com/raminkaramli/', label: 'INSTAGRAM' },
   { href: 'https://github.com/RaminKaramli', label: 'GITHUB' },
+  { href: 'https://x.com/raminkaramli', label: 'TWITTER' },
   { href: 'https://www.behance.net/', label: 'BEHANCE' },
 ]
 

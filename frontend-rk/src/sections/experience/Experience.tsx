@@ -152,7 +152,7 @@ function VscodeIconsFileTypeJsOfficial(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-export const projectTools = [
+const projectTools = [
   { icon: <FlowbiteHtmlSolid aria-hidden="true" />, label: 'HTML' },
   { icon: <FlowbiteCssSolid aria-hidden="true" />, label: 'CSS' },
   { icon: <VscodeIconsFileTypeScss2 aria-hidden="true" />, label: 'SCSS' },
@@ -160,7 +160,7 @@ export const projectTools = [
   { icon: <Icon icon="logos:greensock-icon" aria-hidden="true" />, label: 'GSAP' },
 ]
 
-export default function StackCardsShowcase({ singleColumn: _singleColumn = false }: StackCardsShowcaseProps) {
+export default function StackCardsShowcase({ singleColumn = false }: StackCardsShowcaseProps) {
   const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
 
@@ -199,7 +199,7 @@ export default function StackCardsShowcase({ singleColumn: _singleColumn = false
       })
     }, section)
 
-    let toolDraggables: Draggable[] = []
+    const toolDraggables: Draggable[] = []
     let dragSetupTimer: number | undefined
     const entranceTimelines: ReturnType<typeof gsap.timeline>[] = []
     const toolsObservers: IntersectionObserver[] = []
@@ -364,8 +364,8 @@ export default function StackCardsShowcase({ singleColumn: _singleColumn = false
 
   return (
     <section
-      id="project-showcase"
-      className="stack-cards-section"
+      id="works"
+      className={`stack-cards-section${singleColumn ? ' stack-cards-section--single-column' : ''}`}
       data-theme={isDarkTheme ? 'dark' : 'light'}
       ref={sectionRef}
       style={{
@@ -422,4 +422,3 @@ export default function StackCardsShowcase({ singleColumn: _singleColumn = false
     </section>
   )
 }
-

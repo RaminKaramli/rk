@@ -2,7 +2,7 @@ import { media, siteContent } from '../../utils/constants'
 
 export default function AboutShowcase() {
   return (
-    <section className="about-showcase" aria-labelledby="about-showcase-title">
+    <section id="about" className="about-showcase" aria-labelledby="about-showcase-title">
       <div className="about-showcase__container">
         <div className="about-showcase__background" aria-hidden="true">
           <div className="about-showcase__media-wrap">

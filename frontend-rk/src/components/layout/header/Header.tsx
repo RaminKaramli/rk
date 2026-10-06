@@ -1,8 +1,9 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState, type CSSProperties, type MouseEvent as ReactMouseEvent } from 'react'
 import { createPortal } from 'react-dom'
 import { aboutMenuLinks, homeMenuLinks, overlayMenuImages } from '../../../data/socials'
 import { ScrollTrigger, gsap } from '../../../lib/gsap'
 import { media } from '../../../utils/constants'
+import BrandLogo from '../../common/brand-logo/BrandLogo'
 import ThemeToggle from '../../common/theme-toggle/ThemeToggle'
 
 type HeaderProps = {
@@ -24,6 +25,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
       : `${window.location.pathname}${window.location.search}${window.location.hash}`,
   )
   const headerRef = useRef<HTMLElement | null>(null)
+  const brandRef = useRef<HTMLAnchorElement | null>(null)
   const switcherRef = useRef<HTMLElement | null>(null)
   const menuRef = useRef<HTMLDivElement | null>(null)
   const overlayContentRef = useRef<HTMLDivElement | null>(null)
@@ -36,7 +38,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
   const sectionTwoActive = isSectionTwoActive
   const links = isAboutPage ? aboutMenuLinks : homeMenuLinks
 
-  const getActiveNavIndex = (locationValue: string) => {
+  const getActiveNavIndex = useCallback((locationValue: string) => {
     if (!locationValue) {
       return isAboutPage ? 1 : 0
     }
@@ -46,8 +48,12 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     const pathname = nextUrl.pathname.replace(/\/+$/, '') || '/'
     const pageParam = nextUrl.searchParams.get('page')
 
-    if (hash === '#notable-works') {
+    if (hash === '#works' || hash === '#notable-works' || hash === '#project-showcase') {
       return 2
+    }
+
+    if (hash === '#about') {
+      return 1
     }
 
     if (hash === '#experience-showcase' || hash === '#resume' || hash === '#site-footer' || hash === '#contact') {
@@ -63,9 +69,9 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     }
 
     return 0
-  }
+  }, [isAboutPage])
 
-  const activeNavIndex = useMemo(() => getActiveNavIndex(locationState), [locationState, isAboutPage])
+  const activeNavIndex = useMemo(() => getActiveNavIndex(locationState), [getActiveNavIndex, locationState])
 
   const syncLocationScroll = (hash: string) => {
     const scrollToHash = (attempt = 0) => {
@@ -89,7 +95,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     window.setTimeout(() => scrollToHash(), 80)
   }
 
-  const shouldAnimateNavLink = (label: string) => ['HOME', 'ABOUT', 'WORKS', 'RESUME'].includes(label)
+  const shouldAnimateNavLink = (label: string) => ['HOME', 'ABOUT', 'WORKS'].includes(label)
 
   const navigateTo = (href: string, closeMenu = false) => {
     const nextUrl = new URL(href, window.location.origin)
@@ -156,8 +162,25 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     })
   }
 
+  const isExternalOrBlankLink = (href: string, label: string) => {
+    return (
+      label === 'RESUME' ||
+      href.includes('drive.google.com') ||
+      href.endsWith('.pdf')
+    )
+  }
+
   const handleNavigationClick =
     (href: string, label: string, closeMenu = false) => (event: ReactMouseEvent<HTMLAnchorElement>) => {
+      if (isExternalOrBlankLink(href, label)) {
+        if (closeMenu) {
+          setMenuOpen(false)
+        }
+        window.open(href, '_blank', 'noopener,noreferrer')
+        event.preventDefault()
+        return
+      }
+
       if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
         return
       }
@@ -176,14 +199,28 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     (href: string, label: string) => (event: ReactMouseEvent<HTMLLabelElement>) => {
       event.preventDefault()
       event.stopPropagation()
+      if (isExternalOrBlankLink(href, label)) {
+        window.open(href, '_blank', 'noopener,noreferrer')
+        return
+      }
       navigateAfterScribble(href, label, event.currentTarget)
     }
+
+  const handleBrandClick = (event: ReactMouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    if (window.location.pathname !== '/' || window.location.search) {
+      navigateAfterScribble('/', 'HOME', event.currentTarget)
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
 
   useEffect(() => {
     document.body.classList.toggle('overlay-active', menuOpen)
 
     if (menuOpen) {
       headerRef.current?.classList.remove('side-header--hidden')
+      brandRef.current?.classList.remove('header-brand--hidden')
       if (menuRef.current) {
         menuRef.current.scrollTop = 0
       }
@@ -211,12 +248,15 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
 
       if (currentScrollY < 80) {
         header.classList.remove('side-header--hidden')
+        brandRef.current?.classList.remove('header-brand--hidden')
       } else if (diff > 0) {
         // Scrolling down — HIDE
         header.classList.add('side-header--hidden')
+        brandRef.current?.classList.add('header-brand--hidden')
       } else if (diff < 0) {
         // Scrolling up — SHOW
         header.classList.remove('side-header--hidden')
+        brandRef.current?.classList.remove('header-brand--hidden')
       }
 
       lastScrollY = currentScrollY
@@ -536,6 +576,8 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
                   }
                 }}
                 href={link.href}
+                target={isExternalOrBlankLink(link.href, link.label) ? '_blank' : undefined}
+                rel={isExternalOrBlankLink(link.href, link.label) ? 'noopener noreferrer' : undefined}
                 data-image-index={link.imageIndex}
                 onMouseEnter={() => {
                   setActiveImageIndex(link.imageIndex)
@@ -557,6 +599,16 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
 
   return (
     <>
+      <a
+        ref={brandRef}
+        href="/"
+        className="header-brand"
+        aria-label="Ramin Karamli"
+        onClick={handleBrandClick}
+      >
+        <BrandLogo className="header-brand__img" />
+      </a>
+
       <header
         ref={headerRef}
         className={`side-header${sectionTwoActive ? ' side-header--section2-left' : ''}${menuOpen ? ' is-open' : ''}`}

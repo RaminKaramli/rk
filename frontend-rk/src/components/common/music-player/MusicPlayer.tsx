@@ -1,4 +1,4 @@
-import { type MouseEvent, useEffect, useMemo, useRef, useState } from 'react'
+import { type MouseEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Icon } from '@iconify/react'
 
 type YouTubePlayer = {
@@ -134,14 +134,14 @@ export default function MusicPlayer() {
 
   const activeVideoId = useMemo(() => extractVideoId(YOUTUBE_URLS[activePartIndex] ?? YOUTUBE_URLS[0]), [activePartIndex])
 
-  const stopTicker = () => {
+  const stopTicker = useCallback(() => {
     if (tickerRef.current) {
       cancelAnimationFrame(tickerRef.current)
       tickerRef.current = null
     }
-  }
+  }, [])
 
-  const tick = () => {
+  const readProgress = useCallback(() => {
     const player = playerRef.current
     if (!player) {
       return
@@ -151,18 +151,22 @@ export default function MusicPlayer() {
     const full = player.getDuration?.() ?? 0
     setCurrentTime(time)
     setDuration(full)
-    tickerRef.current = requestAnimationFrame(tick)
-  }
+  }, [])
 
-  const startTicker = () => {
+  const startTicker = useCallback(() => {
     if (tickerRef.current) {
       return
     }
 
-    tickerRef.current = requestAnimationFrame(tick)
-  }
+    const tick = () => {
+      readProgress()
+      tickerRef.current = requestAnimationFrame(tick)
+    }
 
-  const updateVideoMeta = () => {
+    tickerRef.current = requestAnimationFrame(tick)
+  }, [readProgress])
+
+  const updateVideoMeta = useCallback(() => {
     const player = playerRef.current
     if (!player) {
       return
@@ -180,7 +184,7 @@ export default function MusicPlayer() {
     if (data?.author && data.author.toLowerCase() !== 'youtube') {
       setAuthor(data.author)
     }
-  }
+  }, [])
 
   useEffect(() => {
     let cancelled = false
@@ -259,7 +263,7 @@ export default function MusicPlayer() {
       playerRef.current?.destroy()
       playerRef.current = null
     }
-  }, [activeVideoId])
+  }, [activeVideoId, startTicker, stopTicker, updateVideoMeta])
 
   const handleTogglePlay = () => {
     const player = playerRef.current
