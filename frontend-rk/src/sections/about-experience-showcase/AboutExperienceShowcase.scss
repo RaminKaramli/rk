@@ -51,77 +51,159 @@
 
 .experience-showcase__article {
   display: flex;
-  gap: 24px;
-  background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
-  -webkit-backdrop-filter: blur(10px) saturate(var(--saturation));
-  backdrop-filter: blur(10px) saturate(var(--saturation));
-  border-radius: 40px;
-  padding: 12px 24px 12px 12px;
+  flex-direction: column;
+  gap: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
   text-decoration: none;
-  transition:
-    background var(--experience-showcase-theme-transition),
-    border-color var(--experience-showcase-theme-transition);
 }
 
-.experience-showcase__article:hover,
-.experience-showcase__article:focus-visible {
-  background-color: color-mix(in srgb, var(--c-glass) 18%, transparent);
+.experience-showcase__article-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .experience-showcase__article-image {
-  width: 148px;
-  height: 148px;
-  border-radius: 28px;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
   overflow: hidden;
   flex-shrink: 0;
   position: relative;
+  background: #181212;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .experience-showcase__article-bg {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
-.experience-showcase__article-logo {
-  position: absolute;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  bottom: 0;
-  left: 0;
-}
-
-.experience-showcase__article-tilt {
-  transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
-  transform-origin: center center;
-}
-
-.experience-showcase__article-details {
+.experience-showcase__article-header {
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  padding: 10px 0 7px;
+  gap: 4px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.experience-showcase__article-company-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.experience-showcase__article-company {
+  font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: #181212;
+  transition: color var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__article-dot {
+  font-size: 0.7rem;
+  color: rgba(24, 18, 18, 0.35);
+  line-height: 1;
+}
+
+.experience-showcase__article-badge {
+  font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: -0.2px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #554f4f;
+  transition: all var(--experience-showcase-theme-transition);
 }
 
 .experience-showcase__article-title {
   font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
-  font-size: clamp(0.95rem, 2.5vw, 1.25rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.35rem);
   font-weight: 600;
-  line-height: 26.6px;
-  letter-spacing: -1px;
-  color: #211b1c;
+  line-height: 1.25;
+  letter-spacing: -0.8px;
+  color: #181212;
   margin: 0;
   transition: color var(--experience-showcase-theme-transition);
 }
 
 .experience-showcase__article-caption {
   font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
-  font-size: clamp(0.82rem, 2vw, 1.0625rem);
+  font-size: 0.92rem;
   font-weight: 400;
-  line-height: 22.6px;
-  letter-spacing: -1px;
+  line-height: 1.5;
+  letter-spacing: -0.3px;
   color: #554f4f;
+  margin: 0;
+  transition: color var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__article-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.experience-showcase__grid-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.025);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition:
+    background var(--experience-showcase-theme-transition),
+    border-color var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__grid-item-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.experience-showcase__grid-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.05);
+  color: #181212;
+  flex-shrink: 0;
+  transition: all var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__grid-title {
+  font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: #181212;
+  line-height: 1.25;
+  transition: color var(--experience-showcase-theme-transition);
+}
+
+.experience-showcase__grid-desc {
+  font-family: "UCity Pro", system-ui, -apple-system, sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+  color: #665f5f;
   margin: 0;
   transition: color var(--experience-showcase-theme-transition);
 }
@@ -273,33 +355,22 @@
   }
 
   .experience-showcase__article {
-    flex-direction: column;
-    border-radius: 26px;
-    padding: 12px;
-  }
-
-  .experience-showcase__article-details {
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 0;
-  }
-
-  .experience-showcase__article-logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 100px;
-    left: auto;
-    right: 12px;
-    bottom: auto;
-    top: 12px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    gap: 14px;
   }
 
   .experience-showcase__article-image {
-    width: 100%;
-    height: 200px;
-    border-radius: 14px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
   }
 
+  .experience-showcase__article-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -338,20 +409,17 @@
   }
 
   .experience-showcase__article {
-    display: flex;
-    flex-direction: column;
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    gap: 0.75rem;
+    gap: 12px;
     box-sizing: border-box;
   }
 
   .experience-showcase__article-image {
-    width: 100%;
-    max-width: 100%;
-    height: 180px;
-    border-radius: 14px;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
     flex-shrink: 0;
   }
 
@@ -359,10 +427,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-  }
-
-  .experience-showcase__article-details {
-    padding: 0 4px 4px;
   }
 
   .experience-showcase__tool {
@@ -458,15 +522,47 @@ body.theme-dark {
     color: rgba(243, 246, 255, 0.72);
   }
 
-  .experience-showcase__article {
-    background-color: color-mix(in srgb, var(--c-glass) 12%, transparent);
+  .experience-showcase__article-company {
+    color: #f3f6ff;
   }
 
-  .experience-showcase__article:hover,
-  .experience-showcase__article:focus-visible,
+  .experience-showcase__article-dot {
+    color: rgba(243, 246, 255, 0.35);
+  }
+
+  .experience-showcase__article-badge {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: rgba(243, 246, 255, 0.75);
+  }
+
+  .experience-showcase__grid-item {
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(255, 255, 255, 0.07);
+  }
+
+  .experience-showcase__grid-icon {
+    background: rgba(255, 255, 255, 0.08);
+    color: #f3f6ff;
+  }
+
+  .experience-showcase__grid-title {
+    color: #f3f6ff;
+  }
+
+  .experience-showcase__grid-desc {
+    color: rgba(243, 246, 255, 0.65);
+  }
+
+  .experience-showcase__article {
+    background: transparent;
+    border: none;
+  }
+
   .experience-showcase__tool:hover,
   .experience-showcase__tool:focus-visible {
     background-color: color-mix(in srgb, var(--c-glass) 18%, transparent);
+    border-color: rgba(255, 255, 255, 0.15);
   }
 
   .experience-showcase__tool-logo {
@@ -493,6 +589,38 @@ body.theme-dark {
   .experience-showcase__article-caption,
   .experience-showcase__tool-caption {
     color: rgba(243, 246, 255, 0.72);
+  }
+
+  .experience-showcase__article-company {
+    color: #f3f6ff;
+  }
+
+  .experience-showcase__article-dot {
+    color: rgba(243, 246, 255, 0.35);
+  }
+
+  .experience-showcase__article-badge {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: rgba(243, 246, 255, 0.75);
+  }
+
+  .experience-showcase__grid-item {
+    background: rgba(255, 255, 255, 0.035);
+    border-color: rgba(255, 255, 255, 0.07);
+  }
+
+  .experience-showcase__grid-icon {
+    background: rgba(255, 255, 255, 0.08);
+    color: #f3f6ff;
+  }
+
+  .experience-showcase__grid-title {
+    color: #f3f6ff;
+  }
+
+  .experience-showcase__grid-desc {
+    color: rgba(243, 246, 255, 0.65);
   }
 
   .experience-showcase__separator-line {

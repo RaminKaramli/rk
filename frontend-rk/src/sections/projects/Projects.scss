@@ -80,7 +80,8 @@
   align-items: center;
   gap: 0.35rem;
   appearance: none;
-  border: 1px solid rgba(0, 0, 0, 0.22);
+  border: none;
+  outline: none;
   border-radius: 9999px;
   background-color: color-mix(in srgb, var(--c-light) 65%, transparent);
   color: #e94f57;
@@ -94,13 +95,11 @@
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
   transition:
     transform 0.22s ease,
-    border-color 0.4s cubic-bezier(1, 0, 0.4, 1),
     background 0.4s cubic-bezier(1, 0, 0.4, 1),
     color 0.4s cubic-bezier(1, 0, 0.4, 1);
 }
 
 .notable-works-cta:hover {
-  border-color: rgba(0, 0, 0, 0.58);
   text-decoration: none;
   transform: translateY(-0.08rem);
 }

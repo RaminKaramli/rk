@@ -172,7 +172,9 @@ export default function StackCardsShowcase({ singleColumn = false }: StackCardsS
 
     const separatorLines = section.querySelectorAll<HTMLElement>('.stack-cards-section__separator-line')
     const separatorPlus = section.querySelector<HTMLElement>('.stack-cards-section__separator-plus')
-    const toolGroups = Array.from(section.querySelectorAll<HTMLElement>('.project-case__tools'))
+    const title = section.querySelector<HTMLElement>('.stack-cards-section__title')
+    const portfolioCards = section.querySelectorAll<HTMLElement>('.portfolio-card')
+    const toolGroups = Array.from(section.querySelectorAll<HTMLElement>('.portfolio-card__tools, .project-case__tools'))
 
     const context = gsap.context(() => {
       if (separatorLines.length === 0 || !separatorPlus) {
@@ -182,19 +184,20 @@ export default function StackCardsShowcase({ singleColumn = false }: StackCardsS
       gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
       gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
 
-      const projectCases = section.querySelectorAll<HTMLElement>('.project-case')
-      if (projectCases.length) gsap.set(projectCases, { opacity: 0 })
+      if (title) gsap.set(title, { opacity: 0, y: 35 })
+      if (portfolioCards.length) gsap.set(portfolioCards, { opacity: 0, y: 45 })
 
       ScrollTrigger.create({
         trigger: section,
-        start: 'top 90%',
+        start: 'top 85%',
         once: true,
         onEnter: () => {
           gsap
             .timeline()
-            .to(separatorLines, { scaleX: 1, duration: 0.3, ease: 'power2.out' })
-            .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.25, ease: 'back.out(1.5)' }, '-=0.15')
-            .to(projectCases, { opacity: 1, duration: 0.3, ease: 'power2.out', stagger: 0.08 }, '-=0.1')
+            .to(separatorLines, { scaleX: 1, duration: 0.5, ease: 'power2.out' })
+            .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.35, ease: 'back.out(1.5)' }, '-=0.25')
+            .to(title, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.15')
+            .to(portfolioCards, { opacity: 1, y: 0, duration: 0.75, stagger: 0.15, ease: 'power2.out' }, '-=0.35')
         },
       })
     }, section)

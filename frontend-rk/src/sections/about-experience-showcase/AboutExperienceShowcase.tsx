@@ -29,8 +29,8 @@ export default function AboutExperienceShowcase() {
 
       gsap.set(separatorLines, { scaleX: 0, transformOrigin: 'center center' })
       gsap.set(separatorPlus, { autoAlpha: 0, scale: 0.72, rotate: -90, transformOrigin: 'center center' })
-      gsap.set(heading, { opacity: 0 })
-      gsap.set(content, { opacity: 0 })
+      gsap.set(heading, { autoAlpha: 0 })
+      gsap.set(content, { autoAlpha: 0 })
 
       const initDraggable = () => {
         const items = gsap.utils.toArray<HTMLElement>('.experience-showcase__tool')
@@ -96,44 +96,24 @@ export default function AboutExperienceShowcase() {
         }, 50)
       }
 
-      let hasPlayed = false
-      const playAnimation = () => {
-        if (hasPlayed) return
-        hasPlayed = true
+      initDraggable()
 
-        const tl = gsap.timeline()
-        tl.to(separatorLines, { scaleX: 1, duration: 0.2, ease: 'power2.out' })
-          .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.15, ease: 'back.out(1.5)' }, '-=0.1')
-          .to(heading, { opacity: 1, duration: 0.25, ease: 'power2.out' })
-          .to(content, { opacity: 1, duration: 0.28, ease: 'power2.out' }, '+=0.06')
-          .add(() => {
-            initDraggable()
-          })
-      }
-
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top 95%',
-        onEnter: playAnimation,
-        once: true,
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top bottom',
+          once: true,
+        },
       })
 
-      if (typeof IntersectionObserver !== 'undefined') {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            if (entries[0]?.isIntersecting) {
-              playAnimation()
-              observer.disconnect()
-            }
-          },
-          { threshold: 0.02, rootMargin: '100px' }
-        )
-        observer.observe(section)
-      }
+      tl.to(separatorLines, { scaleX: 1, duration: 0.2, ease: 'power2.out' })
+        .to(separatorPlus, { autoAlpha: 1, scale: 1, rotate: 0, duration: 0.16, ease: 'back.out(1.5)' }, '-=0.1')
+        .to(heading, { autoAlpha: 1, duration: 0.22, ease: 'power2.out', clearProps: 'opacity,visibility' }, '-=0.08')
+        .to(content, { autoAlpha: 1, duration: 0.25, ease: 'power2.out', clearProps: 'opacity,visibility' }, '+=0.02')
 
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         ScrollTrigger.refresh()
-      }, 100)
+      })
     }, section)
 
     return () => {
@@ -165,28 +145,98 @@ export default function AboutExperienceShowcase() {
         </header>
 
         <h2
-          className="experience-showcase__heading shiny-hover reveal-scroll reveal-scroll--visible"
+          className="experience-showcase__heading shiny-hover"
           id="experience-showcase-title"
         >
           Experience
         </h2>
 
         <div className="experience-showcase__content">
-          <div className="experience-showcase__articles reveal-scroll reveal-scroll--visible">
+          <div className="experience-showcase__articles">
             <div className="experience-showcase__article">
-              <div className="experience-showcase__article-image experience-showcase__article-tilt">
-                <img src={nsStudioLogo} alt="" className="experience-showcase__article-bg" />
+              <div className="experience-showcase__article-top">
+                <div className="experience-showcase__article-image experience-showcase__article-tilt">
+                  <img src={nsStudioLogo} alt="NS Studio" className="experience-showcase__article-bg" />
+                </div>
+                <div className="experience-showcase__article-header">
+                  <div className="experience-showcase__article-company-row">
+                    <span className="experience-showcase__article-company">NS Studio</span>
+                    <span className="experience-showcase__article-dot" aria-hidden="true">&bull;</span>
+                    <span className="experience-showcase__article-badge">2 Months Experience</span>
+                  </div>
+                  <h3 className="experience-showcase__article-title">Junior Frontend Developer</h3>
+                </div>
               </div>
-              <div className="experience-showcase__article-details">
-                <h3 className="experience-showcase__article-title">Junior Frontend Developer</h3>
-                <p className="experience-showcase__article-caption">
-                  Developed modern and responsive web interfaces and improved practical frontend skills over a 2-month learning experience.
-                </p>
+
+              <p className="experience-showcase__article-caption">
+                Developed modern and responsive web interfaces and improved practical frontend skills over a 2-month learning experience.
+              </p>
+
+              <div className="experience-showcase__article-grid">
+                <div className="experience-showcase__grid-item">
+                  <div className="experience-showcase__grid-item-head">
+                    <span className="experience-showcase__grid-icon" aria-hidden="true">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="16 18 22 12 16 6" />
+                        <polyline points="8 6 2 12 8 18" />
+                      </svg>
+                    </span>
+                    <span className="experience-showcase__grid-title">Web Interfaces</span>
+                  </div>
+                  <p className="experience-showcase__grid-desc">
+                    Development with HTML, CSS, SCSS &amp; JS based on Figma designs
+                  </p>
+                </div>
+
+                <div className="experience-showcase__grid-item">
+                  <div className="experience-showcase__grid-item-head">
+                    <span className="experience-showcase__grid-icon" aria-hidden="true">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <path d="M16 10a4 4 0 0 1-8 0" />
+                      </svg>
+                    </span>
+                    <span className="experience-showcase__grid-title">ikili2.com Platform</span>
+                  </div>
+                  <p className="experience-showcase__grid-desc">
+                    Front-end development of the e-commerce platform
+                  </p>
+                </div>
+
+                <div className="experience-showcase__grid-item">
+                  <div className="experience-showcase__grid-item-head">
+                    <span className="experience-showcase__grid-icon" aria-hidden="true">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                        <line x1="12" y1="18" x2="12.01" y2="18" />
+                      </svg>
+                    </span>
+                    <span className="experience-showcase__grid-title">Responsive Design</span>
+                  </div>
+                  <p className="experience-showcase__grid-desc">
+                    Creating responsive and adaptive user interfaces
+                  </p>
+                </div>
+
+                <div className="experience-showcase__grid-item">
+                  <div className="experience-showcase__grid-item-head">
+                    <span className="experience-showcase__grid-icon" aria-hidden="true">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                      </svg>
+                    </span>
+                    <span className="experience-showcase__grid-title">Optimization</span>
+                  </div>
+                  <p className="experience-showcase__grid-desc">
+                    Optimizing performance and improving websites
+                  </p>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="experience-showcase__tools reveal-scroll reveal-scroll--visible">
+          <div className="experience-showcase__tools">
             <article className="experience-showcase__tool">
               <img src={skillHtml} alt="HTML" className="experience-showcase__tool-logo" width="56" height="56" />
               <div className="experience-showcase__tool-details">

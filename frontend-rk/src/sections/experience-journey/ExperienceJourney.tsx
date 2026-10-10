@@ -47,7 +47,7 @@ const experienceCards: ExperienceCard[] = [
     type: 'social',
     className: 'experience-journey-card--instagram experience-journey-card--span-3',
     brand: 'Instagram',
-    href: 'https://www.instagram.com/karamliramin/',
+    href: 'https://www.instagram.com/raminkaramli/',
   },
   {
     type: 'stack',
@@ -76,6 +76,7 @@ const techStackItems = [
   { name: 'Figma', icon: 'custom-figma' },
   { name: 'OpenAI', icon: 'custom-openai' },
   { name: 'Claude Code', icon: 'custom-claudecode' },
+  { name: 'Gemini', icon: 'custom-gemini' },
   { name: 'GSAP', icon: 'custom-gsap' },
 ]
 
@@ -99,6 +100,17 @@ function CustomClaudeCodeIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path fill="currentColor" fillRule="evenodd" clipRule="evenodd" d="M20.998 10.949H24v3.102h-3v3.028h-1.487V20H18v-2.921h-1.487V20H15v-2.921H9V20H7.488v-2.921H6V20H4.487v-2.921H3V14.05H0V10.95h3V5h17.998v5.949zM6 10.949h1.488V8.102H6v2.847zm10.51 0H18V8.102h-1.49v2.847z" />
+    </svg>
+  )
+}
+
+function CustomGeminiIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" {...props}>
+      <path
+        fill="currentColor"
+        d="M11.04 19.32Q12 21.51 12 24q0-2.49.93-4.68.96-2.19 2.58-3.81t3.81-2.55Q21.51 12 24 12q-2.49 0-4.68-.93a12.3 12.3 0 0 1-3.81-2.58 12.3 12.3 0 0 1-2.58-3.81Q12 2.49 12 0q0 2.49-.93 4.68-.96 2.19-2.58 3.81a12.3 12.3 0 0 1-3.81 2.58Q2.49 12 0 12q2.49 0 4.68.93a12.3 12.3 0 0 1 3.81 2.58 12.3 12.3 0 0 1 2.55 3.81Z"
+      />
     </svg>
   )
 }
@@ -195,83 +207,92 @@ export default function ExperienceJourney() {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useLayoutEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+
     const ctx = gsap.context(() => {
-      const linkedinCard = containerRef.current?.querySelector('.experience-journey-card--linkedin')
-      if (linkedinCard) {
-        const circle = linkedinCard.querySelector('.linkedin-circle')
-        const paths = [
-          linkedinCard.querySelector('.linkedin-path-1'),
-          linkedinCard.querySelector('.linkedin-path-2'),
-          linkedinCard.querySelector('.linkedin-path-3'),
-        ]
+      const cards = container.querySelectorAll<HTMLElement>('.experience-journey-card')
+      if (cards.length === 0) return
 
-        if (circle && paths.every((p) => p)) {
-          gsap.set(circle, { opacity: 0 })
-          gsap.set(paths[0], { strokeDashoffset: 12 })
-          gsap.set(paths[1], { strokeDashoffset: 12 })
-          gsap.set(paths[2], { strokeDashoffset: 24 })
+      // Inner elements setup
+      const linkedinCard = container.querySelector<HTMLElement>('.experience-journey-card--linkedin')
+      const linkedinCircle = linkedinCard?.querySelector('.linkedin-circle')
+      const linkedinPaths = [
+        linkedinCard?.querySelector('.linkedin-path-1'),
+        linkedinCard?.querySelector('.linkedin-path-2'),
+        linkedinCard?.querySelector('.linkedin-path-3'),
+      ].filter(Boolean) as Element[]
 
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: linkedinCard,
-              once: true,
-              start: 'top 85%',
-            },
-          })
-
-          tl.to(circle, { opacity: 1, duration: 0.22 })
-          paths.forEach((path) => {
-            tl.to(path, { strokeDashoffset: 0, duration: 0.32, ease: 'none' }, '+=0.06')
-          })
-        }
+      if (linkedinCircle && linkedinPaths.length === 3) {
+        gsap.set(linkedinCircle, { opacity: 0 })
+        gsap.set(linkedinPaths[0], { strokeDashoffset: 12 })
+        gsap.set(linkedinPaths[1], { strokeDashoffset: 12 })
+        gsap.set(linkedinPaths[2], { strokeDashoffset: 24 })
       }
 
-      const instagramCard = containerRef.current?.querySelector('.experience-journey-card--instagram')
-      if (instagramCard) {
-        const frame = instagramCard.querySelector('.instagram-frame')
-        const lens = instagramCard.querySelector('.instagram-lens')
-        const dot = instagramCard.querySelector('.instagram-dot')
+      const instagramCard = container.querySelector<HTMLElement>('.experience-journey-card--instagram')
+      const instaFrame = instagramCard?.querySelector('.instagram-frame')
+      const instaLens = instagramCard?.querySelector('.instagram-lens')
+      const instaDot = instagramCard?.querySelector('.instagram-dot')
 
-        if (frame && lens && dot) {
-          gsap.set(frame, { strokeDashoffset: 66 })
-          gsap.set(lens, { strokeDashoffset: 28 })
-          gsap.set(dot, { opacity: 0 })
-
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: instagramCard,
-              once: true,
-              start: 'top 85%',
-            },
-          })
-
-          tl.to(frame, { strokeDashoffset: 0, duration: 0.4, ease: 'none' })
-            .to(lens, { strokeDashoffset: 0, duration: 0.4, ease: 'none' }, '+=0.06')
-            .to(dot, { opacity: 1, duration: 0.16 }, '+=0.06')
-        }
+      if (instaFrame && instaLens && instaDot) {
+        gsap.set(instaFrame, { strokeDashoffset: 66 })
+        gsap.set(instaLens, { strokeDashoffset: 28 })
+        gsap.set(instaDot, { opacity: 0 })
       }
 
-      const resumeCard = containerRef.current?.querySelector('.experience-journey-card--resume')
-      if (resumeCard) {
-        const resumeIcon = resumeCard.querySelector('.experience-journey-card__resume-icon')
-        const resumeButton = resumeCard.querySelector('.experience-journey-card__resume-button')
+      const resumeCard = container.querySelector<HTMLElement>('.experience-journey-card--resume')
+      const resumeIcon = resumeCard?.querySelector('.experience-journey-card__resume-icon')
+      const resumeButton = resumeCard?.querySelector('.experience-journey-card__resume-button')
 
-        if (resumeIcon && resumeButton) {
-          gsap.set([resumeIcon, resumeButton], { opacity: 0, y: 12, scale: 0.9 })
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: resumeCard,
-              once: true,
-              start: 'top 85%',
-            },
-          })
-            .to(resumeIcon, { opacity: 1, y: 0, scale: 1, duration: 0.42, ease: 'back.out(1.6)' })
-            .to(resumeButton, { opacity: 1, y: 0, scale: 1, duration: 0.28, ease: 'power2.out' }, '-=0.12')
-        }
+      if (resumeIcon && resumeButton) {
+        gsap.set([resumeIcon, resumeButton], { autoAlpha: 0 })
+      }
+
+      // Initial state: pure fade without y movement
+      gsap.set(cards, {
+        autoAlpha: 0,
+      })
+
+      // Unified smooth timeline on scroll
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          start: 'top 95%',
+          once: true,
+        },
+      })
+
+      // Pure fast fade entrance (no fade-up)
+      tl.to(cards, {
+        autoAlpha: 1,
+        duration: 0.35,
+        stagger: 0.04,
+        ease: 'power2.out',
+        clearProps: 'opacity,visibility',
+      })
+
+      // Coordinated icon reveals
+      if (linkedinCircle && linkedinPaths.length === 3) {
+        tl.to(linkedinCircle, { opacity: 1, duration: 0.15 }, '-=0.25')
+        linkedinPaths.forEach((path) => {
+          tl.to(path, { strokeDashoffset: 0, duration: 0.18, ease: 'none' }, '+=0.02')
+        })
+      }
+
+      if (instaFrame && instaLens && instaDot) {
+        tl.to(instaFrame, { strokeDashoffset: 0, duration: 0.2, ease: 'none' }, '-=0.3')
+          .to(instaLens, { strokeDashoffset: 0, duration: 0.2, ease: 'none' }, '+=0.02')
+          .to(instaDot, { opacity: 1, duration: 0.1 }, '+=0.02')
+      }
+
+      if (resumeIcon && resumeButton) {
+        tl.to(resumeIcon, { autoAlpha: 1, duration: 0.2, ease: 'power2.out', clearProps: 'opacity,visibility' }, '-=0.3')
+          .to(resumeButton, { autoAlpha: 1, duration: 0.2, ease: 'power2.out', clearProps: 'opacity,visibility' }, '-=0.1')
       }
 
       requestAnimationFrame(() => ScrollTrigger.refresh())
-    }, containerRef)
+    }, container)
 
     return () => ctx.revert()
   }, [])
@@ -344,6 +365,8 @@ export default function ExperienceJourney() {
                             <CustomOpenaiIcon aria-hidden="true" />
                           ) : item.icon === 'custom-claudecode' ? (
                             <CustomClaudeCodeIcon aria-hidden="true" />
+                          ) : item.icon === 'custom-gemini' ? (
+                            <CustomGeminiIcon aria-hidden="true" />
                           ) : item.icon === 'custom-gsap' ? (
                             <CustomGsapIcon aria-hidden="true" />
                           ) : item.icon === 'custom-sass' ? (

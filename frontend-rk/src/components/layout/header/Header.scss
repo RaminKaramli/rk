@@ -149,7 +149,7 @@ body.ui-on-dark-surface:not(.theme-dark) .side-header.is-open .ham .line {
   height: calc(100% - 0.44rem);
   border-radius: 9999px;
   background: rgba(255, 255, 255, 0.62);
-  border: 1px solid rgba(255, 255, 255, 0.75);
+  border: none;
   transform: translateX(calc(var(--active-index) * 100%));
   transition: transform 400ms cubic-bezier(1, 0, 0.4, 1);
   z-index: 0;
@@ -336,7 +336,7 @@ body.theme-dark .header-inline-link {
 body.ui-on-dark-surface:not(.theme-dark) .header-inline-nav__highlight,
 body.theme-dark .header-inline-nav__highlight {
   background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.45);
+  border: none;
 }
 
 .menu-toggle:focus,

@@ -8,28 +8,46 @@ export const aboutSkills: AboutSkill[] = [
     tags: ['HTML', 'CSS', 'SCSS', 'JavaScript', 'TypeScript', 'React.js', 'Next.js', 'Node.js'],
   },
   {
-    title: 'CSS Framework',
+    title: 'CSS Frameworks & UI',
     description:
-      'Building interfaces faster with practical CSS frameworks that help keep layouts clean, responsive, and consistent.',
-    tags: ['Bootstrap', 'Tailwind CSS', 'Material UI'],
+      'Building interfaces faster with practical CSS frameworks and UI libraries that help keep layouts clean, responsive, and consistent.',
+    tags: ['Tailwind CSS', 'Bootstrap', 'Bulma', 'W3.CSS', 'Uiverse.io'],
   },
   {
-    title: 'Animation & Scroll Libraries',
+    title: 'Libraries',
     description:
       'Building smoother motion, reveal effects, and scroll experiences with libraries that make interfaces feel more dynamic and polished.',
-    tags: ['GSAP', 'AOS', 'ScrollReveal', 'Locomotive Scroll'],
+    tags: [
+      'GSAP',
+      'Swiper.js',
+      'React Icons',
+      'AOS',
+      'ScrollReveal',
+      'Lenis',
+      'Locomotive Scroll',
+      'TAOS',
+      'Framer Motion (Currently Learning)',
+    ],
   },
   {
-    title: 'Graphic & UI/UX Design',
+    title: 'Design Tools',
     description:
       'Designing visual assets, interface concepts, and presentation-ready layouts with tools that support both product and graphic work.',
-    tags: ['Canva', 'Kittl', 'CorelDRAW', 'Adobe Photoshop', 'Figma'],
+    tags: ['Figma', 'CorelDRAW', 'Adobe Photoshop', 'Canva', 'Kittl'],
   },
   {
     title: 'Graphic & Print Design',
     description:
       'Creating print-ready visuals and branded materials that support both presentation, promotion, and business identity needs.',
-    tags: ['Logo', 'Business Card', 'Invitation', 'Certificate', 'Letterhead', 'Brochure / Flyer', 'Poster', 'Menu'],
+    tags: [
+      'Logo',
+      'Business Cards',
+      'Invitations',
+      'Certificates',
+      'Brochures/Flyers',
+      'Posters',
+      'Menus',
+    ],
   },
 ]
 
