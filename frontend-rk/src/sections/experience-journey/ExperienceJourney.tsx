@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from 'react'
 import { Icon } from '@iconify/react'
 import { ScrollTrigger, gsap } from '../../lib/gsap'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
+import { useLanguage } from '../../context/LanguageContext'
 import downloadVideo from '../../assets/videos/download.mp4'
 
 interface ExperienceCard {
@@ -203,6 +204,7 @@ function LineMdInstagram(props: React.SVGProps<SVGSVGElement>) {
 }
 
 export default function ExperienceJourney() {
+  const { t } = useLanguage()
   const isDark = useDocumentTheme()
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -300,7 +302,7 @@ export default function ExperienceJourney() {
   return (
     <section
       className="experience-journey"
-      aria-label="Experience"
+      aria-label={t.experienceShowcase.heading}
       data-theme={isDark ? 'dark' : 'light'}
       ref={containerRef}
     >
@@ -310,7 +312,7 @@ export default function ExperienceJourney() {
             {card.type === 'quote' ? (
               <>
                 <p className={`experience-journey-card__quote ${!card.name ? 'experience-journey-card__quote--statement' : ''}`}>
-                  {card.name ? `"${card.quote}"` : card.quote}
+                  {card.name ? `"${card.quote}"` : t.experienceJourney.quoteStatement}
                 </p>
                 {card.name ? (
                   <div className="experience-journey-card__person">
@@ -321,7 +323,7 @@ export default function ExperienceJourney() {
                     </div>
                   </div>
                 ) : card.description ? (
-                  <p className="experience-journey-card__description">{card.description}</p>
+                  <p className="experience-journey-card__description">{t.experienceJourney.quoteDescription}</p>
                 ) : null}
               </>
             ) : card.type === 'video' ? (
@@ -400,7 +402,7 @@ export default function ExperienceJourney() {
                       <path d="M13.376 11.552l-.264-10.44-10.44-.24.024 2.28 6.96-.048L.2 12.56l1.488 1.488 9.432-9.432-.048 6.912 2.304.024z" fill="currentColor" />
                     </svg>
                   </span>
-                  Resume
+                  {t.experienceJourney.resume}
                 </span>
               </a>
             ) : (

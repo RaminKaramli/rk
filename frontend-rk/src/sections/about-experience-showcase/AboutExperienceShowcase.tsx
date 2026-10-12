@@ -6,8 +6,10 @@ import skillScss from '../../assets/images/publications/scss2-svgrepo-com.svg'
 import skillJs from '../../assets/images/publications/js-svgrepo-com.svg'
 import skillFigma from '../../assets/images/publications/figma-svgrepo-com (1).svg'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function AboutExperienceShowcase() {
+  const { t } = useLanguage()
   const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
 
@@ -148,7 +150,7 @@ export default function AboutExperienceShowcase() {
           className="experience-showcase__heading shiny-hover"
           id="experience-showcase-title"
         >
-          Experience
+          {t.experienceShowcase.heading}
         </h2>
 
         <div className="experience-showcase__content">
@@ -156,20 +158,20 @@ export default function AboutExperienceShowcase() {
             <div className="experience-showcase__article">
               <div className="experience-showcase__article-top">
                 <div className="experience-showcase__article-image experience-showcase__article-tilt">
-                  <img src={nsStudioLogo} alt="NS Studio" className="experience-showcase__article-bg" />
+                  <img src={nsStudioLogo} alt={t.experienceShowcase.company} className="experience-showcase__article-bg" />
                 </div>
                 <div className="experience-showcase__article-header">
                   <div className="experience-showcase__article-company-row">
-                    <span className="experience-showcase__article-company">NS Studio</span>
+                    <span className="experience-showcase__article-company">{t.experienceShowcase.company}</span>
                     <span className="experience-showcase__article-dot" aria-hidden="true">&bull;</span>
-                    <span className="experience-showcase__article-badge">2 Months Experience</span>
+                    <span className="experience-showcase__article-badge">{t.experienceShowcase.badge}</span>
                   </div>
-                  <h3 className="experience-showcase__article-title">Junior Frontend Developer</h3>
+                  <h3 className="experience-showcase__article-title">{t.experienceShowcase.role}</h3>
                 </div>
               </div>
 
               <p className="experience-showcase__article-caption">
-                Developed modern and responsive web interfaces and improved practical frontend skills over a 2-month learning experience.
+                {t.experienceShowcase.caption}
               </p>
 
               <div className="experience-showcase__article-grid">
@@ -181,10 +183,10 @@ export default function AboutExperienceShowcase() {
                         <polyline points="8 6 2 12 8 18" />
                       </svg>
                     </span>
-                    <span className="experience-showcase__grid-title">Web Interfaces</span>
+                    <span className="experience-showcase__grid-title">{t.experienceShowcase.grid.webInterfacesTitle}</span>
                   </div>
                   <p className="experience-showcase__grid-desc">
-                    Development with HTML, CSS, SCSS &amp; JS based on Figma designs
+                    {t.experienceShowcase.grid.webInterfacesDesc}
                   </p>
                 </div>
 
@@ -197,10 +199,10 @@ export default function AboutExperienceShowcase() {
                         <path d="M16 10a4 4 0 0 1-8 0" />
                       </svg>
                     </span>
-                    <span className="experience-showcase__grid-title">ikili2.com Platform</span>
+                    <span className="experience-showcase__grid-title">{t.experienceShowcase.grid.ecommerceTitle}</span>
                   </div>
                   <p className="experience-showcase__grid-desc">
-                    Front-end development of the e-commerce platform
+                    {t.experienceShowcase.grid.ecommerceDesc}
                   </p>
                 </div>
 
@@ -212,10 +214,10 @@ export default function AboutExperienceShowcase() {
                         <line x1="12" y1="18" x2="12.01" y2="18" />
                       </svg>
                     </span>
-                    <span className="experience-showcase__grid-title">Responsive Design</span>
+                    <span className="experience-showcase__grid-title">{t.experienceShowcase.grid.responsiveTitle}</span>
                   </div>
                   <p className="experience-showcase__grid-desc">
-                    Creating responsive and adaptive user interfaces
+                    {t.experienceShowcase.grid.responsiveDesc}
                   </p>
                 </div>
 
@@ -226,10 +228,10 @@ export default function AboutExperienceShowcase() {
                         <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
                       </svg>
                     </span>
-                    <span className="experience-showcase__grid-title">Optimization</span>
+                    <span className="experience-showcase__grid-title">{t.experienceShowcase.grid.optimizationTitle}</span>
                   </div>
                   <p className="experience-showcase__grid-desc">
-                    Optimizing performance and improving websites
+                    {t.experienceShowcase.grid.optimizationDesc}
                   </p>
                 </div>
               </div>
@@ -241,12 +243,12 @@ export default function AboutExperienceShowcase() {
               <img src={skillHtml} alt="HTML" className="experience-showcase__tool-logo" width="56" height="56" />
               <div className="experience-showcase__tool-details">
                 <div className="experience-showcase__tool-title">
-                  <span className="experience-showcase__tool-title-full">HTML &middot; Structure</span>
-                  <span className="experience-showcase__tool-title-short">HTML &middot; Structure</span>
+                  <span className="experience-showcase__tool-title-full">{t.experienceShowcase.tools.htmlTitle}</span>
+                  <span className="experience-showcase__tool-title-short">{t.experienceShowcase.tools.htmlTitle}</span>
                 </div>
                 <div className="experience-showcase__tool-caption">
-                  <span className="experience-showcase__tool-caption-full">Created clean and semantic page structure.</span>
-                  <span className="experience-showcase__tool-caption-short">Created clean and semantic page structure.</span>
+                  <span className="experience-showcase__tool-caption-full">{t.experienceShowcase.tools.htmlCaption}</span>
+                  <span className="experience-showcase__tool-caption-short">{t.experienceShowcase.tools.htmlCaption}</span>
                 </div>
               </div>
             </article>
@@ -255,12 +257,12 @@ export default function AboutExperienceShowcase() {
               <img src={skillScss} alt="SCSS" className="experience-showcase__tool-logo" width="56" height="56" />
               <div className="experience-showcase__tool-details">
                 <div className="experience-showcase__tool-title">
-                  <span className="experience-showcase__tool-title-full">SCSS &middot; Styling</span>
-                  <span className="experience-showcase__tool-title-short">SCSS &middot; Styling</span>
+                  <span className="experience-showcase__tool-title-full">{t.experienceShowcase.tools.scssTitle}</span>
+                  <span className="experience-showcase__tool-title-short">{t.experienceShowcase.tools.scssTitle}</span>
                 </div>
                 <div className="experience-showcase__tool-caption">
-                  <span className="experience-showcase__tool-caption-full">Built responsive and polished visual layouts.</span>
-                  <span className="experience-showcase__tool-caption-short">Built responsive and polished visual layouts.</span>
+                  <span className="experience-showcase__tool-caption-full">{t.experienceShowcase.tools.scssCaption}</span>
+                  <span className="experience-showcase__tool-caption-short">{t.experienceShowcase.tools.scssCaption}</span>
                 </div>
               </div>
             </article>
@@ -269,12 +271,12 @@ export default function AboutExperienceShowcase() {
               <img src={skillJs} alt="JavaScript" className="experience-showcase__tool-logo" width="56" height="56" />
               <div className="experience-showcase__tool-details">
                 <div className="experience-showcase__tool-title">
-                  <span className="experience-showcase__tool-title-full">JavaScript &middot; Functionality</span>
-                  <span className="experience-showcase__tool-title-short">JavaScript &middot; Functionality</span>
+                  <span className="experience-showcase__tool-title-full">{t.experienceShowcase.tools.jsTitle}</span>
+                  <span className="experience-showcase__tool-title-short">{t.experienceShowcase.tools.jsTitle}</span>
                 </div>
                 <div className="experience-showcase__tool-caption">
-                  <span className="experience-showcase__tool-caption-full">Added interactive and dynamic user experience.</span>
-                  <span className="experience-showcase__tool-caption-short">Added interactive and dynamic user experience.</span>
+                  <span className="experience-showcase__tool-caption-full">{t.experienceShowcase.tools.jsCaption}</span>
+                  <span className="experience-showcase__tool-caption-short">{t.experienceShowcase.tools.jsCaption}</span>
                 </div>
               </div>
             </article>
@@ -283,12 +285,12 @@ export default function AboutExperienceShowcase() {
               <img src={skillFigma} alt="Figma" className="experience-showcase__tool-logo" width="56" height="56" />
               <div className="experience-showcase__tool-details">
                 <div className="experience-showcase__tool-title">
-                  <span className="experience-showcase__tool-title-full">Figma &middot; Design</span>
-                  <span className="experience-showcase__tool-title-short">Figma &middot; Design</span>
+                  <span className="experience-showcase__tool-title-full">{t.experienceShowcase.tools.figmaTitle}</span>
+                  <span className="experience-showcase__tool-title-short">{t.experienceShowcase.tools.figmaTitle}</span>
                 </div>
                 <div className="experience-showcase__tool-caption">
-                  <span className="experience-showcase__tool-caption-full">Designed modern and user-friendly interfaces.</span>
-                  <span className="experience-showcase__tool-caption-short">Designed modern and user-friendly interfaces.</span>
+                  <span className="experience-showcase__tool-caption-full">{t.experienceShowcase.tools.figmaCaption}</span>
+                  <span className="experience-showcase__tool-caption-short">{t.experienceShowcase.tools.figmaCaption}</span>
                 </div>
               </div>
             </article>

@@ -2,8 +2,10 @@ import { useLayoutEffect, useRef } from 'react'
 import { aboutExperienceEntries, aboutExperienceIntro } from '../../data/experience'
 import { gsap } from '../../lib/gsap'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function AboutExperience() {
+  const { t } = useLanguage()
   const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
 
@@ -84,10 +86,10 @@ export default function AboutExperience() {
         <div className="about-experience__layout">
           <aside className="about-experience__sidebar">
             <h2 className="about-experience__title" id="about-experience-title">
-              {aboutExperienceIntro.title}
+              {t.about.educationTitle}
             </h2>
             <p className="about-experience__description">
-              {aboutExperienceIntro.description}
+              {t.about.educationDescription}
             </p>
           </aside>
 

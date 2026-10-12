@@ -3,6 +3,7 @@ import { notableStats } from '../../data/projects'
 import { ScrollTrigger, gsap } from '../../lib/gsap'
 import type { NotableStatConfig } from '../../types/project.types'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
+import { useLanguage } from '../../context/LanguageContext'
 
 type ResolvedStat = {
   label: string
@@ -61,6 +62,7 @@ function resolveNotableStat(config: NotableStatConfig): ResolvedStat {
 
 export default function NotableWorks({ showSeparator = true }: NotableWorksProps) {
   const isDarkTheme = useDocumentTheme()
+  const { t } = useLanguage()
   const sectionRef = useRef<HTMLElement | null>(null)
   const resolvedStats = useMemo(() => notableStats.map(resolveNotableStat), [])
   const [displayValues, setDisplayValues] = useState(() =>
@@ -160,19 +162,27 @@ export default function NotableWorks({ showSeparator = true }: NotableWorksProps
         ) : null}
 
         <div className="notable-works-intro">
-          <h2 className="notable-works-title">NOTABLE WORKS</h2>
+          <h2 className="notable-works-title">{t.notableWorks.title}</h2>
           <a className="notable-works-cta" href="/#works" aria-label="Works link">
-            WORKS
+            {t.notableWorks.cta}
           </a>
         </div>
 
         <div className="notable-works-stats" aria-label="Professional statistics">
-          {resolvedStats.map((stat, index) => (
-            <article key={`${stat.label}-${index}`} className="notable-stat">
-              <p className="notable-stat__value">{displayValues[index]}</p>
-              <p className="notable-stat__label">{stat.label}</p>
-            </article>
-          ))}
+          {resolvedStats.map((stat, index) => {
+            const statLabel =
+              index === 0
+                ? t.notableWorks.statProjects
+                : index === 1
+                  ? t.notableWorks.statExperience
+                  : t.notableWorks.statSkills
+            return (
+              <article key={`${stat.label}-${index}`} className="notable-stat">
+                <p className="notable-stat__value">{displayValues[index]}</p>
+                <p className="notable-stat__label">{statLabel}</p>
+              </article>
+            )
+          })}
         </div>
       </div>
     </section>

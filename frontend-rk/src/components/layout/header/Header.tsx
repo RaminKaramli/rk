@@ -5,6 +5,8 @@ import { ScrollTrigger, gsap } from '../../../lib/gsap'
 import { media } from '../../../utils/constants'
 import BrandLogo from '../../common/brand-logo/BrandLogo'
 import ThemeToggle from '../../common/theme-toggle/ThemeToggle'
+import LanguageToggle from '../../common/language-toggle/LanguageToggle'
+import { useLanguage } from '../../../context/LanguageContext'
 
 type HeaderProps = {
   isDark: boolean
@@ -14,6 +16,23 @@ type HeaderProps = {
 }
 
 export default function Header({ isDark, onToggleTheme, page, showPreloader }: HeaderProps) {
+  const { t } = useLanguage()
+
+  const getLinkLabel = (label: string) => {
+    switch (label) {
+      case 'HOME':
+        return t.nav.home
+      case 'ABOUT':
+        return t.nav.about
+      case 'WORKS':
+        return t.nav.works
+      case 'RESUME':
+        return t.nav.resume
+      default:
+        return label
+    }
+  }
+
   const MENU_DURATION = 0.42
   const LINK_STAGGER = 0.05
   const [activeImageIndex, setActiveImageIndex] = useState(0)
@@ -33,7 +52,6 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
   const linkRefs = useRef<HTMLAnchorElement[]>([])
   const isInitializedRef = useRef(false)
   const headerEntrancePlayedRef = useRef(false)
-
   const isAboutPage = page === 'about'
   const sectionTwoActive = isSectionTwoActive
   const links = isAboutPage ? aboutMenuLinks : homeMenuLinks
@@ -588,7 +606,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
                 onClick={handleNavigationClick(link.href, link.label, true)}
                 className="overlay-nav-link"
               >
-                {link.label}
+                {getLinkLabel(link.label)}
               </a>
             </li>
           ))}
@@ -623,9 +641,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
             ref={switcherRef}
             className="header-inline-nav switcher"
             aria-label="Primary"
-            style={{ '--active-index': String(activeNavIndex) } as CSSProperties}
           >
-            <span className="header-inline-nav__highlight" aria-hidden="true" />
             {links.map((link, index) => (
               <label
                 key={`inline-${link.label}-${link.href}`}
@@ -641,7 +657,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
                   type="radio"
                   value={link.label}
                 />
-                <span className="switcher__text">{link.label}</span>
+                <span className="switcher__text">{getLinkLabel(link.label)}</span>
               </label>
             ))}
           </nav>
@@ -661,7 +677,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
             <svg className={`ham ham6${menuOpen ? ' active' : ''}`} viewBox="0 0 100 100" width="56" aria-hidden="true">
               <path
                 className="line top"
-                d="m 30,33 h 40 c 13.100415,0 14.380204,31.80258 6.899646,33.421777 -24.612039,5.327373 9.016154,-52.337577 -12.75751,-30.563913 l -28.284272,28.284272"
+                d="m 30,33 h 40 c 13.100415,0 14.380204,31.80258 6.899646,33.421777 -24.612039,5.327373 -9.016154,-52.337577 -12.75751,-30.563913 l -28.284272,28.284272"
               />
               <path
                 className="line middle"
@@ -678,6 +694,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
       </header>
 
       <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
+      <LanguageToggle />
 
       {typeof document !== 'undefined' ? createPortal(overlayMenuNode, document.body) : null}
     </>

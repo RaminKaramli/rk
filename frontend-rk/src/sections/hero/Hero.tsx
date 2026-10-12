@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef } from "react";
 import { gsap, Draggable } from "../../lib/gsap";
 
 import { useDocumentTheme } from "../../hooks/useDocumentTheme";
+import { useLanguage } from "../../context/LanguageContext";
 import { media, siteContent } from "../../utils/constants";
 import mymacbookImg from "../../assets/images/mymacbook.png";
 import mycanonImg from "../../assets/images/mycanon.png";
@@ -48,6 +49,7 @@ type HomeHeroProps = {
 
 export default function HomeHero({ showPreloader }: HomeHeroProps) {
   const isDarkTheme = useDocumentTheme();
+  const { t } = useLanguage();
   const sectionRef = useRef<HTMLElement | null>(null);
   const topCopyRef = useRef<HTMLParagraphElement | null>(null);
   const nameRef = useRef<HTMLHeadingElement | null>(null);
@@ -212,7 +214,7 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
     >
       <div className="hero-middle">
         <p ref={topCopyRef} className="press-text-one">
-          {siteContent.heroTopCopy}
+          {t.hero.topCopy}
         </p>
 
         <div ref={nameWrapRef} className="hero-name-wrap">
@@ -246,14 +248,14 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
         </div>
 
         <p ref={bottomCopyRef} className="press-text-two">
-          {siteContent.heroBottomCopy}
+          {t.hero.bottomCopy}
         </p>
       </div>
 
       <div id="left-right-full" className="bottom-row">
         <div ref={skillPillsRef} className="top-left">
-          <p>FRONTEND DEVELOPER</p>
-          <p>WEB DESIGNER</p>
+          <p>{t.hero.roleFrontend}</p>
+          <p>{t.hero.roleWebDesigner}</p>
         </div>
       </div>
     </section>

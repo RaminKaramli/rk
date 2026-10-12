@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useRef, useState, type SVGProps } from 'rea
 import { Icon } from '@iconify/react'
 import { ikiliProjectCards, secondProjectCards, stackCards } from '../../data/projects'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
+import { useLanguage } from '../../context/LanguageContext'
 import { Draggable, ScrollTrigger, gsap } from '../../lib/gsap'
 
 type ProjectShowcaseBoxProps = {
@@ -161,6 +162,7 @@ const projectTools = [
 ]
 
 export default function StackCardsShowcase({ singleColumn = false }: StackCardsShowcaseProps) {
+  const { t } = useLanguage()
   const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
 
@@ -385,7 +387,7 @@ export default function StackCardsShowcase({ singleColumn = false }: StackCardsS
         <div className="stack-cards-section__separator-line" />
       </div>
 
-      <h2 className="stack-cards-section__title">Selected Projects</h2>
+      <h2 className="stack-cards-section__title">{t.notableWorks.title}</h2>
 
       <div className="portfolio-gallery-grid">
         {showcasedProjects.map((project) => (

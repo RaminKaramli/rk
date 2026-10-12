@@ -2,8 +2,10 @@ import { useRef, useLayoutEffect, useCallback } from 'react'
 import { gsap } from '../../lib/gsap'
 import { aboutSkills } from '../../data/skills'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function AboutSkillsAccordion() {
+  const { t } = useLanguage()
   const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
   // Index 0 (01) is open by default, others closed
@@ -95,10 +97,10 @@ export default function AboutSkillsAccordion() {
       <div className="about-skills__inner">
         <div className="about-skills__header">
           <h2 className="about-skills__title" id="about-skills-title">
-            Skills
+            {t.about.skillsHeading}
           </h2>
           <p className="about-skills__description">
-            Building modern digital experiences with clean development, thoughtful design, and a focus on usability.
+            {t.about.skillsDescription}
           </p>
         </div>
 

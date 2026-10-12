@@ -1,6 +1,9 @@
-import { media, siteContent } from '../../utils/constants'
+import { media } from '../../utils/constants'
+import { useLanguage } from '../../context/LanguageContext'
 
 export default function AboutShowcase() {
+  const { t } = useLanguage()
+
   return (
     <section id="about" className="about-showcase" aria-labelledby="about-showcase-title">
       <div className="about-showcase__container">
@@ -36,13 +39,13 @@ export default function AboutShowcase() {
           <div className="about-showcase__left">
             <p className="about-showcase__year">©2026</p>
             <h1 className="about-showcase__title" id="about-showcase-title">
-              <span>ABOUT ME</span>
+              <span>{t.about.title}</span>
             </h1>
           </div>
 
           <div className="about-showcase__right">
             <div className="about-showcase__body">
-              <p>{siteContent.aboutLead}</p>
+              <p>{t.about.lead}</p>
             </div>
           </div>
         </div>

@@ -2,8 +2,10 @@ import { forwardRef } from 'react'
 import { footerSocialLinks } from '../../../data/socials'
 import { useFooterClock } from '../../../hooks/useFooterClock'
 import { media, siteContent } from '../../../utils/constants'
+import { useLanguage } from '../../../context/LanguageContext'
 
 const Footer = forwardRef<HTMLDivElement>(function Footer(_, ref) {
+  const { t } = useLanguage()
   const footerClock = useFooterClock('Asia/Baku')
 
   return (
@@ -11,9 +13,9 @@ const Footer = forwardRef<HTMLDivElement>(function Footer(_, ref) {
       <div ref={ref} className="site-footer__container">
         <div className="site-footer__top">
           <section className="site-footer__cta" aria-label="Contact call to action">
-            <p className="site-footer__eyebrow">HAVE A PROJECT IN MIND?</p>
+            <p className="site-footer__eyebrow">{t.footer.eyebrow}</p>
             <a className="site-footer__talk" href={`mailto:${siteContent.contactEmail}`}>
-              LET&apos;S TALK
+              {t.footer.letsTalk}
             </a>
           </section>
 
@@ -39,7 +41,7 @@ const Footer = forwardRef<HTMLDivElement>(function Footer(_, ref) {
         </nav>
 
         <div className="site-footer__bottom">
-          <p className="site-footer__meta">{siteContent.footerMeta}</p>
+          <p className="site-footer__meta">{t.footer.rights}</p>
           <p className="site-footer__clock" id="footerClock" data-time-zone="Asia/Baku" aria-live="polite">
             {footerClock}
           </p>
