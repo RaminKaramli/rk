@@ -226,7 +226,7 @@ export default function HomeHero({ showPreloader }: HomeHeroProps) {
               letterSpacing: "0.005em",
             }}
           >
-            Ramin Karamli
+            {t.hero.name}
           </h1>
 
           <div ref={figureRef} className="hero-figure">

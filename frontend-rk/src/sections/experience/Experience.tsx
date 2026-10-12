@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type SVGProps } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type SVGProps } from 'react'
 import { Icon } from '@iconify/react'
 import { ikiliProjectCards, secondProjectCards, stackCards } from '../../data/projects'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
@@ -67,44 +67,7 @@ function ProjectShowcaseBox({ cards, title, href }: ProjectShowcaseBoxProps) {
   )
 }
 
-const showcasedProjects = [
-  {
-    id: 'ikili-iki',
-    cards: ikiliProjectCards,
-    category: 'E-Commerce • 2 Months Experience',
-    description:
-      'Modern e-commerce platform developed for ikili2.com during a 2-month professional experience, specializing in photo & video production gear, studio lighting, backdrop systems, audio, and camera accessories with responsive product catalogs.',
-    href: 'https://ikili2.com/',
-    title: 'İkili İki — Photo & Video Production Equipment Store',
-  },
-  {
-    id: 'personal-portfolio',
-    cards: secondProjectCards,
-    category: 'Crafted in 2025',
-    description:
-      'Personal portfolio website designed and developed in 2025, showcasing selected frontend projects, creative animations, and interactive interfaces.',
-    href: 'https://raminkaramli.com/',
-    title: 'Personal Portfolio',
-  },
-  {
-    id: 'compact-brand-website',
-    cards: stackCards.slice(0, 2),
-    category: 'Brand Experience',
-    description:
-      'Website designed with a focused two-screen showcase, clear visual hierarchy, and responsive presentation for a compact brand experience.',
-    href: 'https://ikili2.com/',
-    title: 'Compact Brand Website',
-  },
-  {
-    id: 'selected-portfolio',
-    cards: stackCards.slice(2, 4),
-    category: 'Selected Portfolio',
-    description:
-      'Interactive presentation highlighting frontend animation craft, responsive components, and polished UI design.',
-    href: 'https://raminkaramli.com/',
-    title: 'Selected Portfolio',
-  },
-]
+
 
 type StackCardsShowcaseProps = {
   singleColumn?: boolean
@@ -165,6 +128,44 @@ export default function StackCardsShowcase({ singleColumn = false }: StackCardsS
   const { t } = useLanguage()
   const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
+
+  const showcasedProjects = useMemo(
+    () => [
+      {
+        id: 'ikili-iki',
+        cards: ikiliProjectCards,
+        category: t.projects.ikili.category,
+        description: t.projects.ikili.description,
+        href: 'https://ikili2.com/',
+        title: t.projects.ikili.title,
+      },
+      {
+        id: 'personal-portfolio',
+        cards: secondProjectCards,
+        category: t.projects.portfolio.category,
+        description: t.projects.portfolio.description,
+        href: 'https://raminkaramli.com/',
+        title: t.projects.portfolio.title,
+      },
+      {
+        id: 'compact-brand-website',
+        cards: stackCards.slice(0, 2),
+        category: t.projects.compact.category,
+        description: t.projects.compact.description,
+        href: 'https://ikili2.com/',
+        title: t.projects.compact.title,
+      },
+      {
+        id: 'selected-portfolio',
+        cards: stackCards.slice(2, 4),
+        category: t.projects.selected.category,
+        description: t.projects.selected.description,
+        href: 'https://raminkaramli.com/',
+        title: t.projects.selected.title,
+      },
+    ],
+    [t],
+  )
 
   useLayoutEffect(() => {
     const section = sectionRef.current
@@ -408,7 +409,7 @@ export default function StackCardsShowcase({ singleColumn = false }: StackCardsS
                 <p className="portfolio-card__category">{project.category}</p>
               </div>
 
-              <div className="portfolio-card__tools" aria-label="Technologies used">
+              <div className="portfolio-card__tools" aria-label={t.projects.techAria}>
                 {projectTools.map((tool) => (
                   <span
                     key={`${project.title}-${tool.label}`}

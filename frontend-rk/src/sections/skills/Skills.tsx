@@ -1,6 +1,5 @@
 import { useRef, useLayoutEffect, useCallback } from 'react'
 import { gsap } from '../../lib/gsap'
-import { aboutSkills } from '../../data/skills'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 import { useLanguage } from '../../context/LanguageContext'
 
@@ -9,7 +8,7 @@ export default function AboutSkillsAccordion() {
   const isDarkTheme = useDocumentTheme()
   const sectionRef = useRef<HTMLElement | null>(null)
   // Index 0 (01) is open by default, others closed
-  const openStates = useRef<boolean[]>(aboutSkills.map((_, i) => i === 0))
+  const openStates = useRef<boolean[]>(t.about.skillsList.map((_, i) => i === 0))
   const contentRefs = useRef<(HTMLDivElement | null)[]>([])
   const iconRefs = useRef<(SVGSVGElement | null)[]>([])
   const articleRefs = useRef<(HTMLElement | null)[]>([])
@@ -105,7 +104,7 @@ export default function AboutSkillsAccordion() {
         </div>
 
         <div className="about-skills__list">
-          {aboutSkills.map((skill, index) => {
+          {t.about.skillsList.map((skill, index) => {
             const panelId = `about-skills-panel-${index + 1}`
             const triggerId = `about-skills-trigger-${index + 1}`
 

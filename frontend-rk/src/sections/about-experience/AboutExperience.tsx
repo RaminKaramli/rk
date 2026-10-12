@@ -1,5 +1,4 @@
 import { useLayoutEffect, useRef } from 'react'
-import { aboutExperienceEntries, aboutExperienceIntro } from '../../data/experience'
 import { gsap } from '../../lib/gsap'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 import { useLanguage } from '../../context/LanguageContext'
@@ -95,7 +94,7 @@ export default function AboutExperience() {
 
           <div className="about-experience__timeline">
             <ul className="about-experience__list" aria-label="Experience timeline">
-              {aboutExperienceEntries.map((entry) => (
+              {t.about.educationEntries.map((entry) => (
                 <li className="about-experience__item" key={`${entry.company}-${entry.period}`}>
                   <article className="about-experience__card">
                     <h3 className="about-experience__company">{entry.company}</h3>

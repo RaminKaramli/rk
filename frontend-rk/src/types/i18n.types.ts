@@ -11,6 +11,7 @@ export interface TranslationDictionary {
     backToHome: string
   }
   hero: {
+    name: string
     topCopy: string
     roleFrontend: string
     roleWebDesigner: string
@@ -22,6 +23,29 @@ export interface TranslationDictionary {
     statProjects: string
     statExperience: string
     statSkills: string
+  }
+  projects: {
+    ikili: {
+      title: string
+      category: string
+      description: string
+    }
+    portfolio: {
+      title: string
+      category: string
+      description: string
+    }
+    compact: {
+      title: string
+      category: string
+      description: string
+    }
+    selected: {
+      title: string
+      category: string
+      description: string
+    }
+    techAria: string
   }
   experienceShowcase: {
     heading: string
@@ -54,6 +78,7 @@ export interface TranslationDictionary {
     quoteStatement: string
     quoteDescription: string
     resume: string
+    techStack: string
   }
   about: {
     title: string
@@ -64,6 +89,17 @@ export interface TranslationDictionary {
     educationDescription: string
     experienceHeading: string
     educationHeading: string
+    educationEntries: Array<{
+      company: string
+      role: string
+      period: string
+      description: string
+    }>
+    skillsList: Array<{
+      title: string
+      description: string
+      tags: string[]
+    }>
   }
   footer: {
     eyebrow: string

@@ -93,8 +93,12 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
 
   const syncLocationScroll = (hash: string) => {
     const scrollToHash = (attempt = 0) => {
-      if (!hash) {
+      if (!hash || hash === '#home-section') {
         window.scrollTo({ top: 0, behavior: 'smooth' })
+        const target = document.getElementById('home-section')
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
         return
       }
 
@@ -225,12 +229,33 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     }
 
   const handleBrandClick = (event: ReactMouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault()
-    if (window.location.pathname !== '/' || window.location.search) {
-      navigateAfterScribble('/', 'HOME', event.currentTarget)
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+      return
     }
+
+    event.preventDefault()
+    event.stopPropagation()
+
+    if (menuOpen) {
+      setMenuOpen(false)
+    }
+
+    const homeHref = '/#home-section'
+    const nextUrl = new URL(homeHref, window.location.origin)
+    const nextLocation = `${nextUrl.pathname}${nextUrl.search}${nextUrl.hash}`
+    const currentLocation = `${window.location.pathname}${window.location.search}${window.location.hash}`
+
+    if (nextLocation === currentLocation) {
+      const homeSection = document.getElementById('home-section')
+      if (homeSection) {
+        homeSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      }
+      return
+    }
+
+    navigateAfterScribble(homeHref, 'HOME', event.currentTarget, menuOpen)
   }
 
   useEffect(() => {
@@ -619,7 +644,7 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
     <>
       <a
         ref={brandRef}
-        href="/"
+        href="/#home-section"
         className="header-brand"
         aria-label="Ramin Karamli"
         onClick={handleBrandClick}
@@ -633,7 +658,12 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
         id="sideHeader"
       >
         <div className="header-wrapper">
-          <a href="/" className="header-logo" aria-label="Ramin avatar">
+          <a
+            href="/#home-section"
+            className="header-logo"
+            aria-label="Ramin avatar"
+            onClick={handleBrandClick}
+          >
             <img id="headerAvatar" src={media.avatar} alt="Ramin avatar" />
           </a>
 

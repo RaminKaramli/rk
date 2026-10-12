@@ -16,8 +16,11 @@ export default function App() {
       smoothWheel: true,
     })
 
+    window.lenis = lenis
+
     return () => {
       lenis.destroy()
+      delete window.lenis
     }
   }, [])
 

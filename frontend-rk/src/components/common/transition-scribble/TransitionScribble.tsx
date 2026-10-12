@@ -27,7 +27,27 @@ export default function TransitionScribble() {
     gsap.set(transitionScribbleSvg, { autoAlpha: 0, scale: animationConfig.scale })
     gsap.set(transitionLogo, { autoAlpha: 0, xPercent: -50, yPercent: -50 })
 
-    window.__runScribbleTransition = ({ onCover } = {}) =>
+    const preventDefaultScroll = (e: Event) => {
+      e.preventDefault()
+    }
+
+    const lockScroll = () => {
+      window.lenis?.stop()
+      document.body.classList.add('is-transitioning')
+      document.documentElement.classList.add('is-transitioning')
+      window.addEventListener('wheel', preventDefaultScroll, { passive: false })
+      window.addEventListener('touchmove', preventDefaultScroll, { passive: false })
+    }
+
+    const unlockScroll = () => {
+      window.removeEventListener('wheel', preventDefaultScroll)
+      window.removeEventListener('touchmove', preventDefaultScroll)
+      document.body.classList.remove('is-transitioning')
+      document.documentElement.classList.remove('is-transitioning')
+      window.lenis?.start()
+    }
+
+    window.__runScribbleTransition = ({ onCover, durationIn, durationOut } = {}) =>
       new Promise<void>((resolve) => {
         if (
           gsap.isTweening(transitionScribblePath) ||
@@ -37,6 +57,9 @@ export default function TransitionScribble() {
           resolve()
           return
         }
+
+        const durIn = durationIn ?? animationConfig.durationIn
+        const durOut = durationOut ?? animationConfig.durationOut
 
         const pathLength = transitionScribblePath.getTotalLength()
         const dashLength = pathLength + 5
@@ -58,11 +81,11 @@ export default function TransitionScribble() {
         })
         gsap.set(transitionLogo, { autoAlpha: 0, scale: 1, xPercent: -50, yPercent: -50 })
 
-        document.body.classList.add('is-transitioning')
+        lockScroll()
 
         const drawTl = gsap.timeline({
           onComplete: () => {
-            document.body.classList.remove('is-transitioning')
+            unlockScroll()
             gsap.set(transitionScribblePath, { strokeWidth: '0%' })
             gsap.set([transitionScribbleSvg, transitionLogo], { autoAlpha: 0 })
             resolve()
@@ -71,26 +94,26 @@ export default function TransitionScribble() {
 
         drawTl.to(
           transitionScribblePath,
-          { strokeDashoffset: 0, duration: animationConfig.durationIn, ease: 'power1.inOut' },
+          { strokeDashoffset: 0, duration: durIn, ease: 'power1.inOut' },
           0,
         )
         drawTl.to(
           transitionScribblePath,
-          { strokeWidth: animationConfig.strokeWidthMax, duration: animationConfig.durationIn, ease: 'power2.inOut' },
+          { strokeWidth: animationConfig.strokeWidthMax, duration: durIn, ease: 'power2.inOut' },
           0,
         )
         drawTl.call(() => {
           onCover?.()
-        }, undefined, animationConfig.durationIn)
+        }, undefined, durIn)
         drawTl.to(
           transitionScribblePath,
-          { strokeDashoffset: -dashLength, duration: animationConfig.durationOut, ease: 'power2.inOut' },
-          animationConfig.durationIn,
+          { strokeDashoffset: -dashLength, duration: durOut, ease: 'power2.inOut' },
+          durIn,
         )
         drawTl.to(
           transitionScribblePath,
-          { strokeWidth: animationConfig.strokeWidthStart, duration: animationConfig.durationOut, ease: 'power2.inOut' },
-          animationConfig.durationIn,
+          { strokeWidth: animationConfig.strokeWidthStart, duration: durOut, ease: 'power2.inOut' },
+          durIn,
         )
 
         drawTl.set(transitionLogo, { autoAlpha: 0 }, 0)
@@ -98,10 +121,10 @@ export default function TransitionScribble() {
           transitionLogo,
           {
             autoAlpha: 1,
-            duration: animationConfig.durationIn * 0.5,
+            duration: durIn * 0.5,
             ease: 'power2.out',
           },
-          animationConfig.durationIn * 0.5,
+          durIn * 0.5,
         )
         drawTl.set(
           transitionLogo,
@@ -111,19 +134,19 @@ export default function TransitionScribble() {
               gsap.set(transitionLogo, { rotation: 0, xPercent: -50, yPercent: -50 })
             },
           },
-          animationConfig.durationIn + animationConfig.durationOut * 0.48,
+          durIn + durOut * 0.48,
         )
       })
 
     return () => {
       delete window.__runScribbleTransition
-      document.body.classList.remove('is-transitioning')
+      unlockScroll()
       gsap.killTweensOf([transitionLogo, transitionScribblePath, transitionScribbleSvg])
     }
   }, [])
 
   return (
-    <>
+    <div className="route-transition-wrapper" aria-hidden="true">
       <svg
         ref={svgRef}
         xmlns="http://www.w3.org/2000/svg"
@@ -145,6 +168,6 @@ export default function TransitionScribble() {
       <div ref={logoRef} className="route-transition-logo" aria-hidden="true">
         <img src={transitionLogo} alt="" />
       </div>
-    </>
+    </div>
   )
 }

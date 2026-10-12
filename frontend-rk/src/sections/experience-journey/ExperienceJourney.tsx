@@ -339,8 +339,8 @@ export default function ExperienceJourney() {
               />
             ) : card.type === 'stack' ? (
               <>
-                <h3 className="experience-journey-card__stack-title">{card.brand}</h3>
-                <div className="experience-journey-card__stack-marquee" aria-label="My tech stack">
+                <h3 className="experience-journey-card__stack-title">{t.experienceJourney.techStack}</h3>
+                <div className="experience-journey-card__stack-marquee" aria-label={t.experienceJourney.techStack}>
                   {[0, 1].map((row) => (
                     <ul className="experience-journey-card__stack-track" key={row} aria-hidden={row === 1}>
                       {[...techStackItems, ...techStackItems].map((item, index) => (
