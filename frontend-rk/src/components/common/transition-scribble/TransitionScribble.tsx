@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { gsap } from '../../../lib/gsap'
-import transitionLogo from '../../../assets/images/publications/logo.svg'
+import transitionLogo from '../../../assets/images/publications/raminkaramlifont.svg'
 
 const animationConfig = {
   durationIn: 1.4,
@@ -32,7 +32,6 @@ export default function TransitionScribble() {
     }
 
     const lockScroll = () => {
-      window.lenis?.stop()
       document.body.classList.add('is-transitioning')
       document.documentElement.classList.add('is-transitioning')
       window.addEventListener('wheel', preventDefaultScroll, { passive: false })
@@ -44,7 +43,6 @@ export default function TransitionScribble() {
       window.removeEventListener('touchmove', preventDefaultScroll)
       document.body.classList.remove('is-transitioning')
       document.documentElement.classList.remove('is-transitioning')
-      window.lenis?.start()
     }
 
     window.__runScribbleTransition = ({ onCover, durationIn, durationOut } = {}) =>

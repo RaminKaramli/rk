@@ -19,7 +19,7 @@ export default function LanguageToggle() {
     setActiveLang(target)
     setIsTransitioning(true)
 
-    const savedScrollY = window.lenis?.scroll ?? window.scrollY
+    const savedScrollY = window.scrollY
 
     const runTransition = window.__runScribbleTransition
 
@@ -29,19 +29,11 @@ export default function LanguageToggle() {
         durationOut: 1.0,
         onCover: () => {
           setLanguage(target)
-          if (window.lenis) {
-            window.lenis.scrollTo(savedScrollY, { immediate: true })
-          } else {
-            window.scrollTo({ top: savedScrollY, behavior: 'instant' })
-          }
+          window.scrollTo({ top: savedScrollY, behavior: 'instant' })
         },
       }).finally(() => {
         setIsTransitioning(false)
-        if (window.lenis) {
-          window.lenis.scrollTo(savedScrollY, { immediate: true })
-        } else {
-          window.scrollTo({ top: savedScrollY, behavior: 'instant' })
-        }
+        window.scrollTo({ top: savedScrollY, behavior: 'instant' })
       })
     } else {
       setLanguage(target)

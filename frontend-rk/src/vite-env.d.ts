@@ -12,6 +12,5 @@ declare global {
 
   interface Window {
     __runScribbleTransition?: (options?: ScribbleTransitionOptions) => Promise<void>
-    lenis?: import('lenis').default
   }
 }

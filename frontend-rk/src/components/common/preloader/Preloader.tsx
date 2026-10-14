@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { gsap } from '../../../lib/gsap'
 import { ANIMATION_CONFIG } from '../../../lib/data'
-import publicationLogo from '../../../assets/images/publications/logo.svg'
+import publicationLogo from '../../../assets/images/publications/raminkaramlifont.svg'
 import './Preloader.scss'
 
 type PreloaderProps = {

@@ -4,8 +4,6 @@ import { aboutMenuLinks, homeMenuLinks, overlayMenuImages } from '../../../data/
 import { ScrollTrigger, gsap } from '../../../lib/gsap'
 import { media } from '../../../utils/constants'
 import BrandLogo from '../../common/brand-logo/BrandLogo'
-import ThemeToggle from '../../common/theme-toggle/ThemeToggle'
-import LanguageToggle from '../../common/language-toggle/LanguageToggle'
 import { useLanguage } from '../../../context/LanguageContext'
 
 type HeaderProps = {
@@ -722,9 +720,6 @@ export default function Header({ isDark, onToggleTheme, page, showPreloader }: H
         </div>
 
       </header>
-
-      <ThemeToggle isDark={isDark} onToggle={onToggleTheme} />
-      <LanguageToggle />
 
       {typeof document !== 'undefined' ? createPortal(overlayMenuNode, document.body) : null}
     </>

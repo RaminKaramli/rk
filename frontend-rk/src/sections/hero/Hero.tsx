@@ -4,40 +4,40 @@ import { gsap, Draggable } from "../../lib/gsap";
 import { useDocumentTheme } from "../../hooks/useDocumentTheme";
 import { useLanguage } from "../../context/LanguageContext";
 import { media, siteContent } from "../../utils/constants";
-import mymacbookImg from "../../assets/images/mymacbook.png";
-import mycanonImg from "../../assets/images/mycanon.png";
-import mycanonPowerSha3400Img from "../../assets/images/mycanonPowerSha3400.png";
-import mycoclearimplantImg from "../../assets/images/mycoclearimplant.png";
-import myconverseblueImg from "../../assets/images/myconverseblue.png";
+import heroMacbookImg from "../../assets/images/hero-macbook.png";
+import heroCanonImg from "../../assets/images/hero-canon.png";
+import heroCanonPowerShotImg from "../../assets/images/hero-canon-powershot.png";
+import heroCochlearImplantImg from "../../assets/images/hero-cochlear-implant.png";
+import heroConverseBlueImg from "../../assets/images/hero-converse-blue.png";
 
 const DRAGGABLE_ITEMS = [
   {
     id: "kuih-lenggang",
-    src: mymacbookImg,
+    src: heroMacbookImg,
     alt: "kuih lenggang",
     className: "",
   },
   {
     id: "kuih-pelita",
-    src: mycanonPowerSha3400Img,
+    src: heroCanonPowerShotImg,
     alt: "kuih pelita",
     className: "kuih-pelita",
   },
   {
     id: "kuih-lapis",
-    src: mycoclearimplantImg,
+    src: heroCochlearImplantImg,
     alt: "kuih lapis",
     className: "kuih-lapis",
   },
   {
     id: "seri-muka",
-    src: myconverseblueImg,
+    src: heroConverseBlueImg,
     alt: "kuih seri muka",
     className: "seri-muka",
   },
   {
     id: "pulut-serunding",
-    src: mycanonImg,
+    src: heroCanonImg,
     alt: "pulut serunding",
     className: "",
   },

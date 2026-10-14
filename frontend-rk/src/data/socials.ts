@@ -1,8 +1,8 @@
 import type { FooterLink, MenuLink, SocialLink } from '../types/common.types'
 import aboutShowcaseMotion from '../assets/images/about-showcase-motion.png'
-import heroImage from '../assets/images/her0.png'
-import myImage from '../assets/images/avatar-100kb.jpeg'
-import rkImage from '../assets/images/rk.jpeg'
+import heroImage from '../assets/images/hero.png'
+import myImage from '../assets/images/avatar.jpeg'
+import rkImage from '../assets/images/rk-portrait.jpeg'
 
 export const overlayMenuImages = [
   heroImage,

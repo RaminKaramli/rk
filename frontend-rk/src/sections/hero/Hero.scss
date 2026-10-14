@@ -385,26 +385,26 @@ body.home-page.theme-dark {
   }
 
   .draggable {
-    width: 16vw !important;
-    min-width: 2.75rem !important;
-    max-width: 4.75rem !important;
+    width: 13.5vw !important;
+    min-width: 2.35rem !important;
+    max-width: 4rem !important;
     z-index: 1 !important;
   }
 
   .seri-muka {
-    width: 18vw !important;
-    max-width: 5.25rem !important;
+    width: 15vw !important;
+    max-width: 4.4rem !important;
   }
 
   .kuih-pelita {
-    width: 16vw !important;
-    max-width: 4.75rem !important;
+    width: 13.5vw !important;
+    max-width: 4rem !important;
   }
 
   .kuih-lapis {
-    width: 10vw !important;
-    min-width: 2rem !important;
-    max-width: 3.5rem !important;
+    width: 8.5vw !important;
+    min-width: 1.75rem !important;
+    max-width: 2.85rem !important;
   }
 
   .bottom-row {
@@ -431,9 +431,9 @@ body.home-page.theme-dark {
 // Draggable Items Styling
 .draggable {
   position: absolute;
-  width: 18vw;
-  max-width: 100px;
-  min-width: 60px;
+  width: 15vw;
+  max-width: 85px;
+  min-width: 50px;
   height: auto;
   margin: 0 !important;
   cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef4b_cursor-drag.svg") 12 0, auto !important;
@@ -455,19 +455,19 @@ body.home-page.theme-dark {
 }
 
 .seri-muka {
-  width: 20vw;
-  max-width: 110px;
+  width: 17vw;
+  max-width: 95px;
 }
 
 .kuih-pelita {
-  width: 18vw;
-  max-width: 100px;
+  width: 15vw;
+  max-width: 85px;
 }
 
 .kuih-lapis {
-  width: 10vw;
-  max-width: 55px;
-  min-width: 35px;
+  width: 8.5vw;
+  max-width: 45px;
+  min-width: 30px;
 }
 
 // Dark theme dropshadow
@@ -481,24 +481,24 @@ body.home-page.theme-dark {
 
 @media screen and (min-width: 480px) {
   .draggable {
-    width: 10vw;
-    max-width: 130px;
-    min-width: 80px;
+    width: 8.5vw;
+    max-width: 105px;
+    min-width: 65px;
   }
 
   .seri-muka {
-    width: 11vw;
-    max-width: 140px;
+    width: 9.5vw;
+    max-width: 115px;
   }
 
   .kuih-pelita {
-    width: 10vw;
-    max-width: 120px;
+    width: 8.5vw;
+    max-width: 100px;
   }
 
   .kuih-lapis {
-    width: 7vw;
-    max-width: 75px;
-    min-width: 50px;
+    width: 6vw;
+    max-width: 60px;
+    min-width: 40px;
   }
 }
