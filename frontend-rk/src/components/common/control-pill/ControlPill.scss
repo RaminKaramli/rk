@@ -80,15 +80,15 @@
   outline: none;
   padding: 0;
   box-shadow: none !important;
-  transition: background-color 0.22s ease, transform 0.2s ease, opacity 0.2s ease;
+  transition: background-color 0.22s ease, opacity 0.2s ease;
 
   &:hover {
     background-color: color-mix(in srgb, var(--c-content) 10%, transparent);
-    transform: scale(1.08);
+    transform: none;
   }
 
   &:active {
-    transform: scale(0.92);
+    transform: none;
   }
 }
 
@@ -134,7 +134,7 @@ body.theme-dark {
   width: 1.25rem;
   height: 1.25rem;
   display: block;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: opacity 0.2s ease;
 
   .sound-wave {
     transform-origin: 11px 12px;
@@ -168,88 +168,6 @@ body.theme-dark {
   }
 }
 
-/* Hover tooltip for music */
-.control-pill__music-tooltip {
-  position: absolute;
-  top: calc(100% + 0.65rem);
-  right: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  padding: 0.45rem 0.85rem;
-  border-radius: 9999px;
-  background-color: color-mix(in srgb, var(--c-glass) 16%, transparent);
-  -webkit-backdrop-filter: blur(12px) saturate(var(--saturation));
-  backdrop-filter: blur(12px) saturate(var(--saturation));
-  border: 1px solid color-mix(in srgb, var(--c-light) 14%, transparent);
-  box-shadow: none !important;
-  opacity: 0;
-  transform: translateY(-6px);
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.25, 1, 0.35, 1);
-  white-space: nowrap;
-  max-width: 19rem;
-  z-index: 1300;
-
-  .control-pill__music-wrapper:hover & {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-}
-
-.control-pill__track-info {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.25;
-  overflow: hidden;
-}
-
-.control-pill__song-title {
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--c-content);
-  max-width: 10rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.control-pill__song-author {
-  font-size: 0.65rem;
-  color: color-mix(in srgb, var(--c-content) 60%, transparent);
-  max-width: 10rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.control-pill__track-actions {
-  display: flex;
-  align-items: center;
-  gap: 0.2rem;
-  margin-left: 0.25rem;
-}
-
-.control-pill__track-btn {
-  background: transparent;
-  border: none;
-  color: var(--c-content);
-  width: 1.45rem;
-  height: 1.45rem;
-  padding: 0;
-  border-radius: 50%;
-  cursor: url("https://cdn.prod.website-files.com/683703490bc01e1b8c052e06/68384fb014875f192dfcef67_cursor-pointer.svg") 2 0, pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.75;
-  transition: opacity 0.2s, background-color 0.2s;
-
-  &:hover {
-    opacity: 1;
-    background-color: color-mix(in srgb, var(--c-content) 14%, transparent);
-  }
-}
-
 /* Hidden YouTube host */
 .control-pill__youtube-host {
   position: absolute;
@@ -272,24 +190,9 @@ body.theme-dark {
     padding: 0.22rem 0.4rem;
   }
 
-  .control-pill__btn {
-    padding: 0 0.72rem;
-    font-size: 0.82rem;
-  }
-
   .control-pill__icon-btn {
     width: 2.2rem;
     height: 2.2rem;
-  }
-
-  .control-pill__music-tooltip {
-    top: auto;
-    bottom: calc(100% + 0.65rem);
-    transform: translateY(6px);
-
-    .control-pill__music-wrapper:hover & {
-      transform: translateY(0);
-    }
   }
 }
 
@@ -299,11 +202,6 @@ body.theme-dark {
     right: 0.85rem !important;
     height: 2.75rem;
     padding: 0.2rem 0.35rem;
-  }
-
-  .control-pill__btn {
-    padding: 0 0.65rem;
-    font-size: 0.78rem;
   }
 
   .control-pill__icon-btn {

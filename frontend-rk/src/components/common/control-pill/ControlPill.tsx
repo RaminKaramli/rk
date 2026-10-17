@@ -1,4 +1,4 @@
-import { type MouseEvent, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { useLanguage } from '../../../context/LanguageContext'
 import { useThemeContext } from '../../../context/ThemeContext'
@@ -68,20 +68,6 @@ function extractVideoId(url: string): string {
   }
 }
 
-function sanitizeTitle(rawTitle: string): string {
-  return rawTitle
-    .replace(/\(official video\)/i, '')
-    .replace(/\(official music video\)/i, '')
-    .replace(/\[official video\]/i, '')
-    .replace(/【.*?】/g, '')
-    .trim()
-}
-
-function getArtistFromTitle(title: string): string {
-  const match = title.split(/\s[-–]\s/)[0]?.trim()
-  return match && match.length > 0 ? match : 'Ambient Music'
-}
-
 function loadYouTubeApi(): Promise<void> {
   if (window.YT?.Player) {
     return Promise.resolve()
@@ -126,8 +112,6 @@ export default function ControlPill() {
   const shouldAutoPlayRef = useRef(false)
   const [activePartIndex, setActivePartIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [author, setAuthor] = useState('Chill / Ambient')
-  const [song, setSong] = useState('Background Music')
   const [ready, setReady] = useState(false)
 
   const activeVideoId = useMemo(() => extractVideoId(YOUTUBE_URLS[activePartIndex] ?? YOUTUBE_URLS[0]), [activePartIndex])
@@ -174,24 +158,6 @@ export default function ControlPill() {
     handleLanguageChange(nextLang)
   }
 
-  const updateVideoMeta = useCallback(() => {
-    const player = playerRef.current
-    if (!player) return
-
-    const data = player.getVideoData?.()
-    const cleanedTitle = data?.title ? sanitizeTitle(data.title) : ''
-
-    if (cleanedTitle) {
-      setSong(cleanedTitle)
-      setAuthor(getArtistFromTitle(cleanedTitle))
-      return
-    }
-
-    if (data?.author && data.author.toLowerCase() !== 'youtube') {
-      setAuthor(data.author)
-    }
-  }, [])
-
   useEffect(() => {
     let cancelled = false
 
@@ -217,7 +183,6 @@ export default function ControlPill() {
             if (cancelled) return
             setReady(true)
             event.target.setVolume(55)
-            updateVideoMeta()
 
             if (shouldAutoPlayRef.current) {
               shouldAutoPlayRef.current = false
@@ -230,7 +195,6 @@ export default function ControlPill() {
 
             if (event.data === states.PLAYING) {
               setIsPlaying(true)
-              updateVideoMeta()
               return
             }
 
@@ -255,7 +219,7 @@ export default function ControlPill() {
       playerRef.current?.destroy()
       playerRef.current = null
     }
-  }, [activeVideoId, updateVideoMeta])
+  }, [activeVideoId])
 
   const handleTogglePlay = () => {
     const player = playerRef.current
@@ -284,22 +248,6 @@ export default function ControlPill() {
     setIsPlaying(true)
   }
 
-  const handlePrev = (e: MouseEvent) => {
-    e.stopPropagation()
-    shouldAutoPlayRef.current = true
-    setReady(false)
-    setIsPlaying(true)
-    setActivePartIndex((prev) => (prev === 0 ? YOUTUBE_URLS.length - 1 : prev - 1))
-  }
-
-  const handleNext = (e: MouseEvent) => {
-    e.stopPropagation()
-    shouldAutoPlayRef.current = true
-    setReady(false)
-    setIsPlaying(true)
-    setActivePartIndex((prev) => (prev + 1) % YOUTUBE_URLS.length)
-  }
-
   const content = (
     <div className={`control-pill-island${isTransitioning ? ' is-loading' : ''}`} role="region" aria-label="Quick controls">
       {/* 1. Single Language Toggle Button */}
@@ -309,7 +257,6 @@ export default function ControlPill() {
         onClick={handleToggleLanguage}
         disabled={isTransitioning}
         aria-label={activeLang === 'az' ? 'Switch to English' : 'Azərbaycan dilinə keç'}
-        title={activeLang === 'az' ? 'English' : 'Azərbaycan'}
       >
         <span className="control-pill__lang-text">{activeLang.toUpperCase()}</span>
       </button>
@@ -322,7 +269,6 @@ export default function ControlPill() {
         className="control-pill__icon-btn control-pill__theme"
         onClick={toggleTheme}
         aria-label={isDark ? 'İşıqlı rejimə keç' : 'Qaranlıq rejimə keç'}
-        title={isDark ? 'Light mode' : 'Dark mode'}
         aria-pressed={isDark}
       >
         <svg className="control-pill__theme-icon control-pill__theme-icon--moon" viewBox="0 0 36 36" aria-hidden="true">
@@ -343,7 +289,6 @@ export default function ControlPill() {
           className={`control-pill__icon-btn control-pill__music${isPlaying ? ' is-playing' : ''}`}
           onClick={handleTogglePlay}
           aria-label={isPlaying ? 'Musiqini dayandır' : 'Musiqini başlat'}
-          title={isPlaying ? `Musiqi: ${song} (Dayandır)` : 'Musiqini başlat'}
           aria-pressed={isPlaying}
         >
           <svg
@@ -370,38 +315,6 @@ export default function ControlPill() {
             )}
           </svg>
         </button>
-
-        {/* Hover track tooltip */}
-        <div className="control-pill__music-tooltip" aria-live="polite">
-          <div className="control-pill__track-info">
-            <span className="control-pill__song-title">{song}</span>
-            <span className="control-pill__song-author">{author}</span>
-          </div>
-          <div className="control-pill__track-actions">
-            <button
-              type="button"
-              className="control-pill__track-btn"
-              onClick={handlePrev}
-              title="Əvvəlki mahnı"
-              aria-label="Əvvəlki mahnı"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" aria-hidden="true">
-                <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" />
-              </svg>
-            </button>
-            <button
-              type="button"
-              className="control-pill__track-btn"
-              onClick={handleNext}
-              title="Növbəti mahnı"
-              aria-label="Növbəti mahnı"
-            >
-              <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12" aria-hidden="true">
-                <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z" />
-              </svg>
-            </button>
-          </div>
-        </div>
       </div>
 
       {/* Hidden YouTube background audio iframe */}
