@@ -39,10 +39,10 @@ export const translations: Record<Language, TranslationDictionary> = {
           'Personal portfolio website designed and developed in 2025, showcasing selected frontend projects, creative animations, and interactive interfaces.',
       },
       compact: {
-        title: 'Compact Brand Website',
-        category: 'Brand Experience',
+        title: 'Digital Wedding Invitation',
+        category: 'Interactive Web Invitation • Coming Soon',
         description:
-          'Website designed with a focused two-screen showcase, clear visual hierarchy, and responsive presentation for a compact brand experience.',
+          'Interactive mobile-first digital wedding invitation crafted with custom envelope reveal animation, background music, and event details.',
       },
       selected: {
         title: 'Selected Portfolio',
@@ -220,10 +220,10 @@ export const translations: Record<Language, TranslationDictionary> = {
           '2025-ci ildə dizayn və inkişaf etdirilmiş, seçilmiş frontend layihələri, kreativ animasiyalar və interaktiv interfeysləri nümayiş etdirən şəxsi portfolio veb saytı.',
       },
       compact: {
-        title: 'Kompakt Brend Veb Saytı',
-        category: 'Brend Təcrübəsi',
+        title: 'Rəqəmsal Toy Dəvətnaməsi',
+        category: 'İnteraktiv Veb Dəvətnamə • Coming Soon',
         description:
-          'Brend təcrübəsi üçün fokuslanmış iki ekranlı nümayiş, aydın vizual iyerarxiya və responsiv təqdimatla hazırlanmış veb sayt.',
+          'Xüsusi zərf açılış animasiyası, fon musiqisi və mərasim detalları ilə hazırlanmış mobil-yönümlü interaktiv rəqəmsal toy dəvətnaməsi.',
       },
       selected: {
         title: 'Seçilmiş Portfolio',

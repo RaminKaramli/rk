@@ -1,17 +1,18 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState, type SVGProps } from 'react'
 import { Icon } from '@iconify/react'
-import { ikiliProjectCards, secondProjectCards, stackCards } from '../../data/projects'
+import { ikiliProjectCards, secondProjectCards, stackCards, weddingInvitationCards } from '../../data/projects'
 import { useDocumentTheme } from '../../hooks/useDocumentTheme'
 import { useLanguage } from '../../context/LanguageContext'
 import { Draggable, ScrollTrigger, gsap } from '../../lib/gsap'
 
 type ProjectShowcaseBoxProps = {
   cards: Array<{ image: string; alt: string }>
+  comingSoon?: boolean
+  href?: string
   title: string
-  href: string
 }
 
-function ProjectShowcaseBox({ cards, title, href }: ProjectShowcaseBoxProps) {
+function ProjectShowcaseBox({ cards, comingSoon = false, href, title }: ProjectShowcaseBoxProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
   const boxRef = useRef<HTMLDivElement | null>(null)
@@ -26,10 +27,35 @@ function ProjectShowcaseBox({ cards, title, href }: ProjectShowcaseBoxProps) {
     return () => clearInterval(interval)
   }, [isHovered, cards.length])
 
+  const slidesContent = (
+    <>
+      <div className="project-showcase-box__slides">
+        {cards.map((card, idx) => (
+          <div
+            key={`${title}-${card.alt}-${idx}`}
+            className={`project-showcase-box__slide ${
+              idx === currentIndex ? 'is-active' : ''
+            }`}
+          >
+            <img
+              className="project-showcase-box__image"
+              src={card.image}
+              alt={card.alt}
+              loading={idx === 0 ? 'eager' : 'lazy'}
+            />
+          </div>
+        ))}
+      </div>
+      {comingSoon && (
+        <span className="project-showcase-box__badge">Coming Soon</span>
+      )}
+    </>
+  )
+
   return (
     <div
       ref={boxRef}
-      className={`project-showcase-box ${isHovered ? "is-hovered" : ""}`}
+      className={`project-showcase-box ${isHovered ? 'is-hovered' : ''}${comingSoon ? ' is-coming-soon' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false)
@@ -37,32 +63,21 @@ function ProjectShowcaseBox({ cards, title, href }: ProjectShowcaseBoxProps) {
       }}
       onTouchStart={() => setIsHovered((prev) => !prev)}
     >
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="project-showcase-box__link-wrap"
-        aria-label={`View ${title}`}
-      >
-        {/* Slides */}
-        <div className="project-showcase-box__slides">
-          {cards.map((card, idx) => (
-            <div
-              key={`${title}-${card.alt}-${idx}`}
-              className={`project-showcase-box__slide ${
-                idx === currentIndex ? "is-active" : ""
-              }`}
-            >
-              <img
-                className="project-showcase-box__image"
-                src={card.image}
-                alt={card.alt}
-                loading={idx === 0 ? "eager" : "lazy"}
-              />
-            </div>
-          ))}
+      {href ? (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="project-showcase-box__link-wrap"
+          aria-label={`View ${title}`}
+        >
+          {slidesContent}
+        </a>
+      ) : (
+        <div className="project-showcase-box__link-wrap is-disabled" aria-label={title}>
+          {slidesContent}
         </div>
-      </a>
+      )}
     </div>
   )
 }
@@ -124,6 +139,8 @@ const projectTools = [
   { icon: <Icon icon="logos:greensock-icon" aria-hidden="true" />, label: 'GSAP' },
 ]
 
+const weddingInvitationTools = projectTools.filter((tool) => tool.label !== 'SCSS')
+
 export default function StackCardsShowcase({ singleColumn = false }: StackCardsShowcaseProps) {
   const { t } = useLanguage()
   const isDarkTheme = useDocumentTheme()
@@ -135,33 +152,41 @@ export default function StackCardsShowcase({ singleColumn = false }: StackCardsS
         id: 'ikili-iki',
         cards: ikiliProjectCards,
         category: t.projects.ikili.category,
+        comingSoon: false,
         description: t.projects.ikili.description,
         href: 'https://ikili2.com/',
         title: t.projects.ikili.title,
+        tools: projectTools,
       },
       {
         id: 'personal-portfolio',
         cards: secondProjectCards,
         category: t.projects.portfolio.category,
+        comingSoon: false,
         description: t.projects.portfolio.description,
         href: 'https://raminkaramli.com/',
         title: t.projects.portfolio.title,
+        tools: projectTools,
       },
       {
-        id: 'compact-brand-website',
-        cards: stackCards.slice(0, 2),
+        id: 'digital-wedding-invitation',
+        cards: weddingInvitationCards,
         category: t.projects.compact.category,
+        comingSoon: true,
         description: t.projects.compact.description,
-        href: 'https://ikili2.com/',
+        href: undefined,
         title: t.projects.compact.title,
+        tools: weddingInvitationTools,
       },
       {
         id: 'selected-portfolio',
         cards: stackCards.slice(2, 4),
         category: t.projects.selected.category,
+        comingSoon: false,
         description: t.projects.selected.description,
         href: 'https://raminkaramli.com/',
         title: t.projects.selected.title,
+        tools: projectTools,
       },
     ],
     [t],
@@ -395,6 +420,7 @@ export default function StackCardsShowcase({ singleColumn = false }: StackCardsS
           <article key={project.id} className="portfolio-card">
             <ProjectShowcaseBox
               cards={project.cards}
+              comingSoon={project.comingSoon}
               title={project.title}
               href={project.href}
             />
@@ -402,15 +428,19 @@ export default function StackCardsShowcase({ singleColumn = false }: StackCardsS
             <div className="portfolio-card__details">
               <div className="portfolio-card__info">
                 <h3 className="portfolio-card__title">
-                  <a href={project.href} target="_blank" rel="noopener noreferrer">
-                    {project.title}
-                  </a>
+                  {project.href ? (
+                    <a href={project.href} target="_blank" rel="noopener noreferrer">
+                      {project.title}
+                    </a>
+                  ) : (
+                    <span>{project.title}</span>
+                  )}
                 </h3>
                 <p className="portfolio-card__category">{project.category}</p>
               </div>
 
               <div className="portfolio-card__tools" aria-label={t.projects.techAria}>
-                {projectTools.map((tool) => (
+                {project.tools.map((tool) => (
                   <span
                     key={`${project.title}-${tool.label}`}
                     className="portfolio-card__tool-icon"

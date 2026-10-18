@@ -10,6 +10,7 @@ import ikiliOne from "../assets/images/project-ikili-1.jpeg"
 import ikiliTwo from "../assets/images/project-ikili-2.jpeg"
 import ikiliThree from "../assets/images/project-ikili-3.jpeg"
 import ikiliFour from "../assets/images/project-ikili-4.jpeg"
+import weddingInvitation from "../assets/images/project-wedding-invitation.jpeg"
 import type { NotableStatConfig, StackCard } from "../types/project.types"
 
 export const stackCards: StackCard[] = [
@@ -63,6 +64,14 @@ export const ikiliProjectCards: StackCard[] = [
   { alt: "İkili İki e-commerce website preview 2", image: ikiliTwo, tags: ["E-Commerce", "RGB LED Panels"] },
   { alt: "İkili İki e-commerce website preview 3", image: ikiliThree, tags: ["E-Commerce", "Backdrop Systems"] },
   { alt: "İkili İki e-commerce website preview 4", image: ikiliFour, tags: ["E-Commerce", "Fabric Backdrops"] },
+]
+
+export const weddingInvitationCards: StackCard[] = [
+  {
+    alt: "Digital Wedding Invitation preview",
+    image: weddingInvitation,
+    tags: ["Digital Invitation", "Interactive", "Mobile", "UI/UX"],
+  },
 ]
 
 export const furnitureProjectCards = ikiliProjectCards
